@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "tools",
+      "name": "实用工具",
+      "parent": null,
+      "directory": "files/常用工具-ef46255c"
+    },
+    {
+      "id": "materials",
+      "name": "学习资料",
+      "parent": null,
+      "directory": "files/学习资料-11338de9"
+    }
+  ],
+  "resources": []
+}
