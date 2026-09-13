@@ -18,6 +18,12 @@
       "name": "实用工具",
       "parent": null,
       "directory": "files/实用工具-c84e37c6"
+    },
+    {
+      "id": "c0f6dc41-89f8-4edb-b9ca-63317bea5be4",
+      "name": "政策文件",
+      "parent": "tools",
+      "directory": "files/常用工具-ef46255c/政策文件-22be7a67"
     }
   ],
   "resources": []
