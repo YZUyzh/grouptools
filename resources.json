@@ -163,6 +163,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "46abcf85-2f0e-453d-bd17-d3238e4507d9",
+      "title": "扬州大学资源访问控制系统（VPN）",
+      "category": "78ef3f05-bc3d-4bf0-bfaf-52738b21516c",
+      "type": "tool",
+      "url": "https://webvpn.yzu.edu.cn/",
+      "description": "",
+      "iconUrl": "./icon/e4d3c213-6df1-49a3-a0a2-4c66af74c8ce.png",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
