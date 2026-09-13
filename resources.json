@@ -150,6 +150,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "cabba3c0-f0a3-405b-9f8c-a4cd98a9c4b0",
+      "title": "扬州大学规范性文件查询管理平台",
+      "category": "78ef3f05-bc3d-4bf0-bfaf-52738b21516c",
+      "type": "tool",
+      "url": "https://zdcx.yzu.edu.cn/",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "code",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
