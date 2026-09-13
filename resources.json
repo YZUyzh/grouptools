@@ -24,6 +24,12 @@
       "name": "政策文件",
       "parent": "tools",
       "directory": "files/常用工具-ef46255c/政策文件-22be7a67"
+    },
+    {
+      "id": "78ef3f05-bc3d-4bf0-bfaf-52738b21516c",
+      "name": "网址大全",
+      "parent": "tools",
+      "directory": "files/常用工具-ef46255c/网址大全-ee7ce3a5"
     }
   ],
   "resources": [
