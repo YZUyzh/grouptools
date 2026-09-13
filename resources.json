@@ -12,6 +12,12 @@
       "name": "学习资料",
       "parent": null,
       "directory": "files/学习资料-11338de9"
+    },
+    {
+      "id": "d448c715-17da-4149-81d9-2e4bb3196b48",
+      "name": "实用工具",
+      "parent": null,
+      "directory": "files/实用工具-c84e37c6"
     }
   ],
   "resources": []
