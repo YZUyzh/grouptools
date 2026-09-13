@@ -137,6 +137,19 @@
         "files/常用工具-ef46255c/政策文件-22be7a67/扬州大学专业学位研究生专业实践管理办法（试行）.pdf"
       ],
       "bundleRoot": ""
+    },
+    {
+      "id": "7d76943d-1d23-41b7-b33f-43d509d490e2",
+      "title": "扬州大学自然科学类高质量科技期刊目录查询系统",
+      "category": "78ef3f05-bc3d-4bf0-bfaf-52738b21516c",
+      "type": "tool",
+      "url": "http://qkmlcx.yzu.edu.cn/#/qikan/normalUserTable",
+      "description": "",
+      "iconUrl": "./icon/3d545375-fd40-4be2-b8cb-88496e039b9f.png",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
