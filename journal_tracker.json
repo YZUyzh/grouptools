@@ -1,6 +1,6 @@
 {
   "version": 11,
-  "updatedAt": "2026-09-15T07:01:45.374Z",
+  "updatedAt": "2026-09-15T07:05:32.024Z",
   "journals": [
     {
       "id": "j:6f85fc3d-9b76-4686-94ac-d6ece5b3d9ec",
@@ -98,8 +98,8 @@
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": "S4306524031"
     },
@@ -124,8 +124,8 @@
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": "S2764498263"
     },
@@ -141,14 +141,14 @@
         {
           "url": "https://rss.cnki.net/knavi/rss/DWJS?pcode=CJFD,CCJD",
           "title": "电网技术-CNKI",
-          "verifiedAt": "2026-09-15T07:00:54.950Z"
+          "verifiedAt": "2026-09-15T07:03:51.620Z"
         }
       ],
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": ""
     },
@@ -172,8 +172,8 @@
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": "S2764567417"
     },
@@ -197,8 +197,8 @@
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": "S2764761917"
     },
@@ -218,8 +218,8 @@
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": "S4306555237"
     },
@@ -241,8 +241,8 @@
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": ""
     },
@@ -432,8 +432,8 @@
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": ""
     },
@@ -455,8 +455,8 @@
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": "S2764479291"
     },
@@ -478,8 +478,8 @@
       "enabled": true,
       "use": {
         "rss": true,
-        "cr": true,
-        "oa": true
+        "cr": false,
+        "oa": false
       },
       "oaSource": "S2764603912"
     }
