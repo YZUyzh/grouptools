@@ -36,6 +36,12 @@
       "name": "学习资料",
       "parent": null,
       "directory": "files/学习资料-11338de9"
+    },
+    {
+      "id": "14db8448-a2f0-4dfb-9463-18683929400b",
+      "name": "成果汇编",
+      "parent": "tools",
+      "directory": "files/常用工具-ef46255c/成果汇编-9ad74faf"
     }
   ],
   "resources": [
