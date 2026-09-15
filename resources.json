@@ -400,6 +400,21 @@
         "files/常用工具-ef46255c/成果汇编-9ad74faf/论文-6be1baa1/大数据产业园多类型楼宇群电能共享优化运行策略.pdf"
       ],
       "bundleRoot": ""
+    },
+    {
+      "id": "9949073f-e90e-4bfb-b978-51ed8f9c12e4",
+      "title": "Electric Vehicle Load Forecasting Based on Probabilistic Modeling and Deep Learning",
+      "category": "8f78a628-3742-4698-a3f4-4356b8846445",
+      "type": "resource",
+      "url": "./files/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7-ef46255c/%E6%88%90%E6%9E%9C%E6%B1%87%E7%BC%96-9ad74faf/%E4%BC%9A%E8%AE%AE-49e38935/Electric%20Vehicle%20Load%20Forecasting%20Based%20on%20Probabilistic%20Modeling%20and%20Deep%20Learning.pdf",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "pdf",
+      "iconMode": "builtin",
+      "managedFiles": [
+        "files/常用工具-ef46255c/成果汇编-9ad74faf/会议-49e38935/Electric Vehicle Load Forecasting Based on Probabilistic Modeling and Deep Learning.pdf"
+      ],
+      "bundleRoot": ""
     }
   ]
 }
