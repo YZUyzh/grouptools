@@ -249,6 +249,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "2ff83079-9330-409c-8fe9-05dc23341086",
+      "title": "万方数据",
+      "category": "e485ac46-8497-4d04-9e5b-0e47e36d9785",
+      "type": "tool",
+      "url": "https://www.wanfangdata.com.cn/index.html",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
