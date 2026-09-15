@@ -197,6 +197,19 @@
         "files/实用工具-c84e37c6/journal_tracker.html"
       ],
       "bundleRoot": ""
+    },
+    {
+      "id": "df71b18c-78b3-4ecd-8ac6-0c46cecf55c5",
+      "title": "中国知网（海外版）",
+      "category": "e485ac46-8497-4d04-9e5b-0e47e36d9785",
+      "type": "tool",
+      "url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
