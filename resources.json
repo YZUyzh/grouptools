@@ -288,6 +288,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "fcc4364e-eae8-46ea-9993-e86c99609a63",
+      "title": "Photokit",
+      "category": "d448c715-17da-4149-81d9-2e4bb3196b48",
+      "type": "tool",
+      "url": "https://photokit.com/?lang=zh",
+      "description": "在线抠图、改图、修图、美图工具",
+      "iconUrl": "",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
