@@ -210,6 +210,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "56f80838-4581-4f63-820c-6b3ebcc3389e",
+      "title": "谷歌学术",
+      "category": "e485ac46-8497-4d04-9e5b-0e47e36d9785",
+      "type": "tool",
+      "url": "https://scholar.google.com/",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
