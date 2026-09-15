@@ -4,14 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<meta name="color-scheme" content="light">
-<meta name="journal-admin-desk" content="10">
+<meta name="journal-desk" content="11">
 <title>电力小分队 · 文献工作台</title>
 <style>
 :root{
- --bg:#f5f6f8;--paper:#fff;--ink:#344054;--muted:#8b95a6;
- --line:#e5e9f0;--accent:#7463b9;--soft:#f1edf8;
- --good:#427d68;--bad:#b45163
+ --bg:#f5f6f8;--ink:#344054;--muted:#8995a6;--line:#e5e9f0;
+ --accent:#7463b9;--soft:#f1edf8;--good:#417e68;--bad:#b25062
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;overflow:hidden}
@@ -27,102 +25,107 @@ a{color:var(--accent)}
 [hidden]{display:none!important}
 input,select,textarea{
  border:1px solid #dce2eb;border-radius:7px;padding:8px 10px;
- background:#fff;color:var(--ink);font-size:12px;max-width:100%
+ background:white;color:var(--ink);font-size:12px;max-width:100%
 }
 textarea{resize:vertical}
-:focus-visible{outline:3px solid #d7ccee;outline-offset:2px}
+:focus-visible{outline:3px solid #d8cdef;outline-offset:2px}
 .btn{
  display:inline-flex;align-items:center;justify-content:center;
- min-height:30px;padding:5px 9px;border:1px solid #dce2eb;
- border-radius:7px;background:#fff;color:#69768a;
- font-size:11px;text-decoration:none;white-space:nowrap
+ padding:5px 9px;min-height:30px;border:1px solid #dce2eb;border-radius:7px;
+ background:white;color:#69758a;font-size:11px;text-decoration:none;white-space:nowrap
 }
 .btn.primary{background:var(--accent);border-color:var(--accent);color:white}
 .btn.small{min-height:25px;padding:3px 7px;font-size:10px}
 .btn.danger{color:var(--bad)}
 .btn.active{background:var(--soft);color:var(--accent)}
 .actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.app{height:100vh;height:100dvh;display:grid;grid-template-columns:240px minmax(0,1fr)}
+.app{height:100vh;height:100dvh;display:grid;grid-template-columns:238px minmax(0,1fr)}
 aside{
  display:flex;flex-direction:column;min-height:0;background:#fcfcfe;
- padding:21px 11px 11px;border-right:1px solid var(--line)
+ padding:20px 10px 10px;border-right:1px solid var(--line)
 }
-.brand{padding:0 8px 19px}
+.brand{padding:0 8px 18px}
 .brand strong{font-size:16px}
 .brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:1px}
-.sidehead{display:flex;align-items:center;justify-content:space-between;padding:0 6px 8px;font-size:11px;color:var(--muted)}
+.sidehead{display:flex;justify-content:space-between;align-items:center;padding:0 6px 8px;font-size:11px;color:var(--muted)}
 #journals{flex:1;min-height:0;overflow:auto}
-.nav{display:flex;gap:5px;align-items:center;padding:10px 6px;margin:3px 0;border:1px solid transparent;border-radius:8px}
+.nav{display:flex;align-items:center;gap:5px;padding:10px 6px;margin:3px 0;border:1px solid transparent;border-radius:8px}
 .nav.selected{background:var(--soft)}
 .nav.over{border-color:var(--accent)}
-.navmain{flex:1;min-width:0;text-align:left;border:0;background:none;padding:0;color:#62718a}
+.navmain{flex:1;min-width:0;text-align:left;border:0;background:none;padding:0;color:#63718a}
 .navmain strong{display:block;font-size:12px;overflow-wrap:anywhere}
 .navmain small{display:block;font-size:10px;color:var(--muted)}
-.handle{color:#b4a4c8;cursor:grab}
+.handle{cursor:grab;color:#b2a2c5}
 .arrows{display:flex;flex-direction:column}
-.arrows button{border:0;background:none;font-size:9px;color:#a4aebe;padding:0 3px}
+.arrows button{border:0;background:none;font-size:9px;color:#9da8b9;padding:0 3px}
 .sidefoot{padding:10px 6px 0;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
-main{display:flex;flex-direction:column;gap:8px;padding:10px;min-width:0;min-height:0}
+main{display:flex;flex-direction:column;gap:8px;min-height:0;min-width:0;padding:10px}
 .topbar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 h1{font-size:16px;margin:0}
 #timer{font-size:10px;color:var(--good)}
-.work{flex:1;min-height:0;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
-.toolbar,.journalbar{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:10px 13px;border-bottom:1px solid var(--line)}
+.work{flex:1;min-height:0;display:flex;flex-direction:column;background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.toolbar,.journalbar{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:8px;flex-wrap:wrap;padding:10px 13px;border-bottom:1px solid var(--line)
+}
 #query{width:285px}
 .heading{flex:1;min-width:0}
 #journalTitle{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #journalMeta{font-size:10px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #issue{max-width:215px}
 .updatebar{
- flex:none;height:38px;display:flex;align-items:center;justify-content:space-between;
- gap:9px;padding:4px 13px;background:#f8fbfa;border-bottom:1px solid #ebf0ed;
- color:#739182;font-size:10px
+ flex:none;min-height:38px;display:flex;align-items:center;justify-content:space-between;
+ gap:9px;padding:5px 13px;background:#f8fbfa;border-bottom:1px solid #edf2ef;
+ color:#728d80;font-size:10px
 }
 #pendingText{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #scroll{flex:1;min-height:0;overflow:auto;padding:0 15px 12px;overflow-anchor:none}
 .paper{padding:17px 0;border-bottom:1px solid #edf0f5}
-.paper.read .title{color:#98a1af}
+.paper.read .title{color:#96a0af}
 .title{font-size:14px;font-weight:550;color:#46566f;text-decoration:none;overflow-wrap:anywhere}
 .authors{font-size:11px;color:#949eaf;margin:5px 0}
 .tags{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}
-.tag{font-size:10px;padding:2px 6px;border-radius:4px;background:#f3f5f7;color:#8b97a8}
-.tag.source{background:#f4eff8;color:#9880aa}
-.tag.warn{background:#fcf5e9;color:#aa8959}
-.doi{font-size:10px;color:#a297ae;overflow-wrap:anywhere}
+.tag{font-size:10px;background:#f2f4f7;color:#8b97a7;padding:2px 6px;border-radius:4px}
+.tag.source{background:#f4eff8;color:#9780a9}
+.doi{font-size:10px;color:#a296ad;overflow-wrap:anywhere}
 #papers.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;padding-top:12px}
 .grid .paper{border:1px solid var(--line);padding:13px;border-radius:9px}
 #empty{text-align:center;padding:42px 12px;white-space:pre-line;color:var(--muted);font-size:12px}
 #pager{display:flex;justify-content:center;align-items:center;gap:12px;padding:18px;font-size:11px;color:var(--muted)}
-.statusbar{display:flex;justify-content:space-between;gap:9px;padding:5px 13px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
-#status{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.statusbar{display:flex;justify-content:space-between;gap:8px;padding:5px 13px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
+#status{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 footer{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 #bridgeStatus,#storageStatus{font-size:10px;color:var(--muted)}
 dialog{
- width:min(900px,calc(100% - 24px));max-height:92vh;max-height:92dvh;
- overflow:auto;border:1px solid var(--line);border-radius:13px;
- padding:21px;background:#fff;color:var(--ink);
- box-shadow:0 20px 80px #17233b30
+ width:min(900px,calc(100% - 24px));max-height:92vh;max-height:92dvh;overflow:auto;
+ border:1px solid var(--line);border-radius:13px;padding:21px;background:white;
+ color:var(--ink);box-shadow:0 20px 80px #17233b30
 }
 dialog::backdrop{background:#17233b66}
-.dialoghead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.dialoghead{display:flex;justify-content:space-between;align-items:center;gap:10px}
 h2{font-size:18px;margin:0}
-h3{font-size:13px;margin:19px 0 7px}
-label{display:block;font-size:12px;color:#7c879b;margin:12px 0}
+h3{font-size:13px;margin:18px 0 7px}
+label{display:block;font-size:12px;color:#7b879a;margin:12px 0}
 label input:not([type=checkbox]),label select,label textarea{display:block;width:100%;margin-top:5px}
 .check{display:flex;align-items:center;gap:7px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .hint{font-size:11px;line-height:1.9;color:var(--muted);white-space:pre-line;overflow-wrap:anywhere}
 .warning{font-size:11px;white-space:pre-line;border:1px solid #eadfc9;background:#fcf8ef;color:#9b845f;padding:11px 12px;border-radius:8px}
+.error{color:var(--bad)}
 .foot{display:flex;justify-content:flex-end;gap:7px;flex-wrap:wrap;margin-top:17px;padding-top:14px;border-top:1px solid var(--line)}
 .result{display:flex;align-items:flex-start;gap:9px;padding:11px 0;border-bottom:1px solid var(--line)}
 .resultcopy{flex:1;min-width:0}
-.result strong{font-size:12px;display:block}
-.result small{font-size:10px;color:var(--muted);display:block;overflow-wrap:anywhere}
+.result strong{display:block;font-size:12px}
+.result small{display:block;font-size:10px;color:var(--muted);overflow-wrap:anywhere}
 #searchResults,#candidates,#preview{max-height:320px;overflow:auto}
 table{width:100%;border-collapse:collapse;font-size:11px}
 th,td{padding:8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
-#toast{position:fixed;right:14px;bottom:52px;z-index:9999;width:min(570px,calc(100vw - 28px));padding:11px 32px 11px 13px;border:1px solid #ded5ec;background:#f8f5fc;border-radius:9px;box-shadow:0 8px 30px #20304915}
-#toastText{font-size:11px;line-height:1.9;white-space:pre-line;color:#85709e;max-height:220px;overflow:auto}
+#toast{
+ position:fixed;right:14px;bottom:52px;z-index:9999;width:min(600px,calc(100vw - 28px));
+ padding:11px 32px 11px 13px;border:1px solid #ded5ec;background:#f8f5fc;
+ border-radius:9px;box-shadow:0 8px 30px #20304915
+}
+#toastText{font-size:11px;line-height:1.9;white-space:pre-line;color:#85709e;max-height:240px;overflow:auto}
 #toast.error{background:#fff4f6;border-color:#ead0d9}
 #toast.error #toastText{color:var(--bad)}
 #toastClose{position:absolute;top:3px;right:7px;border:0;background:none;font-size:20px;color:#ab95b4}
@@ -134,8 +137,7 @@ body.focus aside{display:none}
  aside{position:fixed;inset:0 auto 0 0;width:270px;z-index:100;transform:translateX(-100%)}
  aside.open{transform:translateX(0)}
  #shade.open{display:block;position:fixed;inset:0;z-index:99;background:#17233b66;border:0}
- #menu{display:inline-flex}
- #query{width:100%}
+ #menu{display:inline-flex}#query{width:100%}
  .row{grid-template-columns:1fr;gap:0}
  #papers.grid{grid-template-columns:minmax(0,1fr)}
  main{padding:5px}dialog{padding:16px}
@@ -149,7 +151,7 @@ body.focus aside{display:none}
   <div class="brand"><strong>电力小分队</strong><small>JOURNAL DESK / 文献工作台</small></div>
   <div class="sidehead"><span>共享期刊目录</span><button id="addJournal" class="btn primary small" data-admin hidden>＋ 搜索期刊</button></div>
   <nav id="journals"></nav>
-  <div class="sidefoot"><div id="counts"></div><div>V10 · GitHub 管理 · 多源追踪</div></div>
+  <div class="sidefoot"><div id="counts"></div><div>V11 · 自动去重 · GitHub 管理</div></div>
  </aside>
  <button id="shade" aria-label="关闭导航"></button>
  <main>
@@ -166,15 +168,17 @@ body.focus aside{display:none}
     <button id="stop" class="btn danger" hidden>停止</button>
    </div>
   </header>
+
   <section class="work">
    <div class="toolbar">
-    <input id="query" type="search" placeholder="搜索当前列表的标题、作者、DOI">
+    <input id="query" type="search" placeholder="搜索标题、作者、DOI">
     <div class="actions">
      <button class="btn small active" data-filter="all">全部</button>
      <button class="btn small" data-filter="unread">未读</button>
      <button class="btn small" data-filter="favorite">收藏</button>
      <button id="view" class="btn small">卡片</button>
      <button id="csv" class="btn small">CSV</button>
+     <button id="dedup" class="btn small">清理旧重复记录</button>
     </div>
    </div>
    <div class="journalbar">
@@ -192,8 +196,9 @@ body.focus aside{display:none}
     <div id="papers"></div><div id="empty"></div>
     <div id="pager" hidden><button id="prev" class="btn small">上一页</button><span id="pageInfo"></span><button id="next" class="btn small">下一页</button></div>
    </div>
-   <div class="statusbar"><span id="status">正在载入配置…</span><span id="total"></span></div>
+   <div class="statusbar"><span id="status"></span><span id="total"></span></div>
   </section>
+
   <footer>
    <div class="actions"><span id="bridgeStatus"></span><button id="installBridge" class="btn small">安装读取脚本</button></div>
    <div class="actions">
@@ -210,29 +215,43 @@ body.focus aside{display:none}
 
 <dialog id="loginDialog">
  <div class="dialoghead"><h2>GitHub 管理员登录</h2><button class="btn" data-close>关闭 ×</button></div>
- <p id="repoInfo" class="hint"></p>
+ <p class="hint">本版通过真实 GitHub Contents 写操作验证权限，不仅检查 permissions.push。
+仓库、分支、JSON 路径均可在这里修改。</p>
  <form id="loginForm">
-  <label>GitHub 访问令牌<input id="tokenInput" type="password" autocomplete="off" required></label>
+  <div class="row">
+   <label>仓库所有者<input id="ghOwner" required></label>
+   <label>仓库名称<input id="ghRepo" required></label>
+  </div>
+  <div class="row">
+   <label>分支<input id="ghBranch" required></label>
+   <label>共享 JSON 路径<input id="ghPath" required placeholder="tools/journal/journal_tracker.json"></label>
+  </div>
+  <label>GitHub 令牌<input id="tokenInput" type="password" autocomplete="off" required spellcheck="false"></label>
   <label class="check"><input id="autoSaveInput" type="checkbox">共享配置修改后自动保存</label>
-  <div class="warning">需要目标仓库写入权限。Fine-grained token 应授权目标仓库，并将 Contents 设为 Read and write。
-登录会验证 GitHub 身份和仓库写权限；令牌是否具备具体提交能力最终仍以 GitHub 保存响应为准。
-令牌仅保存在当前页面内存，不写入 localStorage 或 JSON。</div>
+  <div class="warning">Fine-grained token：授权目标仓库，Contents 设置为 Read and write。
+登录将创建一个未提交到分支的空 Git Blob 来验证写权限，不修改现有文件和分支。
+若仓库有分支保护，最终保存仍可能被拒绝。
+令牌只保存在当前页面内存，不写入 JSON 或浏览器存储。</div>
   <p id="loginStatus" class="hint"></p>
-  <div class="foot"><button id="loginSubmit" type="submit" class="btn primary">验证权限并登录</button></div>
+  <div class="foot"><button id="loginSubmit" class="btn primary" type="submit">验证写权限并登录</button></div>
  </form>
 </dialog>
 
 <dialog id="searchDialog">
  <div class="dialoghead"><h2>多源搜索期刊</h2><button class="btn" data-close>关闭 ×</button></div>
- <p class="hint">同时搜索内置期刊、Crossref、OpenAlex；中文刊名同时搜索知网页面公开索引。
-来源错误与空结果分开显示。优先按 ISSN 合并，同名但 ISSN 冲突的结果不合并。</p>
+ <p class="hint">内置期刊、Crossref、OpenAlex 独立查询；中文刊名同时查询知网公开索引。
+接口失败与没有结果分开显示。相似刊名不自动当作同一本期刊。</p>
  <form id="searchForm">
-  <div class="actions"><input id="journalQuery" required placeholder="中文刊名 / 英文刊名 / TSG / ISSN" style="flex:1;min-width:160px"><button class="btn primary">联合搜索</button><button type="button" id="stopSearch" class="btn">停止</button></div>
+  <div class="actions">
+   <input id="journalQuery" required placeholder="中文刊名 / 英文刊名 / 缩写 / ISSN" style="flex:1;min-width:160px">
+   <button class="btn primary">联合搜索</button>
+   <button type="button" id="stopSearch" class="btn">停止</button>
+  </div>
  </form>
  <p id="searchStatus" class="hint"></p>
  <div id="searchResults"></div>
  <details>
-  <summary>自动检索失败后：手动添加</summary>
+  <summary>手动添加期刊</summary>
   <form id="manualForm">
    <label>期刊名称<input id="manualName" required></label>
    <div class="row"><label>ISSN（可空）<input id="manualISSN"></label><label>主页（可空）<input id="manualHome"></label></div>
@@ -243,87 +262,80 @@ body.focus aside{display:none}
 </dialog>
 
 <dialog id="manageDialog">
- <div class="dialoghead"><h2>联合来源配置</h2><button class="btn" data-close>关闭 ×</button></div>
+ <div class="dialoghead"><h2>数据源与题录</h2><button class="btn" data-close>关闭 ×</button></div>
  <p id="manageTitle" class="hint"></p>
  <div class="actions">
   <button id="autoConfigure" class="btn primary">自动找 ISSN / 主页 / RSS</button>
-  <button id="extractHome" class="btn">读取主页并提取 RSS</button>
+  <button id="extractHome" class="btn">读取主页提取 RSS</button>
   <button id="cancelOperation" class="btn danger">停止检测</button>
  </div>
  <p id="setupStatus" class="hint"></p>
  <div class="row"><label>期刊名称<input id="nameInput"></label><label>ISSN（逗号分隔）<input id="issnInput"></label></div>
  <label>别名（每行一个）<textarea id="aliasesInput" rows="2"></textarea></label>
- <label>期刊主页<input id="homeInput"></label>
- <h3>独立启用来源</h3>
+ <label>主页<input id="homeInput"></label>
  <div class="actions">
   <label class="check"><input id="useRSS" type="checkbox">RSS / Atom</label>
   <label class="check"><input id="useCR" type="checkbox">Crossref</label>
   <label class="check"><input id="useOA" type="checkbox">OpenAlex</label>
  </div>
- <label>RSS 地址（每行一个，最多 6 个）<textarea id="feedsInput" rows="3"></textarea></label>
+ <label>RSS（每行一个，最多 6 个）<textarea id="feedsInput" rows="3"></textarea></label>
  <label>待验证 RSS<input id="verifyInput"></label>
- <div class="actions"><button id="verifyFeed" class="btn primary">验证并加入订阅列表</button><button id="openHome" class="btn">打开主页</button></div>
- <label>OpenAlex Source ID（可空）<input id="oaSourceInput" placeholder="S 加数字"></label>
+ <div class="actions"><button id="verifyFeed" class="btn primary">验证并加入订阅</button><button id="openHome" class="btn">打开主页</button></div>
+ <label>OpenAlex Source ID<input id="oaSourceInput" placeholder="S 加数字，可空"></label>
  <h3>候选地址</h3><div id="candidates"></div>
  <p id="verifyStatus" class="hint"></p>
  <details>
-  <summary>文件 / 手动题录导入</summary>
-  <div class="warning">支持 RIS、EndNote/RefWorks 标记文本、NoteExpress 标记文本、RSS/Atom XML、HTML、论文 JSON 数组。
-HTML 目录链接仅作为候选，默认不选中。导入文件不等于在线订阅已经验证。
-不执行 HTML 脚本，不解析摘要。</div>
+  <summary>导入题录文件 / 文本</summary>
+  <div class="warning">支持 RSS/Atom XML、RIS、EndNote/RefWorks、NoteExpress 标记文本、HTML 和论文 JSON 数组。
+自动合并重复项。HTML 目录候选默认不勾选；不执行网页脚本，不获取摘要。</div>
   <div class="row"><label>默认卷号<input id="volumeInput"></label><label>默认期号<input id="issueInput"></label></div>
   <label>默认日期<input id="dateInput" placeholder="YYYY-MM-DD"></label>
-  <label>编码<select id="encodingInput"><option value="auto">自动</option><option value="utf-8">UTF-8</option><option value="gb18030">GB18030 / GBK</option></select></label>
+  <label>文件编码<select id="encodingInput"><option value="auto">自动</option><option value="utf-8">UTF-8</option><option value="gb18030">GB18030 / GBK</option></select></label>
   <button id="pickFiles" class="btn">读取文件</button>
   <label>或粘贴内容<textarea id="importText" rows="5"></textarea></label>
   <button id="parseText" class="btn">解析内容</button>
  </details>
- <h3>题录预览</h3>
+ <h3>去重后的预览</h3>
  <div class="actions"><button id="selectPreview" class="btn small">全选</button><button id="clearPreview" class="btn small">清空预览</button></div>
  <div id="preview"></div>
- <label class="check"><input id="enabledInput" type="checkbox">启用此期刊自动刷新</label>
- <div class="foot">
-  <button id="clearManual" class="btn danger">清空手动题录</button>
-  <button id="saveManage" class="btn primary">保存配置并导入勾选项</button>
- </div>
+ <label class="check"><input id="enabledInput" type="checkbox">启用自动刷新</label>
+ <div class="foot"><button id="clearManual" class="btn danger">清空手动题录</button><button id="saveManage" class="btn primary">保存并导入勾选项</button></div>
 </dialog>
 
 <dialog id="settingsDialog">
- <div class="dialoghead"><h2>共享刷新设置</h2><button class="btn" data-close>关闭 ×</button></div>
+ <div class="dialoghead"><h2>共享设置</h2><button class="btn" data-close>关闭 ×</button></div>
  <label class="check"><input id="autoInput" type="checkbox">每 5 分钟后台检查</label>
  <div class="row">
   <label>并行期刊数<select id="concurrencyInput"><option value="1">1 本</option><option value="2">2 本</option></select></label>
   <label>API 快速检查<select id="quickInput"><option value="50">50 条</option><option value="100">100 条</option><option value="200">200 条</option></select></label>
  </div>
  <div class="row">
-  <label>API 检索窗口<select id="monthsInput"><option value="6">6 个月</option><option value="12">12 个月</option><option value="24">24 个月</option></select></label>
-  <label>API 每来源扫描 / 保留上限<select id="limitInput"><option value="500">500 条</option><option value="1000">1000 条</option><option value="3000">3000 条</option><option value="5000">5000 条</option></select></label>
+  <label>API 时间窗口<select id="monthsInput"><option value="6">6 个月</option><option value="12">12 个月</option><option value="24">24 个月</option></select></label>
+  <label>完整扫描上限（每来源）<select id="limitInput"><option value="500">500 条</option><option value="1000">1000 条</option><option value="3000">3000 条</option><option value="5000">5000 条</option></select></label>
  </div>
  <div class="row">
-  <label>每 RSS 累计保留<select id="rssLimitInput"><option value="500">500 条</option><option value="2000">2000 条</option><option value="5000">5000 条</option></select></label>
+  <label>每刊去重后总缓存上限<select id="cacheLimitInput"><option value="2000">2000 条</option><option value="5000">5000 条</option><option value="10000">10000 条</option></select></label>
   <label>每页篇数<select id="pageSizeInput"><option value="10">10 条</option><option value="20">20 条</option><option value="50">50 条</option></select></label>
  </div>
- <div class="warning">不同期刊可并行；同一期刊内逐个执行全部启用来源。
-来源失败后暂缓重试 60 分钟；手动刷新仍受该冷却约束。
-RSS 不支持完整历史扫描。完整扫描指 API 检索窗口内、条数上限以内的扫描。
-浏览器可能限制后台标签页计时；关闭网页后停止更新。</div>
+ <div class="warning">RSS、Crossref、OpenAlex 全部独立执行，来源失败不删除旧记录。
+失败来源冷却 60 分钟；后台不自动重绘当前列表。
+去重使用 DOI、原文 URL、RSS 标识、规范化后的完整标题，不做模糊标题匹配。
+RSS 不提供完整历史。API 完整扫描受时间窗口和条数上限限制。</div>
  <div class="foot"><button id="saveSettings" class="btn primary">保存设置</button></div>
 </dialog>
 
 <dialog id="logsDialog">
- <div class="dialoghead"><h2>各来源状态</h2><button class="btn" data-close>关闭 ×</button></div>
+ <div class="dialoghead"><h2>来源状态</h2><button class="btn" data-close>关闭 ×</button></div>
  <p id="logTitle" class="hint"></p>
- <table><thead><tr><th>来源</th><th>状态 / 数量</th><th>最近检查</th><th>说明</th></tr></thead><tbody id="sourceRows"></tbody></table>
- <p class="hint">各来源失败互不影响。DOI 优先去重，其次原文链接和稳定 RSS 标识。
-标题相同但缺乏可靠标识的记录只标记疑似重复，不自动合并。</p>
+ <table><thead><tr><th>来源</th><th>状态</th><th>最近检查</th><th>说明</th></tr></thead><tbody id="sourceRows"></tbody></table>
 </dialog>
 
 <dialog id="bridgeDialog">
  <div class="dialoghead"><h2>安装网页读取脚本</h2><button class="btn" data-close>关闭 ×</button></div>
- <p class="hint">在 Tampermonkey 中新建脚本，粘贴下方内容保存，然后刷新工作台。
-仅匹配当前工作台路径；允许知网、Bing RSS 搜索端点，以及当前配置中的主页 / RSS 域名。
-新增其他域名后，需要重新生成并更新脚本。
-不携带登录 Cookie，不绕过验证码、付费访问或证书检查。</p>
+ <p class="hint">在 Tampermonkey 新建脚本，粘贴保存后刷新工作台。
+允许知网、Bing RSS 搜索端点，以及当前期刊配置中的公开主页/RSS 域名。
+新增其他域名后重新生成脚本。不要同时启用多份旧读取脚本。
+不携带登录 Cookie，不绕过验证码、付费访问或 TLS 检查。</p>
  <div class="actions"><button id="copyScript" class="btn primary">复制脚本</button><button id="downloadScript" class="btn">下载 .user.js</button></div>
  <label>脚本<textarea id="bridgeCode" rows="15" readonly></textarea></label>
 </dialog>
@@ -331,30 +343,23 @@ RSS 不支持完整历史扫描。完整扫描指 API 检索窗口内、条数�
 <div id="toast" hidden><div id="toastText" role="status"></div><button id="toastClose">×</button></div>
 <input id="files" type="file" accept=".html,.htm,.xml,.rss,.atom,.ris,.enw,.txt,.net,.json" multiple hidden>
 <input id="backupFile" type="file" accept=".json" hidden>
-<noscript>请启用 JavaScript。</noscript>
 
 <script>
 (function(){
 "use strict";
 
-/* ================= 修改这里 =================
-   path 是相对于 GitHub 仓库根目录的路径。
-   若放在 tools/journal/，改为：
-   path: "tools/journal/journal_tracker.json"
-*/
-const CONFIG = Object.freeze({
- owner: "YZUyzh",
- repo: "grouptools",
- branch: "main",
- path: "journal_tracker.json"
-});
-/* =========================================== */
+/* 默认仓库；也可在管理员登录窗口修改。 */
+const DEFAULT_REPO={
+ owner:"YZUyzh",
+ repo:"grouptools",
+ branch:"main",
+ path:"journal_tracker.json"
+};
 
 const $=id=>document.getElementById(id);
 const BASE=new URL("./",location.href);
-const SCOPE=CONFIG.owner+"/"+CONFIG.repo+"/"+CONFIG.branch+"/"+CONFIG.path;
-const LS="journal-admin-v10:"+SCOPE+":";
-const TAG="JOURNAL_ADMIN_BRIDGE_10";
+const APPKEY="journal-v11:"+BASE.href+":";
+const TAG="JOURNAL_BRIDGE_V11";
 const MAX=8*1024*1024,INTERVAL=300000,ERROR_WAIT=3600000;
 const CNKI=["navi.cnki.net","rss.cnki.net","kns.cnki.net","kns8.cnki.net"];
 const CATALOG=[
@@ -375,20 +380,30 @@ const CATALOG=[
  ["Renewable Energy",["0960-1481"],[]]
 ].map(([name,issns,aliases])=>({name,issns,aliases,origins:["内置"]}));
 
-function defaults(){
- return {version:10,updatedAt:"",journals:[],manual:{},
-  settings:{auto:true,concurrency:2,quick:100,months:12,limit:1000,rssLimit:2000,pageSize:20}};
-}
+let repo={...DEFAULT_REPO};
+try{repo=validateRepo(read(APPKEY+"repo",DEFAULT_REPO))}catch{}
 let state=defaults(),marks={},current="favorites",filter="all",page=1,grid=false;
-let snapshot=[],pending=new Set(),lastStatus="",nextAuto=Date.now()+INTERVAL;
-let session=null,connecting=false,saving=false,dirty=false,revision=0,saveTimer;
+let snapshot=[],pending=new Set(),session=null,dirty=false,revision=0;
+let saving=false,connecting=false,loadingPublic=false,booting=true;
 let batch=null,operation=null,searchCtl=null,searchResults=[];
 let managing="",candidates=[],preview=[],verified=new Map(),dragID="";
-let toastTimer,queryTimer,bridgeHosts=new Set(),storageError=false,booting=true;
-const caches=new Map(),writes=new Map(),bridgeJobs=new Map(),hostCooldown=new Map();
-let cacheDB=null;
+let lastStatus="",nextAuto=Date.now()+INTERVAL,saveTimer,toastTimer,queryTimer;
+let bridgeHosts=new Set(),storageError=false,db=null;
+const caches=new Map(),writes=new Map(),bridgeJobs=new Map(),cooldowns=new Map();
 
-/* ---------- 基础 ---------- */
+function defaults(){
+ return {version:11,updatedAt:"",journals:[],manual:{},
+  settings:{auto:true,concurrency:2,quick:100,months:12,limit:1000,cacheLimit:5000,pageSize:20}};
+}
+function scope(r=repo){return r.owner+"/"+r.repo+"/"+r.branch+"/"+r.path}
+function key(name){return "journal-v11:"+scope()+":"+name}
+function read(k,f){try{const s=localStorage.getItem(k);return s===null?f:JSON.parse(s)}catch{return f}}
+function write(k,v){
+ try{localStorage.setItem(k,JSON.stringify(v));return true}
+ catch{storageError=true;return false}
+}
+function removeKey(k){try{localStorage.removeItem(k)}catch{}}
+function clone(v){return JSON.parse(JSON.stringify(v))}
 function el(tag,cls="",text){
  const n=document.createElement(tag);if(cls)n.className=cls;
  if(text!==undefined)n.textContent=text;return n;
@@ -402,21 +417,17 @@ function report(e){if(e?.name!=="AbortError"){toast(e?.message||String(e),true);
 function toast(text,error=false){
  clearTimeout(toastTimer);$("toastText").textContent=text;$("toast").hidden=!text;
  $("toast").classList.toggle("error",error);
- if(text&&!error)toastTimer=setTimeout(()=>$("toast").hidden=true,8500);
+ if(text&&!error)toastTimer=setTimeout(()=>$("toast").hidden=true,9000);
 }
-function read(key,fallback){try{const x=localStorage.getItem(key);return x===null?fallback:JSON.parse(x)}catch{return fallback}}
-function write(key,value){
- try{localStorage.setItem(key,JSON.stringify(value));return true}
- catch{storageError=true;renderControls();return false}
-}
-function removeKey(key){try{localStorage.removeItem(key)}catch{}}
-function clone(v){return JSON.parse(JSON.stringify(v))}
 function plain(v){
  const d=new DOMParser().parseFromString(String(v??""),"text/html");
  d.querySelectorAll("script,style").forEach(n=>n.remove());
  return (d.body.textContent||"").replace(/\s+/g," ").trim();
 }
-function norm(v){return String(v??"").normalize("NFKC").toLowerCase().replace(/[\s.,:;!?&/'"()_\-\u3000，。；：！？【】（）]+/g,"")}
+function norm(v){
+ return plain(v).normalize("NFKC").toLowerCase()
+  .replace(/[\s\u200b-\u200d\ufeff.,:;!?'"“”‘’()[\]{}_\-–—，。；：！？【】（）《》、]/g,"");
+}
 function urlOf(v,base){
  if(!v)return "";
  try{
@@ -427,8 +438,9 @@ function urlOf(v,base){
 function canonical(v){
  const s=urlOf(v);if(!s)return "";
  const u=new URL(s);u.hash="";
- for(const k of [...u.searchParams.keys()])if(/^utm_/i.test(k))u.searchParams.delete(k);
- return u.href;
+ for(const k of [...u.searchParams.keys()])if(/^utm_/i.test(k)||["fbclid","gclid"].includes(k))u.searchParams.delete(k);
+ u.searchParams.sort();
+ return u.href.replace(/^http:/,"https:");
 }
 function host(v){try{return new URL(v).hostname}catch{return ""}}
 function chinese(v){return /[\u3400-\u9fff]/.test(v)}
@@ -454,7 +466,9 @@ function download(name,text,type){
  setTimeout(()=>URL.revokeObjectURL(u),10000);
 }
 function doi(v){
- const s=String(v||"").trim().replace(/^https?:\/\/(?:dx\.)?doi\.org\//i,"").replace(/^doi:\s*/i,"").toLowerCase();
+ let s=String(v||"").trim().replace(/^https?:\/\/(?:dx\.)?doi\.org\//i,"").replace(/^doi:\s*/i,"");
+ try{s=decodeURIComponent(s)}catch{}
+ s=s.toLowerCase();
  return /^10\.\d{4,9}\/\S+$/.test(s)?s:"";
 }
 function issn(v){
@@ -478,16 +492,73 @@ function dateValue(v){
 }
 function dateKey(v){if(!v)return "";const a=v.split("-");return a[0]+"-"+(a[1]||"01")+"-"+(a[2]||"01")}
 function goodID(v){return /^[A-Za-z0-9:._-]{1,200}$/.test(v)&&!["__proto__","constructor","prototype"].includes(v)}
+function strings(v,max=100){return [...new Set((Array.isArray(v)?v:[]).map(x=>String(x||"")).filter(Boolean))].slice(0,max)}
+
 function cleanPaper(p){
  const title=plain(p?.title),id=String(p?.id||doi(p?.doi)||"");
- if(!title||!id||id.length>500||["__proto__","constructor","prototype"].includes(id))throw Error("题录缺少有效标题或编号。");
- return {id,doi:doi(p.doi||id),title:title.slice(0,3000),
+ if(!title||!id||id.length>500||["__proto__","constructor","prototype"].includes(id))throw Error("题录缺少标题或有效编号。");
+ return {
+  id,doi:doi(p.doi||id),title:title.slice(0,3000),
   authors:(Array.isArray(p.authors)?p.authors:[]).map(plain).slice(0,1000),
   journal:plain(p.journal).slice(0,300),volume:plain(p.volume).slice(0,100),
   issue:plain(p.issue).slice(0,100),page:plain(p.page).slice(0,100),
   published:dateValue(p.published),printDate:dateValue(p.printDate),url:urlOf(p.url),
   origin:plain(p.origin||p.source||"题录").slice(0,100),
-  feedKey:String(p.feedKey||"").slice(0,3000),seenAt:Number(p.seenAt)||0};
+  feedKey:String(p.feedKey||"").slice(0,3000),seenAt:Number(p.seenAt)||0,
+  sources:strings(p.sources||[p.origin||p.source||"题录"],20),
+  aliases:strings(p.aliases,150),
+  dedupKeys:strings(p.dedupKeys,150)
+ };
+}
+function sortPapers(a,b){
+ const ad=dateKey(a.published),bd=dateKey(b.published);
+ if(ad&&bd)return bd.localeCompare(ad)||a.title.localeCompare(b.title);
+ if(ad&&!bd)return -1;if(!ad&&bd)return 1;
+ return (b.seenAt||0)-(a.seenAt||0)||a.title.localeCompare(b.title);
+}
+
+/* 自动去重：实际聚合成单个题录，不保留重复卡片。 */
+function identityKeys(p){
+ const keys=["i:"+p.id,...p.dedupKeys];
+ if(p.doi)keys.push("d:"+p.doi);
+ if(p.url)keys.push("u:"+canonical(p.url));
+ if(p.feedKey)keys.push("f:"+p.feedKey);
+ const title=norm(p.title);
+ if(title)keys.push("t:"+title);
+ return [...new Set(keys)];
+}
+function quality(p){
+ return (p.doi?5:0)+(p.authors.length?3:0)+(p.published?2:0)+
+  (p.volume?1:0)+(p.issue?1:0)+(p.page?1:0)+(p.url?1:0)+
+  (/Crossref|OpenAlex/i.test(p.origin)?2:0);
+}
+function deduplicate(raw){
+ const list=[];
+ for(const p of raw||[]){try{list.push(cleanPaper(p))}catch{}}
+ const parent=list.map((_,i)=>i),seen=new Map();
+ function find(i){while(parent[i]!==i){parent[i]=parent[parent[i]];i=parent[i]}return i}
+ function join(a,b){a=find(a);b=find(b);if(a!==b)parent[b]=a}
+ list.forEach((p,i)=>{
+  for(const k of identityKeys(p)){
+   if(seen.has(k))join(i,seen.get(k));else seen.set(k,i);
+  }
+ });
+ const groups=new Map();
+ list.forEach((p,i)=>{const root=find(i);if(!groups.has(root))groups.set(root,[]);groups.get(root).push(p)});
+ const items=[];
+ for(const group of groups.values()){
+  const ordered=[...group].sort((a,b)=>quality(b)-quality(a));
+  const first=group[0],result={...ordered[0],id:first.id};
+  for(const k of ["doi","url","volume","issue","page","published","printDate","journal","feedKey"])
+   if(!result[k])result[k]=ordered.find(p=>p[k])?.[k]||"";
+  result.authors=ordered.reduce((a,p)=>p.authors.length>a.length?p.authors:a,[]);
+  result.seenAt=Math.min(...group.map(p=>p.seenAt).filter(Boolean))||0;
+  result.sources=[...new Set(group.flatMap(p=>p.sources.length?p.sources:[p.origin]))];
+  result.aliases=[...new Set(group.flatMap(p=>[p.id,...p.aliases]))].filter(id=>id!==result.id).slice(0,150);
+  result.dedupKeys=[...new Set(group.flatMap(identityKeys))].slice(0,150);
+  items.push(result);
+ }
+ return {items:items.sort(sortPapers),removed:list.length-items.length};
 }
 function cleanJournal(j){
  if(!goodID(String(j.id||""))||!plain(j.name))throw Error("期刊名称或编号无效。");
@@ -497,213 +568,177 @@ function cleanJournal(j){
   if(u&&!feeds.some(x=>canonical(x.url)===canonical(u)))
    feeds.push({url:u,title:plain(f.title),verifiedAt:String(f.verifiedAt||"")});
  }
- return {id:j.id,name:plain(j.name).slice(0,300),issns:issns(j.issns),
-  aliases:[...new Set((Array.isArray(j.aliases)?j.aliases:[]).map(plain).filter(Boolean))].slice(0,30),
+ return {
+  id:j.id,name:plain(j.name).slice(0,300),issns:issns(j.issns),
+  aliases:strings((Array.isArray(j.aliases)?j.aliases:[]).map(plain),30),
   home:urlOf(j.home),feeds:feeds.slice(0,6),enabled:j.enabled!==false,
   use:{rss:j.use?.rss!==false,cr:j.use?.cr!==false,oa:j.use?.oa!==false},
-  oaSource:/^S\d+$/.test(j.oaSource||"")?j.oaSource:""};
+  oaSource:/^S\d+$/.test(j.oaSource||"")?j.oaSource:""
+ };
 }
 function validate(raw){
- if(raw?.version!==10||!Array.isArray(raw.journals)||raw.journals.length>300)throw Error("配置格式无效或期刊超过 300 本。");
+ if(raw?.version!==11||!Array.isArray(raw.journals)||raw.journals.length>300)throw Error("配置格式无效，或期刊超过 300 本。");
  const out=defaults();out.updatedAt=String(raw.updatedAt||"");
  out.journals=raw.journals.map(cleanJournal);
  if(new Set(out.journals.map(j=>j.id)).size!==out.journals.length)throw Error("期刊编号重复。");
  for(const j of out.journals){
   const list=raw.manual?.[j.id]||[];
-  if(!Array.isArray(list)||list.length>5000)throw Error("单刊手动题录最多 5000 条。");
-  if(list.length)out.manual[j.id]=list.map(cleanPaper);
+  if(!Array.isArray(list)||list.length>15000)throw Error("手动题录数量异常。");
+  const unique=deduplicate(list).items;
+  if(unique.length>5000)throw Error("单刊手动题录去重后最多 5000 条。");
+  if(unique.length)out.manual[j.id]=unique;
  }
  const s=raw.settings||{};
- for(const [k,values] of Object.entries({
+ for(const [k,values]of Object.entries({
   concurrency:[1,2],quick:[50,100,200],months:[6,12,24],
-  limit:[500,1000,3000,5000],rssLimit:[500,2000,5000],pageSize:[10,20,50]
+  limit:[500,1000,3000,5000],cacheLimit:[2000,5000,10000],pageSize:[10,20,50]
  }))if(values.includes(+s[k]))out.settings[k]=+s[k];
- out.settings.auto=s.auto!==false;
- return out;
+ out.settings.auto=s.auto!==false;return out;
 }
 function cleanMarks(raw){
  const out={};
  for(const [id,m]of Object.entries(raw||{})){
   if(!m||["__proto__","constructor","prototype"].includes(id))continue;
   const x={read:!!m.read,favorite:!!m.favorite};
-  if(x.favorite){try{x.paper=cleanPaper(m.paper);if(x.paper.id!==id)continue}catch{continue}}
+  if(m.paper){try{x.paper=cleanPaper(m.paper)}catch{}}
+  if(x.favorite&&!x.paper)continue;
   if(x.read||x.favorite)out[id]=x;
  }
  return out;
 }
+function validateRepo(r){
+ const v={owner:String(r.owner||"").trim(),repo:String(r.repo||"").trim(),
+  branch:String(r.branch||"").trim(),path:String(r.path||"").trim().replace(/^\/+/,"")};
+ if(!/^[A-Za-z0-9-]+$/.test(v.owner)||!/^[A-Za-z0-9_.-]+$/.test(v.repo)||
+  !v.branch||/[\x00-\x20\\~^:?*\[]/.test(v.branch)||v.branch.includes("..")||
+  !v.path.endsWith(".json")||v.path.split("/").some(p=>!p||p==="."||p===".."||/[\\\x00-\x1f?#]/.test(p)))
+  throw Error("仓库、分支或 JSON 路径格式无效。");
+ return v;
+}
 
-/* ---------- 权限与本地草稿 ---------- */
+/* 私人状态随合并继承，不上传到 GitHub。 */
+function inheritMarks(items){
+ let changed=false;
+ for(const p of items){
+  let readFlag=false,favorite=false,found=false;
+  for(const id of [p.id,...p.aliases]){
+   const m=marks[id];if(!m)continue;
+   found=true;readFlag=readFlag||m.read;favorite=favorite||m.favorite;
+   if(id!==p.id){delete marks[id];changed=true}
+  }
+  if(found){
+   const next={read:!!readFlag,favorite:!!favorite,paper:p};
+   if(JSON.stringify(marks[p.id])!==JSON.stringify(next)){marks[p.id]=next;changed=true}
+  }
+ }
+ if(changed)write(key("marks"),marks);
+}
+function dedupFavorites(){
+ const favorites=Object.values(marks).filter(m=>m.favorite&&m.paper).map(m=>m.paper);
+ const result=deduplicate(favorites);inheritMarks(result.items);return result;
+}
+
+/* 权限 */
 function isAdmin(){return !!session}
 function requireAdmin(){
- if(!session)throw Error("此操作需要 GitHub 管理员登录。");
- if(connecting)throw Error("正在核对共享配置，请稍后操作。");
- if(session.blocked)throw Error("上次保存存在冲突或结果不确定。请退出管理后重新登录核对。");
+ if(!session)throw Error("请先通过 GitHub 管理员登录。");
+ if(connecting)throw Error("正在核对管理员配置。");
+ if(session.blocked)throw Error("保存已暂停。请退出管理，再重新登录核对远端版本。");
 }
 function touch(){
  requireAdmin();dirty=true;revision++;state.updatedAt=new Date().toISOString();
- write(LS+"draft",{state,baseSHA:session.sha,savedAt:Date.now()});
+ write(key("draft"),{state,baseSHA:session.sha,savedAt:Date.now()});
  renderControls();scheduleSave();
 }
-function saveMarks(){write(LS+"marks",marks)}
 function scheduleSave(){
  clearTimeout(saveTimer);
- if(session?.auto&&dirty&&!session.blocked&&!connecting&&!saving&&!batch&&!operation)
+ if(session?.auto&&dirty&&!session.blocked&&!saving&&!connecting&&!batch&&!operation)
   saveTimer=setTimeout(()=>safe(saveRemote),3500);
 }
 
-/* ---------- 缓存：优先 IndexedDB ---------- */
-async function openCacheDB(){
+/* IndexedDB：仅保存去重后的主题录，来源状态不再分别保存重复全文题录。 */
+async function openDB(){
  if(!window.indexedDB)return null;
  return new Promise(resolve=>{
   let done=false;
-  const finish=db=>{if(done){db?.close();return}done=true;clearTimeout(timer);resolve(db)};
+  const finish=value=>{if(done){value?.close();return}done=true;clearTimeout(timer);resolve(value)};
   const timer=setTimeout(()=>finish(null),4000);
-  const req=indexedDB.open("journal-admin-cache-v10",1);
-  req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains("cache"))req.result.createObjectStore("cache")};
-  req.onsuccess=()=>finish(req.result);
-  req.onerror=()=>finish(null);req.onblocked=()=>finish(null);
+  const req=indexedDB.open("journal-v11-cache",1);
+  req.onupgradeneeded=()=>req.result.createObjectStore("cache");
+  req.onsuccess=()=>finish(req.result);req.onerror=()=>finish(null);req.onblocked=()=>finish(null);
  });
 }
+function normalizeCache(raw){
+ const sources={};
+ for(const [k,s]of Object.entries(raw?.sources||{})){
+  if(!s||["__proto__","constructor","prototype"].includes(k))continue;
+  sources[k]={
+   label:String(s.label||""),kind:String(s.kind||""),url:urlOf(s.url),
+   status:String(s.status||""),lastChecked:+s.lastChecked||0,retryAt:+s.retryAt||0,
+   lastSuccess:+s.lastSuccess||0,lastCount:+s.lastCount||0,message:String(s.message||""),
+   crISSN:issn(s.crISSN),oaSource:/^S\d+$/.test(s.oaSource||"")?s.oaSource:""
+  };
+ }
+ const oldItems=Array.isArray(raw?.items)?raw.items:
+  Object.values(raw?.sources||{}).flatMap(s=>(s?.items||[]).map(p=>({...p,sources:[s.label||p.origin||"历史来源"]})));
+ const result=deduplicate(oldItems);
+ return {items:result.items,sources,removed:(+raw?.removed||0)+result.removed};
+}
 async function loadCaches(){
- cacheDB=await openCacheDB();
- if(!cacheDB)return;
+ caches.clear();
+ if(!db)return;
+ const prefix=scope()+"|";
  await new Promise(resolve=>{
-  const tx=cacheDB.transaction("cache","readonly");
-  const req=tx.objectStore("cache").openCursor();
+  const tx=db.transaction("cache","readonly"),req=tx.objectStore("cache").openCursor();
   req.onsuccess=()=>{
    const c=req.result;if(!c)return;
-   if(String(c.key).startsWith(SCOPE+"|")){
-    try{caches.set(String(c.key).slice(SCOPE.length+1),normalizeCache(c.value))}catch{}
+   if(String(c.key).startsWith(prefix)){
+    try{caches.set(String(c.key).slice(prefix.length),normalizeCache(c.value))}catch{}
    }
    c.continue();
   };
   tx.oncomplete=resolve;tx.onerror=resolve;tx.onabort=resolve;
  });
 }
-function normalizeCache(raw){
- const c={sources:{},all:[]};
- for(const [key,s]of Object.entries(raw?.sources||{})){
-  if(!s||!Array.isArray(s.items)||["__proto__","constructor","prototype"].includes(key))continue;
-  const items=[];for(const p of s.items.slice(0,10000)){try{items.push(cleanPaper(p))}catch{}}
-  c.sources[key]={...s,items};
- }
- for(const p of raw?.all||[]){try{c.all.push(cleanPaper(p))}catch{}}
- return c;
-}
 function getCache(id){
  if(caches.has(id))return caches.get(id);
- const c=normalizeCache(read(LS+"cache:"+id,null));caches.set(id,c);return c;
+ const c=normalizeCache(read(key("cache:"+id),null));caches.set(id,c);return c;
 }
 function persistCache(id){
  writes.delete(id);const c=caches.get(id);if(!c)return;
- if(cacheDB){
+ if(db){
   try{
-   const tx=cacheDB.transaction("cache","readwrite");
-   tx.objectStore("cache").put(c,SCOPE+"|"+id);
+   const tx=db.transaction("cache","readwrite");
+   tx.objectStore("cache").put(clone(c),scope()+"|"+id);
    tx.onerror=()=>{storageError=true;renderControls()};
-  }catch{storageError=true;renderControls()}
- }else write(LS+"cache:"+id,c);
+  }catch{storageError=true}
+ }else write(key("cache:"+id),c);
 }
 function saveCache(id,c){
  caches.set(id,c);clearTimeout(writes.get(id));
  writes.set(id,setTimeout(()=>persistCache(id),200));
 }
-function flushCaches(){for(const id of writes.keys()){clearTimeout(writes.get(id));persistCache(id)}}
-function compatible(a,b){return !(a.doi&&b.doi&&a.doi!==b.doi)}
-function combineFields(a,b){
- const out={...a,...b,id:a.id,doi:b.doi||a.doi};
- for(const k of ["url","volume","issue","page","published","printDate","feedKey"])if(!out[k])out[k]=a[k];
- if(!b.authors.length)out.authors=a.authors;
- out.seenAt=a.seenAt||b.seenAt;return out;
+function flushCaches(){
+ for(const id of [...writes.keys()]){clearTimeout(writes.get(id));persistCache(id)}
 }
-function mergeItems(a,b){
- const map=new Map(),ds=new Map(),us=new Map(),fs=new Map();
- for(const p of [...a,...b]){
-  const key=(p.doi&&ds.get(p.doi))||(p.url&&us.get(canonical(p.url)))||(p.feedKey&&fs.get(p.feedKey))||p.id;
-  let old=map.get(key);if(old&&!compatible(old,p))old=null;
-  const x=old?combineFields(old,p):{...p,authors:[...p.authors]};
-  map.set(x.id,x);
-  if(x.doi)ds.set(x.doi,x.id);if(x.url)us.set(canonical(x.url),x.id);if(x.feedKey)fs.set(x.feedKey,x.id);
- }
- return [...map.values()];
+function viewItems(j){
+ const c=getCache(j.id);
+ const manual=(state.manual[j.id]||[]).map(p=>({...p,sources:[...p.sources,"手动题录"]}));
+ const result=deduplicate([...c.items,...manual]);inheritMarks(result.items);
+ return result.items;
 }
-function sortPapers(a,b){
- const ad=dateKey(a.published),bd=dateKey(b.published);
- if(ad&&bd)return bd.localeCompare(ad)||a.title.localeCompare(b.title);
- if(ad&&!bd)return -1;if(!ad&&bd)return 1;
- return (b.seenAt||0)-(a.seenAt||0)||a.title.localeCompare(b.title);
-}
-function aggregated(j,c){
- const previous=new Map();
- for(const p of c.all||[]){
-  if(p.doi)previous.set("d:"+p.doi,p);
-  if(p.url)previous.set("u:"+canonical(p.url),p);
-  if(p.feedKey)previous.set("f:"+p.feedKey,p);
- }
- const map=new Map(),ds=new Map(),us=new Map(),fs=new Map();
- const inputs=Object.values(c.sources).map(s=>({label:s.label||"历史来源",items:s.items||[]}));
- inputs.push({label:"手动题录",items:state.manual[j.id]||[]});
- for(const source of inputs)for(const raw of source.items){
-  let p={...raw,authors:[...raw.authors]};
-  const oldID=(p.doi&&previous.get("d:"+p.doi))||(p.url&&previous.get("u:"+canonical(p.url)))||(p.feedKey&&previous.get("f:"+p.feedKey));
-  if(oldID&&compatible(oldID,p))p.id=oldID.id;
-  const key=(p.doi&&ds.get(p.doi))||(p.url&&us.get(canonical(p.url)))||(p.feedKey&&fs.get(p.feedKey))||p.id;
-  let old=map.get(key);if(old&&!compatible(old,p))old=null;
-  const x=old?combineFields(old,p):p;
-  x.sources=[...new Set([...(old?.sources||[]),source.label])];
-  map.set(x.id,x);
-  if(x.doi)ds.set(x.doi,x.id);if(x.url)us.set(canonical(x.url),x.id);if(x.feedKey)fs.set(x.feedKey,x.id);
- }
- const out=[...map.values()],titles=new Map();
- for(const p of out)titles.set(norm(p.title),(titles.get(norm(p.title))||0)+1);
- for(const p of out)p.possibleDuplicate=titles.get(norm(p.title))>1;
- return out.sort(sortPapers);
-}
-function fingerprint(p){return JSON.stringify([p.id,p.title,p.doi,p.authors,p.volume,p.issue,p.published,p.url,p.sources,p.possibleDuplicate])}
-function changed(a,b){
- if(a.length!==b.length)return true;
- const map=new Map(a.map(p=>[p.id,fingerprint(p)]));
- return b.some(p=>map.get(p.id)!==fingerprint(p));
-}
-function rebuild(j){
- const c=getCache(j.id),old=c.all||[],next=aggregated(j,c);
- c.all=next;saveCache(j.id,c);
- if(changed(old,next))pending.add(j.id);
- renderPending();
+function fingerprint(items){return JSON.stringify(items.map(p=>[p.id,p.title,p.doi,p.authors,p.volume,p.issue,p.published,p.url,p.sources]))}
+function mergeCache(j,incoming){
+ const c=getCache(j.id),before=fingerprint(viewItems(j));
+ const result=deduplicate([...c.items,...incoming]);
+ c.items=result.items.slice(0,state.settings.cacheLimit);
+ c.removed=(c.removed||0)+result.removed;
+ inheritMarks(result.items);saveCache(j.id,c);
+ if(fingerprint(viewItems(j))!==before)pending.add(j.id);
+ renderPending();return result;
 }
 
-/* ---------- 网络与桥接 ---------- */
-function post(data){if(location.origin!=="null")window.postMessage({tag:TAG,...data},location.origin)}
-window.addEventListener("message",event=>{
- if(event.source!==window||event.origin!==location.origin)return;
- const d=event.data;if(!d||d.tag!==TAG)return;
- if(d.type==="ready"){
-  bridgeHosts=new Set(Array.isArray(d.hosts)?d.hosts:[]);renderBridge();return;
- }
- if(d.type!=="result")return;
- const job=bridgeJobs.get(d.id);if(!job)return;
- bridgeJobs.delete(d.id);clearTimeout(job.timer);job.signal?.removeEventListener("abort",job.abort);
- if(d.ok)job.resolve({text:String(d.text||""),url:urlOf(d.url)||job.url});
- else{const e=Error(d.error||"读取失败。");e.status=+d.status||0;job.reject(e)}
-});
-function bridgeFetch(url,signal){
- return new Promise((resolve,reject)=>{
-  if(signal?.aborted)return reject(abortError());
-  const id=uid();
-  const abort=()=>{
-   if(!bridgeJobs.has(id))return;
-   clearTimeout(bridgeJobs.get(id).timer);bridgeJobs.delete(id);
-   post({type:"cancel",id});reject(abortError());
-  };
-  const timer=setTimeout(()=>{
-   bridgeJobs.delete(id);signal?.removeEventListener("abort",abort);
-   post({type:"cancel",id});reject(Error("网页读取超时。"));
-  },35000);
-  bridgeJobs.set(id,{resolve,reject,url,signal,abort,timer});
-  signal?.addEventListener("abort",abort,{once:true});
-  post({type:"request",id,url});
- });
-}
+/* 网络 */
 function decode(bytes,forced="auto",type=""){
  let ch=forced!=="auto"?forced:"";
  if(!ch){
@@ -719,7 +754,7 @@ function decode(bytes,forced="auto",type=""){
  try{return new TextDecoder(ch).decode(bytes).replace(/^\uFEFF/,"")}
  catch{return new TextDecoder().decode(bytes).replace(/^\uFEFF/,"")}
 }
-async function limitedBody(r){
+async function readBody(r){
  if(+(r.headers.get("Content-Length")||0)>MAX)throw Error("响应超过 8 MiB。");
  if(!r.body?.getReader){
   const b=new Uint8Array(await r.arrayBuffer());if(b.length>MAX)throw Error("响应过大。");return b;
@@ -735,14 +770,41 @@ async function limitedBody(r){
  const out=new Uint8Array(size);let offset=0;
  for(const b of chunks){out.set(b,offset);offset+=b.length}return out;
 }
+function post(data){if(location.origin!=="null")window.postMessage({tag:TAG,...data},location.origin)}
+window.addEventListener("message",event=>{
+ if(event.source!==window||event.origin!==location.origin)return;
+ const d=event.data;if(!d||d.tag!==TAG)return;
+ if(d.type==="ready"){bridgeHosts=new Set(Array.isArray(d.hosts)?d.hosts:[]);renderBridge();return}
+ if(d.type!=="result")return;
+ const job=bridgeJobs.get(d.id);if(!job)return;
+ bridgeJobs.delete(d.id);clearTimeout(job.timer);job.signal?.removeEventListener("abort",job.abort);
+ if(d.ok)job.resolve({text:String(d.text||""),url:urlOf(d.url)||job.url});
+ else{const e=Error(d.error||"读取失败。");e.status=+d.status||0;job.reject(e)}
+});
+function bridgeFetch(url,signal){
+ return new Promise((resolve,reject)=>{
+  if(signal?.aborted)return reject(abortError());
+  const id=uid();
+  const abort=()=>{
+   const j=bridgeJobs.get(id);if(!j)return;
+   clearTimeout(j.timer);bridgeJobs.delete(id);post({type:"cancel",id});reject(abortError());
+  };
+  const timer=setTimeout(()=>{
+   bridgeJobs.delete(id);signal?.removeEventListener("abort",abort);
+   post({type:"cancel",id});reject(Error("网页读取超时。"));
+  },35000);
+  bridgeJobs.set(id,{resolve,reject,url,signal,abort,timer});
+  signal?.addEventListener("abort",abort,{once:true});post({type:"request",id,url});
+ });
+}
 async function request(value,signal,json=false,options={}){
- const url=urlOf(value);if(!url)throw Error("无效 URL。");
+ const url=urlOf(value);if(!url)throw Error("URL 无效。");
  if(signal?.aborted)throw abortError();
  const hostname=host(url);
- if((hostCooldown.get(hostname)||0)>Date.now())throw Error(hostname+" 正在限流冷却。");
+ if((cooldowns.get(hostname)||0)>Date.now())throw Error(hostname+" 正在限流冷却。");
  if(!json&&!options.method&&bridgeHosts.has(hostname)){
   try{return await bridgeFetch(url,signal)}
-  catch(e){if(e.status===429)hostCooldown.set(hostname,Date.now()+ERROR_WAIT);throw e}
+  catch(e){if(e.status===429)cooldowns.set(hostname,Date.now()+ERROR_WAIT);throw e}
  }
  const ctl=new AbortController(),relay=()=>ctl.abort();
  signal?.addEventListener("abort",relay,{once:true});
@@ -751,20 +813,16 @@ async function request(value,signal,json=false,options={}){
   const r=await fetch(url,{...options,signal:ctl.signal,credentials:"omit",referrerPolicy:"no-referrer"});
   if(!r.ok){
    const e=Error("HTTP "+r.status+" · "+hostname);e.status=r.status;
-   if(r.status===429){
-    const h=r.headers.get("Retry-After")||"";
-    const ms=/^\d+$/.test(h)?+h*1000:Date.parse(h)-Date.now();
-    hostCooldown.set(hostname,Date.now()+Math.max(ERROR_WAIT,Number.isFinite(ms)?ms:0));
-   }
-   if([401,403].includes(r.status)&&hostname==="api.openalex.org")hostCooldown.set(hostname,Date.now()+ERROR_WAIT);
+   if(r.status===429)cooldowns.set(hostname,Date.now()+ERROR_WAIT);
+   if([401,403].includes(r.status)&&hostname==="api.openalex.org")cooldowns.set(hostname,Date.now()+ERROR_WAIT);
    throw e;
   }
-  const text=decode(await limitedBody(r),"auto",r.headers.get("Content-Type")||"");
+  const text=decode(await readBody(r),"auto",r.headers.get("Content-Type")||"");
   return json?JSON.parse(text):{text,url:r.url};
  }catch(e){
   if(signal?.aborted)throw abortError();
   if(e.name==="AbortError")throw Error("请求超时："+hostname);
-  if(e instanceof TypeError)throw Error("网络或 CORS 失败："+hostname+"。网页/RSS 可尝试安装或更新读取脚本。");
+  if(e instanceof TypeError)throw Error("网络或 CORS 失败："+hostname+"。网页/RSS 可更新读取脚本后重试。");
   throw e;
  }finally{clearTimeout(timer);signal?.removeEventListener("abort",relay)}
 }
@@ -775,67 +833,65 @@ async function cr(path,params,signal){
 }
 async function oa(path,params,signal){
  const u=new URL("https://api.openalex.org"+path);
- Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v));
- return request(u.href,signal,true);
+ Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v));return request(u.href,signal,true);
 }
 
-/* ---------- RSS ---------- */
-function children(node,name){return [...node.children].filter(n=>n.localName.toLowerCase()===name.toLowerCase())}
-function child(node,name){return children(node,name)[0]||null}
-function textOf(node,...names){
- for(const name of names){const n=child(node,name);if(n?.textContent?.trim())return plain(n.textContent)}
+/* RSS */
+function children(n,name){return [...n.children].filter(x=>x.localName.toLowerCase()===name.toLowerCase())}
+function child(n,name){return children(n,name)[0]||null}
+function textOf(n,...names){
+ for(const name of names){const x=child(n,name);if(x?.textContent?.trim())return plain(x.textContent)}
  return "";
 }
 function xmlDoc(text){
- if(/<!DOCTYPE|<!ENTITY/i.test(text))throw Error("返回内容含 DTD/实体声明，或不是 RSS 而是 HTML 错误页。");
+ if(/<!DOCTYPE|<!ENTITY/i.test(text))throw Error("内容含 DTD/实体声明，或返回了 HTML 错误页。");
  const d=new DOMParser().parseFromString(text,"application/xml");
- if(d.getElementsByTagName("parsererror").length||d.documentElement.localName==="parsererror")throw Error("XML 无效，可能返回登录或验证页面。");
+ if(d.getElementsByTagName("parsererror").length||d.documentElement.localName==="parsererror")throw Error("XML 无效，可能是登录/验证码页面。");
  return d;
 }
-function xmlBase(node,fallback){
- const chain=[];for(let n=node;n?.nodeType===1;n=n.parentElement)chain.unshift(n);
+function xmlBase(n,fallback){
+ const chain=[];for(let p=n;p?.nodeType===1;p=p.parentElement)chain.unshift(p);
  let base=fallback;
- for(const n of chain){const v=n.getAttributeNS("http://www.w3.org/XML/1998/namespace","base");if(v)base=urlOf(v,base)||base}
+ for(const p of chain){const v=p.getAttributeNS("http://www.w3.org/XML/1998/namespace","base");if(v)base=urlOf(v,base)||base}
  return base;
 }
-function articleLink(entry,base){
- for(const n of children(entry,"link")){
-  if((n.getAttribute("rel")||"alternate")!=="alternate")continue;
-  const u=urlOf(n.getAttribute("href")||n.textContent.trim(),xmlBase(n,base));if(u)return u;
+function articleLink(n,base){
+ for(const link of children(n,"link")){
+  if((link.getAttribute("rel")||"alternate")!=="alternate")continue;
+  const u=urlOf(link.getAttribute("href")||link.textContent.trim(),xmlBase(link,base));if(u)return u;
  }
- const g=child(entry,"guid");
+ const g=child(n,"guid");
  return g&&g.getAttribute("isPermaLink")!=="false"?urlOf(g.textContent.trim(),xmlBase(g,base)):"";
 }
 function parseFeed(text,base,j){
- const doc=xmlDoc(text),root=doc.documentElement,name=root.localName.toLowerCase();
+ const root=xmlDoc(text).documentElement,name=root.localName.toLowerCase();
  let container,entries,type;
  if(name==="rss"){
   container=child(root,"channel");if(!container)throw Error("RSS 缺少 channel。");
   entries=children(container,"item");type="RSS";
  }else if(name==="feed"){container=root;entries=children(root,"entry");type="Atom"}
  else if(name==="rdf"){container=child(root,"channel")||root;entries=children(root,"item");type="RSS 1.0"}
- else throw Error("返回内容不是 RSS/Atom。");
- const items=[],seen=new Set();
+ else throw Error("不是 RSS/Atom。");
+ const items=[];
  for(const e of entries){
   const title=textOf(e,"title");if(!title)continue;
   const url=articleLink(e,base);let d=doi(textOf(e,"doi","identifier"));
-  if(!d&&url&&/(^|\.)doi\.org$/i.test(host(url))){
-   try{d=doi(decodeURIComponent(new URL(url).pathname.slice(1)))}catch{}
-  }
+  if(!d&&/(^|\.)doi\.org$/i.test(host(url)))d=doi(url);
   const published=dateValue(textOf(e,"pubDate","published","date","updated"));
   const rawID=textOf(e,"id","guid")||e.getAttributeNS("http://www.w3.org/1999/02/22-rdf-syntax-ns#","about")||"";
-  const key=j.id+"|"+(rawID?"id:"+rawID:url?"url:"+canonical(url):"title:"+norm(title)+"|"+published);
-  const id=d||"rss:"+hash(key);if(seen.has(id))continue;seen.add(id);
+  const feedKey=j.id+"|"+(rawID?"id:"+rawID:url?"url:"+canonical(url):"title:"+norm(title));
   const authors=[];
-  for(const a of children(e,"author")){const x=textOf(a,"name")||plain(a.textContent);if(x)authors.push(x)}
+  for(const a of children(e,"author")){const s=textOf(a,"name")||plain(a.textContent);if(s)authors.push(s)}
   for(const a of children(e,"creator"))if(plain(a.textContent))authors.push(plain(a.textContent));
   items.push(cleanPaper({
-   id,doi:d,title,url,published,authors:[...new Set(authors)],journal:j.name,
+   id:d||"rss:"+hash(feedKey),doi:d,title,url,published,
+   authors:[...new Set(authors)],journal:j.name,
    volume:textOf(e,"volume"),issue:textOf(e,"issue","number"),
-   origin:type,feedKey:key,seenAt:Date.now()
+   origin:type,feedKey,seenAt:Date.now()
   }));
  }
- return {title:textOf(container,"title")||j.name,type,items};
+ const result=deduplicate(items);
+ return {title:textOf(container,"title")||j.name,type,items:result.items};
 }
 function unescapeLiteral(s){
  return String(s||"").replace(/\\u([0-9a-f]{4})/gi,(_,h)=>String.fromCharCode(parseInt(h,16)))
@@ -859,51 +915,50 @@ function extractRSS(html,pageURL){
   const url=urlOf(s,base);if(!url||seen.has(url)||!force&&!feedLike(url))return;
   seen.add(url);out.push({kind:"feed",url,why,status:"未验证"});
  }
- function strings(raw,why){
+ function scan(raw,why){
   const s=unescapeLiteral(raw);let m;
   const a=/["'`]([^"'`\r\n]{1,3000})["'`]/g;while((m=a.exec(s)))add(m[1],why);
   const b=/(?:https?:)?\/\/[A-Za-z0-9.-]+(?::\d+)?\/[^\s"'`<>\\]{1,2500}/g;while((m=b.exec(s)))add(m[0],why);
  }
  for(const n of doc.querySelectorAll("link[href]"))
   if(/rss|atom/i.test(n.getAttribute("type")||""))add(n.getAttribute("href"),"HTML link 声明",true);
- for(const n of doc.querySelectorAll("a,button,input,[onclick],[data-url],[data-href],[data-rss],[data-feed]")){
-  const context=[n.textContent,n.getAttribute("title"),n.getAttribute("id"),n.getAttribute("class"),n.getAttribute("value")].join(" ");
+ for(const n of doc.querySelectorAll("a,button,input,[onclick],[data-rss],[data-feed],[data-url],[data-href]")){
+  const context=[n.textContent,n.getAttribute("title"),n.id,n.className,n.getAttribute("value")].join(" ");
   for(const key of ["href","data-url","data-href","data-rss","data-feed"]){
    const v=n.getAttribute(key);if(!v)continue;
-   if(/^javascript:/i.test(v))strings(v,"链接脚本字符串");
+   if(/^javascript:/i.test(v))scan(v,"链接地址字符串");
    else add(v,"HTML "+key,/rss|atom|订阅/i.test(context)||/rss|feed/.test(key));
   }
-  if(n.getAttribute("onclick"))strings(n.getAttribute("onclick"),"按钮地址字符串");
+  if(n.getAttribute("onclick"))scan(n.getAttribute("onclick"),"按钮地址字符串");
  }
  for(const n of doc.querySelectorAll("script:not([src])"))
-  if(/rss|atom|feed/i.test(n.textContent))strings(n.textContent,"内联脚本地址字符串");
+  if(/rss|atom|feed/i.test(n.textContent))scan(n.textContent,"内联地址字符串");
  const re=/\/knavi\/rss\/[A-Za-z0-9._-]+/gi,raw=unescapeLiteral(html);let m;
  while((m=re.exec(raw)))add(m[0],"页面 RSS 路径");
  for(const c of [...out]){
   const u=new URL(c.url);
   if(["navi.cnki.net","kns.cnki.net","kns8.cnki.net"].includes(u.hostname)&&/^\/knavi\/rss\/[A-Za-z0-9._-]+\/?$/i.test(u.pathname)){
    u.protocol="https:";u.hostname="rss.cnki.net";u.port="";
-   add(u.href,"由页面实际链接转换的兼容候选",true);
+   add(u.href,"由真实 RSS 路径转换的兼容候选",true);
   }
  }
  return {title:plain(doc.querySelector("title")?.textContent),items:out.slice(0,60)};
 }
 
-/* ---------- 联合期刊搜索 ---------- */
+/* 搜索期刊 */
 function crJournal(x){return {name:plain(x.title),issns:issns(x.ISSN),aliases:[],origins:["Crossref"]}}
 function oaJournal(x){
  return {name:plain(x.display_name),issns:issns([...(x.issn||[]),x.issn_l]),aliases:[],
   home:urlOf(x.homepage_url),oaSource:String(x.id||"").split("/").pop(),origins:["OpenAlex"]};
 }
-function unwrapSearchURL(v){
+function unwrapURL(v){
  let result=urlOf(v);if(!result)return "";
  try{
   const u=new URL(result);
   if(u.hostname==="www.bing.com"&&u.pathname.startsWith("/ck/")){
    let p=u.searchParams.get("u")||"";
    if(p.startsWith("a1")){
-    p=p.slice(2).replace(/-/g,"+").replace(/_/g,"/");
-    p=p.padEnd(Math.ceil(p.length/4)*4,"=");
+    p=p.slice(2).replace(/-/g,"+").replace(/_/g,"/");p=p.padEnd(Math.ceil(p.length/4)*4,"=");
     result=urlOf(new TextDecoder().decode(Uint8Array.from(atob(p),c=>c.charCodeAt(0))))||result;
    }
   }
@@ -917,10 +972,10 @@ async function searchPages(name,signal,onlyCNKI=true){
   '"'+name+'" (site:navi.cnki.net OR site:kns.cnki.net OR site:kns8.cnki.net) 期刊':
   '"'+name+'" official journal RSS');
  const r=await request(u.href,signal),doc=xmlDoc(r.text);
- if(doc.documentElement.localName.toLowerCase()!=="rss")throw Error("网页索引未返回 RSS 搜索结果。");
+ if(doc.documentElement.localName.toLowerCase()!=="rss")throw Error("索引未返回 RSS 搜索结果。");
  const out=[];
  for(const n of [...doc.getElementsByTagName("item")]){
-  const home=unwrapSearchURL(textOf(n,"link"));
+  const home=unwrapURL(textOf(n,"link"));
   const title=plain(textOf(n,"title")).replace(/\s*[-_—|]\s*(中国知网|知网|CNKI|期刊导航).*$/i,"").trim();
   if(!home||!title)continue;
   if(onlyCNKI&&(!CNKI.includes(host(home))||!/knavi|journal|pubdetail/i.test(new URL(home).pathname)))continue;
@@ -932,9 +987,8 @@ function mergeSearch(list){
  for(const raw of list){
   if(!raw.name)continue;
   const r={...raw,issns:issns(raw.issns),aliases:raw.aliases||[],origins:raw.origins||[]};
-  const old=searchResults.find(x=>
-   r.issns.some(i=>x.issns.includes(i))||
-   (norm(x.name)===norm(r.name)&&(!x.issns.length||!r.issns.length)));
+  const old=searchResults.find(x=>r.issns.some(i=>x.issns.includes(i))||
+   norm(x.name)===norm(r.name)&&(!x.issns.length||!r.issns.length));
   if(old){
    old.issns=issns([...old.issns,...r.issns]);
    old.aliases=[...new Set([...old.aliases,...r.aliases,...(old.name!==r.name?[r.name]:[])])];
@@ -956,7 +1010,7 @@ function renderSearch(){
 }
 async function searchJournals(){
  requireAdmin();const query=$("journalQuery").value.trim();if(!query)return;
- searchCtl?.abort();const ctl=new AbortController();searchCtl=ctl;
+ searchCtl?.abort();const ctl=new AbortController();searchCtl=ctl;renderControls();
  const local=CATALOG.filter(j=>norm(j.name).includes(norm(query))||
   j.aliases.some(a=>norm(a).includes(norm(query)))||j.issns.some(i=>norm(i)===norm(query)));
  searchResults=[];mergeSearch(local);renderSearch();
@@ -978,26 +1032,25 @@ async function searchJournals(){
   }]
  ];
  if(chinese(q))jobs.push(["知网公开索引",()=>searchPages(q,ctl.signal,true)]);
- jobs.forEach(([k])=>statuses.set(k,"查询中"));update();
+ jobs.forEach(([name])=>statuses.set(name,"查询中…"));update();
  await Promise.all(jobs.map(async([name,fn])=>{
   try{
    const list=await fn();if(ctl.signal.aborted)return;
-   mergeSearch(list);renderSearch();statuses.set(name,list.length?list.length+" 条":"查询成功，未返回候选");
+   mergeSearch(list);renderSearch();statuses.set(name,list.length?list.length+" 条":"成功查询，未返回候选");
   }catch(e){if(e.name!=="AbortError")statuses.set(name,"访问失败："+e.message)}
   update();
  }));
- if(searchCtl===ctl){update();searchCtl=null;$("searchStatus").textContent+=ctl.signal.aborted?"\n已停止。":"\n各来源查询结束。"}
+ if(searchCtl===ctl){update();searchCtl=null;$("searchStatus").textContent+=ctl.signal.aborted?"\n已停止。":"\n联合查询结束。"}
  renderControls();
 }
 
-/* ---------- 管理配置 ---------- */
+/* 管理配置 */
 function currentJournal(){return state.journals.find(j=>j.id===current)}
 function manageJournal(){const j=state.journals.find(x=>x.id===managing);if(!j)throw Error("期刊不存在。");return j}
 function addJournal(raw){
- requireAdmin();
- if(operation)throw Error("请先完成当前配置任务。");
+ requireAdmin();if(operation)throw Error("请先结束当前检测任务。");
  const old=state.journals.find(j=>(raw.issns||[]).some(i=>j.issns.includes(i))||
-  (norm(j.name)===norm(raw.name)&&(!(raw.issns||[]).length||!j.issns.length)));
+  norm(j.name)===norm(raw.name)&&(!(raw.issns||[]).length||!j.issns.length));
  if(old){$("searchDialog").close();choose(old.id);openManage();safe(autoConfigure);return}
  if(state.journals.length>=300)throw Error("最多 300 本期刊。");
  const j=cleanJournal({...raw,id:"j:"+uid(),feeds:raw.feedUrl?[{url:raw.feedUrl}]:[],
@@ -1005,7 +1058,7 @@ function addJournal(raw){
  state.journals.push(j);touch();$("searchDialog").close();choose(j.id);openManage();safe(autoConfigure);
 }
 async function withOperation(fn){
- requireAdmin();if(operation){toast("已有检测任务，请先停止或等待。");return}
+ requireAdmin();if(operation)throw Error("已有检测任务。");
  const ctl=new AbortController();operation=ctl;renderControls();
  try{await fn(ctl.signal)}
  finally{if(operation===ctl)operation=null;renderControls();scheduleSave()}
@@ -1023,7 +1076,7 @@ function openManage(){
  $("useRSS").checked=j.use.rss;$("useCR").checked=j.use.cr;$("useOA").checked=j.use.oa;
  $("enabledInput").checked=j.enabled;
  for(const id of ["volumeInput","issueInput","dateInput","importText"])$(id).value="";
- $("setupStatus").textContent="各来源独立配置和刷新；找到 RSS 不会停止数据库匹配。";
+ $("setupStatus").textContent="各来源独立配置和更新。所有题录自动去重。";
  $("verifyStatus").textContent="";
  renderCandidates();renderPreview();openDialog("manageDialog");
 }
@@ -1062,22 +1115,21 @@ function acceptFeed(response,feed){
  $("feedsInput").value=list.join("\n");$("verifyInput").value=response.url;
  verified.set(canonical(response.url),{url:response.url,title:feed.title,verifiedAt:new Date().toISOString()});
  preview=feed.items.map(p=>({...p,selected:false}));renderPreview();
- $("verifyStatus").textContent="有效 "+feed.type+"："+feed.title+" · "+feed.items.length+" 条。\n地址已加入待保存列表。请核对期刊。在线预览默认不重复导入手动目录。";
+ $("verifyStatus").textContent="有效 "+feed.type+"："+feed.title+" · 去重后 "+feed.items.length+" 条。\n地址已加入待保存列表。在线预览默认不重复导入手动目录。";
 }
 async function verifyAddress(url){
  return withOperation(async signal=>{
   $("verifyStatus").textContent="正在验证…";
   try{const x=await testFeed(url,signal,manageJournal());acceptFeed(x.response,x.feed)}
-  catch(e){if(e.name!=="AbortError")$("verifyStatus").textContent="验证失败："+e.message;throw e}
+  catch(e){if(e.name!=="AbortError")$("verifyStatus").textContent=e.message;throw e}
  });
 }
 async function extractCurrentHome(){
  return withOperation(async signal=>{
-  const home=urlOf($("homeInput").value);if(!home)throw Error("请先填写主页。");
+  const home=urlOf($("homeInput").value);if(!home)throw Error("请填写主页。");
   const x=await request(home,signal),found=extractRSS(x.text,x.url);
-  candidates=[...candidates.filter(c=>c.kind==="home"),...found.items];
-  $("setupStatus").textContent="页面："+found.title+"\n发现 "+found.items.length+" 个 RSS 候选。";
-  renderCandidates();
+  candidates=[...candidates.filter(c=>c.kind==="home"),...found.items];renderCandidates();
+  $("setupStatus").textContent="页面："+found.title+"\nRSS 候选 "+found.items.length+" 个。";
  });
 }
 async function autoConfigure(){
@@ -1086,45 +1138,44 @@ async function autoConfigure(){
   const log=s=>{logs.push(s);$("setupStatus").textContent=logs.join("\n")};
   const names=[...new Set([j.name,...$("aliasesInput").value.split(/\r?\n/).map(plain).filter(Boolean)])];
   let known=issns($("issnInput").value.split(/[,，;\s]+/)),home=urlOf($("homeInput").value),sid=$("oaSourceInput").value.trim();
-  const exact=r=>known.some(i=>r.issns.includes(i))||names.some(n=>norm(n)===norm(r.name));
+  const matches=r=>known.some(i=>r.issns.includes(i))||names.some(n=>norm(n)===norm(r.name));
   log("查询 Crossref 期刊信息…");
   try{
-   let list;
-   if(known.length)list=[crJournal(await cr("/journals/"+known[0],{},signal))];
-   else list=((await cr("/journals",{query:j.name,rows:12},signal)).items||[]).map(crJournal);
-   let found=list.find(exact);
+   const list=known.length?[crJournal(await cr("/journals/"+known[0],{},signal))]:
+    ((await cr("/journals",{query:j.name,rows:12},signal)).items||[]).map(crJournal);
+   let found=list.find(matches);
    if(!found&&!known.length&&names.length>1)
-    found=(((await cr("/journals",{query:names[1],rows:12},signal)).items||[]).map(crJournal)).find(exact);
-   if(found){known=issns([...known,...found.issns]);log("Crossref 已可靠匹配："+known.join(" / "))}
-   else log("Crossref 未精确匹配，不套用相似刊名。");
+    found=(((await cr("/journals",{query:names[1],rows:12},signal)).items||[]).map(crJournal)).find(matches);
+   if(found){known=issns([...known,...found.issns]);log("Crossref 已匹配："+known.join(" / "))}
+   else log("Crossref 未精确匹配。");
   }catch(e){if(e.name==="AbortError")throw e;log("Crossref："+e.message)}
   log("查询 OpenAlex 期刊信息…");
   try{
    const params=known.length?{filter:"issn:"+known[0]}:{search:j.name,filter:"type:journal"};
    const x=await oa("/sources",{...params,"per-page":12,select:"id,display_name,issn,issn_l,homepage_url"},signal);
-   const found=(x.results||[]).map(oaJournal).find(exact);
-   if(found){known=issns([...known,...found.issns]);sid=found.oaSource;if(!home)home=found.home;log("OpenAlex 已可靠匹配："+sid)}
-   else log("OpenAlex 没有可靠匹配。");
+   const found=(x.results||[]).map(oaJournal).find(matches);
+   if(found){known=issns([...known,...found.issns]);sid=found.oaSource;if(!home)home=found.home;log("OpenAlex 已匹配："+sid)}
+   else log("OpenAlex 无可靠匹配。");
   }catch(e){if(e.name==="AbortError")throw e;log("OpenAlex："+e.message)}
   $("issnInput").value=known.join(", ");$("oaSourceInput").value=sid;
   if(home)$("homeInput").value=home;
   const homes=[];if(home)homes.push({url:home,title:j.name,explicit:true});
-  log("搜索主页与 RSS…");
+  log("查找期刊主页与 RSS…");
   try{
    const list=await searchPages(j.name,signal,chinese(j.name));
-   for(const r of list)if(!homes.some(h=>canonical(h.url)===canonical(r.home)))homes.push({url:r.home,title:r.name,explicit:false});
-   log("公开索引返回 "+list.length+" 个候选。");
-  }catch(e){if(e.name==="AbortError")throw e;log("索引搜索："+e.message)}
-  candidates=homes.map(h=>({kind:"home",url:h.url,title:h.title,status:h.explicit?"已登记主页":"索引候选，需核对"}));
+   for(const r of list)if(!homes.some(h=>canonical(h.url)===canonical(r.home)))
+    homes.push({url:r.home,title:r.name,explicit:false});
+   log("索引候选 "+list.length+" 个。");
+  }catch(e){if(e.name==="AbortError")throw e;log("索引："+e.message)}
+  candidates=homes.map(h=>({kind:"home",url:h.url,title:h.title,status:h.explicit?"已登记主页":"需核对"}));
   renderCandidates();
-  const selected=homes.filter(h=>h.explicit||names.some(n=>norm(h.title).includes(norm(n)))).slice(0,2);
-  for(const h of selected){
+  for(const h of homes.filter(h=>h.explicit||names.some(n=>norm(h.title).includes(norm(n)))).slice(0,2)){
    try{
-    const r=await request(h.url,signal),found=extractRSS(r.text,r.url);
-    if(!home){home=r.url;$("homeInput").value=home}
+    const x=await request(h.url,signal),found=extractRSS(x.text,x.url);
+    if(!home){home=x.url;$("homeInput").value=home}
     for(const c of found.items)if(!candidates.some(x=>x.url===c.url))candidates.push(c);
-    log("主页发现 "+found.items.length+" 个 RSS 候选。");
-   }catch(e){if(e.name==="AbortError")throw e;log("主页读取："+e.message)}
+    log("主页发现 RSS 候选 "+found.items.length+" 个。");
+   }catch(e){if(e.name==="AbortError")throw e;log("主页："+e.message)}
   }
   renderCandidates();
   const addresses=[...new Set([...feedLines(),
@@ -1133,17 +1184,17 @@ async function autoConfigure(){
   for(const address of addresses){
    try{
     const x=await testFeed(address,signal,j);acceptFeed(x.response,x.feed);success++;
-    const c=candidates.find(x=>x.url===address);if(c)c.status="XML 验证成功";
-    log("RSS 有效："+x.feed.title);
+    const c=candidates.find(c=>c.url===address);if(c)c.status="验证成功";
+    log("有效 RSS："+x.feed.title);
    }catch(e){
     if(e.name==="AbortError")throw e;
-    const c=candidates.find(x=>x.url===address);if(c)c.status=e.message;
+    const c=candidates.find(c=>c.url===address);if(c)c.status=e.message;
     log("RSS："+e.message);
    }
   }
   renderCandidates();
-  log("自动配置结束：RSS 本次有效 "+success+" 个；ISSN "+(known.length?"已配置":"未匹配")+"；OpenAlex "+(sid||"未匹配")+"。");
-  log("核对后保存。接口失败不代表期刊不存在。所有启用来源会分别执行。");
+  log("结束：RSS 本次验证成功 "+success+" 个；ISSN "+(known.length?"已配置":"未匹配")+"；OpenAlex "+(sid||"未匹配")+"。");
+  log("核对后保存。所有启用来源会分别刷新并自动去重。");
  });
 }
 function saveManage(){
@@ -1151,37 +1202,36 @@ function saveManage(){
  const j=manageJournal(),name=plain($("nameInput").value);
  const rawIDs=$("issnInput").value.split(/[,，;\s]+/).filter(Boolean),home=urlOf($("homeInput").value);
  if(!name)throw Error("刊名不能为空。");
- if(rawIDs.some(i=>!validISSN(i)))throw Error("存在校验不正确的 ISSN。");
- if($("homeInput").value.trim()&&!home)throw Error("主页 URL 无效。");
- const lines=feedLines();if(lines.length>6||lines.some(s=>!urlOf(s)))throw Error("RSS 网址无效或超过 6 个。");
+ if(rawIDs.some(i=>!validISSN(i)))throw Error("ISSN 校验不正确。");
+ if($("homeInput").value.trim()&&!home)throw Error("主页无效。");
+ const lines=feedLines();if(lines.length>6||lines.some(s=>!urlOf(s)))throw Error("RSS 地址无效或超过 6 个。");
  const sid=$("oaSourceInput").value.trim();if(sid&&!/^S\d+$/.test(sid))throw Error("OpenAlex ID 应为 S 加数字。");
  const date=$("dateInput").value.trim();if(date&&!dateValue(date))throw Error("默认日期无效。");
- const chosen=preview.filter(p=>p.selected).map(p=>cleanPaper({...p,
+ const selected=preview.filter(p=>p.selected).map(p=>cleanPaper({...p,
   volume:p.volume||$("volumeInput").value,issue:p.issue||$("issueInput").value,
   published:p.published||dateValue(date),journal:p.journal||name}));
- const manual=mergeItems(state.manual[j.id]||[],chosen);
- if(manual.length>5000)throw Error("单刊手动题录最多 5000 条。");
+ const result=deduplicate([...(state.manual[j.id]||[]),...selected]);
+ if(result.items.length>5000)throw Error("手动题录去重后最多 5000 条。");
  const feeds=lines.map(url=>{
   const f=verified.get(canonical(url))||j.feeds.find(f=>canonical(f.url)===canonical(url));
   return {url:urlOf(url),title:f?.title||"",verifiedAt:f?.verifiedAt||""};
  });
- const before=JSON.stringify([j.issns,j.feeds,j.oaSource]);
+ const before=JSON.stringify([j.issns,j.oaSource,j.feeds]);
  Object.assign(j,cleanJournal({...j,name,issns:issns(rawIDs),home,feeds,oaSource:sid,
-  aliases:$("aliasesInput").value.split(/\r?\n/).map(plain).filter(Boolean),
-  enabled:$("enabledInput").checked,use:{rss:$("useRSS").checked,cr:$("useCR").checked,oa:$("useOA").checked}}));
- state.manual[j.id]=manual;
- if(before!==JSON.stringify([j.issns,j.feeds,j.oaSource])){
+  aliases:$("aliasesInput").value.split(/\r?\n/).map(plain).filter(Boolean),enabled:$("enabledInput").checked,
+  use:{rss:$("useRSS").checked,cr:$("useCR").checked,oa:$("useOA").checked}}));
+ state.manual[j.id]=result.items;inheritMarks(result.items);
+ if(before!==JSON.stringify([j.issns,j.oaSource,j.feeds])){
   const c=getCache(j.id);for(const s of Object.values(c.sources))if(s.status==="unconfigured")s.retryAt=0;
  }
- touch();rebuild(j);$("manageDialog").close();takeSnapshot();renderView();
- toast("已保存到管理员本地草稿。点击“保存到 GitHub”发布共享配置。");
+ touch();$("manageDialog").close();takeSnapshot();renderView();
+ toast("已保存管理员草稿；本次自动合并 "+result.removed+" 个重复项。点击“保存到 GitHub”发布。");
 }
 
-/* ---------- 题录导入 ---------- */
+/* 题录导入 */
 function parseTagged(text,j){
  const ris=/^TY\s{2}-/m.test(text)||/^TI\s{2}-/m.test(text);
- const pct=/^%[A-Za-z0-9@]\s/m.test(text);
- const brace=/^\{(?:Title|Reference Type|Author)\}/im.test(text);
+ const pct=/^%[A-Za-z0-9@]\s/m.test(text),brace=/^\{(?:Title|Reference Type|Author)\}/im.test(text);
  if(!ris&&!pct&&!brace)throw Error("未识别题录格式。");
  let rec={},last="";const out=[];
  const val=(...keys)=>{for(const k of keys)if(rec[k]?.length)return rec[k].join(" ");return ""};
@@ -1203,12 +1253,12 @@ function parseTagged(text,j){
   const m=ris?line.match(/^([A-Z0-9]{2})\s{2}-\s?(.*)$/):
    pct?line.match(/^%([A-Za-z0-9@])\s+(.*)$/):line.match(/^\{([^}]+)\}\s*:?\s*(.*)$/);
   if(m){
-   const key=brace?m[1].toLowerCase():m[1];
-   if((ris&&key==="TY"||pct&&key==="0"||brace&&key==="reference type")&&Object.keys(rec).length)flush();
-   if(ris&&key==="ER"){flush();continue}
-   if(pct&&key==="T"&&rec.T||brace&&key==="title"&&rec.title)flush();
-   if(ris&&key==="AB"||pct&&key==="X"||brace&&key==="abstract"){last="";continue}
-   last=key;(rec[key]??=[]).push(m[2]);
+   const k=brace?m[1].toLowerCase():m[1];
+   if((ris&&k==="TY"||pct&&k==="0"||brace&&k==="reference type")&&Object.keys(rec).length)flush();
+   if(ris&&k==="ER"){flush();continue}
+   if(pct&&k==="T"&&rec.T||brace&&k==="title"&&rec.title)flush();
+   if(ris&&k==="AB"||pct&&k==="X"||brace&&k==="abstract"){last="";continue}
+   last=k;(rec[k]??=[]).push(m[2]);
   }else if(!line.trim()){if(!ris)flush()}
   else if(last)rec[last][rec[last].length-1]+=" "+line.trim();
  }
@@ -1220,9 +1270,9 @@ function importHTML(text,j){
  renderCandidates();
  const doc=new DOMParser().parseFromString(text,"text/html"),meta=new Map();
  for(const n of doc.querySelectorAll("meta[name],meta[property]")){
-  const key=(n.getAttribute("name")||n.getAttribute("property")||"").toLowerCase();
-  if(/abstract|description/.test(key))continue;
-  const v=plain(n.getAttribute("content"));if(v){if(!meta.has(key))meta.set(key,[]);meta.get(key).push(v)}
+  const k=(n.getAttribute("name")||n.getAttribute("property")||"").toLowerCase();
+  if(/abstract|description/.test(k))continue;
+  const v=plain(n.getAttribute("content"));if(v){if(!meta.has(k))meta.set(k,[]);meta.get(k).push(v)}
  }
  const one=(...keys)=>{for(const k of keys)if(meta.get(k)?.length)return meta.get(k)[0];return ""};
  const title=one("citation_title","dc.title");
@@ -1234,37 +1284,35 @@ function importHTML(text,j){
    published:dateValue(one("citation_publication_date","citation_date")),
    url:urlOf(doc.querySelector('link[rel="canonical"]')?.getAttribute("href"),base)||base,origin:"HTML 题录"}];
  }
- const list=[],seen=new Set();
+ const list=[];
  for(const a of doc.querySelectorAll("a[href]")){
   const title=plain(a.textContent),url=urlOf(a.getAttribute("href"),base);
   if(!url||title.length<12||title.length>500||/^(摘要|Abstract|PDF|下载|全文)/i.test(title))continue;
   if(!/\/(?:article|articles|doi|paper|detail)\//i.test(new URL(url).pathname))continue;
-  if(seen.has(norm(title)))continue;seen.add(norm(title));
   list.push({id:"manual:"+hash(j.id+"|"+canonical(url)),title,authors:[],journal:j.name,url,origin:"HTML 目录候选",selected:false});
   if(list.length>=500)break;
  }
- $("setupStatus").textContent="HTML：RSS 候选 "+found.items.length+" 个，目录候选 "+list.length+" 条，目录候选默认不勾选。";
  return list;
 }
 function parseImport(text,j){
  const s=text.trim().replace(/^\uFEFF/,"");
- if(s.startsWith("[")){const x=JSON.parse(s);if(!Array.isArray(x))throw Error("需要论文数组。");return x}
+ if(s.startsWith("[")){const a=JSON.parse(s);if(!Array.isArray(a))throw Error("需要论文 JSON 数组。");return a}
  if(/<!doctype\s+html|<html[\s>]|<meta[\s>]/i.test(s))return importHTML(s,j);
  if(s.startsWith("<"))return parseFeed(s,urlOf($("verifyInput").value)||urlOf($("homeInput").value),j).items;
  return parseTagged(s,j);
 }
 function appendPreview(list){
- for(const raw of list){
-  const p=cleanPaper({...raw,id:raw.id||doi(raw.doi)||"manual:"+hash(managing+"|"+norm(raw.title)),journal:raw.journal||manageJournal().name});
-  preview.push({...p,selected:raw.selected!==false});
- }
- preview=preview.slice(0,5000);renderPreview();
- $("verifyStatus").textContent="读取 "+list.length+" 条；预览共 "+preview.length+" 条。文件导入不代表在线地址可用。";
+ const incoming=list.map(raw=>({...raw,id:raw.id||doi(raw.doi)||"manual:"+hash(managing+"|"+norm(raw.title)),journal:raw.journal||manageJournal().name}));
+ const all=[...preview,...incoming],selectedIDs=new Set(all.filter(p=>p.selected!==false).map(p=>p.id));
+ const result=deduplicate(all);
+ preview=result.items.slice(0,5000).map(p=>({...p,selected:[p.id,...p.aliases].some(id=>selectedIDs.has(id))}));
+ renderPreview();
+ $("verifyStatus").textContent="预览去重后 "+preview.length+" 条；自动合并 "+result.removed+" 个重复项。";
 }
 
-/* ---------- API 文章与全部来源刷新 ---------- */
-function dp(value){
- const a=value?.["date-parts"]?.[0];
+/* API 题录 */
+function dp(v){
+ const a=v?.["date-parts"]?.[0];
  return Array.isArray(a)?dateValue(String(a[0])+(a[1]?"-"+String(a[1]).padStart(2,"0"):"")+(a[1]&&a[2]?"-"+String(a[2]).padStart(2,"0"):"")):"";
 }
 function crPaper(w){
@@ -1288,10 +1336,10 @@ function range(s){
 }
 function unconfigured(message){const e=Error(message);e.unconfigured=true;return e}
 async function scanCR(j,s,deep,signal,old){
- if(!j.issns.length)throw unconfigured("未配置 ISSN，未按相似刊名抓取文章。");
- const r=range(s),max=deep?s.limit:s.quick;
+ if(!j.issns.length)throw unconfigured("未配置 ISSN。");
+ const r=range(s),max=deep?s.limit:s.quick,list=[];
  const order=[...new Set([old.crISSN,...j.issns].filter(i=>j.issns.includes(i)))];
- const map=new Map();let total=0,selected="",scanned=0;
+ let selected="",total=0;
  for(const id of order){
   let offset=0;
   while(offset<max){
@@ -1301,19 +1349,19 @@ async function scanCR(j,s,deep,signal,old){
     sort:"published",order:"desc",rows,offset,
     select:"DOI,title,author,container-title,volume,issue,page,published,published-print,issued,URL,ISSN"
    },signal);
-   if(!Array.isArray(x.items))throw Error("Crossref 列表格式异常。");
-   total=+x["total-results"]||0;selected=id;
+   if(!Array.isArray(x.items))throw Error("Crossref 列表异常。");
+   selected=id;total=+x["total-results"]||0;
    for(const w of x.items){
-    const list=issns(w.ISSN);if(list.length&&!list.some(i=>j.issns.includes(i)))continue;
-    try{const p=crPaper(w);map.set(p.id,p)}catch{}
+    const ids=issns(w.ISSN);if(ids.length&&!ids.some(i=>j.issns.includes(i)))continue;
+    try{list.push(crPaper(w))}catch{}
    }
-   offset+=x.items.length;scanned=offset;
+   offset+=x.items.length;
    if(x.items.length<rows||offset>=total||offset>=max)break;
-   await sleep(180,signal);
+   await sleep(160,signal);
   }
-  if(map.size)break;
+  if(list.length)break;
  }
- return {items:[...map.values()],crISSN:selected,total,scanned,...r};
+ return {items:deduplicate(list).items,crISSN:selected,...r};
 }
 async function scanOA(j,s,deep,signal,old){
  let sid=j.oaSource||old.oaSource||"";
@@ -1323,8 +1371,8 @@ async function scanOA(j,s,deep,signal,old){
   if(found){sid=String(found.id).split("/").pop();break}
  }
  if(!/^S\d+$/.test(sid))throw unconfigured("没有可靠匹配的 OpenAlex Source ID。");
- const r=range(s),max=deep?s.limit:s.quick,map=new Map();
- let cursor="*",scanned=0,total=0;
+ const r=range(s),max=deep?s.limit:s.quick,list=[];
+ let cursor="*",scanned=0;
  while(scanned<max){
   const rows=Math.min(100,max-scanned);
   const x=await oa("/works",{
@@ -1332,60 +1380,59 @@ async function scanOA(j,s,deep,signal,old){
    sort:"publication_date:desc","per-page":rows,cursor,
    select:"id,doi,title,authorships,biblio,publication_date,primary_location"
   },signal);
-  if(!Array.isArray(x.results))throw Error("OpenAlex 列表格式异常。");
-  total=+x.meta?.count||0;
-  for(const w of x.results){try{const p=oaPaper(w,j);map.set(p.id,p)}catch{}}
+  if(!Array.isArray(x.results))throw Error("OpenAlex 列表异常。");
+  for(const w of x.results){try{list.push(oaPaper(w,j))}catch{}}
   scanned+=x.results.length;
-  if(x.results.length<rows||scanned>=total||scanned>=max)break;
-  cursor=x.meta?.next_cursor;if(!cursor)break;await sleep(180,signal);
+  if(x.results.length<rows||scanned>=(+x.meta?.count||0)||scanned>=max)break;
+  cursor=x.meta?.next_cursor;if(!cursor)break;await sleep(160,signal);
  }
- return {items:[...map.values()],oaSource:sid,total,scanned,...r};
+ return {items:deduplicate(list).items,oaSource:sid,...r};
 }
-function sourceTasks(j){
- const tasks=[];
- if(j.use.rss)for(const f of j.feeds)
-  tasks.push({key:"rss:"+hash(canonical(f.url)),kind:"rss",url:f.url,label:"RSS · "+(f.title||host(f.url))});
- if(j.use.cr)tasks.push({key:"cr",kind:"cr",label:"Crossref"});
- if(j.use.oa)tasks.push({key:"oa",kind:"oa",label:"OpenAlex"});
- return tasks;
+function tasks(j){
+ const out=[];
+ if(j.use.rss)for(const f of j.feeds)out.push({key:"rss:"+hash(canonical(f.url)),kind:"rss",url:f.url,label:"RSS · "+(f.title||host(f.url))});
+ if(j.use.cr)out.push({key:"cr",kind:"cr",label:"Crossref"});
+ if(j.use.oa)out.push({key:"oa",kind:"oa",label:"OpenAlex"});
+ return out;
 }
 function signature(j){return JSON.stringify([j.issns,j.feeds,j.use,j.oaSource,j.enabled])}
 async function updateSource(j,t,s,deep,signal,manual){
- const old=getCache(j.id).sources[t.key]||{items:[]},sig=signature(j);
- const errorState=["failed","unconfigured"].includes(old.status);
- if(Date.now()<(old.retryAt||0)&&(errorState||!manual))return "cooldown";
+ const old=getCache(j.id).sources[t.key]||{},sig=signature(j);
+ if(Date.now()<(old.retryAt||0)&&(!manual||["failed","unconfigured"].includes(old.status)))return "cooldown";
  try{
   let result;
   if(t.kind==="rss"){
-   const x=await testFeed(t.url,signal,j);
-   result={items:x.feed.items,feedTitle:x.feed.title,resolvedURL:x.response.url};
+   const x=await testFeed(t.url,signal,j);result={items:x.feed.items,feedTitle:x.feed.title};
   }else if(t.kind==="cr")result=await scanCR(j,s,deep,signal,old);
   else result=await scanOA(j,s,deep,signal,old);
   if(signal.aborted)throw abortError();
   const live=state.journals.find(x=>x.id===j.id);
   if(!live||signature(live)!==sig)return "discarded";
-  const now=Date.now(),c=getCache(j.id),cap=t.kind==="rss"?s.rssLimit:s.limit;
-  const items=result.items.length?mergeItems(old.items,result.items).sort(sortPapers).slice(0,cap):old.items;
-  c.sources[t.key]={...old,...result,items,label:t.label,kind:t.kind,url:t.url||"",
-   status:result.items.length?"ok":"empty",lastChecked:now,lastSuccess:now,
-   retryAt:now+INTERVAL,lastCount:result.items.length,
-   message:t.kind==="rss"?"订阅："+result.feedTitle+"；本次 "+result.items.length+" 条。RSS 不含完整历史。":
-    "窗口 "+result.from+" 至 "+result.until+"；本次 "+result.items.length+" 条；"+(deep?"完整扫描受上限限制。":"快速检查最新记录。")};
-  saveCache(j.id,c);rebuild(live);return result.items.length?"ok":"empty";
+  const c=getCache(j.id),now=Date.now();
+  c.sources[t.key]={
+   ...old,label:t.label,kind:t.kind,url:t.url||"",status:result.items.length?"ok":"empty",
+   lastChecked:now,lastSuccess:now,lastCount:result.items.length,retryAt:now+INTERVAL,
+   crISSN:result.crISSN||old.crISSN||"",oaSource:result.oaSource||old.oaSource||"",
+   message:t.kind==="rss"?"本次 "+result.items.length+" 条；订阅："+result.feedTitle:
+    "窗口 "+result.from+" 至 "+result.until+"；本次 "+result.items.length+" 条。"
+  };
+  const incoming=result.items.map(p=>({...p,sources:[t.label]}));
+  const merged=mergeCache(live,incoming);
+  c.sources[t.key].message+=" 已自动合并重复项 "+merged.removed+" 个（含旧记录再次返回）。";
+  saveCache(j.id,c);
+  return result.items.length?"ok":"empty";
  }catch(e){
   if(e.name==="AbortError")throw e;
-  const live=state.journals.find(x=>x.id===j.id);
-  if(!live||signature(live)!==sig)return "discarded";
+  const live=state.journals.find(x=>x.id===j.id);if(!live||signature(live)!==sig)return "discarded";
   const c=getCache(j.id);
-  c.sources[t.key]={...old,label:t.label,kind:t.kind,url:t.url||"",items:old.items,
-   status:e.unconfigured?"unconfigured":"failed",lastChecked:Date.now(),retryAt:Date.now()+ERROR_WAIT,
-   message:e.message+"；旧缓存保留，其他来源继续。"};
+  c.sources[t.key]={...old,label:t.label,kind:t.kind,url:t.url||"",status:e.unconfigured?"unconfigured":"failed",
+   lastChecked:Date.now(),retryAt:Date.now()+ERROR_WAIT,message:e.message+"；旧题录保留，其他来源继续。"};
   saveCache(j.id,c);return e.unconfigured?"unconfigured":"failed";
  }
 }
 async function refresh(list,deep=false,manual=true){
- if(batch){toast("已有后台任务，当前仍可继续浏览。");return}
- if(connecting||booting)throw Error("配置正在载入，请稍后刷新。");
+ if(batch)throw Error("已有刷新任务。");
+ if(connecting||booting||loadingPublic)throw Error("请等待配置载入。");
  const jobs=list.filter(j=>j?.enabled).map(clone);if(!jobs.length){toast("没有启用的期刊。");return}
  const ctl=new AbortController(),s=clone(state.settings),start=performance.now();
  batch={ctl,total:jobs.length,done:0,ok:0,empty:0,failed:0,unconfigured:0,cooldown:0,names:new Map()};
@@ -1394,11 +1441,11 @@ async function refresh(list,deep=false,manual=true){
   while(index<jobs.length&&!ctl.signal.aborted){
    const j=jobs[index++];
    try{
-    for(const t of sourceTasks(j)){
+    for(const t of tasks(j)){
      if(ctl.signal.aborted)break;
      batch.names.set(j.id,j.name+" · "+t.label);renderStatus();
-     const status=await updateSource(j,t,s,deep,ctl.signal,manual);
-     if(["ok","empty","failed","unconfigured","cooldown"].includes(status))batch[status]++;
+     const result=await updateSource(j,t,s,deep,ctl.signal,manual);
+     if(["ok","empty","failed","unconfigured","cooldown"].includes(result))batch[result]++;
     }
    }catch(e){if(e.name!=="AbortError")batch.failed++}
    finally{batch.done++;batch.names.delete(j.id);renderStatus()}
@@ -1407,54 +1454,45 @@ async function refresh(list,deep=false,manual=true){
  try{await Promise.all(Array.from({length:Math.min(s.concurrency,jobs.length)},()=>worker()))}
  finally{
   const b=batch;
-  lastStatus=(ctl.signal.aborted?"后台任务已停止":"联合刷新完成")+
-   " · 来源成功 "+b.ok+" · 空结果 "+b.empty+" · 失败 "+b.failed+
-   " · 未配置 "+b.unconfigured+" · 冷却 "+b.cooldown+" · "+((performance.now()-start)/1000).toFixed(1)+" 秒";
-  batch=null;nextAuto=Date.now()+INTERVAL;
-  renderControls();renderStatus();renderPending();scheduleSave();
+  lastStatus=(ctl.signal.aborted?"后台已停止":"联合刷新完成")+" · 成功 "+b.ok+" · 空结果 "+b.empty+
+   " · 失败 "+b.failed+" · 未配置 "+b.unconfigured+" · 冷却 "+b.cooldown+
+   " · "+((performance.now()-start)/1000).toFixed(1)+" 秒";
+  batch=null;nextAuto=Date.now()+INTERVAL;renderControls();renderStatus();renderPending();scheduleSave();
  }
 }
 function autoTick(){
  renderTimer();
- if(booting||connecting||batch||!state.settings.auto||Date.now()<nextAuto)return;
+ if(booting||connecting||loadingPublic||batch||!state.settings.auto||Date.now()<nextAuto)return;
  nextAuto=Date.now()+INTERVAL;
- const jobs=state.journals.filter(j=>j.enabled&&sourceTasks(j).some(t=>Date.now()>=(getCache(j.id).sources[t.key]?.retryAt||0)));
- if(jobs.length)safe(()=>refresh(jobs,false,false));
+ const list=state.journals.filter(j=>j.enabled&&tasks(j).some(t=>Date.now()>=(getCache(j.id).sources[t.key]?.retryAt||0)));
+ if(list.length)safe(()=>refresh(list,false,false));
 }
 
-/* ---------- 快照浏览和个人阅读 ---------- */
+/* 浏览快照 */
 function mark(p){return marks[p.id]||{}}
 function takeSnapshot(){
- if(current==="favorites")snapshot=Object.values(marks).filter(m=>m.favorite&&m.paper).map(m=>m.paper);
- else{
-  const j=currentJournal(),c=getCache(current);if(j)c.all=aggregated(j,c);
-  snapshot=[...(c.all||[])];pending.delete(current);
- }
+ if(current==="favorites")snapshot=dedupFavorites().items;
+ else{const j=currentJournal();snapshot=j?viewItems(j):[];pending.delete(current)}
 }
 function groups(){
  const map=new Map(),today=new Date().toISOString().slice(0,10);
  for(const p of snapshot){
   const d=p.printDate||p.published;if(!p.issue||!d||dateKey(d)>today)continue;
-  const year=p.volume?"":d.slice(0,4),key=JSON.stringify([p.volume,p.issue,year]);
-  if(!map.has(key))map.set(key,{key,volume:p.volume,issue:p.issue,year,date:"",items:[]});
-  const g=map.get(key);g.items.push(p);if(dateKey(d)>g.date)g.date=dateKey(d);
+  const year=p.volume?"":d.slice(0,4),k=JSON.stringify([p.volume,p.issue,year]);
+  if(!map.has(k))map.set(k,{key:k,volume:p.volume,issue:p.issue,year,date:"",items:[]});
+  const g=map.get(k);g.items.push(p);if(dateKey(d)>g.date)g.date=dateKey(d);
  }
  return [...map.values()].sort((a,b)=>b.date.localeCompare(a.date)||b.volume.localeCompare(a.volume,undefined,{numeric:true})||b.issue.localeCompare(a.issue,undefined,{numeric:true}));
 }
 function scoped(){
  if(current==="favorites"||$("mode").value==="all")return snapshot;
- const list=groups(),g=$("mode").value==="latest"?list[0]:list.find(g=>g.key===$("issue").value);
+ const list=groups(),g=$("mode").value==="latest"?list[0]:list.find(x=>x.key===$("issue").value);
  return g?.items||[];
 }
 function filtered(){
  const q=norm($("query").value);
  return scoped().filter(p=>(filter!=="unread"||!mark(p).read)&&(filter!=="favorite"||mark(p).favorite)&&
   (!q||norm([p.title,p.doi,...p.authors].join(" ")).includes(q))).sort(sortPapers);
-}
-function pageItems(){
- const all=filtered(),size=state.settings.pageSize;
- page=Math.max(1,Math.min(page,Math.max(1,Math.ceil(all.length/size))));
- return all.slice((page-1)*size,page*size);
 }
 function choose(id){
  current=id;page=1;filter="all";$("query").value="";$("mode").value="all";$("issue").replaceChildren();
@@ -1466,45 +1504,60 @@ function applyUpdate(){
  const anchor=[...$("papers").querySelectorAll(".paper")].find(n=>n.getBoundingClientRect().bottom>top);
  const id=anchor?.dataset.id,offset=anchor?anchor.getBoundingClientRect().top-top:0;
  takeSnapshot();renderHeading();
- const i=filtered().findIndex(p=>p.id===id);if(i>=0)page=Math.floor(i/state.settings.pageSize)+1;
+ const i=filtered().findIndex(p=>p.id===id||p.aliases.includes(id));
+ if(i>=0)page=Math.floor(i/state.settings.pageSize)+1;
  renderPapers();renderPending();
  requestAnimationFrame(()=>{
-  const target=[...$("papers").querySelectorAll(".paper")].find(n=>n.dataset.id===id);
+  const item=filtered().find(p=>p.id===id||p.aliases.includes(id));
+  const target=[...$("papers").querySelectorAll(".paper")].find(n=>n.dataset.id===(item?.id||id));
   sc.scrollTop=target?sc.scrollTop+target.getBoundingClientRect().top-sc.getBoundingClientRect().top-offset:oldScroll;
  });
 }
-function toggleMark(p,key){
- const value={...mark(p),[key]:!mark(p)[key]};
- if(value.favorite)value.paper=cleanPaper(p);else delete value.paper;
+function toggleMark(p,k){
+ const value={...mark(p),[k]:!mark(p)[k],paper:p};
  if(value.read||value.favorite)marks[p.id]=value;else delete marks[p.id];
- saveMarks();const position=$("scroll").scrollTop;
- if(current==="favorites")takeSnapshot();
- renderSidebar();renderPapers();$("scroll").scrollTop=position;
+ write(key("marks"),marks);
+ const pos=$("scroll").scrollTop;if(current==="favorites")takeSnapshot();
+ renderSidebar();renderPapers();$("scroll").scrollTop=pos;
 }
 function moveJournal(id,delta){
  requireAdmin();const i=state.journals.findIndex(j=>j.id===id),t=i+delta;
  if(i<0||t<0||t>=state.journals.length)return;
- [state.journals[i],state.journals[t]]=[state.journals[t],state.journals[i]];
- touch();renderSidebar();
+ [state.journals[i],state.journals[t]]=[state.journals[t],state.journals[i]];touch();renderSidebar();
+}
+function cleanupDuplicates(){
+ if(batch||operation)throw Error("请先结束后台任务。");
+ let count=0,manualChanged=false;
+ for(const j of state.journals){
+  const c=getCache(j.id),r=deduplicate(c.items);count+=r.removed;c.items=r.items;
+  c.removed=(c.removed||0)+r.removed;inheritMarks(r.items);saveCache(j.id,c);
+  if(isAdmin()){
+   const old=state.manual[j.id]||[],m=deduplicate(old);count+=m.removed;
+   if(m.removed){state.manual[j.id]=m.items;manualChanged=true}
+   inheritMarks(m.items);
+  }
+ }
+ const favorite=dedupFavorites();count+=favorite.removed;
+ if(manualChanged)touch();
+ takeSnapshot();renderView();
+ toast("清理完成，额外合并 "+count+" 个重复项。\n日常刷新和导入已经自动去重；每篇只保留一个主记录。");
 }
 
-/* ---------- UI ---------- */
+/* UI */
 function renderSidebar(){
- if(dragID)return;
- $("journals").replaceChildren();
+ if(dragID)return;$("journals").replaceChildren();
  const count=Object.values(marks).filter(m=>m.favorite).length;
  const fav=el("div","nav"+(current==="favorites"?" selected":""));
  fav.append(button("☆ 我的收藏 · "+count,()=>choose("favorites"),"navmain"));$("journals").append(fav);
  state.journals.forEach((j,i)=>{
-  const row=el("div","nav"+(current===j.id?" selected":""));
-  const main=button("",()=>choose(j.id),"navmain");
+  const row=el("div","nav"+(current===j.id?" selected":"")),main=button("",()=>choose(j.id),"navmain");
   main.append(el("strong","",j.name),el("small","",[
    j.use.rss&&j.feeds.length?"RSS ×"+j.feeds.length:"",j.use.cr?"Crossref":"",j.use.oa?"OpenAlex":""
   ].filter(Boolean).join(" + ")||"手动目录"));
   if(isAdmin()){
    const handle=el("span","handle","⋮⋮");handle.draggable=true;row.append(handle);
    handle.ondragstart=e=>{
-    if(connecting||session?.blocked){e.preventDefault();return}
+    if(connecting||session.blocked){e.preventDefault();return}
     dragID=j.id;e.dataTransfer.setData("text/plain",j.id);
    };
    handle.ondragend=()=>{dragID="";renderSidebar()};
@@ -1513,10 +1566,9 @@ function renderSidebar(){
    row.ondrop=e=>safe(()=>{
     e.preventDefault();requireAdmin();const from=dragID;dragID="";
     if(!from||from===j.id){renderSidebar();return}
-    const list=[...state.journals],index=list.findIndex(x=>x.id===from);
-    if(index<0)return;const item=list.splice(index,1)[0],target=list.findIndex(x=>x.id===j.id);
-    const r=row.getBoundingClientRect();list.splice(target+(e.clientY>r.top+r.height/2?1:0),0,item);
-    state.journals=list;touch();renderSidebar();
+    const list=[...state.journals],index=list.findIndex(x=>x.id===from);if(index<0)return;
+    const item=list.splice(index,1)[0],target=list.findIndex(x=>x.id===j.id),r=row.getBoundingClientRect();
+    list.splice(target+(e.clientY>r.top+r.height/2?1:0),0,item);state.journals=list;touch();renderSidebar();
    });
   }
   row.append(main);
@@ -1531,14 +1583,15 @@ function renderSidebar(){
 function renderHeading(){
  const j=currentJournal();
  $("journalTitle").textContent=j?.name||"我的收藏";
- $("journalMeta").textContent=j?[j.issns.join(" / "),"多源独立更新 · 私人阅读记录"].filter(Boolean).join(" · "):"仅保存在当前浏览器，不上传共享 JSON";
+ $("journalMeta").textContent=j?[j.issns.join(" / "),"重复文献自动合并"].filter(Boolean).join(" · "):"私人收藏 · 自动去重 · 不上传共享配置";
  $("logs").hidden=!j;$("mode").hidden=!j;$("issue").hidden=!j||$("mode").value!=="issue";
  const selected=$("issue").value;$("issue").replaceChildren();
  for(const g of groups())$("issue").append(new Option([g.year,g.volume?"Vol. "+g.volume:"","Issue "+g.issue].filter(Boolean).join(" · ")+" · "+g.items.length+" 条",g.key));
  if([...$("issue").options].some(o=>o.value===selected))$("issue").value=selected;
 }
 function renderPapers(){
- const all=filtered(),items=pageItems(),frag=document.createDocumentFragment();
+ const all=filtered(),size=state.settings.pageSize,pages=Math.max(1,Math.ceil(all.length/size));
+ page=Math.max(1,Math.min(page,pages));const items=all.slice((page-1)*size,page*size),frag=document.createDocumentFragment();
  $("papers").className=grid?"grid":"";
  for(const p of items){
   const m=mark(p),card=el("article","paper"+(m.read?" read":""));card.dataset.id=p.id;
@@ -1548,8 +1601,7 @@ function renderPapers(){
   const tags=el("div","tags");
   for(const text of [current==="favorites"?p.journal:"",p.published||"日期未提供",p.volume?"Vol. "+p.volume:"",p.issue?"Issue "+p.issue:"",p.page?"页码 "+p.page:""].filter(Boolean))
    tags.append(el("span","tag",text));
-  for(const source of p.sources?.length?p.sources:[p.origin])tags.append(el("span","tag source",source));
-  if(p.possibleDuplicate)tags.append(el("span","tag warn","疑似重复：标题相同"));
+  for(const source of p.sources.length?p.sources:[p.origin])tags.append(el("span","tag source",source));
   card.append(tags);
   const actions=el("div","actions");
   actions.append(button(m.favorite?"★ 已收藏":"☆ 收藏",()=>toggleMark(p,"favorite"),"btn small"+(m.favorite?" active":"")),
@@ -1562,65 +1614,63 @@ function renderPapers(){
  $("empty").textContent=scoped().length?"没有匹配当前筛选的记录。":
   current==="favorites"?"尚无私人收藏。":
   "当前快照没有题录。\n点击“联合刷新”，完成后点击“应用更新”。\nRSS 通常缺少卷期，请选择“全部记录”。";
- const pages=Math.max(1,Math.ceil(all.length/state.settings.pageSize));
  $("pager").hidden=pages<=1;$("pageInfo").textContent=page+" / "+pages;
  $("prev").disabled=page<=1;$("next").disabled=page>=pages;
- $("total").textContent=all.length+" 条 · 本页 "+items.length+" 条";
+ $("total").textContent="去重后 "+all.length+" 条 · 本页 "+items.length+" 条";
  document.querySelectorAll("[data-filter]").forEach(b=>b.classList.toggle("active",b.dataset.filter===filter));
 }
 function renderPending(){
  const yes=current!=="favorites"&&pending.has(current);$("applyUpdate").disabled=!yes;
- if(yes){
-  const old=new Set(snapshot.map(p=>p.id)),n=(getCache(current).all||[]).filter(p=>!old.has(p.id)).length;
-  $("pendingText").textContent="后台已有更新"+(n?"，新增 "+n+" 条":"，题录/来源信息有变化")+"；当前浏览保持不变。";
- }else $("pendingText").textContent="后台不改变当前列表、页码与滚动位置；点击应用后载入更新。";
+ $("pendingText").textContent=yes?"后台已有去重后的更新；当前浏览保持不变。":"自动去重已启用；后台不改变当前列表、页码和滚动位置。";
 }
 function renderTimer(){
- if(batch){$("timer").textContent="多源后台刷新中";return}
+ if(batch){$("timer").textContent="多源后台更新中";return}
  if(!state.settings.auto){$("timer").textContent="自动刷新关闭";return}
- const seconds=Math.max(0,Math.ceil((nextAuto-Date.now())/1000));
- $("timer").textContent="5 分钟检查 · "+String(Math.floor(seconds/60)).padStart(2,"0")+":"+String(seconds%60).padStart(2,"0");
+ const s=Math.max(0,Math.ceil((nextAuto-Date.now())/1000));
+ $("timer").textContent="5 分钟检查 · "+String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
 }
 function renderStatus(){
  $("status").textContent=batch?"期刊 "+batch.done+"/"+batch.total+" · "+[...batch.names.values()].join(" | "):
-  lastStatus||"来源独立更新；共享配置由 GitHub 管理员维护。";renderTimer();
+  lastStatus||"自动去重 · RSS / Crossref / OpenAlex 独立更新";
+ renderTimer();
 }
 function renderBridge(){
- $("bridgeStatus").textContent=bridgeHosts.size?"网页读取脚本已连接":"知网/网页发现需读取脚本";
+ $("bridgeStatus").textContent=bridgeHosts.size?"网页读取脚本已连接":"网页/RSS 跨域需读取脚本";
  $("bridgeStatus").style.color=bridgeHosts.size?"var(--good)":"var(--muted)";
 }
 function renderControls(){
  const admin=isAdmin(),j=currentJournal();
  document.querySelectorAll("[data-admin]").forEach(n=>n.hidden=!admin);
  $("manage").hidden=!admin||!j;$("remove").hidden=!admin||!j;
- $("admin").textContent=connecting?"验证权限中…":admin?"退出管理 · "+session.login:"管理员";
- $("admin").disabled=connecting||saving||!!batch||!!operation||!!searchCtl||booting;
+ $("admin").textContent=connecting?"验证写权限中…":admin?"退出管理 · "+session.login:"管理员";
+ $("admin").disabled=connecting||saving||!!batch||!!operation||!!searchCtl||booting||loadingPublic;
  $("saveRemote").disabled=!admin||connecting||saving||!!session?.blocked;
- $("reloadShared").disabled=connecting||saving||!!batch||!!operation||admin||booting;
+ $("reloadShared").disabled=connecting||saving||!!batch||!!operation||admin||booting||loadingPublic;
  $("import").disabled=connecting||saving||!!batch||!!operation;
- $("refreshCurrent").disabled=booting||connecting||!!batch||!j;
- $("refreshAll").disabled=booting||connecting||!!batch||!state.journals.length;
- $("deepScan").disabled=booting||connecting||!!batch||!j||(!j.use.cr&&!j.use.oa);
+ $("refreshCurrent").disabled=booting||connecting||loadingPublic||!!batch||!j;
+ $("refreshAll").disabled=booting||connecting||loadingPublic||!!batch||!state.journals.length;
+ $("deepScan").disabled=booting||connecting||loadingPublic||!!batch||!j||(!j.use.cr&&!j.use.oa);
  $("stop").hidden=!batch;
  for(const id of ["autoConfigure","extractHome","verifyFeed","saveManage"])$(id).disabled=!!operation||connecting;
  $("loginSubmit").disabled=connecting;
- $("storageStatus").textContent=(connecting?"GitHub 权限验证中":
-  admin?(session.blocked?"管理保存已暂停":saving?"保存到 GitHub 中":dirty?"管理员草稿待发布":"管理员 · 共享配置已同步"):
-  "访客 · 收藏与已读仅保存在本机")+(storageError?" · 本地存储异常，请备份":"");
+ $("storageStatus").textContent=(connecting?"正在验证 GitHub 写权限":
+  admin?(session.blocked?"管理员 · 保存暂停":saving?"发布共享配置中":dirty?"管理员 · 草稿待发布":"管理员 · 写权限已验证"):
+  loadingPublic?"访客 · 正在读取共享配置":"访客 · 收藏/已读仅本机")+
+  (storageError?" · 存储异常，请备份":"");
 }
 function renderView(){renderSidebar();renderHeading();renderPapers();renderPending();renderStatus();renderControls()}
 function showLogs(){
  const j=currentJournal();if(!j)return;
- const c=getCache(j.id),tasks=sourceTasks(j),keys=new Set(tasks.map(t=>t.key));
- $("logTitle").textContent=j.name+"\n聚合题录："+(c.all?.length||0)+" 条；手动题录："+(state.manual[j.id]?.length||0)+" 条。";
- const rows=[...tasks.map(t=>[t.label,c.sources[t.key]]),
-  ...Object.entries(c.sources).filter(([k])=>!keys.has(k)).map(([,s])=>[(s.label||"旧来源")+"（当前未启用）",s])];
- if(j.use.rss&&!j.feeds.length)rows.unshift(["RSS",{status:"unconfigured",items:[],message:"未登记订阅地址。"}]);
- const labels={ok:"成功",empty:"空结果",failed:"访问失败",unconfigured:"未配置",legacy:"历史迁移"};
+ const c=getCache(j.id),ts=tasks(j),active=new Set(ts.map(t=>t.key));
+ $("logTitle").textContent=j.name+"\n去重后可见题录："+viewItems(j).length+" 条。\n缓存仅保存单一主记录，不再为不同来源保留重复题录副本。";
+ const rows=[...ts.map(t=>[t.label,c.sources[t.key]]),
+  ...Object.entries(c.sources).filter(([k])=>!active.has(k)).map(([,s])=>[(s.label||"旧来源")+"（未启用）",s])];
+ if(j.use.rss&&!j.feeds.length)rows.unshift(["RSS",{status:"unconfigured",message:"未登记 RSS 地址。"}]);
+ const names={ok:"成功",empty:"空结果",failed:"访问失败",unconfigured:"未配置",legacy:"历史迁移"};
  $("sourceRows").replaceChildren();
  for(const [name,s]of rows){
   const tr=el("tr");
-  for(const text of [name,s?(labels[s.status]||s.status||"未检查")+" · "+(s.items?.length||0)+" 条":"尚未检查",
+  for(const text of [name,s?(names[s.status]||s.status||"未检查"):"尚未检查",
    s?.lastChecked?new Date(s.lastChecked).toLocaleString():"—",
    (s?.message||"")+(s?.retryAt>Date.now()&&["failed","unconfigured"].includes(s.status)?"\n冷却至 "+new Date(s.retryAt).toLocaleTimeString():"")])
    tr.append(el("td","",text));
@@ -1629,32 +1679,25 @@ function showLogs(){
  openDialog("logsDialog");
 }
 
-/* ---------- 旧版本迁移与备份 ---------- */
+/* 迁移 */
 function migrate(raw,prefix=""){
- if(raw?.version===10)return raw;
- if(![2,7,8,9].includes(raw?.version)||!Array.isArray(raw.journals))throw Error("不支持的配置版本。");
- const next=defaults();next.cacheBackup={};
- next.privateMarks=raw.privateMarks||raw.marks||{};
+ if(raw?.version===11)return raw;
+ if(![2,7,8,9,10].includes(raw?.version)||!Array.isArray(raw.journals))throw Error("不支持的配置版本。");
+ const next=defaults();next.cacheBackup={};next.privateMarks=raw.privateMarks||raw.marks||{};
  for(const old of raw.journals){
-  const oldKey=String(old.id||old.issn||uid()),id=goodID(oldKey)?oldKey:"j:"+hash(oldKey);
+  const oldID=String(old.id||old.issn||uid()),id=goodID(oldID)?oldID:"j:"+hash(oldID);
   let use=old.use;
   if(!use){
-   const source=old.source||"auto";
-   use=source==="manual"?{rss:false,cr:false,oa:false}:
-    source==="rss"?{rss:true,cr:false,oa:false}:
-    source==="crossref"?{rss:false,cr:true,oa:false}:
-    source==="openalex"?{rss:false,cr:false,oa:true}:{rss:true,cr:true,oa:true};
+   const s=old.source||"auto";
+   use=s==="manual"?{rss:false,cr:false,oa:false}:s==="rss"?{rss:true,cr:false,oa:false}:
+    s==="crossref"?{rss:false,cr:true,oa:false}:s==="openalex"?{rss:false,cr:false,oa:true}:{rss:true,cr:true,oa:true};
   }
   next.journals.push(cleanJournal({...old,id,issns:old.issns||[old.issn],use,
    feeds:old.feeds||(old.feedUrl?[{url:old.feedUrl,verifiedAt:old.verifiedAt||""}]:[])}));
-  const manual=raw.manual?.[oldKey]||raw.manualPapers?.[oldKey]||[];
-  const cleaned=[];for(const p of manual){try{cleaned.push(cleanPaper(p))}catch{}}
-  if(cleaned.length)next.manual[id]=cleaned;
-  const c=raw.cacheBackup?.[oldKey]||(prefix?read(prefix+"cache:"+oldKey,null):null);
-  if(c?.sources)next.cacheBackup[id]=c;
-  else if(Array.isArray(c?.items))next.cacheBackup[id]={
-   sources:{legacy:{label:"旧版缓存",status:"legacy",kind:"legacy",items:c.items,message:"旧版历史缓存迁移。"}},all:c.items
-  };
+  const list=raw.manual?.[oldID]||raw.manualPapers?.[oldID]||[];
+  if(list.length)next.manual[id]=deduplicate(list).items;
+  const c=raw.cacheBackup?.[oldID]||(prefix?read(prefix+"cache:"+oldID,null):null);
+  if(c)next.cacheBackup[id]=normalizeCache(c);
  }
  next.settings={...next.settings,...raw.settings,auto:(raw.settings?.auto??raw.settings?.autoRefresh)!==false};
  return next;
@@ -1664,9 +1707,8 @@ function restoreCaches(raw){
   if(state.journals.some(j=>j.id===id))saveCache(id,normalizeCache(c));
 }
 function applyConfig(raw,withCaches=false){
- const migrated=migrate(raw),next=validate(migrated);
- state=next;revision++;
- if(withCaches)restoreCaches(migrated);
+ const next=migrate(raw);state=validate(next);revision++;
+ if(withCaches)restoreCaches(next);
  current=state.journals.some(j=>j.id===current)?current:state.journals[0]?.id||"favorites";
  page=1;pending.clear();takeSnapshot();renderView();
 }
@@ -1676,26 +1718,9 @@ function backup(){
  return out;
 }
 
-/* ---------- GitHub 管理员登录 / 共享配置 ---------- */
-function publicURL(){
- const u=new URL("https://raw.githubusercontent.com/"+
-  encodeURIComponent(CONFIG.owner)+"/"+encodeURIComponent(CONFIG.repo)+"/"+
-  encodeURIComponent(CONFIG.branch)+"/"+CONFIG.path.split("/").map(encodeURIComponent).join("/"));
- u.searchParams.set("_",Date.now());return u.href;
-}
-function repoAPI(){
- return "https://api.github.com/repos/"+encodeURIComponent(CONFIG.owner)+"/"+encodeURIComponent(CONFIG.repo);
-}
-function contentsPath(){
- return "/contents/"+CONFIG.path.split("/").map(encodeURIComponent).join("/");
-}
-async function githubRequest(url,token,options={}){
- return request(url,null,true,{
-  ...options,cache:"no-store",redirect:"error",
-  headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+token,
-   ...(options.body?{"Content-Type":"application/json"}:{})}
- });
-}
+/* GitHub：独立请求，完整错误信息，不与学术接口冷却混用。 */
+function apiBase(r=repo){return "https://api.github.com/repos/"+encodeURIComponent(r.owner)+"/"+encodeURIComponent(r.repo)}
+function contentPath(r=repo){return "/contents/"+r.path.split("/").map(encodeURIComponent).join("/")}
 function to64(text){
  const b=new TextEncoder().encode(text),out=[];
  for(let i=0;i<b.length;i+=24576)out.push(btoa(String.fromCharCode(...b.subarray(i,i+24576))));
@@ -1704,145 +1729,214 @@ function to64(text){
 function from64(text){
  return new TextDecoder("utf-8",{fatal:true}).decode(Uint8Array.from(atob(text.replace(/\s/g,"")),c=>c.charCodeAt(0)));
 }
-async function fetchRemoteFile(token){
+async function github(url,token,options={}){
+ const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),45000);
  try{
-  const r=await githubRequest(repoAPI()+contentsPath()+"?ref="+encodeURIComponent(CONFIG.branch),token);
-  if(r.type!=="file"||r.encoding!=="base64"||typeof r.content!=="string")
-   throw Error("共享配置不是可读取的 JSON 文件，或文件过大。");
-  const raw=JSON.parse(from64(r.content).replace(/^\uFEFF/,""));
-  return {sha:r.sha,state:validate(migrate(raw))};
+  const r=await fetch(url,{
+   ...options,signal:ctl.signal,cache:"no-store",credentials:"omit",redirect:"error",
+   headers:{
+    Accept:"application/vnd.github+json",
+    ...(token?{Authorization:"Bearer "+token}:{}),
+    ...(options.body?{"Content-Type":"application/json"}:{})
+   }
+  });
+  const text=await r.text();let data={};
+  try{data=text?JSON.parse(text):{}}catch{}
+  if(!r.ok){
+   const message=String(data.message||text||"").slice(0,700);
+   const reasons={
+    401:"令牌无效、过期或复制不完整。",
+    403:"GitHub 拒绝访问。检查令牌 Contents 写权限、仓库授权、组织审批或限流。",
+    404:"仓库、分支或文件不存在，或令牌未获准访问。",
+    409:"仓库或文件版本冲突，请重新登录读取远端。",
+    422:"GitHub 拒绝提交。检查分支保护、文件 SHA、路径和仓库规则。",
+    429:"GitHub 请求限流，请稍后再试。"
+   };
+   const accepted=r.headers.get("X-Accepted-GitHub-Permissions");
+   const sso=r.headers.get("X-GitHub-SSO");
+   const e=Error((reasons[r.status]||"GitHub 请求失败。")+
+    "\nHTTP "+r.status+"\n"+message+
+    (accepted?"\n接口所需权限："+accepted:"")+(sso?"\n组织 SSO："+sso:""));
+   e.status=r.status;throw e;
+  }
+  return data;
+ }catch(e){
+  if(e.name==="AbortError")throw Error("GitHub 请求超时。若发生在保存时，请先核对仓库最新提交。");
+  if(e instanceof TypeError)throw Error("无法连接 GitHub API：可能是网络、浏览器扩展、CORS 或重定向限制。");
+  throw e;
+ }finally{clearTimeout(timer)}
+}
+async function fetchRemoteFile(r,token){
+ try{
+  const x=await github(apiBase(r)+contentPath(r)+"?ref="+encodeURIComponent(r.branch),token);
+  if(x.type!=="file"||x.encoding!=="base64"||typeof x.content!=="string")
+   throw Error("配置不是可读取的普通 JSON 文件，或文件过大。");
+  const raw=JSON.parse(from64(x.content).replace(/^\uFEFF/,""));
+  return {sha:x.sha,raw,state:validate(migrate(raw))};
  }catch(e){if(e.status===404)return null;throw e}
 }
 function openLogin(){
- if(booting||connecting||batch||operation||saving)throw Error("请等待当前任务结束。");
+ if(booting||connecting||loadingPublic||batch||operation||saving)throw Error("请等待当前任务结束。");
+ $("ghOwner").value=repo.owner;$("ghRepo").value=repo.repo;
+ $("ghBranch").value=repo.branch;$("ghPath").value=repo.path;
  $("tokenInput").value="";$("autoSaveInput").checked=false;
- $("repoInfo").textContent="仓库："+CONFIG.owner+"/"+CONFIG.repo+"\n分支："+CONFIG.branch+"\n共享 JSON："+CONFIG.path;
- $("loginStatus").textContent="权限来自 GitHub，不使用网页硬编码管理员密码。";
- openDialog("loginDialog");
+ $("loginStatus").textContent="先验证仓库与分支，再真实检查 Contents 写权限。不会修改现有文件。";
+ $("loginStatus").classList.remove("error");openDialog("loginDialog");
+}
+async function activateRepo(next){
+ if(scope(next)===scope())return;
+ flushCaches();repo=next;write(APPKEY+"repo",repo);
+ state=defaults();marks=cleanMarks(read(key("marks"),{}));current="favorites";
+ pending.clear();await loadCaches();
+ const published=read(key("published"),null);
+ if(published){try{state=validate(migrate(published))}catch{}}
 }
 async function login(event){
  event.preventDefault();if(connecting)return;
- if(location.protocol!=="https:")throw Error("管理员登录请使用已部署的 HTTPS 页面。");
- if(batch||operation||saving||booting)throw Error("请先结束当前任务。");
- let token=$("tokenInput").value.trim();$("tokenInput").value="";if(!token)return;
- connecting=true;renderControls();$("loginStatus").textContent="验证 GitHub 身份与仓库权限…";
+ if(location.protocol!=="https:")throw Error("管理员登录请使用 GitHub Pages 的 HTTPS 地址。");
+ if(booting||loadingPublic||batch||operation||saving)throw Error("请先结束当前任务。");
+ const target=validateRepo({
+  owner:$("ghOwner").value,repo:$("ghRepo").value,
+  branch:$("ghBranch").value,path:$("ghPath").value
+ });
+ let token=$("tokenInput").value.trim();$("tokenInput").value="";
+ if(!token)throw Error("请输入 GitHub 令牌。");
+ if(/\s/.test(token))throw Error("令牌包含空格或换行，请重新复制。");
+ connecting=true;renderControls();$("loginStatus").classList.remove("error");
+ const log=s=>$("loginStatus").textContent=s;
  try{
-  const user=await githubRequest("https://api.github.com/user",token);
-  const repo=await githubRequest(repoAPI(),token);
-  if(!repo.permissions?.push&&!repo.permissions?.admin&&!repo.permissions?.maintain)
-   throw Error("该账号没有目标仓库写入权限。");
-  if(repo.archived)throw Error("目标仓库已归档，不能写入。");
-  await githubRequest(repoAPI()+"/branches/"+encodeURIComponent(CONFIG.branch),token);
-  const remote=await fetchRemoteFile(token);
-  const draft=read(LS+"draft",null);
-  let selectedState=remote?.state||clone(state),useDraft=false;
+  log("1/4 检查仓库…");
+  const metadata=await github(apiBase(target),token);
+  if(metadata.archived)throw Error("仓库已归档，不能写入。");
+  log("2/4 检查目标分支…");
+  await github(apiBase(target)+"/branches/"+encodeURIComponent(target.branch),token);
+
+  log("3/4 验证真实 Contents 写权限…");
+  const probe=await github(apiBase(target)+"/git/blobs",token,{
+   method:"POST",body:JSON.stringify({content:"",encoding:"utf-8"})
+  });
+  if(!/^[a-f0-9]{40,64}$/i.test(probe.sha||""))throw Error("写权限验证响应异常。");
+
+  log("4/4 读取共享配置…");
+  const remote=await fetchRemoteFile(target,token);
+  let loginName=target.owner;
+  try{const user=await github("https://api.github.com/user",token);if(user.login)loginName=String(user.login)}
+  catch{/* 用户信息非必要，不影响已通过的仓库写权限。 */}
+
+  const sameWorkspace=scope(target)===scope();
+  const targetKey="journal-v11:"+scope(target)+":";
+  const draft=read(targetKey+"draft",null);
+  let candidate=remote?.state||(sameWorkspace?clone(state):defaults()),restore=false;
   if(draft?.state){
-   try{
-    const valid=validate(migrate(draft.state));
-    if(confirm("发现本机未发布管理员草稿。\n确定：恢复草稿，并关闭自动保存，稍后手动发布。\n取消：使用 GitHub 当前共享配置。")){
-     selectedState=valid;useDraft=true;
-    }
-   }catch{}
-  }else if(!remote&&state.journals.length){
-   useDraft=true;
-  }
-  session={token,login:plain(user.login),sha:remote?.sha||null,
-   auto:useDraft?false:$("autoSaveInput").checked,blocked:false};
-  if(remote)write(LS+"published",remote.state);
-  applyConfig(selectedState);
-  dirty=useDraft||!remote;
-  if(dirty)write(LS+"draft",{state,baseSHA:session.sha,savedAt:Date.now()});
-  else removeKey(LS+"draft");
+   let validDraft=null;try{validDraft=validate(migrate(draft.state))}catch{}
+   if(validDraft&&confirm("发现本机未发布的管理员草稿。\n确定：恢复草稿，关闭自动保存，稍后手动发布。\n取消：使用 GitHub 当前配置。")){
+    candidate=validDraft;restore=true;
+   }
+  }else if(!remote&&sameWorkspace&&state.journals.length)restore=true;
+
+  await activateRepo(target);
+  repo=target;write(APPKEY+"repo",repo);
+  if(remote)write(key("published"),remote.state);
+  session={token,login:loginName,sha:remote?.sha||null,
+   auto:restore?false:$("autoSaveInput").checked,blocked:false};
+  applyConfig(candidate);
+  dirty=restore||!remote||remote.raw.version!==11;
+  if(dirty)write(key("draft"),{state,baseSHA:session.sha,savedAt:Date.now()});
+  else removeKey(key("draft"));
   $("loginDialog").close();
-  lastStatus="管理员已登录："+session.login+"。个人阅读记录不会提交到共享 JSON。";
-  toast(remote?"仓库权限验证通过，已载入共享配置。":"权限验证通过。共享 JSON 尚不存在，保存时将创建。");
+  lastStatus="GitHub 写权限验证成功："+session.login+" · "+repo.owner+"/"+repo.repo;
+  toast("管理员已登录，写权限已通过实际验证。\n"+
+   (remote?"已载入共享配置。":"共享 JSON 尚不存在，点击保存即可创建。")+
+   "\n分支保护仍可能影响最终提交。");
  }catch(e){
-  session=null;
-  $("loginStatus").textContent=e.message+"\n请检查令牌仓库授权和 Contents: Read and write 权限。";
- }finally{token="";connecting=false;renderView();scheduleSave()}
+  if(session){session.token="";session=null}
+  log(e.message);$("loginStatus").classList.add("error");
+ }finally{
+  token="";connecting=false;renderView();scheduleSave();
+ }
 }
 async function saveRemote(){
- clearTimeout(saveTimer);
- requireAdmin();
+ clearTimeout(saveTimer);requireAdmin();
  if(saving||connecting)return;
- if(!dirty&&session.sha){toast("没有待发布的共享配置修改。");return}
+ if(!dirty&&session.sha){toast("没有待发布修改。");return}
  const s=session,rev=revision,payload=validate(state);
  const text=JSON.stringify(payload,null,2)+"\n";
  if(new TextEncoder().encode(text).length>900000)
-  throw Error("共享配置超过 900 KB。请减少手动题录或导出归档后再发布。");
- saving=true;renderControls();let submitted=false;
+  throw Error("共享配置超过 900 KB。请归档部分手动题录，再发布。");
+ saving=true;renderControls();let sent=false;
  try{
-  submitted=true;
-  const x=await githubRequest(repoAPI()+contentsPath(),s.token,{
+  /* 保存前检查远端 SHA，防止本地草稿覆盖他人的新修改。 */
+  const remote=await fetchRemoteFile(repo,s.token);
+  if((remote?.sha||null)!==(s.sha||null)){
+   s.blocked=true;throw Error("远端文件已被其他操作修改。未覆盖远端，请退出后重新登录核对。");
+  }
+  sent=true;
+  const result=await github(apiBase()+contentPath(),s.token,{
    method:"PUT",body:JSON.stringify({
-    message:"Update shared journal configuration",
-    content:to64(text),branch:CONFIG.branch,...(s.sha?{sha:s.sha}:{})
+    message:"Update journal desk: deduplicated shared configuration",
+    content:to64(text),branch:repo.branch,...(s.sha?{sha:s.sha}:{})
    })
   });
-  if(!x.content?.sha)throw Error("GitHub 保存结果未确认。");
-  s.sha=x.content.sha;write(LS+"published",payload);
-  if(revision===rev){dirty=false;removeKey(LS+"draft")}
-  else write(LS+"draft",{state,baseSHA:s.sha,savedAt:Date.now()});
-  toast("共享配置已提交到 GitHub。私人收藏、已读和在线缓存未上传。");
+  if(!result.content?.sha)throw Error("GitHub 保存结果未确认。");
+  s.sha=result.content.sha;write(key("published"),payload);
+  if(revision===rev){dirty=false;removeKey(key("draft"))}
+  else write(key("draft"),{state,baseSHA:s.sha,savedAt:Date.now()});
+  toast("共享配置已保存到 GitHub。\n私人收藏、已读和在线缓存没有上传。");
  }catch(e){
-  if(submitted)s.blocked=true;
-  toast("保存失败："+e.message+"\n本地草稿保留，自动保存已暂停。请核对 GitHub 后退出并重新登录。",true);
- }finally{saving=false;renderControls();scheduleSave()}
+  if(sent||[401,403,409,422].includes(e.status))s.blocked=true;
+  toast("保存失败：\n"+e.message+"\n本地草稿保留。",true);
+ }finally{saving=false;renderControls();if(!s.blocked)scheduleSave()}
 }
 async function logout(){
  if(saving||connecting||batch||operation||searchCtl)throw Error("请先结束当前任务。");
- if(dirty&&!confirm("有未发布的共享配置草稿。\n退出后保留本机草稿，访客视图恢复已发布配置。继续？"))return;
+ if(dirty&&!confirm("有未发布草稿。退出后保留草稿，访客界面恢复已发布配置。继续？"))return;
  clearTimeout(saveTimer);session.token="";session=null;dirty=false;dragID="";
- for(const id of ["manageDialog","settingsDialog","searchDialog"])if($(id).open)$(id).close();
- const published=read(LS+"published",null);
- applyConfig(published||defaults());
- await loadPublic(false);
- toast("已退出管理。令牌已从当前页面会话中清除。");
+ for(const id of ["manageDialog","searchDialog","settingsDialog"])if($(id).open)$(id).close();
+ const published=read(key("published"),null);applyConfig(published||defaults());
+ await loadPublic(false);toast("已退出管理，令牌已从当前会话清除。");
 }
 async function loadPublic(showNotice=true){
- if(isAdmin()||batch||operation||saving)throw Error("请结束管理或刷新任务后重载。");
- connecting=true;renderControls();
+ if(isAdmin()||batch||operation||saving)throw Error("请先退出管理或结束任务。");
+ loadingPublic=true;renderControls();
  try{
-  const raw=await request(publicURL(),null,true,{cache:"no-store"});
-  const clean=validate(migrate(raw));
-  write(LS+"published",clean);applyConfig(clean);
-  lastStatus="已载入 GitHub 共享配置。";
-  if(showNotice)toast("共享配置已重载。私人收藏和已读保持不变。");
+  const remote=await fetchRemoteFile(repo,"");
+  if(!remote){
+   lastStatus="共享 JSON 尚不存在，或仓库不是公开仓库。管理员可登录后创建配置。";
+   if(showNotice)toast(lastStatus);
+   return;
+  }
+  write(key("published"),remote.state);applyConfig(remote.state);
+  lastStatus="已载入共享配置，重复题录已自动合并。";
+  if(showNotice)toast("共享配置已重载，私人阅读记录保留。");
  }catch(e){
-  lastStatus=e.status===404?
-   "共享 JSON 尚不存在。管理员登录后可创建；当前使用本机已发布缓存。":
-   "共享配置读取失败，保留本机缓存："+e.message;
-  if(showNotice)toast(lastStatus,e.status!==404);
- }finally{connecting=false;renderView()}
+  lastStatus="共享配置读取失败，保留本机缓存。";
+  if(showNotice)toast(e.message,true);
+ }finally{loadingPublic=false;renderView()}
 }
 
-/* ---------- 读取脚本生成 ---------- */
-function allowedPublicHost(name){
- return /^[a-z0-9.-]+$/i.test(name)&&name.includes(".")&&
-  !/^(localhost|127\.|10\.|192\.168\.|169\.254\.|0\.)/i.test(name)&&
-  !/^172\.(1[6-9]|2\d|3[01])\./.test(name)&&!name.endsWith(".local");
+/* 读取脚本 */
+function publicHost(h){
+ return /^[a-z0-9.-]+$/i.test(h)&&h.includes(".")&&
+  !/^(localhost|127\.|10\.|192\.168\.|169\.254\.|0\.)/i.test(h)&&
+  !/^172\.(1[6-9]|2\d|3[01])\./.test(h)&&!h.endsWith(".local");
 }
 function scriptHosts(){
  const set=new Set([...CNKI,"www.bing.com"]);
- for(const j of state.journals){
-  for(const u of [j.home,...j.feeds.map(f=>f.url)]){
-   const h=host(u);if(allowedPublicHost(h)&&h!=="api.github.com")set.add(h);
-  }
+ for(const j of state.journals)for(const url of [j.home,...j.feeds.map(f=>f.url)]){
+  const h=host(url);if(publicHost(h)&&h!=="api.github.com")set.add(h);
  }
  return [...set];
 }
-function bridgeProgram(HOSTS,CONFIGURED_PATH){
+function bridgeProgram(HOSTS,PATH){
  "use strict";
- if(location.pathname!==CONFIGURED_PATH||
-  !document.querySelector('meta[name="journal-admin-desk"][content="10"]'))return;
- const TAG="JOURNAL_ADMIN_BRIDGE_10",MAX=8*1024*1024;
- const allowedHosts=new Set(HOSTS),jobs=new Map();let times=[];
- function allowed(value){
+ if(location.pathname!==PATH||!document.querySelector('meta[name="journal-desk"][content="11"]'))return;
+ const TAG="JOURNAL_BRIDGE_V11",MAX=8*1024*1024,allowedHosts=new Set(HOSTS),jobs=new Map();
+ let times=[];
+ function allowed(v){
   try{
-   const u=new URL(value);
+   const u=new URL(v);
    if(!["http:","https:"].includes(u.protocol)||u.username||u.password||(u.port&&!["80","443"].includes(u.port)))return false;
-   if(!allowedHosts.has(u.hostname))return false;
-   return u.hostname!=="www.bing.com"||(u.pathname==="/search"&&u.searchParams.get("format")==="rss");
+   return allowedHosts.has(u.hostname)&&(u.hostname!=="www.bing.com"||(u.pathname==="/search"&&u.searchParams.get("format")==="rss"));
   }catch{return false}
  }
  function send(data){window.postMessage({tag:TAG,...data},location.origin)}
@@ -1873,7 +1967,7 @@ function bridgeProgram(HOSTS,CONFIGURED_PATH){
   if(!allowed(url)){send({type:"result",id,ok:false,error:"域名未授权，请重新生成读取脚本。"});return}
   if(jobs.size>=4){send({type:"result",id,ok:false,error:"并发请求过多。"});return}
   const now=Date.now();times=times.filter(t=>now-t<60000);
-  if(times.length>=60){send({type:"result",id,ok:false,status:429,error:"本地读取频率限制。"});return}
+  if(times.length>=60){send({type:"result",id,ok:false,status:429,error:"本地频率限制。"});return}
   times.push(now);
   const job={request:null,done:false};jobs.set(id,job);
   function finish(result){
@@ -1884,19 +1978,17 @@ function bridgeProgram(HOSTS,CONFIGURED_PATH){
    job.request=GM_xmlhttpRequest({
     method:"GET",url,anonymous:true,responseType:"arraybuffer",timeout:28000,
     headers:{Accept:"application/rss+xml,application/atom+xml,application/xml,text/xml,text/html;q=0.9,*/*;q=0.5"},
-    onprogress(e){
-     if(e.loaded>MAX){finish({ok:false,error:"响应超过 8 MiB。"});try{job.request?.abort()}catch{}}
-    },
+    onprogress(e){if(e.loaded>MAX){finish({ok:false,error:"响应超过 8 MiB。"});try{job.request?.abort()}catch{}}},
     onload(r){
      const finalURL=r.finalUrl||url;
-     if(!allowed(finalURL)){finish({ok:false,error:"最终响应域名未授权，未向工作台返回内容。"});return}
+     if(!allowed(finalURL)){finish({ok:false,error:"最终域名未授权，未返回页面内容。"});return}
      if(r.status<200||r.status>=300){finish({ok:false,status:r.status,error:"HTTP "+r.status+"，可能被拒绝、限流或要求登录。"});return}
      if(!r.response||typeof r.response.byteLength!=="number"||r.response.byteLength>MAX){finish({ok:false,error:"响应无效或过大。"});return}
      try{finish({ok:true,url:finalURL,text:decodeBody(r.response,r.responseHeaders)})}
      catch(e){finish({ok:false,error:e.message})}
     },
     onerror(){finish({ok:false,error:"网络、TLS、扩展权限或站点访问失败；未绕过限制。"})},
-    ontimeout(){finish({ok:false,error:"网页读取超时。"})},
+    ontimeout(){finish({ok:false,error:"读取超时。"})},
     onabort(){finish({ok:false,error:"读取已停止。"})}
    });
   }catch(e){finish({ok:false,error:e.message})}
@@ -1908,10 +2000,10 @@ function scriptSource(){
  const hosts=scriptHosts();
  return [
   "// ==UserScript==",
-  "// @name         电力小分队 文献工作台读取",
-  "// @namespace    journal-admin-desk",
-  "// @version      10.0.0",
-  "// @description  为当前文献工作台读取公开期刊页面与 RSS",
+  "// @name         电力小分队 文献工作台 V11 读取",
+  "// @namespace    journal-desk-reader",
+  "// @version      11.0.0",
+  "// @description  为当前工作台读取公开主页与 RSS",
   "// @match        "+location.origin+location.pathname+"*",
   "// @run-at       document-idle",
   "// @grant        GM_xmlhttpRequest",
@@ -1921,7 +2013,7 @@ function scriptSource(){
  ].join("\n");
 }
 
-/* ---------- 事件 ---------- */
+/* 事件 */
 function closeSidebar(){$("sidebar").classList.remove("open");$("shade").classList.remove("open")}
 on("menu","click",()=>{$("sidebar").classList.toggle("open");$("shade").classList.toggle("open")});
 on("shade","click",closeSidebar);
@@ -1935,6 +2027,7 @@ $("loginDialog").addEventListener("cancel",e=>{if(connecting)e.preventDefault()}
 $("loginDialog").addEventListener("close",()=>$("tokenInput").value="");
 $("manageDialog").addEventListener("close",()=>operation?.abort());
 $("searchDialog").addEventListener("close",()=>searchCtl?.abort());
+
 on("admin","click",()=>isAdmin()?logout():openLogin());
 on("loginForm","submit",login);
 on("saveRemote","click",saveRemote);
@@ -1961,8 +2054,8 @@ on("openHome","click",()=>{
 on("saveManage","click",saveManage);
 on("clearManual","click",()=>{
  requireAdmin();const j=manageJournal();
- if(!confirm("清空该刊手动题录？在线来源缓存不受影响。"))return;
- delete state.manual[j.id];touch();rebuild(j);takeSnapshot();renderView();
+ if(!confirm("清空该刊手动题录？在线缓存仍保留。"))return;
+ delete state.manual[j.id];touch();takeSnapshot();renderView();
 });
 on("pickFiles","click",()=>{requireAdmin();$("files").value="";$("files").click()});
 on("files","change",async e=>{
@@ -1985,6 +2078,7 @@ on("deepScan","click",()=>refresh([currentJournal()],true));
 on("stop","click",()=>batch?.ctl.abort());
 on("applyUpdate","click",applyUpdate);
 on("logs","click",showLogs);
+on("dedup","click",cleanupDuplicates);
 on("query","input",()=>{clearTimeout(queryTimer);queryTimer=setTimeout(()=>{page=1;renderPapers()},120)});
 on("mode","change",()=>{page=1;renderHeading();renderPapers();$("scroll").scrollTop=0});
 on("issue","change",()=>{page=1;renderPapers();$("scroll").scrollTop=0});
@@ -1993,8 +2087,8 @@ document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{
 });
 on("prev","click",()=>{page--;renderPapers();$("scroll").scrollTop=0});
 on("next","click",()=>{page++;renderPapers();$("scroll").scrollTop=0});
-on("view","click",()=>{grid=!grid;$("view").textContent=grid?"列表":"卡片";write(LS+"grid",grid);renderPapers()});
-on("focus","click",()=>{const x=document.body.classList.toggle("focus");$("focus").textContent=x?"退出专注":"专注"});
+on("view","click",()=>{grid=!grid;$("view").textContent=grid?"列表":"卡片";write(APPKEY+"grid",grid);renderPapers()});
+on("focus","click",()=>{const yes=document.body.classList.toggle("focus");$("focus").textContent=yes?"退出专注":"专注"});
 on("fullscreen","click",async()=>{
  try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}
  catch{document.body.classList.add("focus");$("focus").textContent="退出专注";toast("浏览器未允许全屏，已启用专注布局。")}
@@ -2008,21 +2102,21 @@ on("remove","click",()=>{
 });
 on("settings","click",()=>{
  requireAdmin();const s=state.settings;$("autoInput").checked=s.auto;
- for(const k of ["concurrency","quick","months","limit","rssLimit","pageSize"])$(k+"Input").value=s[k];
+ for(const k of ["concurrency","quick","months","limit","cacheLimit","pageSize"])$(k+"Input").value=s[k];
  openDialog("settingsDialog");
 });
 on("saveSettings","click",()=>{
  requireAdmin();const s={auto:$("autoInput").checked};
- for(const k of ["concurrency","quick","months","limit","rssLimit","pageSize"])s[k]=+$(k+"Input").value;
+ for(const k of ["concurrency","quick","months","limit","cacheLimit","pageSize"])s[k]=+$(k+"Input").value;
  state.settings=s;nextAuto=Date.now()+INTERVAL;page=1;touch();$("settingsDialog").close();renderPapers();renderTimer();
 });
 on("installBridge","click",()=>{$("bridgeCode").value=scriptSource();openDialog("bridgeDialog")});
 on("copyScript","click",async()=>{
- try{await navigator.clipboard.writeText(scriptSource());toast("已复制，请在 Tampermonkey 新建脚本并保存。")}
- catch{$("bridgeCode").focus();$("bridgeCode").select();toast("请手动复制已选中的脚本。")}
+ try{await navigator.clipboard.writeText(scriptSource());toast("已复制，在 Tampermonkey 新建脚本保存后刷新。")}
+ catch{$("bridgeCode").focus();$("bridgeCode").select();toast("请手动复制选中的脚本。")}
 });
-on("downloadScript","click",()=>download("journal-desk-reader.user.js",scriptSource(),"text/javascript;charset=utf-8"));
-on("export","click",()=>download("journal_tracker-backup.json",JSON.stringify(backup(),null,2)+"\n","application/json;charset=utf-8"));
+on("downloadScript","click",()=>download("journal-desk-v11.user.js",scriptSource(),"text/javascript;charset=utf-8"));
+on("export","click",()=>download("journal-tracker-backup.json",JSON.stringify(backup(),null,2)+"\n","application/json;charset=utf-8"));
 on("import","click",()=>{
  requireAdmin();if(batch||operation||saving)throw Error("请先结束当前任务。");
  $("backupFile").value="";$("backupFile").click();
@@ -2032,68 +2126,75 @@ on("backupFile","change",async e=>{
  if(f.size>50*1024*1024)throw Error("备份超过 50 MiB。");
  const raw=JSON.parse((await f.text()).replace(/^\uFEFF/,"")),next=migrate(raw);validate(next);
  requireAdmin();if(batch||operation||saving)throw Error("请先结束当前任务。");
- if(!confirm("导入后替换当前管理员配置草稿，但不会立即发布。继续？"))return;
+ if(!confirm("替换当前管理员草稿并自动去重？不会立即发布。"))return;
  applyConfig(next,true);
  const personal=next.privateMarks||next.marks||raw.privateMarks||raw.marks;
- if(personal&&Object.keys(personal).length&&confirm("备份含私人收藏/已读。是否合并到本机？不会上传共享配置。")){
+ if(personal&&Object.keys(personal).length&&confirm("备份含私人收藏/已读。合并到本机？不会上传共享 JSON。")){
   const incoming=cleanMarks(personal);
   for(const [id,m]of Object.entries(incoming)){
-   const old=marks[id]||{};marks[id]={...old,...m,read:!!(old.read||m.read),favorite:!!(old.favorite||m.favorite)};
-   if(!marks[id].paper&&old.paper)marks[id].paper=old.paper;
+   const old=marks[id]||{};
+   marks[id]={...old,...m,read:!!(old.read||m.read),favorite:!!(old.favorite||m.favorite),paper:m.paper||old.paper};
   }
-  saveMarks();
+  dedupFavorites();write(key("marks"),marks);
  }
- touch();takeSnapshot();renderView();toast("已导入管理员草稿。核对后保存到 GitHub。");
+ touch();takeSnapshot();renderView();toast("备份已导入并自动去重，核对后保存到 GitHub。");
 });
 on("csv","click",()=>{
  const list=filtered();if(!list.length){toast("没有可导出题录。");return}
- const rows=[["标题","作者","期刊","卷","期","日期","DOI","原文","来源","已读","收藏","疑似重复"],
+ const rows=[["标题","作者","期刊","卷","期","日期","DOI","原文","来源","已读","收藏"],
   ...list.map(p=>[p.title,p.authors.join("; "),p.journal,p.volume,p.issue,p.published,p.doi,p.url,
-   (p.sources||[p.origin]).join("; "),mark(p).read?"是":"否",mark(p).favorite?"是":"否",p.possibleDuplicate?"是":"否"])];
+   p.sources.join("; "),mark(p).read?"是":"否",mark(p).favorite?"是":"否"])];
  const cell=v=>{let s=String(v??"");if(/^\s*[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'};
- download("论文题录.csv","\uFEFF"+rows.map(r=>r.map(cell).join(",")).join("\r\n"),"text/csv;charset=utf-8");
+ download("去重题录.csv","\uFEFF"+rows.map(r=>r.map(cell).join(",")).join("\r\n"),"text/csv;charset=utf-8");
 });
 window.addEventListener("pagehide",flushCaches);
 window.addEventListener("beforeunload",e=>{
- flushCaches();
- if(saving||isAdmin()&&dirty){e.preventDefault();e.returnValue=""}
+ flushCaches();if(saving||isAdmin()&&dirty){e.preventDefault();e.returnValue=""}
 });
 window.addEventListener("unhandledrejection",e=>report(e.reason));
 window.addEventListener("error",e=>{if(e.message)toast(e.message,true)});
 
-/* ---------- 启动 ---------- */
+/* 启动 */
 async function boot(){
- marks=cleanMarks(read(LS+"marks",{}));grid=!!read(LS+"grid",false);
- $("view").textContent=grid?"列表":"卡片";
- const published=read(LS+"published",null);
- if(published){try{state=validate(migrate(published))}catch{}}
- await loadCaches();
+ try{
+  marks=cleanMarks(read(key("marks"),{}));grid=!!read(APPKEY+"grid",false);
+  $("view").textContent=grid?"列表":"卡片";
+  const published=read(key("published"),null);
+  if(published){try{state=validate(migrate(published))}catch{}}
+  db=await openDB();await loadCaches();
 
- /* 旧版仅迁移到待恢复管理员草稿，不自动公开原来的私人数据。 */
- if(!published&&!read(LS+"draft",null)){
-  const candidates=[
-   ["journal-desk-v9:"+BASE.href+":","state"],
-   ["journal-desk-v8:"+BASE.href+":","state"],
-   ["cnki-rss-v7:"+BASE.href+":","state"],
-   ["journal-tracker-v2:"+BASE.href+":","draft"]
-  ];
-  for(const [prefix,key]of candidates){
-   const value=read(prefix+key,null),old=value?.state||value;
-   if(!old?.journals)continue;
-   try{
-    const next=migrate(old,prefix),clean=validate(next);
-    write(LS+"draft",{state:clean,baseSHA:null,savedAt:Date.now()});
-    if(!Object.keys(marks).length){marks=cleanMarks(old.marks||{});saveMarks()}
-    for(const [id,c]of Object.entries(next.cacheBackup||{}))saveCache(id,normalizeCache(c));
-    break;
-   }catch{}
+  /* 迁移旧版本地配置到管理员草稿，不擅自上传私人记录。 */
+  if(!published&&!read(key("draft"),null)){
+   const v10="journal-admin-v10:"+scope()+":";
+   const old10=read(v10+"draft",null)?.state||read(v10+"published",null);
+   const candidatesOld=[
+    [old10,v10],
+    [read("journal-desk-v9:"+BASE.href+":state",null)?.state,"journal-desk-v9:"+BASE.href+":"],
+    [read("journal-desk-v8:"+BASE.href+":state",null)?.state,"journal-desk-v8:"+BASE.href+":"],
+    [read("cnki-rss-v7:"+BASE.href+":state",null),"cnki-rss-v7:"+BASE.href+":"],
+    [read("journal-tracker-v2:"+BASE.href+":draft",null)?.state,"journal-tracker-v2:"+BASE.href+":"]
+   ];
+   for(const [old,prefix]of candidatesOld){
+    if(!old?.journals)continue;
+    try{
+     const next=migrate(old,prefix);
+     write(key("draft"),{state:validate(next),baseSHA:null,savedAt:Date.now()});
+     if(!Object.keys(marks).length){
+      marks=cleanMarks(old.marks||read(v10+"marks",{}));write(key("marks"),marks);
+     }
+     for(const [id,c]of Object.entries(next.cacheBackup||{}))saveCache(id,normalizeCache(c));
+     break;
+    }catch{}
+   }
   }
- }
- current=state.journals[0]?.id||"favorites";takeSnapshot();renderView();renderBridge();
- post({type:"ping"});setTimeout(()=>post({type:"ping"}),700);setTimeout(()=>post({type:"ping"}),1800);
- try{await loadPublic(false)}
+  dedupFavorites();
+  current=state.journals[0]?.id||"favorites";takeSnapshot();renderView();renderBridge();
+ }catch(e){report(e)}
  finally{
-  booting=false;renderControls();renderStatus();
+  /* 无论缓存迁移是否成功，都恢复管理员入口，避免整页永久锁死。 */
+  booting=false;renderControls();
+  post({type:"ping"});setTimeout(()=>post({type:"ping"}),700);setTimeout(()=>post({type:"ping"}),1800);
+  safe(()=>loadPublic(false));
   setInterval(()=>safe(autoTick),1000);
   document.addEventListener("visibilitychange",()=>{
    if(!document.hidden){post({type:"ping"});safe(autoTick)}
