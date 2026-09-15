@@ -184,9 +184,9 @@
       "type": "tool",
       "url": "./files/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7-c84e37c6/journal_tracker.html",
       "description": "",
-      "iconUrl": "",
+      "iconUrl": "./icon/eb152d50-905a-407a-b5d0-b6626f751bd3.png",
       "iconPreset": "code",
-      "iconMode": "builtin",
+      "iconMode": "auto",
       "managedFiles": [
         "files/实用工具-c84e37c6/journal_tracker.html"
       ],
