@@ -176,6 +176,21 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "5127d747-6260-4840-bc0f-7655fd7a248b",
+      "title": "journal_tracker",
+      "category": "d448c715-17da-4149-81d9-2e4bb3196b48",
+      "type": "tool",
+      "url": "./files/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7-c84e37c6/journal_tracker.html",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "code",
+      "iconMode": "builtin",
+      "managedFiles": [
+        "files/实用工具-c84e37c6/journal_tracker.html"
+      ],
+      "bundleRoot": ""
     }
   ]
 }
