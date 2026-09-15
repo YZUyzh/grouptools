@@ -223,6 +223,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "13cd4ece-636e-4b72-9a67-d74df940c28b",
+      "title": "IEEE",
+      "category": "e485ac46-8497-4d04-9e5b-0e47e36d9785",
+      "type": "tool",
+      "url": "https://ieeexplore.ieee.org/Xplore/home.jsp",
+      "description": "",
+      "iconUrl": "./icon/c3d3d20e-8077-4bc9-823c-34446e581983.png",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
