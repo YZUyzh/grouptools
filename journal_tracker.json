@@ -1,6 +1,6 @@
 {
   "version": 11,
-  "updatedAt": "2026-09-15T07:00:57.104Z",
+  "updatedAt": "2026-09-15T07:01:45.374Z",
   "journals": [
     {
       "id": "j:6f85fc3d-9b76-4686-94ac-d6ece5b3d9ec",
@@ -128,6 +128,29 @@
         "oa": true
       },
       "oaSource": "S2764498263"
+    },
+    {
+      "id": "j:5faa93a9-8819-41ad-95ff-44079b111096",
+      "name": "电网技术",
+      "issns": [
+        "1000-3673"
+      ],
+      "aliases": [],
+      "home": "http://www.dwjs.com.cn/",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/DWJS?pcode=CJFD,CCJD",
+          "title": "电网技术-CNKI",
+          "verifiedAt": "2026-09-15T07:00:54.950Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": ""
     },
     {
       "id": "j:ab5cd4b9-148d-4d64-a14b-97d74f903933",
@@ -459,29 +482,6 @@
         "oa": true
       },
       "oaSource": "S2764603912"
-    },
-    {
-      "id": "j:5faa93a9-8819-41ad-95ff-44079b111096",
-      "name": "电网技术",
-      "issns": [
-        "1000-3673"
-      ],
-      "aliases": [],
-      "home": "http://www.dwjs.com.cn/",
-      "feeds": [
-        {
-          "url": "https://rss.cnki.net/knavi/rss/DWJS?pcode=CJFD,CCJD",
-          "title": "电网技术-CNKI",
-          "verifiedAt": "2026-09-15T07:00:54.950Z"
-        }
-      ],
-      "enabled": true,
-      "use": {
-        "rss": true,
-        "cr": true,
-        "oa": true
-      },
-      "oaSource": ""
     }
   ],
   "manual": {},
