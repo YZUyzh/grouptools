@@ -8,10 +8,11 @@
 <title>电力小分队 · 资源中心</title>
 <style>
 :root{
-  --bg:#f5f6f8;--surface:#fff;--ink:#283247;--secondary:#667085;
-  --muted:#98a1b2;--line:#e8ebf0;--line-strong:#dce1e9;
-  --accent:#7463b9;--accent-hover:#6655a9;--accent-soft:#f0edf8;
+  --bg:#f5f6f8;--paper:#fff;--ink:#283247;--secondary:#667085;
+  --muted:#98a1b2;--line:#e8ebf0;--border:#dce1e9;
+  --accent:#7463b9;--accent-hover:#6655a9;--soft:#f0edf8;
   --danger:#ba5261;--danger-soft:#fcf0f2;--success:#42826e;
+  --gold:#b79248;--gold-soft:#fbf6e9;
   --shadow:0 3px 18px rgba(30,40,60,.035)
 }
 *{box-sizing:border-box}
@@ -34,8 +35,8 @@ button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}
 .ico{display:inline-block;width:18px;height:18px;vertical-align:middle;flex-shrink:0}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  min-height:34px;padding:6px 11px;border:1px solid var(--line-strong);
-  border-radius:8px;background:var(--surface);color:var(--secondary);
+  min-height:34px;padding:6px 11px;border:1px solid var(--border);
+  border-radius:8px;background:var(--paper);color:var(--secondary);
   font-size:12px;text-decoration:none;white-space:nowrap;
   transition:background .15s,border-color .15s,color .15s
 }
@@ -57,24 +58,25 @@ button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}
 
 /* 左侧导航 */
 .sidebar{
-  display:flex;flex-direction:column;min-height:0;
-  background:#fbfcfd;border-right:1px solid var(--line);
-  padding:26px 15px 16px
+  display:flex;flex-direction:column;min-height:0;background:#fbfcfd;
+  border-right:1px solid var(--line);padding:26px 15px 16px
 }
-.brand{display:flex;align-items:center;gap:11px;padding:0 8px 26px}
+.brand{display:flex;align-items:center;gap:11px;padding:0 8px 25px}
 .brand-mark{
   display:grid;place-items:center;width:38px;height:38px;border-radius:11px;
-  background:var(--accent-soft);color:var(--accent)
+  background:var(--soft);color:var(--accent)
 }
 .brand-mark .ico{width:23px;height:23px}
 .brand strong{display:block;font-size:16px;font-weight:650;letter-spacing:.3px}
 .brand small{display:block;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-top:2px}
 .side-label{
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 10px 9px;font-size:10px;letter-spacing:.8px;color:var(--muted)
+  padding:0 10px 8px;font-size:10px;letter-spacing:.8px;color:var(--muted)
 }
-.side-label .btn{width:23px;min-height:23px}
+.side-label .actions{gap:2px}
+.side-label .btn{width:25px;min-height:25px}
 .side-label .ico{width:14px;height:14px}
+#quickNav{padding:0 2px 13px;margin-bottom:14px;border-bottom:1px solid var(--line)}
 #tree{flex:1;min-height:0;overflow:auto;padding:2px}
 .nav{
   display:flex;align-items:center;gap:7px;min-height:41px;
@@ -82,8 +84,9 @@ button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}
   border-radius:8px;color:#737e91;user-select:none
 }
 .nav:hover{background:#f2f4f7}
-.nav.active{color:var(--accent);background:var(--accent-soft)}
+.nav.active{color:var(--accent);background:var(--soft)}
 .nav.active .nav-name{font-weight:600}
+.nav.favorite-nav.active{color:#9c7d41;background:var(--gold-soft)}
 .nav-name{
   flex:1;min-width:0;display:flex;align-items:center;gap:8px;
   border:0;background:none;color:inherit;padding:0;text-align:left;font-size:12px
@@ -107,7 +110,7 @@ button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}
 .side-foot small{display:block;margin-top:5px;font-size:9px;letter-spacing:.5px;color:#adb5c2}
 #sidebarBackdrop{display:none}
 
-/* 主区域 */
+/* 主内容 */
 main{
   display:flex;flex-direction:column;min-height:0;min-width:0;
   padding:27px 30px 15px;gap:18px
@@ -116,7 +119,7 @@ main{
 .eyebrow{font-size:10px;letter-spacing:1.5px;color:var(--muted)}
 .top-title{font-size:23px;line-height:1.4;font-weight:650;margin:3px 0 0;letter-spacing:.5px}
 .topbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-#adminLabel{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:var(--success);margin-right:3px}
+#adminLabel{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:var(--success)}
 #menuBtn{display:none}
 .overview{
   display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;
@@ -129,11 +132,9 @@ main{
 .metric strong{font-size:20px;font-weight:600;color:#5e687b;font-variant-numeric:tabular-nums}
 .metric span{font-size:10px;color:var(--muted)}
 .notice{
-  flex-shrink:0;display:flex;align-items:flex-start;gap:9px;
-  background:#f0edf8;border:1px solid #e3dcf0;border-radius:9px;
-  padding:10px 12px;color:#8272aa
+  flex-shrink:0;display:flex;align-items:flex-start;gap:9px;background:#f0edf8;
+  border:1px solid #e3dcf0;border-radius:9px;padding:10px 12px;color:#8272aa
 }
-.notice>.ico{width:16px;height:16px;margin-top:1px}
 .notice.error{background:#fff4f5;border-color:#eedbe0;color:#af6070}
 #noticeText{
   flex:1;font-size:11px;line-height:1.8;white-space:pre-line;
@@ -142,13 +143,12 @@ main{
 #hideNotice{border:0;background:none;color:inherit;padding:0;display:flex}
 #hideNotice .ico{width:16px;height:16px}
 .workbench{
-  flex:1;min-height:0;display:flex;flex-direction:column;
-  background:var(--surface);border:1px solid var(--line);
-  border-radius:14px;overflow:hidden;box-shadow:var(--shadow)
+  flex:1;min-height:0;display:flex;flex-direction:column;background:var(--paper);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)
 }
 .toolbar{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px;padding:17px 19px 14px;flex-shrink:0
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:17px 19px 14px;flex-shrink:0
 }
 .searchbox{
   display:flex;align-items:center;gap:8px;width:min(330px,38%);
@@ -166,7 +166,7 @@ main{
 .tabs button{border:0;background:none;color:#929bac;border-radius:5px;font-size:11px;padding:4px 10px}
 .tabs button.active{background:white;color:#615475;box-shadow:0 1px 3px #25314b08}
 .view-switch{display:flex;gap:2px}
-.view-switch .active{color:var(--accent);background:var(--accent-soft)}
+.view-switch .active{color:var(--accent);background:var(--soft)}
 .sectionbar{
   flex-shrink:0;display:flex;justify-content:space-between;align-items:center;
   gap:12px;padding:0 19px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap
@@ -205,26 +205,23 @@ input[type=checkbox]{accent-color:var(--accent);cursor:pointer}
   color:var(--ink);min-width:0;transition:border-color .15s,background .15s
 }
 .folder:hover{border-color:#cec3e5;background:#fcfbfe}
-.folder.drag-over{border:1px dashed var(--accent);background:var(--accent-soft)}
+.folder.drag-over{border:1px dashed var(--accent);background:var(--soft)}
 .folder-icon{
   display:grid;place-items:center;width:39px;height:39px;flex-shrink:0;
   background:#f5f2f9;border-radius:9px;color:#a08dbc
 }
 .folder-icon .ico{width:25px;height:25px;stroke-width:1.5}
 .folder-text{flex:1;min-width:0}
-.folder-name{
-  display:block;font-weight:550;font-size:12px;white-space:nowrap;
-  overflow:hidden;text-overflow:ellipsis
-}
+.folder-name{display:block;font-weight:550;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .folder-meta{display:block;font-size:10px;color:#a0a8b7;margin-top:4px}
 .folder-arrow{width:14px;height:14px;color:#c0c6d0}
 .list-head{
-  display:grid;grid-template-columns:20px 38px minmax(0,1fr) 155px 110px;
+  display:grid;grid-template-columns:20px 38px minmax(0,1fr) 145px 144px;
   gap:11px;padding:7px 9px;font-size:10px;color:#a7aebc;border-bottom:1px solid var(--line)
 }
 .list-head .name-col{grid-column:2/4}
 .item{
-  display:grid;grid-template-columns:20px 38px minmax(0,1fr) 155px 110px;
+  display:grid;grid-template-columns:20px 38px minmax(0,1fr) 145px 144px;
   gap:11px;align-items:center;padding:13px 9px;
   border-bottom:1px solid #f0f2f6;border-radius:8px;min-width:0
 }
@@ -254,16 +251,16 @@ input[type=checkbox]{accent-color:var(--accent);cursor:pointer}
   overflow:hidden;text-overflow:ellipsis;text-decoration:none;cursor:pointer
 }
 .title:hover{color:var(--accent)}
-.description{
-  font-size:10px;color:#a3abba;white-space:nowrap;overflow:hidden;
-  text-overflow:ellipsis;margin-top:3px
-}
+.description{font-size:10px;color:#a3abba;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
 .file-meta{min-width:0}
 .file-category{font-size:10px;color:#96a0b2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .file-format{font-size:9px;letter-spacing:.4px;color:#b1b8c5;margin-top:2px}
 .item-actions{display:flex;justify-content:flex-end;gap:3px;align-items:center}
 .item-actions .btn{border-color:transparent;background:transparent;color:#a0a8b7}
-.item-actions .btn:hover{color:var(--accent);background:var(--accent-soft)}
+.item-actions .btn:hover{color:var(--accent);background:var(--soft)}
+.item-actions .favorite-btn:hover{color:var(--gold);background:var(--gold-soft)}
+.item-actions .favorite-btn.is-favorite{color:var(--gold)}
+.favorite-btn.is-favorite .ico{fill:#ead7a7;stroke:#b79248}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:11px}
 .grid .item{
   position:relative;display:flex;flex-direction:column;text-align:center;
@@ -275,23 +272,18 @@ input[type=checkbox]{accent-color:var(--accent);cursor:pointer}
 .grid .title{text-align:center}
 .grid .description,.grid .file-format{display:none}
 .grid .item-actions{margin-top:auto;justify-content:center}
-.empty{
-  text-align:center;padding:35px 15px;color:#a1aabb;
-  font-size:12px;white-space:pre-line;line-height:1.9
-}
+.empty{text-align:center;padding:35px 15px;color:#a1aabb;font-size:12px;white-space:pre-line;line-height:1.9}
 .empty .ico{display:block;width:34px;height:34px;margin:0 auto 12px;color:#c9ced8}
 .footer{
   flex-shrink:0;display:flex;justify-content:space-between;gap:10px;
   padding:10px 19px;border-top:1px solid var(--line);font-size:10px;color:#a4adbc
 }
 .footer span:last-child{white-space:nowrap}
-#app:disabled .title,#app:disabled .logo-link,#app:disabled .item-actions a{
-  pointer-events:none
-}
+#app:disabled a{pointer-events:none}
 
 /* 弹窗 */
 dialog{
-  width:min(600px,calc(100% - 24px));max-height:91vh;max-height:91dvh;
+  width:min(610px,calc(100% - 24px));max-height:91vh;max-height:91dvh;
   padding:0;border:1px solid #e5e8ef;border-radius:15px;overflow:auto;
   color:var(--ink);box-shadow:0 22px 90px #1e2a4430;background:white
 }
@@ -305,9 +297,7 @@ label input:not([type=checkbox]),label select,label textarea{
   display:block;width:100%;min-width:0;margin-top:6px;padding:10px 11px;
   border:1px solid #e1e6ee;border-radius:8px;background:#fcfcfe;color:var(--ink)
 }
-label input:focus,label select:focus,label textarea:focus{
-  outline:none;border-color:#bfb1dc;background:white
-}
+label input:focus,label select:focus,label textarea:focus{outline:none;border-color:#bfb1dc;background:white}
 label input::placeholder,label textarea::placeholder{color:#b0b7c4}
 textarea{min-height:76px;resize:vertical}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -330,6 +320,20 @@ textarea{min-height:76px;resize:vertical}
 .icon-row{display:flex;gap:8px;align-items:center;margin:8px 0}
 progress{width:100%;height:8px;accent-color:var(--accent)}
 .section-divider{height:1px;background:var(--line);margin:18px 0}
+#sortList{max-height:360px;overflow:auto}
+.sort-row{
+  display:flex;align-items:center;gap:10px;padding:11px 9px;
+  margin-bottom:7px;border:1px solid var(--line);border-radius:9px;background:#fcfcfe
+}
+.sort-number{
+  width:24px;font-size:11px;text-align:center;color:#a5adbb;
+  font-variant-numeric:tabular-nums
+}
+.sort-folder{color:#a08dbc}
+.sort-name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
+.sort-row .actions{gap:4px}
+.sort-empty{text-align:center;padding:30px 10px;color:var(--muted);font-size:12px}
+#favoriteStatus{position:fixed;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 
 /* 响应式 */
 @media(min-width:1500px){
@@ -341,7 +345,7 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
 @media(max-width:1150px){
   .shell{grid-template-columns:205px minmax(0,1fr)}
   main{padding:22px 20px 13px;gap:15px}
-  .list-head,.item{grid-template-columns:18px 36px minmax(0,1fr) 110px}
+  .list-head,.item{grid-template-columns:18px 36px minmax(0,1fr) 144px}
   .list-head .category-col,.file-meta{display:none}
   .grid .file-meta{display:block}
   .metrics{gap:15px}
@@ -376,8 +380,7 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
   }
   .sidebar.open{transform:translateX(0)}
   #sidebarBackdrop.open{
-    display:block;position:fixed;inset:0;z-index:29;
-    border:0;background:#1e293b50;padding:0
+    display:block;position:fixed;inset:0;z-index:29;border:0;background:#1e293b50;padding:0
   }
   .brand strong{font-size:16px}
   .brand small{font-size:9px}
@@ -391,7 +394,7 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
   .topbar-right{gap:4px}
   .topbar-right .btn{font-size:10px;padding:5px 7px;min-height:30px}
   #adminLabel{display:none!important}
-  .metrics{gap:20px;padding-left:2px}
+  .metrics{gap:17px;padding-left:2px}
   .metric strong{font-size:17px}
   .toolbar{padding:13px 12px 11px;gap:10px}
   .toolbar-right{gap:5px}
@@ -428,13 +431,8 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
   .metrics{gap:12px}
   .toolbar-right{justify-content:flex-start}
 }
-@media(max-height:600px){
-  main{gap:10px;padding-top:13px}
-  .overview{display:none}
-}
-@media(prefers-reduced-motion:reduce){
-  *{transition:none!important;scroll-behavior:auto!important}
-}
+@media(max-height:600px){main{gap:10px;padding-top:13px}.overview{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -444,24 +442,28 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
   <aside id="sidebar" class="sidebar">
     <div class="brand">
       <div class="brand-mark" data-icon="bolt"></div>
-      <div>
-        <strong>电力小分队</strong>
-        <small>RESOURCE CENTER</small>
-      </div>
+      <div><strong>电力小分队</strong><small>RESOURCE CENTER</small></div>
     </div>
+    <div id="quickNav"></div>
     <div class="side-label">
       <span>资源目录</span>
-      <button id="addRoot" class="btn square ghost" type="button"
-              title="新增一级分类" aria-label="新增一级分类" hidden>
-        <span data-icon="plus"></span>
-      </button>
+      <div class="actions">
+        <button id="sortCategories" class="btn square ghost" type="button"
+                title="分类排序" aria-label="分类排序" hidden>
+          <span data-icon="sort"></span>
+        </button>
+        <button id="addRoot" class="btn square ghost" type="button"
+                title="新增一级分类" aria-label="新增一级分类" hidden>
+          <span data-icon="plus"></span>
+        </button>
+      </div>
     </div>
     <nav id="tree" class="scroll" aria-label="资源分类"></nav>
     <div class="side-foot">
       <div class="side-foot-top">
         <span class="status-dot"></span><span>扬州大学 · 课题组</span>
       </div>
-      <small>GROUPTOOLS / V10.1</small>
+      <small>GROUPTOOLS / V11.0</small>
     </div>
   </aside>
 
@@ -480,9 +482,7 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
         </div>
       </div>
       <div class="topbar-right">
-        <span id="adminLabel" hidden>
-          <span class="status-dot"></span>管理模式
-        </span>
+        <span id="adminLabel" hidden><span class="status-dot"></span>管理模式</span>
         <button id="exportBtn" class="btn ghost" type="button" hidden>
           <span data-icon="download"></span>备份
         </button>
@@ -498,12 +498,13 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
     <section class="overview">
       <p class="overview-copy">
         工具与资料，有序归档。<br>
-        <span>按分类浏览，点击资源即可直接打开。</span>
+        <span>点击直接打开，星标收藏常用资源。</span>
       </p>
       <div class="metrics">
         <div class="metric"><strong id="totalCount">0</strong><span>资源</span></div>
         <div class="metric"><strong id="toolCount">0</strong><span>工具</span></div>
         <div class="metric"><strong id="categoryCount">0</strong><span>分类</span></div>
+        <div class="metric"><strong id="favoriteCount">0</strong><span>收藏</span></div>
       </div>
     </section>
 
@@ -519,8 +520,7 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
       <div class="toolbar">
         <div class="searchbox">
           <span data-icon="search"></span>
-          <input id="search" type="search" placeholder="搜索当前范围的资源"
-                 aria-label="搜索资源">
+          <input id="search" type="search" placeholder="搜索当前范围的资源" aria-label="搜索资源">
         </div>
         <div class="toolbar-right">
           <div class="tabs" aria-label="资源类型">
@@ -531,13 +531,9 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
           <div class="actions">
             <div class="view-switch">
               <button id="listView" class="btn square ghost" type="button"
-                      title="列表视图" aria-label="列表视图">
-                <span data-icon="list"></span>
-              </button>
+                      title="列表视图" aria-label="列表视图"><span data-icon="list"></span></button>
               <button id="gridView" class="btn square ghost" type="button"
-                      title="图标视图" aria-label="图标视图">
-                <span data-icon="grid"></span>
-              </button>
+                      title="图标视图" aria-label="图标视图"><span data-icon="grid"></span></button>
             </div>
             <span id="adminSeparator" class="separator" hidden></span>
             <button id="uploadBtn" class="btn" type="button" hidden>
@@ -551,13 +547,13 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
       </div>
 
       <div class="sectionbar">
-        <div>
-          <div id="pathbar"></div>
-          <div id="scopeHint"></div>
-        </div>
+        <div><div id="pathbar"></div><div id="scopeHint"></div></div>
         <div class="actions">
           <button id="upBtn" class="btn small ghost" type="button" hidden>
             <span data-icon="up"></span>上一级
+          </button>
+          <button id="sortCurrent" class="btn small ghost" type="button" hidden>
+            <span data-icon="sort"></span>分类排序
           </button>
           <div id="categoryActions" class="actions" hidden>
             <button id="addChild" class="btn small ghost" type="button">新建子分类</button>
@@ -589,8 +585,7 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
       <div id="resourceScroll" class="scroll">
         <section id="folderSection">
           <div class="content-caption">
-            <strong id="folderCaption">分类文件夹</strong>
-            <span id="folderCount"></span>
+            <strong id="folderCaption">分类文件夹</strong><span id="folderCount"></span>
           </div>
           <div id="folders"></div>
         </section>
@@ -600,7 +595,7 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
         <div id="listHead" class="list-head">
           <span class="name-col">名称</span>
           <span class="category-col">所属分类 / 格式</span>
-          <span style="text-align:right">操作</span>
+          <span style="text-align:right">收藏 / 操作</span>
         </div>
         <div id="resources"></div>
         <div id="empty" class="empty" hidden></div>
@@ -613,6 +608,8 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
 </div>
 </fieldset>
 
+<div id="favoriteStatus" role="status" aria-live="polite"></div>
+
 <input id="importFile" type="file" accept=".json,application/json" hidden>
 <input id="filesInput" type="file" multiple hidden>
 <input id="folderInput" type="file" webkitdirectory multiple hidden>
@@ -621,10 +618,7 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
 <dialog id="loginDialog" class="scroll">
 <form id="loginForm">
 <fieldset class="lockable dialog-inner">
-  <div class="dialog-heading">
-    <h2>管理员登录</h2>
-    <p>连接仓库，管理分类与资源。</p>
-  </div>
+  <div class="dialog-heading"><h2>管理员登录</h2><p>连接仓库，管理分类与资源。</p></div>
   <label>GitHub 访问令牌
     <input id="tokenInput" type="password" autocomplete="off" required spellcheck="false">
   </label>
@@ -641,24 +635,16 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
 <dialog id="editDialog" class="scroll">
 <form id="editForm">
 <fieldset class="lockable dialog-inner">
-  <div class="dialog-heading">
-    <h2 id="editTitle">新增资源</h2>
-    <p>点击资源名称后，将直接打开填写的链接。</p>
-  </div>
+  <div class="dialog-heading"><h2 id="editTitle">新增资源</h2><p>点击资源名称后，直接打开对应链接。</p></div>
   <label>资源名称<input id="rTitle" maxlength="100" required></label>
   <div class="row">
     <label>所属分类<select id="rCategory" required></select></label>
     <label>资源类型
-      <select id="rType">
-        <option value="tool">在线工具</option>
-        <option value="resource">学习资料</option>
-      </select>
+      <select id="rType"><option value="tool">在线工具</option><option value="resource">学习资料</option></select>
     </label>
   </div>
-  <p class="hint">修改分类仅调整入口归属。实际移动文件，请使用列表里的移动按钮或拖动。</p>
-  <label>资源链接
-    <input id="rUrl" maxlength="4000" required placeholder="./files/…/文件.pdf 或 https://…">
-  </label>
+  <p class="hint">修改分类仅调整入口归属。实际移动文件，请使用移动按钮或拖动。</p>
+  <label>资源链接<input id="rUrl" maxlength="4000" required placeholder="./files/…/文件.pdf 或 https://…"></label>
   <div class="section-divider"></div>
   <div class="row">
     <label>图标显示
@@ -688,11 +674,8 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
 
 <dialog id="uploadDialog" class="scroll">
 <fieldset class="lockable dialog-inner">
-  <div class="dialog-heading">
-    <h2>上传文件</h2>
-    <p>普通资料可多选；HTML 工具建议上传完整文件夹。</p>
-  </div>
-  <div class="warning">文件将公开发布。不要上传密码、访问密钥或私密资料；只上传可信的 HTML 工具。</div>
+  <div class="dialog-heading"><h2>上传文件</h2><p>普通资料可多选；HTML 工具建议上传完整文件夹。</p></div>
+  <div class="warning">文件将公开发布。不要上传密码、密钥或私密资料；只上传可信的 HTML 工具。</div>
   <label style="margin-top:17px">保存到分类<select id="uCategory"></select></label>
   <label>磁盘子文件夹（选填）<input id="uSubdir" placeholder="例如：2026/论文"></label>
   <p id="uPath" class="hint"></p>
@@ -718,9 +701,7 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
 
 <dialog id="moveDialog" class="scroll">
 <fieldset class="lockable dialog-inner">
-  <div class="dialog-heading">
-    <h2>移动资源</h2><p>文件与资源链接将在同一次提交中更新。</p>
-  </div>
+  <div class="dialog-heading"><h2>移动资源</h2><p>文件与资源链接在同一次提交中更新。</p></div>
   <label>目标分类<select id="mCategory"></select></label>
   <label>磁盘子文件夹（选填）<input id="mSubdir" placeholder="留空：放进目标分类目录"></label>
   <p class="hint">目标有同名文件时停止，不覆盖。已在目标位置的文件会跳过。其他网页中的旧链接不会自动改写。</p>
@@ -733,24 +714,37 @@ progress{width:100%;height:8px;accent-color:var(--accent)}
 </fieldset>
 </dialog>
 
+<!-- 分类排序：同级排序，支持在多个父分类之间切换，最后统一保存 -->
+<dialog id="sortDialog" class="scroll">
+<fieldset class="lockable dialog-inner">
+  <div class="dialog-heading">
+    <h2>分类排序</h2>
+    <p>调整同级分类的显示顺序，不改变分类层级和文件路径。</p>
+  </div>
+  <label>选择排序范围<select id="sortParent"></select></label>
+  <div id="sortList" class="scroll"></div>
+  <p id="sortStatus" class="hint"></p>
+  <p class="hint">可以切换不同父分类继续调整，最后统一保存。保存后左侧目录和分类文件夹使用相同顺序，访客在部署更新后可见。</p>
+  <div id="sortError" class="error-text" role="alert"></div>
+  <div class="dialog-actions">
+    <button class="btn" type="button" data-close="sortDialog">取消</button>
+    <button id="saveSort" class="btn primary" type="button">保存顺序</button>
+  </div>
+</fieldset>
+</dialog>
+
 <script>
 "use strict";
 
-/* ================= 配置 ================= */
-const VERSION = "V10.1";
-const REPO = {owner:"YZUyzh",repo:"grouptools",branch:"main"};
-const DATA_FILE = "resources.json";
-const ROOTS = new Set(["files","tools","icon"]);
-const MAX_FILE = 100 * 1024 * 1024;
+/* ================= 配置与状态 ================= */
+const VERSION="V11.0";
+const REPO={owner:"YZUyzh",repo:"grouptools",branch:"main"};
+const DATA_FILE="resources.json";
+const ROOTS=new Set(["files","tools","icon"]);
+const MAX_FILE=100*1024*1024;
+const OPEN_TARGET="_blank";
 
-/*
-  V10.1：
-  资源名称、资源图标、右侧打开按钮均使用原生链接。
-  直接打开资源对应 URL，不加载站内预览，不弹出打开确认。
-*/
-const OPEN_TARGET = "_blank";
-
-const INITIAL = {
+const INITIAL={
   version:1,
   categories:[
     {id:"tools",name:"常用工具",parent:null},
@@ -758,26 +752,43 @@ const INITIAL = {
   ],
   resources:[]
 };
-const PRESETS = {
+const PRESETS={
   tool:"通用工具",book:"阅读资料",pdf:"PDF 文档",word:"Word 文档",
   sheet:"Excel 表格",slides:"PPT 演示",code:"HTML / 代码",
   chart:"数据图表",image:"图片素材",archive:"压缩文件"
 };
-
-const $ = id => document.getElementById(id);
-const copy = value => JSON.parse(JSON.stringify(value));
-const BASE = new URL("./",location.href);
+const $=id=>document.getElementById(id);
+const copy=value=>JSON.parse(JSON.stringify(value));
+const BASE=new URL("./",location.href);
 
 let data=copy(INITIAL),token="",snap=null,busy=true,reloadRequired=false;
-let category=null,filter="all",query="",grid=false;
+let category=null,favoriteOnly=false,filter="all",query="",grid=false;
 let selected=new Set(),collapsed=new Set(),dragIds=[];
 let editing=null,pendingIcon=null,pendingIconURL=null;
 let uploadFiles=[],uploadFolder=false,moveIds=[];
+let sortDraft=null,sortOriginal="";
+let favoriteStorageWarning="";
+
+const FAVORITES_KEY=
+  "grouptools:favorites:v1:"+REPO.owner+"/"+REPO.repo;
+let favorites=new Set();
 
 try{grid=localStorage.getItem("grouptools-grid")==="1";}catch{}
 
+function parseFavoriteIDs(raw){
+  if(!raw)return [];
+  const parsed=JSON.parse(raw);
+  if(!Array.isArray(parsed))throw Error("收藏数据格式无效");
+  return parsed.filter(id=>typeof id==="string"&&id.length>0);
+}
+try{
+  favorites=new Set(parseFavoriteIDs(localStorage.getItem(FAVORITES_KEY)));
+}catch{
+  favoriteStorageWarning="当前浏览器无法读取收藏存储，收藏可能仅在本次页面打开期间有效。";
+}
+
 /* ================= 内置图标 ================= */
-const ICON_PATHS = {
+const ICON_PATHS={
   bolt:["M13 2 5 13h6l-1 9 9-13h-6l1-7Z"],
   plus:["M12 5v14M5 12h14"],
   close:["m6 6 12 12M18 6 6 18"],
@@ -801,33 +812,32 @@ const ICON_PATHS = {
   chevron:["m9 5 7 7-7 7"],
   down:["m5 9 7 7 7-7"],
   up:["M12 19V5m-6 6 6-6 6 6"],
+  arrowdown:["M12 5v14m-6-6 6 6 6-6"],
   upload:["M12 16V3m-5 5 5-5 5 5M4 16v5h16v-5"],
   download:["M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5"],
   shield:["m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z","m8 12 3 3 5-6"],
   info:["M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 11v6M12 7h.01"],
   menu:["M4 6h16M4 12h16M4 18h16"],
-  home:["m3 10 9-7 9 7M5 9v12h14V9M9 21v-7h6v7"]
+  home:["m3 10 9-7 9 7M5 9v12h14V9M9 21v-7h6v7"],
+  star:["m12 3 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3L2.9 9.6l6.3-.9L12 3Z"],
+  sort:["M8 4v16m-4-4 4 4 4-4M15 5h6M15 10h4M15 15h2"]
 };
-
 function icon(name){
   const ns="http://www.w3.org/2000/svg";
   const svg=document.createElementNS(ns,"svg");
-  for(const [k,v] of Object.entries({
+  for(const [k,v]of Object.entries({
     class:"ico",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",
-    "stroke-width":"1.7","stroke-linecap":"round","stroke-linejoin":"round",
-    "aria-hidden":"true"
+    "stroke-width":"1.7","stroke-linecap":"round","stroke-linejoin":"round","aria-hidden":"true"
   }))svg.setAttribute(k,v);
-
   if(name==="pdf"||name==="word"){
-    const path=document.createElementNS(ns,"path");
-    path.setAttribute("d","M14 2H5v20h15V8l-6-6ZM14 2v6h6");
-    const text=document.createElementNS(ns,"text");
+    const p=document.createElementNS(ns,"path");
+    p.setAttribute("d","M14 2H5v20h15V8l-6-6ZM14 2v6h6");
+    const t=document.createElementNS(ns,"text");
     for(const [k,v]of Object.entries({
       x:"12",y:"17","text-anchor":"middle",fill:"currentColor",stroke:"none",
       "font-size":name==="pdf"?"5":"7","font-family":"Arial,sans-serif","font-weight":"700"
-    }))text.setAttribute(k,v);
-    text.textContent=name==="pdf"?"PDF":"W";
-    svg.append(path,text);
+    }))t.setAttribute(k,v);
+    t.textContent=name==="pdf"?"PDF":"W";svg.append(p,t);
   }else{
     for(const d of ICON_PATHS[name]||ICON_PATHS.file){
       const p=document.createElementNS(ns,"path");p.setAttribute("d",d);svg.append(p);
@@ -835,10 +845,7 @@ function icon(name){
   }
   return svg;
 }
-
-document.querySelectorAll("[data-icon]").forEach(n=>{
-  n.replaceChildren(icon(n.dataset.icon));
-});
+document.querySelectorAll("[data-icon]").forEach(n=>n.replaceChildren(icon(n.dataset.icon)));
 
 /* ================= 基础函数 ================= */
 function node(tag,cls="",text){
@@ -872,37 +879,23 @@ function safeURL(value){
     return ["https:","http:"].includes(u.protocol)&&!u.username&&!u.password?u.href:null;
   }catch{return null;}
 }
-
-/*
-  核心修改：
-  原生 <a href="资源地址" target="_blank">，不调用预览函数。
-  无异步跳转，无二次确认，保留浏览器正常的链接行为。
-*/
 function resourceLink(resource,cls="",text){
-  const a=node("a",cls,text);
-  const url=safeURL(resource.url);
+  const a=node("a",cls,text),url=safeURL(resource.url);
   if(url)a.href=url;
-  a.target=OPEN_TARGET;
-  a.rel="noopener noreferrer";
-  a.referrerPolicy="no-referrer";
-  a.draggable=false;
-  a.addEventListener("click",event=>{
-    if(busy||!url)event.preventDefault();
-  });
-  a.addEventListener("auxclick",event=>{
-    if(busy||!url)event.preventDefault();
-  });
+  a.target=OPEN_TARGET;a.rel="noopener noreferrer";
+  a.referrerPolicy="no-referrer";a.draggable=false;
+  for(const event of ["click","auxclick"]){
+    a.addEventListener(event,e=>{if(busy||!url)e.preventDefault();});
+  }
   return a;
 }
-
 function basicPath(path){
   return typeof path==="string"&&path.length<=1800&&path.split("/").every(p=>
     p&&p!=="."&&p!==".."&&!/[\u0000-\u001f\u007f\\]/.test(p));
 }
 function managed(path){
   const parts=typeof path==="string"?path.split("/"):[];
-  return basicPath(path)&&parts.length>1&&ROOTS.has(parts[0])&&
-    parts.slice(1).every(p=>!p.startsWith("."));
+  return basicPath(path)&&parts.length>1&&ROOTS.has(parts[0])&&parts.slice(1).every(p=>!p.startsWith("."));
 }
 function safeRelative(path){
   return basicPath(path)&&path.split("/").every(p=>
@@ -946,17 +939,14 @@ function logo(resource,override=null){
   const box=node("div","logo "+preset),fallback=icon(preset);
   box.append(fallback);
   if(resource.iconMode==="builtin")return box;
-
   const urls=[];
   if(override)urls.push(override);
-  const custom=safeURL(resource.iconUrl);
-  if(custom)urls.push(custom);
+  const custom=safeURL(resource.iconUrl);if(custom)urls.push(custom);
   const url=safeURL(resource.url);
   if(url)urls.push(new URL("/favicon.ico",new URL(url).origin).href);
   const candidates=unique(urls).filter(u=>
     u.startsWith("blob:")||location.protocol!=="https:"||u.startsWith("https:"));
   if(!candidates.length)return box;
-
   const img=node("img");
   img.alt="";img.loading="lazy";img.draggable=false;
   img.referrerPolicy="no-referrer";img.style.opacity="0";
@@ -966,11 +956,68 @@ function logo(resource,override=null){
   box.append(img);img.src=candidates[0];return box;
 }
 $("rPreset").append(new Option("自动判断","auto"));
-Object.entries(PRESETS).forEach(([key,value])=>{
-  $("rPreset").append(new Option(value,key));
+Object.entries(PRESETS).forEach(([k,v])=>$("rPreset").append(new Option(v,k)));
+
+/* ================= 收藏：本地独立存储 ================= */
+function favoriteResources(){return data.resources.filter(r=>favorites.has(r.id));}
+
+function syncFavoriteButton(button,id){
+  const yes=favorites.has(id);
+  button.classList.toggle("is-favorite",yes);
+  button.setAttribute("aria-pressed",String(yes));
+  button.title=yes?"取消收藏":"收藏资源";
+  button.setAttribute("aria-label",yes?"取消收藏":"收藏资源");
+}
+
+function refreshFavoriteUI(){
+  renderQuickNav();
+  $("favoriteCount").textContent=favoriteResources().length;
+
+  if(favoriteOnly){
+    const visible=new Set(visibleResources().map(r=>r.id));
+    selected=new Set([...selected].filter(id=>visible.has(id)));
+    renderResources();
+  }else{
+    document.querySelectorAll(".favorite-btn").forEach(b=>{
+      syncFavoriteButton(b,b.dataset.id);
+    });
+  }
+}
+
+function toggleFavorite(id){
+  if(busy)return;
+
+  // 读取其他标签页可能刚刚保存的收藏，减少覆盖。
+  try{
+    favorites=new Set(parseFavoriteIDs(localStorage.getItem(FAVORITES_KEY)));
+  }catch{}
+
+  const was=favorites.has(id);
+  was?favorites.delete(id):favorites.add(id);
+
+  try{
+    localStorage.setItem(FAVORITES_KEY,JSON.stringify([...favorites]));
+    favoriteStorageWarning="";
+  }catch{
+    favoriteStorageWarning="浏览器未允许持久保存收藏。此次变更仅在当前页面中有效，关闭或刷新后可能丢失。";
+    notice(favoriteStorageWarning,true);
+  }
+
+  $("favoriteStatus").textContent=was?"已取消收藏":"已加入我的收藏";
+  refreshFavoriteUI();
+}
+
+window.addEventListener("storage",event=>{
+  if(event.key!==FAVORITES_KEY&&event.key!==null)return;
+  try{
+    favorites=new Set(parseFavoriteIDs(
+      event.key===null?localStorage.getItem(FAVORITES_KEY):event.newValue
+    ));
+    if(!busy)refreshFavoriteUI();
+  }catch{}
 });
 
-/* ================= 数据兼容 ================= */
+/* ================= 数据校验，兼容原 JSON ================= */
 function slug(value){
   return value.normalize("NFKC").replace(/[^\p{L}\p{N}-]+/gu,"-")
     .replace(/^-+|-+$/g,"").slice(0,28)||"category";
@@ -984,6 +1031,7 @@ function validate(value){
   if(!value||value.version!==1||!Array.isArray(value.categories)||!Array.isArray(value.resources))
     throw Error("配置格式不正确，需要 version: 1、categories 和 resources。");
 
+  // 数组中的相对顺序就是同级分类显示顺序。
   const categories=value.categories.map(c=>{
     if(!c||typeof c.id!=="string"||!c.id||c.id.length>100||
       typeof c.name!=="string"||!c.name.trim()||c.name.length>60||
@@ -992,11 +1040,10 @@ function validate(value){
       throw Error("分类目录必须位于 files/ 下。");
     return{id:c.id,name:c.name.trim(),parent:c.parent,directory:c.directory||""};
   });
-
   const map=new Map(categories.map(c=>[c.id,c]));
   if(map.size!==categories.length)throw Error("分类编号重复。");
-  const names=new Set();
 
+  const names=new Set();
   for(const c of categories){
     const key=JSON.stringify([c.parent,c.name]);
     if(names.has(key))throw Error("同一上级下分类重名。");
@@ -1027,18 +1074,15 @@ function validate(value){
       typeof r.url!=="string"||r.url.length>4000||!safeURL(r.url))
       throw Error("资源编号、名称、分类或链接无效。");
     ids.add(r.id);
-
     const description=r.description??"",iconUrl=r.iconUrl??"";
     const iconPreset=r.iconPreset??"auto",iconMode=r.iconMode??"auto";
     const files=r.managedFiles??[],root=r.bundleRoot??"";
-
     if(typeof description!=="string"||description.length>1000||
       typeof iconUrl!=="string"||iconUrl.length>4000||(iconUrl&&!safeURL(iconUrl))||
       !(iconPreset==="auto"||Object.prototype.hasOwnProperty.call(PRESETS,iconPreset))||
       !["auto","builtin"].includes(iconMode)||!Array.isArray(files)||!files.every(managed)||
       typeof root!=="string"||(root&&(!managed(root)||!files.every(p=>p.startsWith(root+"/")))))
       throw Error("图标或关联文件记录无效。");
-
     return{
       id:r.id,title:r.title.trim(),category:r.category,type:r.type,url:r.url.trim(),
       description,iconUrl,iconPreset,iconMode,managedFiles:unique(files),bundleRoot:root
@@ -1046,9 +1090,9 @@ function validate(value){
   });
   return{version:1,categories,resources};
 }
-function categoryChain(id){
-  const out=[];let c=data.categories.find(x=>x.id===id);
-  while(c){out.unshift(c);c=data.categories.find(x=>x.id===c.parent);}
+function categoryChain(id,categories=data.categories){
+  const out=[];let c=categories.find(x=>x.id===id);
+  while(c){out.unshift(c);c=categories.find(x=>x.id===c.parent);}
   return out;
 }
 function catPath(id){return categoryChain(id).map(c=>c.name).join(" / ");}
@@ -1064,9 +1108,9 @@ function descendants(id){
   }
   return result;
 }
-function ordered(parent=null,level=0,out=[]){
-  data.categories.filter(c=>c.parent===parent).forEach(c=>{
-    out.push({...c,level});ordered(c.id,level+1,out);
+function ordered(parent=null,level=0,out=[],categories=data.categories){
+  categories.filter(c=>c.parent===parent).forEach(c=>{
+    out.push({...c,level});ordered(c.id,level+1,out,categories);
   });
   return out;
 }
@@ -1075,11 +1119,13 @@ function fillCats(select,value){
   ordered().forEach(c=>select.append(new Option("　".repeat(c.level)+c.name,c.id)));
   if(data.categories.some(c=>c.id===value))select.value=value;
 }
-function directChildren(){return data.categories.filter(c=>c.parent===category);}
+function directChildren(){
+  return favoriteOnly?[]:data.categories.filter(c=>c.parent===category);
+}
 function visibleResources(){
   const q=query.trim().toLocaleLowerCase();
   return data.resources.filter(r=>
-    (category===null||r.category===category)&&
+    (favoriteOnly?favorites.has(r.id):(category===null||r.category===category))&&
     (filter==="all"||r.type===filter)&&
     (!q||[r.title,r.description,catPath(r.category)].join(" ").toLocaleLowerCase().includes(q))
   );
@@ -1091,17 +1137,20 @@ function closeSidebar(){
 }
 function goCategory(id){
   if(busy)return;
-  category=id;query="";filter="all";$("search").value="";
+  favoriteOnly=false;category=id;query="";filter="all";$("search").value="";
   selected.clear();revealCategory(id);closeSidebar();render();
   $("resourceScroll").scrollTop=0;
 }
+function goFavorites(){
+  if(busy)return;
+  favoriteOnly=true;category=null;query="";filter="all";$("search").value="";
+  selected.clear();closeSidebar();render();$("resourceScroll").scrollTop=0;
+}
 
-/* ================= 列表、文件夹和拖动 ================= */
+/* ================= 导航、列表与拖动 ================= */
 function clearDrag(){
   dragIds=[];
-  document.querySelectorAll(".drag-over,.dragging").forEach(n=>{
-    n.classList.remove("drag-over","dragging");
-  });
+  document.querySelectorAll(".drag-over,.dragging").forEach(n=>n.classList.remove("drag-over","dragging"));
 }
 function bindDropTarget(element,id){
   if(!token||!id)return;
@@ -1118,37 +1167,44 @@ function bindDropTarget(element,id){
     const ids=[...dragIds];clearDrag();openMove(ids,id);
   });
 }
+function renderQuickNav(){
+  const quick=$("quickNav");quick.replaceChildren();
+  function entry(name,ico,count,active,handler,extra=""){
+    const n=node("div","nav "+extra+(active?" active":""));
+    const b=btn("",handler,"nav-name");
+    b.append(icon(ico),node("span","",name));
+    if(active)b.setAttribute("aria-current","page");
+    n.append(b,node("span","nav-count",String(count)));quick.append(n);
+  }
+  entry("全部资源","grid",data.resources.length,!favoriteOnly&&category===null,()=>goCategory(null));
+  entry("我的收藏","star",favoriteResources().length,favoriteOnly,goFavorites,"favorite-nav");
+}
 function renderTree(){
   const tree=$("tree");tree.replaceChildren();
   const counts=new Map(data.categories.map(c=>[c.id,0]));
   data.resources.forEach(r=>counts.set(r.category,(counts.get(r.category)||0)+1));
 
-  function row(id,name,level,count,hasChildren){
-    const n=node("div","nav"+(category===id?" active":""));
-    n.style.marginLeft=level*8+"px";
-    const arrow=btn("",()=>{
-      if(busy||!hasChildren)return;
-      collapsed.has(id)?collapsed.delete(id):collapsed.add(id);renderTree();
-    },"nav-arrow");
-    if(hasChildren){
-      arrow.append(icon(collapsed.has(id)?"chevron":"down"));
-      arrow.setAttribute("aria-label","展开或收起子分类");
-      arrow.setAttribute("aria-expanded",String(!collapsed.has(id)));
-    }else{
-      arrow.disabled=true;arrow.setAttribute("aria-label","无子分类");
-    }
-    const label=btn("",()=>goCategory(id),"nav-name");
-    label.append(icon(id?"folder":"grid"),node("span","",name));
-    label.title=id?catPath(id)+" · "+count+" 个直属资源":"全部资源";
-    if(category===id)label.setAttribute("aria-current","page");
-    n.append(arrow,label,node("span","nav-count",String(count)));
-    bindDropTarget(n,id);tree.append(n);
-  }
-  row(null,"全部资源",0,data.resources.length,false);
   function walk(parent,level){
     for(const c of data.categories.filter(x=>x.parent===parent)){
-      const children=data.categories.some(x=>x.parent===c.id);
-      row(c.id,c.name,level,counts.get(c.id)||0,children);
+      const hasChildren=data.categories.some(x=>x.parent===c.id);
+      const active=!favoriteOnly&&category===c.id;
+      const n=node("div","nav"+(active?" active":""));
+      n.style.marginLeft=level*8+"px";
+      const arrow=btn("",()=>{
+        if(busy||!hasChildren)return;
+        collapsed.has(c.id)?collapsed.delete(c.id):collapsed.add(c.id);renderTree();
+      },"nav-arrow");
+      if(hasChildren){
+        arrow.append(icon(collapsed.has(c.id)?"chevron":"down"));
+        arrow.setAttribute("aria-label","展开或收起子分类");
+        arrow.setAttribute("aria-expanded",String(!collapsed.has(c.id)));
+      }else{arrow.disabled=true;arrow.setAttribute("aria-label","无子分类");}
+      const label=btn("",()=>goCategory(c.id),"nav-name");
+      label.append(icon("folder"),node("span","",c.name));
+      label.title=catPath(c.id)+" · "+(counts.get(c.id)||0)+" 个直属资源";
+      if(active)label.setAttribute("aria-current","page");
+      n.append(arrow,label,node("span","nav-count",String(counts.get(c.id)||0)));
+      bindDropTarget(n,c.id);tree.append(n);
       if(!collapsed.has(c.id))walk(c.id,level+1);
     }
   }
@@ -1156,16 +1212,24 @@ function renderTree(){
 }
 function renderPath(){
   const path=$("pathbar");path.replaceChildren();
-  const root=btn("",()=>goCategory(null),"path-link"+(category===null?" current":""));
+  const root=btn("",()=>goCategory(null),
+    "path-link"+(!favoriteOnly&&category===null?" current":""));
   root.append(icon("home"),node("span","","全部资源"));path.append(root);
-  for(const c of categoryChain(category)){
-    const separator=icon("chevron");separator.classList.add("path-sep");
-    const b=btn(c.name,()=>goCategory(c.id),"path-link"+(c.id===category?" current":""));
-    bindDropTarget(b,c.id);path.append(separator,b);
+  if(favoriteOnly){
+    const sep=icon("chevron");sep.classList.add("path-sep");
+    const current=node("span","path-link current");
+    current.append(icon("star"),node("span","","我的收藏"));path.append(sep,current);
+  }else{
+    for(const c of categoryChain(category)){
+      const sep=icon("chevron");sep.classList.add("path-sep");
+      const b=btn(c.name,()=>goCategory(c.id),"path-link"+(c.id===category?" current":""));
+      bindDropTarget(b,c.id);path.append(sep,b);
+    }
   }
-  $("upBtn").hidden=category===null;
-  $("scopeHint").textContent=category===null?
-    "分类文件夹与全部资源 · 点击资源直接打开":
+  $("upBtn").hidden=favoriteOnly||category===null;
+  $("scopeHint").textContent=favoriteOnly?
+    "个人收藏仅保存在当前浏览器，不同步到其他设备":
+    category===null?"分类文件夹与全部资源 · 点击资源直接打开":
     "子分类文件夹与当前分类直属资源";
 }
 function renderFolders(){
@@ -1191,8 +1255,7 @@ function renderFolders(){
   $("folders").replaceChildren(fragment);
 }
 function updateSelectionUI(){
-  const visible=visibleResources();
-  const count=visible.filter(r=>selected.has(r.id)).length;
+  const visible=visibleResources(),count=visible.filter(r=>selected.has(r.id)).length;
   $("selectedCount").textContent="已选 "+selected.size+" 项";
   $("selectAll").checked=visible.length>0&&count===visible.length;
   $("selectAll").indeterminate=count>0&&count<visible.length;
@@ -1206,10 +1269,8 @@ function updateSelectionUI(){
 }
 function renderResources(){
   const list=visibleResources(),fragment=document.createDocumentFragment();
-
   for(const r of list){
     const item=node("article","item");item.dataset.id=r.id;
-
     if(token){
       const check=node("input","item-check");check.type="checkbox";
       check.setAttribute("aria-label","选择 "+r.title);
@@ -1219,19 +1280,14 @@ function renderResources(){
       item.append(check);
     }else item.append(node("span"));
 
-    // 图标直接链接到原地址。
     const mark=resourceLink(r,"logo-link");
-    mark.title="打开 "+r.title;
-    mark.setAttribute("aria-label","打开 "+r.title);
+    mark.title="打开 "+r.title;mark.setAttribute("aria-label","打开 "+r.title);
     mark.append(logo(r));item.append(mark);
 
-    // 名称直接链接到原地址，不再调用 openPreview。
-    const info=node("div","info");
-    const title=resourceLink(r,"title",r.title);
+    const info=node("div","info"),title=resourceLink(r,"title",r.title);
     title.title=r.title+"\n"+safeURL(r.url);
-    info.append(title);
-    const description=r.description||(r.type==="tool"?"在线工具":"学习资料");
-    info.append(node("div","description",description));item.append(info);
+    info.append(title,node("div","description",r.description||(r.type==="tool"?"在线工具":"学习资料")));
+    item.append(info);
 
     const extension=urlExt(r.url),meta=node("div","file-meta");
     const categoryText=node("div","file-category",catPath(r.category));
@@ -1240,6 +1296,10 @@ function renderResources(){
     item.append(meta);
 
     const actions=node("div","item-actions");
+    const fav=iconButton("star","收藏资源",()=>toggleFavorite(r.id));
+    fav.classList.add("favorite-btn");fav.dataset.id=r.id;
+    syncFavoriteButton(fav,r.id);actions.append(fav);
+
     if(token){
       actions.append(
         iconButton("edit","编辑资源",()=>openEdit(r.id)),
@@ -1265,14 +1325,21 @@ function renderResources(){
   $("resources").className=grid?"grid":"";
   $("resources").replaceChildren(fragment);
   $("listHead").hidden=grid||!list.length;
-  $("fileCaption").textContent=category===null?"全部资源":"当前分类资源";
+  $("fileCaption").textContent=favoriteOnly?"我的收藏":category===null?"全部资源":"当前分类资源";
   $("fileCount").textContent=list.length+" 项";
   $("empty").hidden=list.length>0;
+  let text;
+  if(query.trim()||filter!=="all"){
+    text="当前范围没有匹配资源。\n可清除搜索或切换资源类型。";
+  }else if(favoriteOnly){
+    text="还没有收藏资源。\n点击资源右侧的星标，就能在这里快速找到它。";
+  }else if(directChildren().length){
+    text="当前分类没有直属资源。\n可点击上方文件夹继续浏览。";
+  }else text="这里还没有资源。";
 
-  const text=query.trim()?"当前范围没有匹配资源。\n搜索其他分类，请先点击“全部资源”。":
-    directChildren().length?"当前分类没有直属资源。\n可点击上方文件夹继续浏览。":"这里还没有资源。";
-  $("empty").replaceChildren(icon("folder"),node("div","",text));
-  $("footerCount").textContent=
+  $("empty").replaceChildren(icon(favoriteOnly?"star":"folder"),node("div","",text));
+  $("footerCount").textContent=favoriteOnly?
+    `${list.length} 项收藏资源 · 本机收藏 · ${VERSION}`:
     `${directChildren().length} 个分类文件夹 · ${list.length} 项资源 · ${VERSION}`;
   updateSelectionUI();
 }
@@ -1280,15 +1347,18 @@ function render(){
   if(category&&!data.categories.some(c=>c.id===category))category=null;
   const valid=new Set(data.resources.map(r=>r.id));
   selected=new Set([...selected].filter(id=>valid.has(id)));
-  renderTree();renderPath();renderFolders();renderResources();
+  renderQuickNav();renderTree();renderPath();renderFolders();renderResources();
   $("totalCount").textContent=data.resources.length;
   $("toolCount").textContent=data.resources.filter(r=>r.type==="tool").length;
   $("categoryCount").textContent=data.categories.length;
-  ["addRoot","exportBtn","importBtn","uploadBtn","newBtn","batchbar","adminLabel","adminSeparator"]
+  $("favoriteCount").textContent=favoriteResources().length;
+  ["addRoot","sortCategories","exportBtn","importBtn","uploadBtn","newBtn","batchbar","adminLabel","adminSeparator"]
     .forEach(id=>$(id).hidden=!token);
-  $("categoryActions").hidden=!(token&&category);
+  $("sortCurrent").hidden=!token||favoriteOnly;
+  $("categoryActions").hidden=!(token&&category&&!favoriteOnly);
   $("addChild").hidden=!category||depth(category)>=3;
   $("adminBtnText").textContent=token?"退出管理":"管理员";
+  $("search").placeholder=favoriteOnly?"搜索我的收藏":"搜索当前范围的资源";
   $("listView").classList.toggle("active",!grid);
   $("gridView").classList.toggle("active",grid);
   $("listView").setAttribute("aria-pressed",String(!grid));
@@ -1366,7 +1436,6 @@ async function loadRepo(key){
   const h=await head(key),commit=await api("/git/commits/"+h,{},key);
   const tree=await api("/git/trees/"+commit.tree.sha+"?recursive=1",{},key);
   if(tree.truncated)throw Error("仓库文件树返回不完整，停止网页写入。请使用 Git 客户端管理。");
-
   const leaves=new Map(),treeSHA=new Map([["",commit.tree.sha]]),children=new Map();
   for(const entry of tree.tree){
     const parent=dirname(entry.path);
@@ -1418,8 +1487,7 @@ function destination(categoryId,subdir){
   const c=data.categories.find(x=>x.id===categoryId);
   if(!c)throw Error("请选择目标分类。");
   subdir=subdir.trim();
-  if(subdir&&!safeRelative(subdir))
-    throw Error("子文件夹名称无效，不能包含 ..、隐藏目录或特殊字符。");
+  if(subdir&&!safeRelative(subdir))throw Error("子文件夹名称无效，不能包含 ..、隐藏目录或特殊字符。");
   const path=c.directory+(subdir?"/"+subdir:""),parts=path.split("/");
   for(let i=1;i<=parts.length;i++){
     const prefix=parts.slice(0,i).join("/");
@@ -1427,34 +1495,28 @@ function destination(categoryId,subdir){
   }
   return path;
 }
-
-/* 重建目录树，未变化的目录复用 SHA。 */
 async function rebuildTrees(leaves){
   const root={dirs:new Map(),files:new Map()};
   for(const [path,value]of leaves){
     const parts=path.split("/");let current=root;
     for(const segment of parts.slice(0,-1)){
       if(current.files.has(segment))throw Error("文件和目录路径冲突："+path);
-      if(!current.dirs.has(segment))
-        current.dirs.set(segment,{dirs:new Map(),files:new Map()});
+      if(!current.dirs.has(segment))current.dirs.set(segment,{dirs:new Map(),files:new Map()});
       current=current.dirs.get(segment);
     }
     const name=parts[parts.length-1];
     if(current.dirs.has(name))throw Error("文件和目录路径冲突："+path);
     current.files.set(name,value);
   }
-
   for(const path of snap.treeSHA.keys()){
     if(!path||snap.signatures.get(path)!==signature([]))continue;
     let current=root;
     for(const segment of path.split("/")){
       if(current.files.has(segment))throw Error("空目录与文件路径冲突："+path);
-      if(!current.dirs.has(segment))
-        current.dirs.set(segment,{dirs:new Map(),files:new Map()});
+      if(!current.dirs.has(segment))current.dirs.set(segment,{dirs:new Map(),files:new Map()});
       current=current.dirs.get(segment);
     }
   }
-
   const treeSHA=new Map(),signatures=new Map();
   async function build(current,path){
     const entries=[];
@@ -1463,12 +1525,9 @@ async function rebuildTrees(leaves){
       entries.push({path:name,mode:"040000",type:"tree",sha:await build(child,childPath)});
     }
     for(const [name,file]of current.files)entries.push({path:name,...file});
-    const sig=signature(entries);
-    let sha;
+    const sig=signature(entries);let sha;
     if(snap.signatures.get(path)===sig&&snap.treeSHA.has(path))sha=snap.treeSHA.get(path);
-    else sha=(await api("/git/trees",{
-      method:"POST",body:JSON.stringify({tree:entries})
-    })).sha;
+    else sha=(await api("/git/trees",{method:"POST",body:JSON.stringify({tree:entries})})).sha;
     treeSHA.set(path,sha);signatures.set(path,sig);return sha;
   }
   return{sha:await build(root,""),treeSHA,signatures};
@@ -1476,17 +1535,12 @@ async function rebuildTrees(leaves){
 async function commitData(next,changes=new Map(),message="更新资源中心"){
   const clean=validate(next);await assertFresh();
   const leaves=new Map(snap.leaves);
-
   for(const [path,value]of changes){
     if(!managed(path))throw Error("修改路径不在受管理目录内："+path);
     if(value===null){
-      if(leaves.has(path))normalFile(path);
-      leaves.delete(path);
-    }else{
-      assertWritePath(path);leaves.set(path,value);
-    }
+      if(leaves.has(path))normalFile(path);leaves.delete(path);
+    }else{assertWritePath(path);leaves.set(path,value);}
   }
-
   let emptySHA=null;
   async function keep(path){
     if(leaves.has(path))return;
@@ -1494,18 +1548,15 @@ async function commitData(next,changes=new Map(),message="更新资源中心"){
     if(!emptySHA)emptySHA=await textBlob("");
     leaves.set(path,{sha:emptySHA,mode:"100644",type:"blob"});
   }
-  await keep(".nojekyll");
-  await keep("icon/.gitkeep");
+  await keep(".nojekyll");await keep("icon/.gitkeep");
   for(const c of clean.categories)await keep(c.directory+"/.gitkeep");
   assertWritePath(DATA_FILE);
   leaves.set(DATA_FILE,{
     sha:await textBlob(JSON.stringify(clean,null,2)+"\n"),mode:"100644",type:"blob"
   });
-
   const rebuilt=await rebuildTrees(leaves);await assertFresh();
   const created=await api("/git/commits",{
-    method:"POST",
-    body:JSON.stringify({message,tree:rebuilt.sha,parents:[snap.head]})
+    method:"POST",body:JSON.stringify({message,tree:rebuilt.sha,parents:[snap.head]})
   });
   try{
     await api("/git/refs/heads/"+branchPath(),{
@@ -1526,20 +1577,18 @@ function writeError(error){
   return error.message;
 }
 
-/* ================= 登录和分类管理 ================= */
+/* ================= 登录与分类管理 ================= */
 $("adminBtn").addEventListener("click",()=>{
   if(busy)return;
   if(token){
-    token="";snap=null;reloadRequired=false;selected.clear();clearDrag();
-    notice("");render();return;
+    token="";snap=null;reloadRequired=false;selected.clear();clearDrag();notice("");render();return;
   }
   $("tokenInput").value="";$("loginError").textContent="";
   $("loginDialog").showModal();$("tokenInput").focus();
 });
 $("loginForm").addEventListener("submit",async event=>{
   event.preventDefault();if(busy)return;
-  let key=$("tokenInput").value.trim();$("tokenInput").value="";
-  if(!key)return;
+  let key=$("tokenInput").value.trim();$("tokenInput").value="";if(!key)return;
   setBusy(true);$("loginError").textContent="";
   try{
     if(location.protocol!=="https:")throw Error("请通过已部署的 HTTPS 页面登录。");
@@ -1547,9 +1596,9 @@ $("loginForm").addEventListener("submit",async event=>{
     if(!repo.permissions?.push)throw Error("该账号没有仓库写入权限。");
     const loaded=await loadRepo(key);
     token=key;snap=loaded.snap;data=loaded.data;reloadRequired=false;
-    category=null;query="";filter="all";$("search").value="";selected.clear();
+    category=null;favoriteOnly=false;query="";filter="all";$("search").value="";selected.clear();
     $("loginDialog").close();
-    notice("已读取仓库最新配置。点击资源直接打开；勾选后可批量操作或拖入分类文件夹。");
+    notice("已读取最新配置。收藏无需登录；分类排序和其他管理操作将保存到 GitHub。");
   }catch(error){$("loginError").textContent=error.message;}
   finally{key="";setBusy(false);}
 });
@@ -1562,8 +1611,8 @@ async function addCategory(parent=null){
     const next=copy(data),id=crypto.randomUUID();
     next.categories.push({id,name:name.trim(),parent});
     await commitData(next,new Map(),"新增资源分类");
-    category=id;query="";$("search").value="";selected.clear();revealCategory(id);
-    notice("分类已创建。等待最新 Pages 部署完成后，访客即可看到。");
+    favoriteOnly=false;category=id;query="";$("search").value="";selected.clear();revealCategory(id);
+    notice("分类已创建，默认排在同级分类末尾，可通过“分类排序”调整。");
   }catch(error){notice(writeError(error),true);}
   finally{setBusy(false);}
 }
@@ -1580,13 +1629,113 @@ $("renameCategory").addEventListener("click",async()=>{
   setBusy(true);
   try{
     const next=copy(data);next.categories.find(x=>x.id===category).name=name.trim();
-    await commitData(next,new Map(),"修改分类名称");
-    notice("分类名称已保存，文件路径保持不变。");
+    await commitData(next,new Map(),"修改分类名称");notice("分类名称已保存，文件路径保持不变。");
   }catch(error){notice(writeError(error),true);}
   finally{setBusy(false);}
 });
 
-/* ================= 资源编辑及图标 ================= */
+/* ================= 分类排序 ================= */
+// 使用 JSON 编码父级 ID，避免与真实分类 ID 冲突。
+function sortParentValue(parent){return JSON.stringify(parent);}
+function selectedSortParent(){return JSON.parse($("sortParent").value);}
+
+function sortSignature(categories){return JSON.stringify(categories.map(c=>c.id));}
+
+function openSort(parent=null){
+  if(!canWrite())return;
+  if(!data.categories.length){notice("请先创建分类。");return;}
+  sortDraft=copy(data.categories);
+  sortOriginal=sortSignature(sortDraft);
+  $("sortParent").replaceChildren(new Option("一级分类",sortParentValue(null)));
+
+  ordered().filter(c=>data.categories.some(x=>x.parent===c.id)).forEach(c=>{
+    $("sortParent").append(new Option(
+      catPath(c.id)+" / 子分类",sortParentValue(c.id)
+    ));
+  });
+
+  const value=sortParentValue(parent);
+  if([...$("sortParent").options].some(o=>o.value===value))$("sortParent").value=value;
+  else $("sortParent").value=sortParentValue(null);
+
+  $("sortError").textContent="";
+  renderSortList();$("sortDialog").showModal();
+}
+
+function renderSortList(focusId=null,direction=null){
+  if(!sortDraft)return;
+  const list=sortDraft.filter(c=>c.parent===selectedSortParent());
+  const container=$("sortList");container.replaceChildren();
+
+  list.forEach((c,index)=>{
+    const row=node("div","sort-row");
+    const mark=icon("folder");mark.classList.add("sort-folder");
+    const name=node("span","sort-name",c.name);name.title=c.name;
+    const actions=node("div","actions");
+
+    const up=iconButton("up","上移 "+c.name,()=>moveSort(c.id,-1));
+    const down=iconButton("arrowdown","下移 "+c.name,()=>moveSort(c.id,1));
+    up.disabled=index===0;down.disabled=index===list.length-1;
+    up.dataset.sortId=c.id;up.dataset.direction="-1";
+    down.dataset.sortId=c.id;down.dataset.direction="1";
+    actions.append(up,down);
+    row.append(node("span","sort-number",String(index+1)),mark,name,actions);
+    container.append(row);
+  });
+
+  if(!list.length)container.append(node("div","sort-empty","此范围没有分类。"));
+
+  const changed=sortSignature(sortDraft)!==sortOriginal;
+  $("sortStatus").textContent=changed?
+    "有未保存的顺序调整。切换排序范围不会丢失这些调整。":
+    "使用右侧箭头调整分类顺序。";
+  $("saveSort").disabled=!changed||reloadRequired;
+
+  if(focusId){
+    const buttons=[...container.querySelectorAll("button")];
+    const preferred=buttons.find(b=>b.dataset.sortId===focusId&&b.dataset.direction===String(direction));
+    const fallback=buttons.find(b=>b.dataset.sortId===focusId&&!b.disabled);
+    (preferred&&!preferred.disabled?preferred:fallback)?.focus();
+  }
+}
+function moveSort(id,direction){
+  if(!canWrite()||!sortDraft)return;
+  const parent=selectedSortParent();
+  const siblings=sortDraft.filter(c=>c.parent===parent);
+  const index=siblings.findIndex(c=>c.id===id),other=index+direction;
+  if(index<0||other<0||other>=siblings.length)return;
+
+  // 交换同级分类在 categories 数组中的位置。
+  // 分类 ID、父级、directory、资源记录均不变。
+  const a=sortDraft.findIndex(c=>c.id===siblings[index].id);
+  const b=sortDraft.findIndex(c=>c.id===siblings[other].id);
+  [sortDraft[a],sortDraft[b]]=[sortDraft[b],sortDraft[a]];
+  renderSortList(id,direction);
+}
+$("sortCategories").addEventListener("click",()=>openSort(null));
+$("sortCurrent").addEventListener("click",()=>{
+  const hasChildren=data.categories.some(c=>c.parent===category);
+  const current=data.categories.find(c=>c.id===category);
+  openSort(hasChildren?category:(current?.parent??null));
+});
+$("sortParent").addEventListener("change",()=>renderSortList());
+$("saveSort").addEventListener("click",async()=>{
+  if(!canWrite()||!sortDraft||sortSignature(sortDraft)===sortOriginal)return;
+  const next=copy(data);next.categories=copy(sortDraft);
+  setBusy(true);$("sortError").textContent="";
+  try{
+    await commitData(next,new Map(),"调整分类显示顺序");
+    $("sortDialog").close();
+    notice("分类顺序已保存。左侧目录、文件夹及分类选择框已同步更新，文件位置和链接保持不变。");
+  }catch(error){$("sortError").textContent=writeError(error);}
+  finally{
+    setBusy(false);
+    if($("sortDialog").open)renderSortList();
+  }
+});
+$("sortDialog").addEventListener("close",()=>{sortDraft=null;sortOriginal="";});
+
+/* ================= 资源编辑与图标 ================= */
 function clearPendingIcon(){
   if(pendingIconURL)URL.revokeObjectURL(pendingIconURL);
   pendingIcon=null;pendingIconURL=null;$("cancelIcon").hidden=true;
@@ -1603,13 +1752,11 @@ function openEdit(id=null){
   editing=id;clearPendingIcon();
   const r=data.resources.find(x=>x.id===id);
   $("editTitle").textContent=r?"编辑资源":"新增资源";
-  $("rTitle").value=r?.title||"";
-  fillCats($("rCategory"),r?.category||category);
+  $("rTitle").value=r?.title||"";fillCats($("rCategory"),r?.category||category);
   $("rType").value=r?.type||"tool";$("rUrl").value=r?.url||"";
   $("rDescription").value=r?.description||"";$("rIcon").value=r?.iconUrl||"";
   $("rPreset").value=r?.iconPreset||"auto";$("rIconMode").value=r?.iconMode||"auto";
-  $("editError").textContent="";
-  $("iconHint").textContent="图片在保存时上传到 icon/，取消编辑不会上传。";
+  $("editError").textContent="";$("iconHint").textContent="图片在保存时上传到 icon/，取消编辑不会上传。";
   updateIcon();$("editDialog").showModal();
 }
 $("pickIcon").addEventListener("click",()=>{
@@ -1629,14 +1776,11 @@ $("iconInput").addEventListener("change",event=>{
 $("cancelIcon").addEventListener("click",()=>{
   clearPendingIcon();$("iconHint").textContent="已取消待上传图片。";updateIcon();
 });
-["rUrl","rType","rIcon","rPreset","rIconMode"].forEach(id=>{
-  $(id).addEventListener("change",updateIcon);
-});
+["rUrl","rType","rIcon","rPreset","rIconMode"].forEach(id=>$(id).addEventListener("change",updateIcon));
 $("editForm").addEventListener("submit",async event=>{
   event.preventDefault();if(!canWrite())return;
   const next=copy(data),old=next.resources.find(r=>r.id===editing);
   const url=$("rUrl").value.trim(),same=old&&safeURL(old.url)===safeURL(url);
-
   if(old&&!same&&old.managedFiles.length&&
     !confirm("直接改链接会解除原关联记录，不移动或删除原文件。继续？"))return;
 
@@ -1650,7 +1794,6 @@ $("editForm").addEventListener("submit",async event=>{
   if(old)next.resources[next.resources.indexOf(old)]=resource;
   else next.resources.push(resource);
   setBusy(true);$("editError").textContent="";
-
   try{
     validate(next);await assertFresh();
     const changes=new Map();
@@ -1661,13 +1804,13 @@ $("editForm").addEventListener("submit",async event=>{
       resource.iconUrl=publicPath(path);resource.iconMode="auto";
     }
     await commitData(next,changes,"保存资源与图标");
-    category=resource.category;revealCategory(category);selected.clear();
+    favoriteOnly=false;category=resource.category;revealCategory(category);selected.clear();
     $("editDialog").close();notice("资源已保存并提交，等待 Pages 部署完成。");
   }catch(error){$("editError").textContent=writeError(error);}
   finally{setBusy(false);}
 });
 
-/* ================= 文件上传 ================= */
+/* ================= 上传 ================= */
 function primary(path){
   return [
     "html","htm","pdf","doc","docx","odt","rtf","xls","xlsx","ods","csv","ppt","pptx","odp",
@@ -1676,9 +1819,8 @@ function primary(path){
   ].includes(ext(path));
 }
 function updateUploadPath(){
-  try{
-    $("uPath").textContent="实际目录："+destination($("uCategory").value,$("uSubdir").value)+"/";
-  }catch(error){$("uPath").textContent=error.message;}
+  try{$("uPath").textContent="实际目录："+destination($("uCategory").value,$("uSubdir").value)+"/";}
+  catch(error){$("uPath").textContent=error.message;}
 }
 function openUpload(){
   if(!canWrite())return;
@@ -1723,8 +1865,7 @@ function uploadedResource(categoryId,plan,files,root=""){
     id:crypto.randomUUID(),title:(title||"未命名资源").slice(0,100),category:categoryId,
     type:["html","htm"].includes(ext(plan.relative))?"tool":"resource",
     url:publicPath(plan.repoPath),description:"",iconUrl:"",
-    iconPreset:guessIcon(ext(plan.relative)),iconMode:"builtin",
-    managedFiles:files,bundleRoot:root
+    iconPreset:guessIcon(ext(plan.relative)),iconMode:"builtin",managedFiles:files,bundleRoot:root
   };
 }
 function upsert(next,resource){
@@ -1743,14 +1884,11 @@ $("startUpload").addEventListener("click",async()=>{
     if(uploadFolder&&$("uEntries").checked&&!$("uEntry").value)
       throw Error("没有入口文件，可取消自动创建入口。");
   }catch(error){$("uError").textContent=error.message;return;}
-
   const overwrite=$("uOverwrite").checked;
   if(!confirm(`上传 ${uploadFiles.length} 个文件到：\n${target}/\n`+
     `同名文件${overwrite?"覆盖":"跳过"}。内容将公开发布，继续？`))return;
-
   setBusy(true);$("uError").textContent="";$("uProgress").hidden=false;
   $("uProgress").max=uploadFiles.length;$("uProgress").value=0;
-
   try{
     await assertFresh();
     const plans=uploadFiles.map(x=>({...x,relative:x.path,repoPath:target+"/"+x.path}));
@@ -1769,16 +1907,14 @@ $("startUpload").addEventListener("click",async()=>{
         const root=target+"/"+entry.relative.split("/")[0];
         upsert(next,uploadedResource(categoryId,entry,plans.map(p=>p.repoPath),root));
       }else{
-        plans.filter(p=>primary(p.relative)).forEach(plan=>{
-          upsert(next,uploadedResource(categoryId,plan,[plan.repoPath]));
-        });
+        plans.filter(p=>primary(p.relative)).forEach(plan=>
+          upsert(next,uploadedResource(categoryId,plan,[plan.repoPath])));
       }
     }
     validate(next);
     const changes=new Map();let uploaded=0,skipped=0;
     for(let i=0;i<plans.length;i++){
-      const plan=plans[i];
-      $("uStatus").textContent=`处理 ${i+1}/${plans.length}\n${plan.repoPath}`;
+      const plan=plans[i];$("uStatus").textContent=`处理 ${i+1}/${plans.length}\n${plan.repoPath}`;
       if(snap.leaves.has(plan.repoPath)&&!overwrite)skipped++;
       else{
         const sha=await blob(new Uint8Array(await plan.file.arrayBuffer()));
@@ -1788,9 +1924,8 @@ $("startUpload").addEventListener("click",async()=>{
     }
     $("uStatus").textContent="正在统一提交文件与资源入口…";
     await commitData(next,changes,"批量上传资源");
-    category=categoryId;revealCategory(category);selected.clear();uploadFiles=[];
-    $("uStatus").textContent=
-      `已提交：上传 ${uploaded} 个，跳过同名 ${skipped} 个。\n等待 Pages 部署完成后，即可直接打开资源。`;
+    favoriteOnly=false;category=categoryId;revealCategory(category);selected.clear();uploadFiles=[];
+    $("uStatus").textContent=`已提交：上传 ${uploaded} 个，跳过同名 ${skipped} 个。\n等待 Pages 部署完成后，即可打开资源。`;
     notice("上传成功，文件和入口已一起提交。");
   }catch(error){$("uError").textContent=writeError(error);}
   finally{setBusy(false);}
@@ -1810,8 +1945,7 @@ function movePlan(ids,categoryId,subdir){
   const target=destination(categoryId,subdir);
   const chosen=data.resources.filter(r=>ids.includes(r.id));
   if(!chosen.length)throw Error("没有选择有效资源。");
-  const records=[],roots=[],sourceFiles=new Set(),warnings=[];
-  let external=0;
+  const records=[],roots=[],sourceFiles=new Set(),warnings=[];let external=0;
 
   for(const r of chosen){
     const entry=localPath(r.url);
@@ -1834,11 +1968,9 @@ function movePlan(ids,categoryId,subdir){
   const outerRoots=unique(roots).filter(root=>
     !roots.some(other=>other!==root&&root.startsWith(other+"/")));
   const mapping=new Map(),rootMap=new Map();
-
   for(const root of outerRoots){
     const nextRoot=target+"/"+basename(root);
-    if(nextRoot!==root&&nextRoot.startsWith(root+"/"))
-      throw Error("不能把工具移动到它自身内部："+root);
+    if(nextRoot!==root&&nextRoot.startsWith(root+"/"))throw Error("不能把工具移动到它自身内部："+root);
     rootMap.set(root,nextRoot);
   }
   for(const from of sourceFiles){
@@ -1847,8 +1979,7 @@ function movePlan(ids,categoryId,subdir){
     if(dest===from)continue;
     if(sourceFiles.has(dest))throw Error("目标与本批次另一个源文件冲突："+dest);
     assertWritePath(dest);
-    if(snap.leaves.has(dest))throw Error(
-      "目标已有同名文件，未执行移动：\n"+dest+"\n请另选子文件夹或先处理重名文件。");
+    if(snap.leaves.has(dest))throw Error("目标已有同名文件，未执行移动：\n"+dest+"\n请另选子文件夹或处理重名文件。");
     mapping.set(from,dest);
   }
   const destinations=[...mapping.values()];
@@ -1884,8 +2015,7 @@ function openMove(ids,target=null){
   showMovePlan();$("moveDialog").showModal();
 }
 function remapURL(value,mapping){
-  const path=localPath(value);
-  if(!path||!mapping.has(path))return value;
+  const path=localPath(value);if(!path||!mapping.has(path))return value;
   const u=new URL(safeURL(value));return publicPath(mapping.get(path))+u.search+u.hash;
 }
 $("startMove").addEventListener("click",async()=>{
@@ -1894,7 +2024,6 @@ $("startMove").addEventListener("click",async()=>{
   try{plan=movePlan(moveIds,$("mCategory").value,$("mSubdir").value);}
   catch(error){$("mError").textContent=error.message;return;}
   if(plan.warnings.length&&!confirm(plan.warnings.join("\n")+"\n仍然继续？"))return;
-
   setBusy(true);$("mError").textContent="";
   try{
     await assertFresh();
@@ -1905,13 +2034,10 @@ $("startMove").addEventListener("click",async()=>{
     const next=copy(data),ids=new Set(moveIds);
     for(const r of next.resources){
       const oldRoot=r.bundleRoot,oldFiles=[...r.managedFiles];
-      r.url=remapURL(r.url,plan.mapping);
-      r.iconUrl=remapURL(r.iconUrl,plan.mapping);
+      r.url=remapURL(r.url,plan.mapping);r.iconUrl=remapURL(r.iconUrl,plan.mapping);
       r.managedFiles=unique(oldFiles.map(path=>plan.mapping.get(path)||path));
-
       if(oldRoot){
-        const outer=[...plan.rootMap.keys()].find(path=>
-          oldRoot===path||oldRoot.startsWith(path+"/"));
+        const outer=[...plan.rootMap.keys()].find(path=>oldRoot===path||oldRoot.startsWith(path+"/"));
         if(outer){
           const candidate=plan.rootMap.get(outer)+oldRoot.slice(outer.length);
           r.bundleRoot=r.managedFiles.every(path=>path.startsWith(candidate+"/"))?candidate:"";
@@ -1925,17 +2051,16 @@ $("startMove").addEventListener("click",async()=>{
           if(record.root){
             const outer=[...plan.rootMap.keys()].find(path=>
               record.root===path||record.root.startsWith(path+"/"));
-            r.bundleRoot=outer?
-              plan.rootMap.get(outer)+record.root.slice(outer.length):record.root;
+            r.bundleRoot=outer?plan.rootMap.get(outer)+record.root.slice(outer.length):record.root;
           }
         }
       }
     }
     await commitData(next,changes,"批量移动资源及同步链接");
-    category=$("mCategory").value;revealCategory(category);selected.clear();
+    favoriteOnly=false;category=$("mCategory").value;revealCategory(category);selected.clear();
     $("moveDialog").close();
     notice(`已提交：调整 ${plan.chosen.length} 项资源，实际移动 ${plan.mapping.size} 个文件。\n`+
-      "等待最新 Pages 部署完成。旧地址不会自动重定向。");
+      "收藏关系保持不变。等待最新 Pages 部署完成；旧地址不会自动重定向。");
   }catch(error){$("mError").textContent=writeError(error);}
   finally{setBusy(false);}
 });
@@ -1950,14 +2075,12 @@ async function deleteBatch(ids,categoryIds=null){
   if(!canWrite())return;
   const idSet=new Set(ids),removed=data.resources.filter(r=>idSet.has(r.id));
   if(!removed.length&&!categoryIds){notice("请先勾选资源。");return;}
-
   const next=copy(data);next.resources=next.resources.filter(r=>!idSet.has(r.id));
   if(categoryIds)next.categories=next.categories.filter(c=>!categoryIds.has(c.id));
   const retained=new Set(),candidates=new Set();
   next.resources.forEach(r=>references(r).forEach(path=>retained.add(path)));
   removed.forEach(r=>references(r).forEach(path=>candidates.add(path)));
   const changes=new Map();let shared=0;
-
   for(const path of candidates){
     if(retained.has(path)){shared++;continue;}
     if(snap.leaves.has(path))changes.set(path,null);
@@ -1967,15 +2090,14 @@ async function deleteBatch(ids,categoryIds=null){
     `\n同时删除 ${changes.size} 个 GitHub 文件。`+
     (shared?`\n保留 ${shared} 个仍被其他入口引用的文件。`:"")+
     (categoryIds?"\n注意：包括该分类的所有下级分类及资源。":"")+
-    "\n\n"+removed.slice(0,12).map(r=>"• "+r.title).join("\n")+
-    (removed.length>12?"\n…":"")+
+    (favoriteOnly?"\n这是删除资源，不是取消收藏。只取消收藏请点击星标。":"")+
+    "\n\n"+removed.slice(0,12).map(r=>"• "+r.title).join("\n")+(removed.length>12?"\n…":"")+
     "\n\n立即提交。未记录依赖、无入口文件和目录占位文件不自动删除；Git 历史仍保留旧内容。"
   ))return;
-
   setBusy(true);
   try{
     await commitData(next,changes,"批量删除资源及关联文件");
-    selected.clear();notice("删除已提交，等待 Pages 部署完成。");
+    selected.clear();notice("删除已提交，等待 Pages 部署完成。已删除资源不再显示在收藏列表中。");
   }catch(error){notice(writeError(error),true);}
   finally{setBusy(false);}
 }
@@ -1985,14 +2107,14 @@ $("deleteCategory").addEventListener("click",()=>{
   deleteBatch(data.resources.filter(r=>categories.has(r.category)).map(r=>r.id),categories);
 });
 
-/* ================= 备份、导入及界面事件 ================= */
+/* ================= 备份与导入 ================= */
 $("exportBtn").addEventListener("click",()=>{
   if(!token||busy)return;
+  // 仓库配置备份包含分类顺序，不包含各浏览器的个人收藏。
   const file=new Blob([JSON.stringify(data,null,2)],{type:"application/json;charset=utf-8"});
   const url=URL.createObjectURL(file),a=node("a");
   a.href=url;a.download="grouptools-backup-"+new Date().toISOString().slice(0,10)+".json";
-  document.body.append(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),10000);
+  document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
 });
 $("importBtn").addEventListener("click",()=>{
   if(!canWrite())return;$("importFile").value="";$("importFile").click();
@@ -2003,14 +2125,15 @@ $("importFile").addEventListener("change",async event=>{
   setBusy(true);
   try{
     const next=validate(JSON.parse(await file.text()));
-    if(!confirm("导入并立即提交配置？\n不会移动或删除实际文件。"+
+    if(!confirm("导入并立即提交配置？\n包含分类顺序，但不包含个人收藏。不会移动或删除实际文件。"+
       "只导入可信备份，关联记录会影响后续移动和删除。"))return;
     await commitData(next,new Map(),"导入资源配置");
-    category=null;selected.clear();notice("配置已导入并提交，等待 Pages 部署完成。");
+    favoriteOnly=false;category=null;selected.clear();notice("配置已导入并提交，等待 Pages 部署完成。");
   }catch(error){notice(writeError(error),true);}
   finally{setBusy(false);}
 });
 
+/* ================= 界面事件 ================= */
 $("uploadBtn").addEventListener("click",openUpload);
 $("newBtn").addEventListener("click",()=>openEdit());
 $("pickFiles").addEventListener("click",()=>{
@@ -2027,26 +2150,19 @@ $("mCategory").addEventListener("change",showMovePlan);
 $("mSubdir").addEventListener("input",showMovePlan);
 $("batchMove").addEventListener("click",()=>openMove([...selected]));
 $("batchDelete").addEventListener("click",()=>deleteBatch([...selected]));
-$("clearSelection").addEventListener("click",()=>{
-  selected.clear();updateSelectionUI();
-});
+$("clearSelection").addEventListener("click",()=>{selected.clear();updateSelectionUI();});
 $("selectAll").addEventListener("change",event=>{
-  visibleResources().forEach(r=>{
-    event.target.checked?selected.add(r.id):selected.delete(r.id);
-  });
+  visibleResources().forEach(r=>event.target.checked?selected.add(r.id):selected.delete(r.id));
   updateSelectionUI();
 });
 $("search").addEventListener("input",event=>{
   query=event.target.value;selected.clear();renderResources();
 });
 document.querySelectorAll("[data-filter]").forEach(n=>{
-  n.addEventListener("click",()=>{
-    filter=n.dataset.filter;selected.clear();render();
-  });
+  n.addEventListener("click",()=>{filter=n.dataset.filter;selected.clear();render();});
 });
 function setView(value){
-  grid=value;try{localStorage.setItem("grouptools-grid",grid?"1":"0");}catch{}
-  render();
+  grid=value;try{localStorage.setItem("grouptools-grid",grid?"1":"0");}catch{}render();
 }
 $("listView").addEventListener("click",()=>setView(false));
 $("gridView").addEventListener("click",()=>setView(true));
@@ -2057,9 +2173,7 @@ $("menuBtn").addEventListener("click",()=>{
   $("menuBtn").setAttribute("aria-expanded",String(open));
 });
 $("sidebarBackdrop").addEventListener("click",closeSidebar);
-document.addEventListener("keydown",event=>{
-  if(event.key==="Escape")closeSidebar();
-});
+document.addEventListener("keydown",event=>{if(event.key==="Escape")closeSidebar();});
 $("hideNotice").addEventListener("click",()=>notice(""));
 document.querySelectorAll("[data-close]").forEach(n=>{
   n.addEventListener("click",()=>{if(!busy)$(n.dataset.close).close();});
@@ -2068,9 +2182,7 @@ document.querySelectorAll("dialog").forEach(n=>{
   n.addEventListener("cancel",event=>{if(busy)event.preventDefault();});
 });
 $("loginDialog").addEventListener("close",()=>{$("tokenInput").value="";});
-$("editDialog").addEventListener("close",()=>{
-  clearPendingIcon();$("iconPreview").replaceChildren();
-});
+$("editDialog").addEventListener("close",()=>{clearPendingIcon();$("iconPreview").replaceChildren();});
 window.addEventListener("beforeunload",event=>{
   if(busy&&token){event.preventDefault();event.returnValue="";}
 });
@@ -2091,6 +2203,7 @@ async function bootstrap(){
       if(!response.ok)throw Error("配置加载失败。");
       data=validate(await response.json());
     }
+    if(favoriteStorageWarning)notice(favoriteStorageWarning,true);
   }catch(error){
     data={version:1,categories:[],resources:[]};
     notice(error.name==="AbortError"?"资源加载超时，请刷新。":error.message,true);
