@@ -314,6 +314,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "6ee1296c-8084-4976-bc50-d7ffcf649c0e",
+      "title": "常用软件",
+      "category": "materials",
+      "type": "tool",
+      "url": "https://pan.yzu.edu.cn/share/eca89c0a81ee23c6a5f6b08953",
+      "description": "提取密码为我办公室门牌号，四个字符",
+      "iconUrl": "./icon/9b5b5a74-2a15-4189-b927-ff796209d02e.png",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
