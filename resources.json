@@ -236,6 +236,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "98141f12-b84f-448c-b17f-08e6697369ff",
+      "title": "国家专利检索",
+      "category": "e485ac46-8497-4d04-9e5b-0e47e36d9785",
+      "type": "tool",
+      "url": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
