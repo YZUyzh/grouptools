@@ -1,0 +1,37 @@
+{
+  "version": 11,
+  "updatedAt": "",
+  "journals": [
+    {
+      "id": "j:fdf53520-7aa2-41b7-8509-edce0c45b06f",
+      "name": "中国电机工程学报",
+      "issns": [],
+      "aliases": [],
+      "home": "",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/ZGDC?pcode=CJFD,CCJD",
+          "title": "中国电机工程学报-CNKI",
+          "verifiedAt": "2026-09-15T05:40:33.558Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S4306524031"
+    }
+  ],
+  "manual": {},
+  "settings": {
+    "auto": true,
+    "concurrency": 2,
+    "quick": 100,
+    "months": 12,
+    "limit": 1000,
+    "cacheLimit": 5000,
+    "pageSize": 20
+  }
+}
