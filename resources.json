@@ -30,6 +30,12 @@
       "name": "网址大全",
       "parent": "tools",
       "directory": "files/常用工具-ef46255c/网址大全-ee7ce3a5"
+    },
+    {
+      "id": "e485ac46-8497-4d04-9e5b-0e47e36d9785",
+      "name": "文献检索",
+      "parent": null,
+      "directory": "files/文献检索-08d93a4d"
     }
   ],
   "resources": [
