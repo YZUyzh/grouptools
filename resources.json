@@ -415,6 +415,21 @@
         "files/常用工具-ef46255c/成果汇编-9ad74faf/会议-49e38935/Electric Vehicle Load Forecasting Based on Probabilistic Modeling and Deep Learning.pdf"
       ],
       "bundleRoot": ""
+    },
+    {
+      "id": "581ce4ee-6c7d-4d67-baea-f12d0eedc7c7",
+      "title": "Hosting Capacity Assessment of Distribution Networks with PV and EV Charging Stations",
+      "category": "8f78a628-3742-4698-a3f4-4356b8846445",
+      "type": "resource",
+      "url": "./files/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7-ef46255c/%E6%88%90%E6%9E%9C%E6%B1%87%E7%BC%96-9ad74faf/%E4%BC%9A%E8%AE%AE-49e38935/Hosting%20Capacity%20Assessment%20of%20Distribution%20Networks%20with%20PV%20and%20EV%20Charging%20Stations.pdf",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "pdf",
+      "iconMode": "builtin",
+      "managedFiles": [
+        "files/常用工具-ef46255c/成果汇编-9ad74faf/会议-49e38935/Hosting Capacity Assessment of Distribution Networks with PV and EV Charging Stations.pdf"
+      ],
+      "bundleRoot": ""
     }
   ]
 }
