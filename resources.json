@@ -275,6 +275,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "2c547f2c-4487-4e6a-83f8-4b93b875ea0c",
+      "title": "ColorSpace",
+      "category": "d448c715-17da-4149-81d9-2e4bb3196b48",
+      "type": "tool",
+      "url": "https://mycolor.space/",
+      "description": "配图调色工具",
+      "iconUrl": "",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
