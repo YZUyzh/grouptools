@@ -301,6 +301,19 @@
       "iconMode": "auto",
       "managedFiles": [],
       "bundleRoot": ""
+    },
+    {
+      "id": "47edc737-5ad3-4f04-8192-c65cf2750445",
+      "title": "PDF派",
+      "category": "d448c715-17da-4149-81d9-2e4bb3196b48",
+      "type": "tool",
+      "url": "https://www.pdfpai.com/",
+      "description": "几十个强大的PDF在线工具，无限次使用，永久免费，没有注册入口，人人都是VIP！",
+      "iconUrl": "./icon/30a8f792-beef-4c25-bcf9-bc69d25c5e96.png",
+      "iconPreset": "auto",
+      "iconMode": "auto",
+      "managedFiles": [],
+      "bundleRoot": ""
     }
   ]
 }
