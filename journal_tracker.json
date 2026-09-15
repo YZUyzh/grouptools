@@ -1,7 +1,87 @@
 {
   "version": 11,
-  "updatedAt": "2026-09-15T06:13:57.105Z",
+  "updatedAt": "2026-09-15T06:16:46.604Z",
   "journals": [
+    {
+      "id": "j:6f85fc3d-9b76-4686-94ac-d6ece5b3d9ec",
+      "name": "IEEE Transactions on Smart Grid",
+      "issns": [
+        "1949-3053",
+        "1949-3061"
+      ],
+      "aliases": [
+        "TSG"
+      ],
+      "home": "http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165411",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S59604973"
+    },
+    {
+      "id": "j:72a3064a-4d4f-430b-931e-50ee7560f0ba",
+      "name": "IEEE Transactions on Power Systems",
+      "issns": [
+        "0885-8950",
+        "1558-0679"
+      ],
+      "aliases": [
+        "TPWRS"
+      ],
+      "home": "http://ieeexplore.ieee.org/servlet/opac?punumber=59",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S201921491"
+    },
+    {
+      "id": "j:2c69a4da-4fd0-4df3-99b6-d2fb775508f0",
+      "name": "Applied Energy",
+      "issns": [
+        "0306-2619",
+        "1872-9118"
+      ],
+      "aliases": [
+        "应用能源"
+      ],
+      "home": "https://www.journals.elsevier.com/applied-energy",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S109565702"
+    },
+    {
+      "id": "j:592691fa-7cc7-430d-a6eb-9956a91a7d6a",
+      "name": "Energy",
+      "issns": [
+        "0360-5442",
+        "1873-6785",
+        "1751-4223",
+        "1751-4231"
+      ],
+      "aliases": [],
+      "home": "http://www.journals.elsevier.com/energy",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S2497375143"
+    },
     {
       "id": "j:fdf53520-7aa2-41b7-8509-edce0c45b06f",
       "name": "中国电机工程学报",
@@ -169,86 +249,6 @@
       "oaSource": ""
     },
     {
-      "id": "j:72a3064a-4d4f-430b-931e-50ee7560f0ba",
-      "name": "IEEE Transactions on Power Systems",
-      "issns": [
-        "0885-8950",
-        "1558-0679"
-      ],
-      "aliases": [
-        "TPWRS"
-      ],
-      "home": "http://ieeexplore.ieee.org/servlet/opac?punumber=59",
-      "feeds": [],
-      "enabled": true,
-      "use": {
-        "rss": true,
-        "cr": true,
-        "oa": true
-      },
-      "oaSource": "S201921491"
-    },
-    {
-      "id": "j:6f85fc3d-9b76-4686-94ac-d6ece5b3d9ec",
-      "name": "IEEE Transactions on Smart Grid",
-      "issns": [
-        "1949-3053",
-        "1949-3061"
-      ],
-      "aliases": [
-        "TSG"
-      ],
-      "home": "http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165411",
-      "feeds": [],
-      "enabled": true,
-      "use": {
-        "rss": true,
-        "cr": true,
-        "oa": true
-      },
-      "oaSource": "S59604973"
-    },
-    {
-      "id": "j:2c69a4da-4fd0-4df3-99b6-d2fb775508f0",
-      "name": "Applied Energy",
-      "issns": [
-        "0306-2619",
-        "1872-9118"
-      ],
-      "aliases": [
-        "应用能源"
-      ],
-      "home": "https://www.journals.elsevier.com/applied-energy",
-      "feeds": [],
-      "enabled": true,
-      "use": {
-        "rss": true,
-        "cr": true,
-        "oa": true
-      },
-      "oaSource": "S109565702"
-    },
-    {
-      "id": "j:592691fa-7cc7-430d-a6eb-9956a91a7d6a",
-      "name": "Energy",
-      "issns": [
-        "0360-5442",
-        "1873-6785",
-        "1751-4223",
-        "1751-4231"
-      ],
-      "aliases": [],
-      "home": "http://www.journals.elsevier.com/energy",
-      "feeds": [],
-      "enabled": true,
-      "use": {
-        "rss": true,
-        "cr": true,
-        "oa": true
-      },
-      "oaSource": "S2497375143"
-    },
-    {
       "id": "j:fbfe8823-25b2-4744-b4e2-0470825e066c",
       "name": "IEEE Transactions on Sustainable Energy",
       "issns": [
@@ -307,6 +307,24 @@
       "oaSource": "S815301"
     },
     {
+      "id": "j:ced197f3-5e14-42e8-812c-47734d41b4f1",
+      "name": "Journal of Modern Power Systems and Clean Energy",
+      "issns": [
+        "2196-5420",
+        "2196-5625"
+      ],
+      "aliases": [],
+      "home": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8685265",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S4210194934"
+    },
+    {
       "id": "j:797bda1d-c046-4fd4-8328-1b42b52636ed",
       "name": "Journal of Energy Storage",
       "issns": [
@@ -341,24 +359,6 @@
         "oa": true
       },
       "oaSource": "S203966947"
-    },
-    {
-      "id": "j:ced197f3-5e14-42e8-812c-47734d41b4f1",
-      "name": "Journal of Modern Power Systems and Clean Energy",
-      "issns": [
-        "2196-5420",
-        "2196-5625"
-      ],
-      "aliases": [],
-      "home": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8685265",
-      "feeds": [],
-      "enabled": true,
-      "use": {
-        "rss": true,
-        "cr": true,
-        "oa": true
-      },
-      "oaSource": "S4210194934"
     },
     {
       "id": "j:94c513e0-feda-4728-94af-e19616761227",
