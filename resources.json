@@ -8,16 +8,16 @@
       "directory": "files/常用工具-ef46255c"
     },
     {
-      "id": "materials",
-      "name": "学习资料",
-      "parent": null,
-      "directory": "files/学习资料-11338de9"
-    },
-    {
       "id": "d448c715-17da-4149-81d9-2e4bb3196b48",
       "name": "实用工具",
       "parent": null,
       "directory": "files/实用工具-c84e37c6"
+    },
+    {
+      "id": "e485ac46-8497-4d04-9e5b-0e47e36d9785",
+      "name": "文献检索",
+      "parent": null,
+      "directory": "files/文献检索-08d93a4d"
     },
     {
       "id": "c0f6dc41-89f8-4edb-b9ca-63317bea5be4",
@@ -32,10 +32,10 @@
       "directory": "files/常用工具-ef46255c/网址大全-ee7ce3a5"
     },
     {
-      "id": "e485ac46-8497-4d04-9e5b-0e47e36d9785",
-      "name": "文献检索",
+      "id": "materials",
+      "name": "学习资料",
       "parent": null,
-      "directory": "files/文献检索-08d93a4d"
+      "directory": "files/学习资料-11338de9"
     }
   ],
   "resources": [
