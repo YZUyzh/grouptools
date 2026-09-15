@@ -1,6 +1,6 @@
 {
   "version": 11,
-  "updatedAt": "",
+  "updatedAt": "2026-09-15T06:13:57.105Z",
   "journals": [
     {
       "id": "j:fdf53520-7aa2-41b7-8509-edce0c45b06f",
@@ -22,6 +22,468 @@
         "oa": true
       },
       "oaSource": "S4306524031"
+    },
+    {
+      "id": "j:0f5a4eaf-83e0-4bf3-924e-cb7f1a19a25e",
+      "name": "电网技术",
+      "issns": [
+        "1000-3673"
+      ],
+      "aliases": [
+        "Power System Technology"
+      ],
+      "home": "http://www.dwjs.com.cn/",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/DWJS?pcode=CJFD,CCJD",
+          "title": "电网技术-CNKI",
+          "verifiedAt": "2026-09-15T06:00:26.775Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S2764649243"
+    },
+    {
+      "id": "j:a8d6c726-87e0-46cb-92a6-dae6c5665d35",
+      "name": "电力系统自动化",
+      "issns": [
+        "1000-1026"
+      ],
+      "aliases": [
+        "Automation of Electric Power Systems",
+        "电自"
+      ],
+      "home": "",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/DLXT?pcode=CJFD,CCJD",
+          "title": "电力系统自动化-CNKI",
+          "verifiedAt": "2026-09-15T06:01:02.264Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S2764498263"
+    },
+    {
+      "id": "j:ab5cd4b9-148d-4d64-a14b-97d74f903933",
+      "name": "电力系统保护与控制",
+      "issns": [
+        "1674-3415"
+      ],
+      "aliases": [
+        "Power System Protection and Control"
+      ],
+      "home": "",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/JDQW?pcode=CJFD,CCJD",
+          "title": "电力系统保护与控制-CNKI",
+          "verifiedAt": "2026-09-15T06:01:45.702Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S2764567417"
+    },
+    {
+      "id": "j:a68a0e80-2b0c-4799-889e-ffe36e1f092f",
+      "name": "电力自动化设备",
+      "issns": [
+        "1006-6047"
+      ],
+      "aliases": [
+        "Electric Power Automation Equipment"
+      ],
+      "home": "",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/DLZS?pcode=CJFD,CCJD",
+          "title": "电力自动化设备-CNKI",
+          "verifiedAt": "2026-09-15T06:03:18.969Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S2764761917"
+    },
+    {
+      "id": "j:7f4006f6-4e7b-48a1-a6c1-0871757b3f09",
+      "name": "电力建设",
+      "issns": [],
+      "aliases": [],
+      "home": "",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/DLJS?pcode=CJFD,CCJD",
+          "title": "电力建设-CNKI",
+          "verifiedAt": "2026-09-15T06:03:59.435Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S4306555237"
+    },
+    {
+      "id": "j:18d7dfc3-2767-4402-856d-65961b6b25fe",
+      "name": "电力系统及其自动化学报",
+      "issns": [
+        "1003-8930"
+      ],
+      "aliases": [],
+      "home": "",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/DLZD?pcode=CJFD,CCJD",
+          "title": "电力系统及其自动化学报-CNKI",
+          "verifiedAt": "2026-09-15T06:05:32.949Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": ""
+    },
+    {
+      "id": "j:72a3064a-4d4f-430b-931e-50ee7560f0ba",
+      "name": "IEEE Transactions on Power Systems",
+      "issns": [
+        "0885-8950",
+        "1558-0679"
+      ],
+      "aliases": [
+        "TPWRS"
+      ],
+      "home": "http://ieeexplore.ieee.org/servlet/opac?punumber=59",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S201921491"
+    },
+    {
+      "id": "j:6f85fc3d-9b76-4686-94ac-d6ece5b3d9ec",
+      "name": "IEEE Transactions on Smart Grid",
+      "issns": [
+        "1949-3053",
+        "1949-3061"
+      ],
+      "aliases": [
+        "TSG"
+      ],
+      "home": "http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165411",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S59604973"
+    },
+    {
+      "id": "j:2c69a4da-4fd0-4df3-99b6-d2fb775508f0",
+      "name": "Applied Energy",
+      "issns": [
+        "0306-2619",
+        "1872-9118"
+      ],
+      "aliases": [
+        "应用能源"
+      ],
+      "home": "https://www.journals.elsevier.com/applied-energy",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S109565702"
+    },
+    {
+      "id": "j:592691fa-7cc7-430d-a6eb-9956a91a7d6a",
+      "name": "Energy",
+      "issns": [
+        "0360-5442",
+        "1873-6785",
+        "1751-4223",
+        "1751-4231"
+      ],
+      "aliases": [],
+      "home": "http://www.journals.elsevier.com/energy",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S2497375143"
+    },
+    {
+      "id": "j:fbfe8823-25b2-4744-b4e2-0470825e066c",
+      "name": "IEEE Transactions on Sustainable Energy",
+      "issns": [
+        "1949-3029",
+        "1949-3037"
+      ],
+      "aliases": [
+        "TSTE"
+      ],
+      "home": "http://ieeexplore.ieee.org/servlet/opac?punumber=5165391",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S201762130"
+    },
+    {
+      "id": "j:bee883d6-f416-4e9d-a201-72285a2501ef",
+      "name": "International Journal of Electrical Power & Energy Systems",
+      "issns": [
+        "0142-0615",
+        "1879-3517"
+      ],
+      "aliases": [
+        "IJEPES"
+      ],
+      "home": "https://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S168377509"
+    },
+    {
+      "id": "j:7996e05b-864c-45e8-bfbc-a3f6d46c2489",
+      "name": "Renewable Energy",
+      "issns": [
+        "0960-1481",
+        "1879-0682"
+      ],
+      "aliases": [],
+      "home": "https://www.journals.elsevier.com/renewable-energy",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S815301"
+    },
+    {
+      "id": "j:797bda1d-c046-4fd4-8328-1b42b52636ed",
+      "name": "Journal of Energy Storage",
+      "issns": [
+        "2352-152X",
+        "2352-1538"
+      ],
+      "aliases": [],
+      "home": "https://www.journals.elsevier.com/journal-of-energy-storage",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S2764865925"
+    },
+    {
+      "id": "j:5ccdfae5-ed1f-4111-86f5-468780cff05c",
+      "name": "IEEE Transactions on Power Delivery",
+      "issns": [
+        "0885-8977",
+        "1937-4208"
+      ],
+      "aliases": [],
+      "home": "http://ieeexplore.ieee.org/servlet/opac?punumber=61",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S203966947"
+    },
+    {
+      "id": "j:ced197f3-5e14-42e8-812c-47734d41b4f1",
+      "name": "Journal of Modern Power Systems and Clean Energy",
+      "issns": [
+        "2196-5420",
+        "2196-5625"
+      ],
+      "aliases": [],
+      "home": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8685265",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S4210194934"
+    },
+    {
+      "id": "j:94c513e0-feda-4728-94af-e19616761227",
+      "name": "Electric Power Systems Research",
+      "issns": [
+        "0378-7796",
+        "1873-2046"
+      ],
+      "aliases": [
+        "EPSR"
+      ],
+      "home": "https://www.journals.elsevier.com/electric-power-systems-research",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S151498627"
+    },
+    {
+      "id": "j:5d4107ca-f40f-4fd2-8c37-e418ae0afd36",
+      "name": "IET Generation Transmission & Distribution",
+      "issns": [
+        "1751-8687",
+        "1751-8695"
+      ],
+      "aliases": [],
+      "home": "https://ietresearch.onlinelibrary.wiley.com/journal/17518695",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S71857517"
+    },
+    {
+      "id": "j:ec638d11-5dd4-429c-a266-1c06d84c7d1f",
+      "name": "IET Renewable Power Generation",
+      "issns": [
+        "1752-1416",
+        "1752-1424"
+      ],
+      "aliases": [],
+      "home": "https://ietresearch.onlinelibrary.wiley.com/journal/17521424",
+      "feeds": [],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S42668443"
+    },
+    {
+      "id": "j:0a8f6fa5-75a7-4348-8b2f-13ad9b39198d",
+      "name": "电力需求侧管理",
+      "issns": [
+        "1009-1831"
+      ],
+      "aliases": [],
+      "home": "",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/DLXQ?pcode=CJFD,CCJD",
+          "title": "电力需求侧管理-CNKI",
+          "verifiedAt": "2026-09-15T06:12:07.213Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": ""
+    },
+    {
+      "id": "j:202c641d-87b8-484b-993c-acb0457f135d",
+      "name": "供用电",
+      "issns": [
+        "1006-6357"
+      ],
+      "aliases": [],
+      "home": "",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/GYDI?pcode=CJFD,CCJD",
+          "title": "供用电-CNKI",
+          "verifiedAt": "2026-09-15T06:13:03.446Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S2764479291"
+    },
+    {
+      "id": "j:990b7f7b-f83d-4fdf-81ed-5835eaf297ee",
+      "name": "高电压技术",
+      "issns": [
+        "1003-6520"
+      ],
+      "aliases": [],
+      "home": "",
+      "feeds": [
+        {
+          "url": "https://rss.cnki.net/knavi/rss/GDYJ?pcode=CJFD,CCJD",
+          "title": "高电压技术-CNKI",
+          "verifiedAt": "2026-09-15T06:13:53.883Z"
+        }
+      ],
+      "enabled": true,
+      "use": {
+        "rss": true,
+        "cr": true,
+        "oa": true
+      },
+      "oaSource": "S2764603912"
     }
   ],
   "manual": {},
