@@ -453,9 +453,9 @@
       "type": "tool",
       "url": "./files/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7-c84e37c6/%E9%A3%8E%E5%85%89%E6%95%B0%E6%8D%AE%E7%88%AC%E5%8F%96.html",
       "description": "",
-      "iconUrl": "",
+      "iconUrl": "./icon/a012683a-9483-4af2-b238-7f80a8a19a19.png",
       "iconPreset": "code",
-      "iconMode": "builtin",
+      "iconMode": "auto",
       "managedFiles": [
         "files/实用工具-c84e37c6/风光数据爬取.html"
       ],
