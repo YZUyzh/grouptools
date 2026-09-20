@@ -13,5 +13,20 @@
       "name": "虚拟电厂"
     }
   ],
-  "resources": []
+  "resources": [
+    {
+      "id": "239cf86e-109e-48b9-95f6-7523ebd6be5f",
+      "url": "https://mp.weixin.qq.com/s/_qjx_shQ4-VF8dIku3biLg",
+      "title": "【专家报告】福州大学 陈昌铭：算力-能量协同的数据中心能量管理及联盟优化方法",
+      "description": "",
+      "image": "",
+      "platform": "wechat",
+      "tagIds": [
+        "c7274d0f-a3b9-4f7a-9fec-c227a2e4d497"
+      ],
+      "status": "unchecked",
+      "createdAt": "2026-09-20T04:45:41.049Z",
+      "updatedAt": "2026-09-20T04:45:41.049Z"
+    }
+  ]
 }
