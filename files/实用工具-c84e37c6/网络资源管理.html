@@ -28,8 +28,7 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
   min-height:34px;padding:6px 12px;border:1px solid #dce2ec;
-  border-radius:8px;background:white;color:#7b8aa0;
-  font-size:12px;white-space:nowrap
+  border-radius:8px;background:white;color:#7b8aa0;font-size:12px;white-space:nowrap
 }
 .btn:hover:not(:disabled){background:#f8f9fc}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -92,7 +91,7 @@ h1{font-size:23px;font-weight:600;margin:3px 0 0;line-height:1.4}
 #notice{
   flex-shrink:0;padding:10px 13px;background:var(--soft);
   border:1px solid #e3dced;border-radius:8px;font-size:11px;color:#8d7bab;
-  white-space:pre-line;overflow-wrap:anywhere;max-height:110px;overflow:auto
+  white-space:pre-line;overflow-wrap:anywhere;max-height:105px;overflow:auto
 }
 #notice.error{background:#fcf1f4;border-color:#efdee3;color:#af6579}
 .workbench{
@@ -120,8 +119,7 @@ h1{font-size:23px;font-weight:600;margin:3px 0 0;line-height:1.4}
 }
 .cover-fallback{
   position:absolute;inset:0;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;gap:7px;
-  color:var(--cover-color,#a18db9)
+  justify-content:center;align-items:center;gap:7px;color:var(--cover-color,#a18db9)
 }
 .cover-fallback b{font-size:31px;opacity:.8}
 .cover-fallback small{font-size:10px;letter-spacing:1px}
@@ -280,13 +278,10 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
     <nav id="tagNav" aria-label="收藏标签"></nav>
     <div class="side-foot">
       <strong id="permissionText">访客模式 · 仅可浏览</strong>
-      扬州大学 · 课题组<br>
-      COLLECTIONS / V13
+      扬州大学 · 课题组<br>COLLECTIONS / V14 FAST
     </div>
   </aside>
-
   <button id="backdrop" type="button" aria-label="关闭导航"></button>
-
   <main>
     <header>
       <div class="header-left">
@@ -295,7 +290,7 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
       </div>
       <div class="actions">
         <span id="adminBadge" hidden>管理模式</span>
-        <button id="refreshBtn" class="btn ghost" type="button">刷新数据</button>
+        <button id="refreshBtn" class="btn ghost" type="button">刷新</button>
         <button id="addBtn" class="btn primary" type="button" hidden>＋ 添加</button>
         <button id="settingsBtn" class="btn ghost" type="button" hidden>设置</button>
         <button id="adminBtn" class="btn" type="button">管理员</button>
@@ -308,7 +303,7 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
           placeholder="搜索标题、链接、简介或标签" aria-label="搜索资源">
         <button class="btn primary" type="submit">搜索</button>
       </form>
-      <div class="search-hint">点击封面查看图文预览，点击标题打开原资源。</div>
+      <div class="search-hint">卡片使用轻量封面，点击图片查看详情。</div>
       <div id="externalLinks" hidden></div>
     </section>
 
@@ -342,7 +337,7 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
     <a id="previewUrl" target="_blank" rel="noopener noreferrer"></a>
     <p id="previewImageHint" class="hint"></p>
     <div class="dialog-actions">
-      <button id="retryCover" class="btn" type="button">重新加载封面</button>
+      <button id="retryCover" class="btn" type="button">重试封面</button>
       <button class="btn" type="button" data-close="previewDialog">关闭</button>
       <button id="previewEdit" class="btn" type="button" hidden>编辑</button>
       <a id="previewOpen" class="btn primary" target="_blank" rel="noopener noreferrer">打开原资源 ↗</a>
@@ -361,7 +356,7 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
   <p class="hint">仓库：YZUyzh/grouptools
 分支：main
 权限：Contents / Read and write</p>
-  <div class="warning">令牌只保存在当前页面内存中，不写入 HTML、仓库或浏览器存储。</div>
+  <div class="warning">令牌仅保存在当前页面内存中，不写入仓库或浏览器存储。</div>
   <div id="loginError" class="error-text" role="alert"></div>
   <div class="dialog-actions">
     <button class="btn" type="button" data-close="loginDialog">取消</button>
@@ -375,33 +370,31 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
 <form id="editForm">
 <fieldset class="lockable dialog-body">
   <h2 id="editHeading">添加收藏</h2>
-  <p class="dialog-sub">图片与资源配置在同一次 Git 提交中发布。</p>
+  <p class="dialog-sub">自动生成卡片缩略图，图片与配置一起发布。</p>
   <label class="field">资源链接
     <input id="rUrl" type="url" maxlength="4000" required placeholder="https://…">
   </label>
   <div class="actions" style="margin-bottom:13px">
     <button id="readMetadata" class="btn small" type="button">读取标题与封面</button>
   </div>
-  <label class="field">资源标题
-    <input id="rTitle" maxlength="160" required>
-  </label>
+  <label class="field">资源标题<input id="rTitle" maxlength="160" required></label>
 
   <div id="pasteArea" class="paste-area" tabindex="0" role="group" aria-label="粘贴封面图片">
     <strong>复制图片或截图，直接粘贴到编辑窗口</strong>
-    <span>Ctrl+V / ⌘V · 也可以选择本地图片</span>
+    <span>Ctrl+V / ⌘V · 保存时自动生成轻量缩略图</span>
     <div class="actions">
       <button id="pickCover" class="btn small" type="button">选择本地图片</button>
       <button id="cancelCover" class="btn small ghost" type="button" hidden>取消待上传图片</button>
     </div>
   </div>
   <input id="coverFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
-
   <label class="field">图片地址（可选）
     <input id="rImage" maxlength="4000" placeholder="HTTPS 图片地址或 ./images/…">
   </label>
   <p id="coverStatus" class="hint" role="status"></p>
   <div id="editCover"></div>
   <div class="actions">
+    <button id="optimizeCover" class="btn small" type="button">压缩现有封面</button>
     <button id="removeCover" class="btn small ghost danger" type="button">移除封面</button>
   </div>
 
@@ -419,15 +412,14 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
       </select>
     </label>
   </div>
-
   <div class="hint">收藏标签 · 可同时选择多个</div>
   <div id="tagPicker" class="tag-picker"></div>
   <div class="inline">
     <input id="draftTagName" maxlength="24" placeholder="新标签名称">
     <button id="addDraftTag" class="btn small" type="button">添加标签</button>
   </div>
-  <p class="hint">原图最大 20 MB，自动缩小并压缩。GIF 会转为静态封面。
-未保存的粘贴图片不会发布。只上传有权公开分享的图片。</p>
+  <p class="hint">原图最大 20 MB。卡片缩略图最长边不超过 640 像素，详情图不超过 1280 像素。
+GIF 转为静态封面。请只上传有权公开分享的图片。</p>
   <div id="editStatus" class="hint" role="status"></div>
   <div id="editError" class="error-text" role="alert"></div>
   <div class="dialog-actions">
@@ -463,16 +455,16 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
   <label class="field">可选：网页预览接口
     <input id="metadataApi" type="url" maxlength="2000" placeholder="https://你的服务/metadata">
   </label>
-  <p class="hint">接口用于读取标题、摘要和远程封面；不配置也可手动填写、粘贴图片。
-接口地址公开保存，不能包含私密密钥。GitHub 令牌不会发送给该接口。</p>
+  <p class="hint">不配置接口也可手动填写、粘贴图片。接口地址公开保存，不要包含私密密钥。</p>
   <div class="actions">
     <button id="refreshRepo" class="btn small" type="button">读取最新数据</button>
     <button id="exportBtn" class="btn small" type="button">备份配置</button>
     <button id="importBtn" class="btn small" type="button">导入配置</button>
     <button id="cleanInvalid" class="btn small danger" type="button">清理失效资源</button>
   </div>
-  <p class="hint">配置备份包含图片地址，不包含图片文件。
-删除收藏或更换封面不会自动删除旧图片，以免影响其他引用。</p>
+  <p class="hint">新封面生成缩略图并使用浏览器缓存；只加载可见区域附近的封面。
+旧的大图片可进入编辑，点击“压缩现有封面”后保存。
+配置备份不包含图片文件，删除收藏不会自动删除旧图片。</p>
   <div id="settingsError" class="error-text" role="alert"></div>
   <div class="dialog-actions">
     <button class="btn" type="button" data-close="settingsDialog">关闭</button>
@@ -488,23 +480,20 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
 <script>
 "use strict";
 
-/* ---------------- 配置 ---------------- */
-const VERSION="V13";
-const REPO=Object.freeze({owner:"YZUyzh",repo:"grouptools",branch:"main"});
+/* ================= 配置 ================= */
+const VERSION="V14 FAST";
+const REPO={owner:"YZUyzh",repo:"grouptools",branch:"main"};
 const DATA_FILE="visual-resource-library.json";
 const COVER_FOLDER="images/collection-covers";
 const MAX_DATA=4*1024*1024;
 const BASE=new URL("./",location.href);
-
 const $=id=>document.getElementById(id);
 const copy=v=>JSON.parse(JSON.stringify(v));
 const now=()=>new Date().toISOString();
 const uid=()=>crypto.randomUUID();
 const has=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
-
 const INITIAL={
-  version:1,
-  settings:{metadataApi:""},
+  version:1,settings:{metadataApi:""},
   tags:["学习教程","科研资料","专业知识","实用工具","行业资讯",
     "优质视频","深度文章","灵感创意","生活百科","值得再看"]
     .map((name,i)=>({id:"tag-"+i,name})),
@@ -525,18 +514,14 @@ const STATUS={
   unknown:"无法判断",invalid:"人工确认已失效"
 };
 
-let data=copy(INITIAL),token="",snapshot=null;
-let busy=false,locked=false,revision="",dataSource="正在读取";
-let activeTag=null,query="",platform="",sort="new";
+let data=copy(INITIAL),token="",snapshot=null,busy=false,locked=false;
+let revision="",dataSource="正在读取",activeTag=null,query="",platform="",sort="new";
 let editingId=null,previewId=null,draftTags=[],pickedTags=new Set();
-let pendingImage=null,pendingURL="",processing=false,imageTask=0;
-let toastTimer;
+let pending=null,pendingURL="",processing=false,imageTask=0,toastTimer;
+const memoryImages=new Map();
+const winnerURLs=new Map();
 
-/* 当前会话内的已发布封面，用于网络暂时不可用时兜底。
-   不保存令牌，也不写浏览器存储。 */
-const sessionImages=new Map();
-
-/* ---------------- 基础工具 ---------------- */
+/* ================= 基础工具 ================= */
 function node(tag,cls="",text){
   const n=document.createElement(tag);
   if(cls)n.className=cls;
@@ -544,21 +529,18 @@ function node(tag,cls="",text){
   return n;
 }
 function button(text,fn,cls="btn"){
-  const n=node("button",cls,text);n.type="button";
-  n.addEventListener("click",fn);return n;
+  const n=node("button",cls,text);n.type="button";n.addEventListener("click",fn);return n;
 }
 function link(url,cls="",text){
-  const a=node("a",cls,text);a.href=url;
-  a.target="_blank";a.rel="noopener noreferrer";
-  a.referrerPolicy="no-referrer";return a;
+  const a=node("a",cls,text);a.href=url;a.target="_blank";
+  a.rel="noopener noreferrer";a.referrerPolicy="no-referrer";return a;
 }
 function notice(text="",error=false){
   $("notice").textContent=text;$("notice").hidden=!text;
   $("notice").classList.toggle("error",error);
 }
 function toast(text){
-  clearTimeout(toastTimer);$("toast").textContent=text;
-  $("toast").hidden=false;
+  clearTimeout(toastTimer);$("toast").textContent=text;$("toast").hidden=false;
   toastTimer=setTimeout(()=>$("toast").hidden=true,3500);
 }
 function setBusy(value){
@@ -574,42 +556,33 @@ function safeURL(value){
     return ["http:","https:"].includes(u.protocol)&&!u.username&&!u.password?u.href:null;
   }catch{return null}
 }
-function safePath(value){
-  return typeof value==="string"&&value.length<=1800&&
-    value.split("/").every(p=>p&&p!=="."&&p!==".."&&
-      !/[\u0000-\u001f\u007f\\?#]/.test(p));
+function safePath(v){
+  return typeof v==="string"&&v.length<=1800&&
+    v.split("/").every(p=>p&&p!=="."&&p!==".."&&!/[\u0000-\u001f\u007f\\?#]/.test(p));
 }
-function encodedPath(path){return path.split("/").map(encodeURIComponent).join("/")}
+function enc(path){return path.split("/").map(encodeURIComponent).join("/")}
 function rawURL(path,ref=revision||REPO.branch){
-  return "https://raw.githubusercontent.com/"+
-    encodeURIComponent(REPO.owner)+"/"+encodeURIComponent(REPO.repo)+"/"+
-    encodeURIComponent(ref)+"/"+encodedPath(path);
+  return "https://raw.githubusercontent.com/"+encodeURIComponent(REPO.owner)+"/"+
+    encodeURIComponent(REPO.repo)+"/"+encodeURIComponent(ref)+"/"+enc(path);
 }
-
-/* 兼容上一版存储的绝对 Pages 图片地址和新版相对图片地址。 */
-function repositoryImagePath(value){
+function repositoryPath(value){
   if(typeof value!=="string"||!value)return null;
   try{
     let path=null;
-    if(value.startsWith("./")){
-      path=value.slice(2).split("/").map(decodeURIComponent).join("/");
-    }else{
-      const url=new URL(value);
-      const standard=new URL(
-        "https://"+REPO.owner.toLowerCase()+".github.io/"+REPO.repo+"/"
-      );
+    if(value.startsWith("./"))path=value.slice(2).split("/").map(decodeURIComponent).join("/");
+    else{
+      const u=new URL(value);
+      const standard=new URL("https://"+REPO.owner.toLowerCase()+".github.io/"+REPO.repo+"/");
       for(const base of [BASE,standard]){
-        if(url.origin===base.origin&&url.pathname.startsWith(base.pathname)){
-          path=url.pathname.slice(base.pathname.length)
-            .split("/").map(decodeURIComponent).join("/");
+        if(u.origin===base.origin&&u.pathname.startsWith(base.pathname)){
+          path=u.pathname.slice(base.pathname.length).split("/").map(decodeURIComponent).join("/");
           break;
         }
       }
-      if(url.hostname==="raw.githubusercontent.com"){
-        const parts=url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
-        if(parts[0]?.toLowerCase()===REPO.owner.toLowerCase()&&parts[1]===REPO.repo){
+      if(u.hostname==="raw.githubusercontent.com"){
+        const parts=u.pathname.split("/").filter(Boolean).map(decodeURIComponent);
+        if(parts[0]?.toLowerCase()===REPO.owner.toLowerCase()&&parts[1]===REPO.repo)
           path=parts.slice(3).join("/");
-        }
       }
     }
     return path&&safePath(path)&&/^(images|icon|files|tools)\//.test(path)?path:null;
@@ -618,24 +591,22 @@ function repositoryImagePath(value){
 function imageValue(value){
   if(value==="")return "";
   if(typeof value!=="string")throw Error("图片地址格式不正确。");
-  const path=repositoryImagePath(value.trim());
-  if(path)return "./"+encodedPath(path);
+  const path=repositoryPath(value.trim());
+  if(path)return "./"+enc(path);
   const url=safeURL(value);
-  if(!url||new URL(url).protocol!=="https:")
-    throw Error("图片请使用 HTTPS 地址或本站 ./images/… 路径。");
+  if(!url||new URL(url).protocol!=="https:")throw Error("图片需为 HTTPS 地址或本站相对路径。");
   return url;
 }
 function endpointValue(value){
   if(!value)return "";
   const url=safeURL(value);
   if(!url||new URL(url).protocol!=="https:"||new URL(url).hash)
-    throw Error("预览接口必须是 HTTPS 地址。");
+    throw Error("预览接口必须为 HTTPS 地址。");
   return url;
 }
 function detectPlatform(value){
   const safe=safeURL(value);if(!safe)return "other";
-  const h=new URL(safe).hostname;
-  const is=d=>h===d||h.endsWith("."+d);
+  const h=new URL(safe).hostname,is=d=>h===d||h.endsWith("."+d);
   if(is("channels.weixin.qq.com"))return "channels";
   if(is("mp.weixin.qq.com"))return "wechat";
   if(is("douyin.com")||is("iesdouyin.com"))return "douyin";
@@ -645,18 +616,17 @@ function detectPlatform(value){
   if(is("github.com"))return "github";
   return "other";
 }
-function dateText(value){return new Date(value).toLocaleDateString("zh-CN")}
+function dateText(v){return new Date(v).toLocaleDateString("zh-CN")}
 function validDate(v){return typeof v==="string"&&v.length<=40&&Number.isFinite(Date.parse(v))}
 function newTagName(value,tags,ignore=null){
   const name=String(value).trim();
-  if(!name||name.length>24)throw Error("标签名称需为 1～24 个字符。");
+  if(!name||name.length>24)throw Error("标签需为 1～24 个字符。");
   if(tags.some(t=>t.id!==ignore&&t.name===name))throw Error("标签名称重复。");
   return name;
 }
 function validate(value){
-  if(!value||value.version!==1||!Array.isArray(value.tags)||
-     value.tags.length>100||!Array.isArray(value.resources)||value.resources.length>10000)
-    throw Error("配置格式不正确。");
+  if(!value||value.version!==1||!Array.isArray(value.tags)||value.tags.length>100||
+     !Array.isArray(value.resources)||value.resources.length>10000)throw Error("配置格式不正确。");
   const tids=new Set(),names=new Set();
   const tags=value.tags.map(t=>{
     if(!t||typeof t.id!=="string"||!t.id||t.id.length>100||tids.has(t.id)||
@@ -671,82 +641,191 @@ function validate(value){
     const url=safeURL(r.url);
     if(!url||urls.has(url)||typeof r.title!=="string"||!r.title.trim()||r.title.length>160)
       throw Error("资源标题或链接无效，或链接重复。");
-    const description=r.description??"",image=r.image??"";
-    const p=r.platform??detectPlatform(url),status=r.status??"unchecked";
-    if(typeof description!=="string"||description.length>3000||
-       !has(PLATFORMS,p)||!has(STATUS,status)||!Array.isArray(r.tagIds)||
-       r.tagIds.length>100||r.tagIds.some(id=>!tids.has(id))||
-       !validDate(r.createdAt)||!validDate(r.updatedAt))
-      throw Error("资源简介、平台、状态、标签或日期无效。");
+    const description=r.description??"",p=r.platform??detectPlatform(url),status=r.status??"unchecked";
+    if(typeof description!=="string"||description.length>3000||!has(PLATFORMS,p)||
+       !has(STATUS,status)||!Array.isArray(r.tagIds)||r.tagIds.length>100||
+       r.tagIds.some(id=>!tids.has(id))||!validDate(r.createdAt)||!validDate(r.updatedAt))
+      throw Error("资源字段无效。");
     ids.add(r.id);urls.add(url);
     return {
-      id:r.id,url,title:r.title.trim(),description,image:imageValue(image),
+      id:r.id,url,title:r.title.trim(),description,
+      image:imageValue(r.image??""),thumbnail:imageValue(r.thumbnail??""),
       platform:p,status,tagIds:[...new Set(r.tagIds)],
       createdAt:r.createdAt,updatedAt:r.updatedAt
     };
   });
   const endpoint=value.settings?.metadataApi??"";
-  if(typeof endpoint!=="string"||endpoint.length>2000)throw Error("预览接口配置无效。");
+  if(typeof endpoint!=="string"||endpoint.length>2000)throw Error("接口配置无效。");
   return {version:1,settings:{metadataApi:endpointValue(endpoint)},tags,resources};
 }
 
-/* ---------------- 封面加载 ---------------- */
+/* ================= 图片本地缓存 =================
+   仅缓存本页面新上传、UUID 命名的图片。
+   不缓存令牌。最多保留约 200 个图片记录。
+*/
+const dbPromise=new Promise(resolve=>{
+  try{
+    const request=indexedDB.open("grouptools-cover-fast",1);
+    request.onupgradeneeded=()=>{
+      const store=request.result.createObjectStore("images",{keyPath:"key"});
+      store.createIndex("time","time");
+    };
+    request.onsuccess=()=>resolve(request.result);
+    request.onerror=()=>resolve(null);
+    request.onblocked=()=>resolve(null);
+  }catch{resolve(null)}
+});
+const cacheKey=path=>REPO.owner+"/"+REPO.repo+"/"+path;
+async function getCachedImage(path){
+  if(memoryImages.has(path))return memoryImages.get(path);
+  const db=await dbPromise;if(!db)return null;
+  return new Promise(resolve=>{
+    try{
+      const req=db.transaction("images").objectStore("images").get(cacheKey(path));
+      req.onerror=()=>resolve(null);
+      req.onsuccess=()=>{
+        const blob=req.result?.blob;
+        if(!(blob instanceof Blob)){resolve(null);return}
+        if(!memoryImages.has(path))memoryImages.set(path,URL.createObjectURL(blob));
+        resolve(memoryImages.get(path));
+      };
+    }catch{resolve(null)}
+  });
+}
+async function cacheUploadedImage(path,blob){
+  if(!memoryImages.has(path))memoryImages.set(path,URL.createObjectURL(blob));
+  const db=await dbPromise;if(!db)return;
+  try{
+    const tx=db.transaction("images","readwrite"),store=tx.objectStore("images");
+    store.put({key:cacheKey(path),blob,time:Date.now()});
+    const count=store.count();
+    count.onsuccess=()=>{
+      let remove=Math.max(0,count.result-200);
+      if(!remove)return;
+      const cursor=store.index("time").openCursor();
+      cursor.onsuccess=()=>{
+        const c=cursor.result;
+        if(c&&remove-->0){c.delete();c.continue()}
+      };
+    };
+  }catch{}
+}
+
+/* ================= 快速封面加载 =================
+   1. 视口附近才请求；
+   2. 已命中地址或本地上传缓存优先；
+   3. 本站地址先试，900ms 后才启动 raw 备用；
+   4. 谁先成功显示谁；
+   5. 不使用 hidden + loading=lazy，不添加随机时间戳破坏缓存。
+*/
 function imageCandidates(value){
   if(!value)return [];
   if(value.startsWith("blob:"))return [value];
-  const path=repositoryImagePath(value);
+  const path=repositoryPath(value);
   if(!path)return [value];
-
-  const list=[rawURL(path)];
-  if(sessionImages.has(path))list.push(sessionImages.get(path));
-
-  /* 未取得精确版本时才使用带时间参数的 Pages 地址兜底；
-     有精确提交版本时，不用旧 Pages 图片冒充最新封面。 */
-  if(!revision){
-    const u=new URL("./"+encodedPath(path),BASE);
-    u.searchParams.set("v",Date.now());
-    list.push(u.href);
-  }
-  return [...new Set(list)];
+  return [...new Set([
+    new URL("./"+enc(path),BASE).href,
+    rawURL(path)
+  ])];
 }
-function makeCover(resource,eager=false){
+let observer=null;
+if("IntersectionObserver" in window){
+  observer=new IntersectionObserver(entries=>{
+    for(const entry of entries){
+      if(entry.isIntersecting){
+        observer.unobserve(entry.target);
+        entry.target._startCover?.();
+      }
+    }
+  },{root:$("scroll"),rootMargin:"220px",threshold:0.01});
+}
+function makeCover(resource,eager=false,full=false){
   const p=PLATFORMS[resource.platform]||PLATFORMS.other;
   const box=node("div","cover");
-  box.style.setProperty("--cover-bg",p.bg);
-  box.style.setProperty("--cover-color",p.color);
+  box.style.setProperty("--cover-bg",p.bg);box.style.setProperty("--cover-color",p.color);
   const fallback=node("div","cover-fallback");
-  fallback.append(node("b","",p.short),node("small","",p.name));
-  box.append(fallback);
+  fallback.append(node("b","",p.short),node("small","",p.name));box.append(fallback);
 
-  const candidates=imageCandidates(resource.image);
-  if(candidates.length){
-    const state=node("span","cover-state","封面加载中");
-    const img=node("img");
-    img.alt=(resource.title||"资源")+"的封面";
-    img.referrerPolicy="no-referrer";
-    img.decoding="async";
-    img.loading=eager?"eager":"lazy";
-    img.hidden=true;
-    let index=0;
-    img.onload=()=>{
-      img.hidden=false;fallback.hidden=true;state.remove();
-    };
-    img.onerror=()=>{
-      if(++index<candidates.length){img.src=candidates[index];return}
-      img.remove();state.textContent="封面加载失败";
-      state.classList.add("error");
-      state.title="点击预览后可重新加载；若为远程图片，建议改为粘贴上传。";
-    };
-    box.append(img,state);img.src=candidates[0];
-  }else{
-    const hint=node("span","cover-state","未设置封面");
-    box.append(hint);
+  const value=full?(resource.image||resource.thumbnail):(resource.thumbnail||resource.image);
+  const state=node("span","cover-state",value?"":"未设置封面");
+  if(!value){box.append(state,node("span","cover-label",p.name));return box}
+  box.append(state,node("span","cover-label",p.name));
+  const key=value+"|"+(repositoryPath(value)?revision:"");
+  let started=false,cancelled=false,done=false;
+  let delayTimer,statusTimer,timeoutTimer;
+  const attempts=new Map();
+
+  function cleanup(){
+    clearTimeout(delayTimer);clearTimeout(statusTimer);clearTimeout(timeoutTimer);
+    for(const img of attempts.values()){
+      img.onload=null;img.onerror=null;
+      if(!img.isConnected)img.removeAttribute("src");
+    }
   }
-  box.append(node("span","cover-label",p.name));
+  function succeed(img,url){
+    if(cancelled||done||!box.isConnected)return;
+    done=true;winnerURLs.set(key,url);
+    img.alt=(resource.title||"资源")+"的封面";
+    box.insertBefore(img,state);
+    fallback.remove();state.remove();cleanup();
+  }
+  function attempt(url){
+    if(cancelled||done||attempts.has(url))return;
+    const img=new Image();
+    img.decoding="async";img.referrerPolicy="no-referrer";
+    if(eager)img.fetchPriority="high";
+    attempts.set(url,img);
+    img.onload=()=>succeed(img,url);
+    img.onerror=()=>{
+      if(cancelled||done)return;
+      startBackup();
+    };
+    img.src=url;
+  }
+  const candidates=imageCandidates(value);
+  let backupStarted=false;
+  function startBackup(){
+    if(backupStarted||done||cancelled)return;
+    backupStarted=true;
+    candidates.forEach(attempt);
+  }
+  function start(){
+    if(started||cancelled)return;started=true;
+    const path=repositoryPath(value);
+    const remembered=winnerURLs.get(key);
+    if(path&&memoryImages.has(path))attempt(memoryImages.get(path));
+    else attempt(remembered||candidates[0]);
+
+    if(path){
+      getCachedImage(path).then(url=>{
+        if(url&&!done&&!cancelled)attempt(url);
+      });
+    }
+    delayTimer=setTimeout(startBackup,900);
+    statusTimer=setTimeout(()=>{
+      if(!done&&!cancelled)state.textContent="正在加载";
+    },1800);
+    timeoutTimer=setTimeout(()=>{
+      if(done||cancelled)return;
+      state.textContent="封面加载失败";state.classList.add("error");
+      state.title="可打开预览重试；外部图片建议改为粘贴上传。";
+      // 保留仍在进行的请求，网络恢复后仍可成功展示。
+    },14000);
+  }
+  box._startCover=start;
+  box._cancelCover=()=>{cancelled=true;observer?.unobserve(box);cleanup()};
+  requestAnimationFrame(()=>{
+    if(!box.isConnected)return;
+    if(eager||!observer)start();else observer.observe(box);
+  });
   return box;
 }
+function replaceContent(container,...children){
+  container.querySelectorAll(".cover").forEach(c=>c._cancelCover?.());
+  container.replaceChildren(...children);
+}
 
-/* ---------------- 界面 ---------------- */
+/* ================= 界面 ================= */
 function closeSidebar(){
   $("sidebar").classList.remove("open");$("backdrop").classList.remove("open");
 }
@@ -766,11 +845,11 @@ function filtered(){
 }
 function renderCards(){
   const list=filtered();
-  $("cards").replaceChildren(...list.map(r=>{
+  replaceContent($("cards"),...list.map((r,index)=>{
     const card=node("article","card");
     const image=button("",()=>openPreview(r.id),"cover-button");
     image.setAttribute("aria-label","预览 "+r.title);
-    image.append(makeCover(r));card.append(image);
+    image.append(makeCover(r,index<4));card.append(image);
     const body=node("div","card-body");
     body.append(link(r.url,"card-title",r.title));
     if(r.description)body.append(node("div","card-desc",r.description));
@@ -794,8 +873,7 @@ function renderCards(){
   $("viewTitle").textContent=activeTag?data.tags.find(t=>t.id===activeTag)?.name:"全部收藏";
   $("resultCount").textContent=list.length+" 项";
   $("empty").hidden=!!list.length;
-  $("empty").textContent=data.resources.length?
-    "没有匹配的资源。\n可清除搜索条件或点击重置。":
+  $("empty").textContent=data.resources.length?"没有匹配资源，可清除筛选条件。":
     (token?"暂无收藏。点击“添加”创建第一项资源。":"暂无已发布收藏。");
   $("footerText").textContent=`${list.length} / ${data.resources.length} 项 · ${VERSION} · `+
     (token?"管理模式":"只读浏览");
@@ -824,27 +902,24 @@ function resetFilters(){
 }
 function renderPreview(){
   const r=data.resources.find(x=>x.id===previewId);if(!r)return;
-  $("previewHero").replaceChildren(makeCover(r,true));
+  replaceContent($("previewHero"),makeCover(r,true,true));
   $("previewTitle").textContent=r.title;
-  $("previewMeta").textContent=PLATFORMS[r.platform].name+" · "+
-    dateText(r.createdAt)+" · "+STATUS[r.status];
+  $("previewMeta").textContent=PLATFORMS[r.platform].name+" · "+dateText(r.createdAt)+" · "+STATUS[r.status];
   $("previewTags").replaceChildren(...r.tagIds.map(id=>
     node("span","chip","# "+data.tags.find(t=>t.id===id).name)));
-  $("previewDescription").textContent=r.description;
-  $("previewDescription").hidden=!r.description;
+  $("previewDescription").textContent=r.description;$("previewDescription").hidden=!r.description;
   $("previewUrl").href=r.url;$("previewUrl").textContent=r.url;
-  $("previewOpen").href=r.url;
-  $("previewEdit").hidden=!token;$("previewEdit").disabled=locked;
-  const path=repositoryImagePath(r.image);
-  $("previewImageHint").textContent=!r.image?"此资源没有保存封面图片。":
-    path?"封面来自仓库："+path+"\n优先读取对应提交版本，不依赖 Pages 部署完成。":
-    "封面来自外部网站。若加载失败，可能是防盗链、地址失效或网络问题；建议管理员改为粘贴图片上传。";
+  $("previewOpen").href=r.url;$("previewEdit").hidden=!token;$("previewEdit").disabled=locked;
+  $("previewImageHint").textContent=!r.image?"未保存详情封面。":
+    repositoryPath(r.image)?
+      (r.thumbnail?"卡片加载缩略图，此处加载详情图。":"这是旧版封面，可编辑后压缩生成缩略图。"):
+      "封面来自外部网站，速度取决于原站。建议改为粘贴上传。";
 }
 function openPreview(id){
   if(busy)return;previewId=id;renderPreview();$("previewDialog").showModal();
 }
 
-/* ---------------- GitHub API ---------------- */
+/* ================= GitHub ================= */
 function apiBase(){
   return "https://api.github.com/repos/"+encodeURIComponent(REPO.owner)+"/"+encodeURIComponent(REPO.repo);
 }
@@ -861,15 +936,7 @@ async function api(path,options={},key=token){
     });
     const result=await response.json().catch(()=>({}));
     if(!response.ok){
-      const hints={
-        401:"令牌无效或已过期。",
-        403:"GitHub 拒绝访问，请检查权限、限流或仓库规则。",
-        404:"仓库对象不存在或无权访问。",
-        409:"仓库提交冲突。",
-        422:"GitHub 拒绝提交，请检查分支规则或仓库变化。"
-      };
-      const error=Error((hints[response.status]||"GitHub 请求失败。")+
-        "\nHTTP "+response.status+
+      const error=Error("GitHub 请求失败：HTTP "+response.status+
         (result.message?"\n"+String(result.message).slice(0,300):""));
       error.status=response.status;throw error;
     }
@@ -893,11 +960,9 @@ async function head(key=token){
   return (await api("/git/ref/heads/"+branchPath(),{},key)).object.sha;
 }
 async function loadAtHead(key=""){
-  const h=await head(key);
-  let file;
-  try{
-    file=await api("/contents/"+encodedPath(DATA_FILE)+"?ref="+encodeURIComponent(h),{},key);
-  }catch(error){
+  const h=await head(key);let file;
+  try{file=await api("/contents/"+enc(DATA_FILE)+"?ref="+encodeURIComponent(h),{},key)}
+  catch(error){
     if(error.status===404)return {data:validate(copy(INITIAL)),head:h,missing:true};
     throw error;
   }
@@ -912,103 +977,66 @@ async function loadAtHead(key=""){
   return {data:validate(JSON.parse(text)),head:h,missing:false};
 }
 async function fetchPublicJSON(url){
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),18000);
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
   try{
     const response=await fetch(url,{
       signal:controller.signal,cache:"no-store",credentials:"omit",referrerPolicy:"no-referrer"
     });
     if(!response.ok)throw Error("读取失败：HTTP "+response.status);
     const blob=await response.blob();
-    if(blob.size>MAX_DATA)throw Error("配置文件过大。");
+    if(blob.size>MAX_DATA)throw Error("配置过大。");
     return validate(JSON.parse(await blob.text()));
   }finally{clearTimeout(timer)}
 }
 async function loadPublic(){
-  if(!["http:","https:"].includes(location.protocol))
-    throw Error("请通过部署的网站访问，不要直接双击 HTML。");
+  if(!["http:","https:"].includes(location.protocol))throw Error("请通过部署的网站访问。");
+  try{return {...await loadAtHead(""),source:"仓库最新提交",fallback:false}}catch{}
   try{
-    const loaded=await loadAtHead("");
-    return {...loaded,source:"仓库最新提交",fallback:false};
+    return {data:await fetchPublicJSON(new URL(DATA_FILE,BASE)),
+      head:"",source:"Pages 备用配置",fallback:true};
   }catch{}
-
-  /* 公共 API 可能限流；其次读取 raw 分支，再兜底 Pages。
-     兜底时明确提示，不把旧缓存冒充最新数据。 */
-  try{
-    const url=new URL(rawURL(DATA_FILE,REPO.branch));
-    url.searchParams.set("_",Date.now());
-    return {data:await fetchPublicJSON(url),head:"",source:"仓库分支读取",fallback:true};
-  }catch{}
-
-  const url=new URL(DATA_FILE,BASE);url.searchParams.set("_",Date.now());
-  return {data:await fetchPublicJSON(url),head:"",source:"Pages 备用配置",fallback:true};
+  return {data:await fetchPublicJSON(rawURL(DATA_FILE,REPO.branch)),
+    head:"",source:"仓库分支备用",fallback:true};
 }
-
-/* ---------------- 原子提交 ----------------
-   图片 blob 和 JSON blob -> 同一个 tree -> 同一个 commit -> 更新分支。
-   不再先把图片单独发布，再发布 JSON。
-*/
 async function createBlob(bytes){
   return (await api("/git/blobs",{
     method:"POST",body:JSON.stringify({content:b64(bytes),encoding:"base64"})
   })).sha;
 }
-async function publish(next,message,imageEntry=null){
+async function publish(next,message,images=[]){
   if(!token||!snapshot||locked)throw Error("请先登录或读取最新数据。");
-  const clean=validate(next);
-  const bytes=new TextEncoder().encode(JSON.stringify(clean,null,2)+"\n");
-  if(bytes.length>MAX_DATA)throw Error("配置文件超过 4 MB。");
-
+  const clean=validate(next),bytes=new TextEncoder().encode(JSON.stringify(clean,null,2)+"\n");
+  if(bytes.length>MAX_DATA)throw Error("配置超过 4 MB。");
   const expected=snapshot.head;
-  if(await head()!==expected){
-    locked=true;throw Error("仓库已经变化，本次没有覆盖。请读取最新数据后重试。");
-  }
-
-  const parent=await api("/git/commits/"+expected);
-  const entries=[];
-
-  if(imageEntry){
-    const sha=await createBlob(new Uint8Array(await imageEntry.blob.arrayBuffer()));
-    entries.push({path:imageEntry.path,mode:"100644",type:"blob",sha});
+  if(await head()!==expected){locked=true;throw Error("仓库已经变化，请读取最新数据。")}
+  const parent=await api("/git/commits/"+expected),entries=[];
+  for(const image of images){
+    entries.push({
+      path:image.path,mode:"100644",type:"blob",
+      sha:await createBlob(new Uint8Array(await image.blob.arrayBuffer()))
+    });
   }
   entries.push({path:DATA_FILE,mode:"100644",type:"blob",sha:await createBlob(bytes)});
-
   const tree=await api("/git/trees",{
     method:"POST",body:JSON.stringify({base_tree:parent.tree.sha,tree:entries})
   });
-
-  if(await head()!==expected){
-    locked=true;throw Error("发布期间仓库发生变化，未更新分支。请读取最新数据。");
-  }
+  if(await head()!==expected){locked=true;throw Error("发布期间仓库发生变化，请读取最新数据。")}
   const commit=await api("/git/commits",{
     method:"POST",body:JSON.stringify({message,tree:tree.sha,parents:[expected]})
   });
-
   try{
     await api("/git/refs/heads/"+branchPath(),{
       method:"PATCH",body:JSON.stringify({sha:commit.sha,force:false})
     });
   }catch(error){
-    /* 响应丢失时尝试确认分支是否已成功更新。 */
-    let confirmed=false;
-    try{confirmed=(await head())===commit.sha}catch{}
-    if(!confirmed){
-      locked=true;
-      throw Error(error.message+
-        "\n未确认分支更新结果。请检查仓库并读取最新数据后继续。");
-    }
+    let confirmed=false;try{confirmed=(await head())===commit.sha}catch{}
+    if(!confirmed){locked=true;throw Error(error.message+"\n分支更新结果未确认，请读取最新数据。")}
   }
-
-  data=clean;snapshot={head:commit.sha};revision=commit.sha;
-  dataSource="已发布到仓库";
-
-  if(imageEntry){
-    if(sessionImages.has(imageEntry.path))
-      URL.revokeObjectURL(sessionImages.get(imageEntry.path));
-    sessionImages.set(imageEntry.path,URL.createObjectURL(imageEntry.blob));
-  }
+  data=clean;snapshot={head:commit.sha};revision=commit.sha;dataSource="已发布到仓库";
+  for(const image of images)cacheUploadedImage(image.path,image.blob);
 }
 function writeError(error){
-  return error.message+(locked?"\n写入已暂停，请关闭弹窗，在设置中读取最新数据。":"");
+  return error.message+(locked?"\n写入暂停，请在设置中读取最新数据。":"");
 }
 async function saveAction(next,message,errorId,dialogId=""){
   if(!canWrite())return false;
@@ -1016,71 +1044,55 @@ async function saveAction(next,message,errorId,dialogId=""){
   try{
     await publish(next,message);
     if(dialogId)$(dialogId).close();
-    notice("已发布到仓库。当前页面及退出管理后均保留最新内容。");
-    return true;
+    notice("已发布到仓库，退出管理不会回退到旧配置。");return true;
   }catch(error){$(errorId).textContent=writeError(error);return false}
-  finally{
-    setBusy(false);render();
-    if($("tagsDialog").open)renderTagManager();
-  }
+  finally{setBusy(false);render();if($("tagsDialog").open)renderTagManager()}
 }
 
-/* ---------------- 登录、刷新、退出 ---------------- */
+/* ================= 登录 / 刷新 ================= */
 async function refreshData(){
-  if(busy)return;
-  setBusy(true);
+  if(busy)return;setBusy(true);
   try{
     if(token){
       const loaded=await loadAtHead(token);
       data=loaded.data;snapshot={head:loaded.head};revision=loaded.head;
-      locked=false;dataSource="仓库最新提交";
-      notice(loaded.missing?"尚未创建收藏配置，首次保存后自动创建。":"已读取仓库最新数据。");
+      locked=false;dataSource="仓库最新提交";notice("已读取仓库最新数据。");
     }else{
       const loaded=await loadPublic();
-      /* 已知当前精确版本时，手动刷新失败不回退到不确定版本。 */
       if(revision&&loaded.fallback){
-        notice("暂时无法确认仓库最新版本，保留当前已知版本，避免回退旧内容。",true);
-        return;
+        notice("暂时无法确认最新版本，保留当前内容，避免回退。",true);return;
       }
       data=loaded.data;revision=loaded.head;dataSource=loaded.source;
-      notice(loaded.missing?"尚未创建收藏配置，请管理员登录后添加。":
-        loaded.fallback?"当前使用备用读取方式，可能受到缓存或 Pages 部署延迟影响。":"已读取仓库最新数据。",
+      notice(loaded.missing?"尚未创建收藏配置。":
+        loaded.fallback?"当前使用备用配置，可能存在部署延迟。":"已读取仓库最新数据。",
         loaded.fallback);
     }
-  }catch(error){
-    notice("刷新失败，已保留当前内容。\n"+error.message,true);
-  }finally{setBusy(false);render()}
+  }catch(error){notice("刷新失败，已保留当前内容。\n"+error.message,true)}
+  finally{setBusy(false);render()}
 }
 $("adminBtn").addEventListener("click",()=>{
   if(busy)return;
   if(token){
     token="";snapshot=null;locked=false;
     document.querySelectorAll("dialog[open]").forEach(d=>d.close());
-    clearPendingImage();
-
-    /* 修复关键：退出只移除写权限，不重新加载旧 Pages JSON。 */
-    render();
-    notice("已退出管理员。继续显示刚刚确认的仓库内容，不回退到 Pages 旧配置。");
-    return;
+    clearPending();render();notice("已退出管理员，继续显示已确认的最新内容。");return;
   }
   $("tokenInput").value="";$("loginError").textContent="";
   $("loginDialog").showModal();$("tokenInput").focus();
 });
 $("loginForm").addEventListener("submit",async event=>{
   event.preventDefault();if(busy)return;
-  let key=$("tokenInput").value.trim();$("tokenInput").value="";
-  if(!key)return;
+  let key=$("tokenInput").value.trim();$("tokenInput").value="";if(!key)return;
   setBusy(true);$("loginError").textContent="";
   try{
     if(location.protocol!=="https:")throw Error("请通过 HTTPS 页面登录。");
     const repo=await api("",{},key);
-    if(repo.private)throw Error("此页面面向公开资源库，请使用公开仓库。");
-    if(!repo.permissions?.push)throw Error("该账号没有仓库写入权限。");
+    if(repo.private)throw Error("此页面面向公开仓库。");
+    if(!repo.permissions?.push)throw Error("账号没有仓库写权限。");
     const loaded=await loadAtHead(key);
     token=key;data=loaded.data;snapshot={head:loaded.head};
     revision=loaded.head;locked=false;dataSource="仓库最新提交";
-    $("loginDialog").close();resetFilters();
-    notice("已连接仓库。封面与资源配置将一起发布。");
+    $("loginDialog").close();resetFilters();notice("已连接仓库，可粘贴图片并自动生成缩略图。");
   }catch(error){$("loginError").textContent=error.message}
   finally{key="";setBusy(false);render()}
 });
@@ -1089,56 +1101,62 @@ $("refreshRepo").addEventListener("click",async()=>{
   await refreshData();$("metadataApi").value=data.settings.metadataApi;
 });
 
-/* ---------------- 图片处理 ---------------- */
-function clearPendingImage(){
+/* ================= 图片压缩 ================= */
+function clearPending(){
   imageTask++;processing=false;
   if(pendingURL)URL.revokeObjectURL(pendingURL);
-  pendingImage=null;pendingURL="";
+  pending=null;pendingURL="";
   $("coverFile").value="";$("cancelCover").hidden=true;$("coverStatus").textContent="";
 }
-async function compressImage(file){
+async function prepareImages(file){
   if(!["image/png","image/jpeg","image/webp","image/gif"].includes(file.type))
     throw Error("请选择 PNG、JPG、WEBP 或 GIF 图片。");
-  if(file.size>20*1024*1024)throw Error("原图片不能超过 20 MB。");
+  if(file.size>20*1024*1024)throw Error("原图不能超过 20 MB。");
   const url=URL.createObjectURL(file),img=new Image();
   try{
     await new Promise((resolve,reject)=>{
-      img.onload=resolve;img.onerror=()=>reject(Error("无法读取图片。"));img.src=url;
+      img.onload=resolve;img.onerror=()=>reject(Error("图片读取失败。"));img.src=url;
     });
     const w=img.naturalWidth,h=img.naturalHeight;
-    if(!w||!h||w*h>40000000)throw Error("图片尺寸无效或超过 4000 万像素，请先缩小。");
-    let scale=Math.min(1,1600/Math.max(w,h));
-    const canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
-    if(!ctx)throw Error("浏览器不支持图片处理。");
-    for(let i=0;i<6;i++){
-      canvas.width=Math.max(1,Math.round(w*scale));
-      canvas.height=Math.max(1,Math.round(h*scale));
-      ctx.drawImage(img,0,0,canvas.width,canvas.height);
-      const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/webp",0.84-i*0.06));
-      if(!blob)throw Error("图片转换失败。");
-      if(blob.size<=1024*1024)return blob;
-      scale*=0.78;
+    if(!w||!h||w*h>40000000)throw Error("图片尺寸无效或超过 4000 万像素。");
+    async function resize(maxSide,maxBytes,quality){
+      let scale=Math.min(1,maxSide/Math.max(w,h));
+      const canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+      if(!ctx)throw Error("浏览器不支持图片处理。");
+      for(let i=0;i<7;i++){
+        canvas.width=Math.max(1,Math.round(w*scale));
+        canvas.height=Math.max(1,Math.round(h*scale));
+        ctx.drawImage(img,0,0,canvas.width,canvas.height);
+        const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/webp",Math.max(.42,quality-i*.055)));
+        if(!blob)throw Error("图片压缩失败。");
+        if(blob.size<=maxBytes)return blob;
+        scale*=.82;
+      }
+      throw Error("图片压缩后仍过大，请先裁剪。");
     }
-    throw Error("压缩后图片仍过大，请裁剪后重试。");
+    const thumb=await resize(640,90*1024,.72);
+    const full=await resize(1280,280*1024,.82);
+    return {thumb,full};
   }finally{URL.revokeObjectURL(url)}
 }
 async function receiveImage(file){
   if(!canWrite()||!file)return;
   const task=++imageTask;processing=true;
-  $("coverStatus").textContent="正在处理图片…";$("editError").textContent="";
+  $("coverStatus").textContent="正在生成轻量封面…";$("editError").textContent="";
   try{
-    const blob=await compressImage(file);
+    const result=await prepareImages(file);
     if(task!==imageTask||!$("editDialog").open)return;
     if(pendingURL)URL.revokeObjectURL(pendingURL);
-    pendingImage=blob;pendingURL=URL.createObjectURL(blob);
+    pending=result;pendingURL=URL.createObjectURL(result.thumb);
     $("cancelCover").hidden=false;
-    $("coverStatus").textContent="待发布图片 · "+Math.round(blob.size/1024)+
-      " KB。点击“保存并发布”后才会写入仓库。";
+    $("coverStatus").textContent=
+      "缩略图 "+Math.round(result.thumb.size/1024)+" KB · 详情图 "+
+      Math.round(result.full.size/1024)+" KB。保存后发布。";
     updateEditCover();
   }catch(error){
     if(task===imageTask){
       $("editError").textContent=error.message;
-      $("coverStatus").textContent=pendingImage?"仍保留上一张待发布图片。":"";
+      $("coverStatus").textContent=pending?"保留上一张待上传封面。":"";
     }
   }finally{if(task===imageTask)processing=false}
 }
@@ -1152,36 +1170,72 @@ $("editDialog").addEventListener("paste",event=>{
   if(!canWrite())return;
   const item=Array.from(event.clipboardData?.items||[])
     .find(x=>x.kind==="file"&&x.type.startsWith("image/"));
-  if(!item)return;
-  event.preventDefault();
-  const file=item.getAsFile();if(file)receiveImage(file);
+  if(item){event.preventDefault();const file=item.getAsFile();if(file)receiveImage(file)}
 });
 $("cancelCover").addEventListener("click",()=>{
-  if(!canWrite())return;clearPendingImage();updateEditCover();
+  if(!canWrite())return;clearPending();updateEditCover();
 });
 $("removeCover").addEventListener("click",()=>{
-  if(!canWrite())return;
-  clearPendingImage();$("rImage").value="";updateEditCover();
+  if(!canWrite())return;clearPending();$("rImage").value="";updateEditCover();
 });
 $("rImage").addEventListener("input",()=>{
-  if(pendingImage||processing)clearPendingImage();
-  updateEditCover();
+  if(pending||processing)clearPending();updateEditCover();
+});
+async function fetchImageBlob(url){
+  const c=new AbortController(),timer=setTimeout(()=>c.abort(),10000);
+  try{
+    const response=await fetch(url,{
+      signal:c.signal,credentials:"omit",referrerPolicy:"no-referrer"
+    });
+    if(!response.ok)throw Error("图片读取失败。");
+    const blob=await response.blob();
+    if(blob.size>20*1024*1024||!/^image\/(png|jpeg|webp|gif)$/.test(blob.type))
+      throw Error("图片格式不支持或文件过大。");
+    return blob;
+  }finally{clearTimeout(timer)}
+}
+$("optimizeCover").addEventListener("click",async()=>{
+  if(!canWrite()||processing)return;
+  let value;
+  try{value=imageValue($("rImage").value.trim())}
+  catch(error){$("editError").textContent=error.message;return}
+  if(!value){$("editError").textContent="请先设置封面图片。";return}
+  const task=++imageTask;processing=true;
+  $("editError").textContent="";$("coverStatus").textContent="正在读取现有封面…";
+  try{
+    const urls=imageCandidates(value);
+    let blob;
+    // 两个自有来源并行读取，首个成功的用于压缩。
+    blob=await Promise.any(urls.map(fetchImageBlob));
+    const result=await prepareImages(blob);
+    if(task!==imageTask||!$("editDialog").open)return;
+    if(pendingURL)URL.revokeObjectURL(pendingURL);
+    pending=result;pendingURL=URL.createObjectURL(result.thumb);
+    $("cancelCover").hidden=false;
+    $("coverStatus").textContent="已生成缩略图 "+Math.round(result.thumb.size/1024)+
+      " KB，请保存发布。";
+    updateEditCover();
+  }catch{
+    if(task===imageTask){
+      $("editError").textContent="无法读取原图片，可能受跨域或网络限制。请下载图片后选择文件，或直接复制粘贴。";
+      $("coverStatus").textContent="";
+    }
+  }finally{if(task===imageTask)processing=false}
 });
 
-/* ---------------- 编辑 ---------------- */
+/* ================= 编辑 ================= */
 function renderTagPicker(){
   $("tagPicker").replaceChildren(...draftTags.map(t=>{
     const b=button(t.name,()=>{
       if(!canWrite())return;
-      pickedTags.has(t.id)?pickedTags.delete(t.id):pickedTags.add(t.id);
-      renderTagPicker();
+      pickedTags.has(t.id)?pickedTags.delete(t.id):pickedTags.add(t.id);renderTagPicker();
     },"tag-option"+(pickedTags.has(t.id)?" active":""));
     b.setAttribute("aria-pressed",String(pickedTags.has(t.id)));return b;
   }));
 }
 function updateEditCover(){
   let image="";try{image=imageValue($("rImage").value.trim())}catch{}
-  $("editCover").replaceChildren(makeCover({
+  replaceContent($("editCover"),makeCover({
     title:$("rTitle").value,image:pendingURL||image,
     platform:$("rPlatform").value==="auto"?detectPlatform($("rUrl").value):$("rPlatform").value
   },true));
@@ -1189,15 +1243,14 @@ function updateEditCover(){
 function openEdit(id=null,url=""){
   if(!canWrite())return;
   const r=data.resources.find(x=>x.id===id);if(id&&!r)return;
-  clearPendingImage();editingId=id;
-  draftTags=copy(data.tags);pickedTags=new Set(r?.tagIds||(activeTag?[activeTag]:[]));
+  clearPending();editingId=id;draftTags=copy(data.tags);
+  pickedTags=new Set(r?.tagIds||(activeTag?[activeTag]:[]));
   $("editHeading").textContent=r?"编辑收藏":"添加收藏";
   $("rUrl").value=r?.url||url;$("rTitle").value=r?.title||"";
   $("rImage").value=r?.image||"";$("rDescription").value=r?.description||"";
   $("rPlatform").value=r?.platform||"auto";$("rStatus").value=r?.status||"unchecked";
   $("draftTagName").value="";$("editError").textContent="";$("editStatus").textContent="";
-  $("deleteResource").hidden=!r;renderTagPicker();updateEditCover();
-  $("editDialog").showModal();
+  $("deleteResource").hidden=!r;renderTagPicker();updateEditCover();$("editDialog").showModal();
 }
 $("addDraftTag").addEventListener("click",()=>{
   if(!canWrite())return;
@@ -1212,27 +1265,27 @@ $("editForm").addEventListener("submit",async event=>{
   event.preventDefault();if(!canWrite())return;
   if(processing){$("editError").textContent="图片正在处理中，请稍后保存。";return}
   $("editError").textContent="";
-  let next,old,imageEntry=null;
+  let next,old,images=[];
   try{
     next=copy(data);old=next.resources.find(r=>r.id===editingId);
     const url=safeURL($("rUrl").value);
-    if(!url)throw Error("资源链接需为完整的 HTTP / HTTPS 地址。");
-    const changed=old&&old.url!==url;
-    const status=changed?"unchecked":$("rStatus").value;
+    if(!url)throw Error("资源链接需为完整 HTTP / HTTPS 地址。");
+    const status=old&&old.url!==url?"unchecked":$("rStatus").value;
     if(status==="invalid"&&old?.status!=="invalid"&&!confirm(
-      "确认内容已删除或永久不可访问？\n登录限制、验证码、超时和 403 不等于内容删除。"
+      "确认内容已删除或永久不可访问？登录限制、验证码、超时和 403 不等于内容删除。"
     ))return;
-
-    let image;
-    if(pendingImage){
-      const ext=pendingImage.type==="image/webp"?"webp":pendingImage.type==="image/jpeg"?"jpg":"png";
-      const path=COVER_FOLDER+"/"+uid()+"."+ext;
-      imageEntry={path,blob:pendingImage};image="./"+encodedPath(path);
-    }else image=imageValue($("rImage").value.trim());
-
+    let image=imageValue($("rImage").value.trim()),thumbnail="";
+    if(pending){
+      const name=uid();
+      const ext=b=>b.type==="image/webp"?"webp":b.type==="image/jpeg"?"jpg":"png";
+      const fullPath=COVER_FOLDER+"/"+name+"-full."+ext(pending.full);
+      const thumbPath=COVER_FOLDER+"/"+name+"-thumb."+ext(pending.thumb);
+      images=[{path:fullPath,blob:pending.full},{path:thumbPath,blob:pending.thumb}];
+      image="./"+enc(fullPath);thumbnail="./"+enc(thumbPath);
+    }else if(old&&image===old.image)thumbnail=old.thumbnail||"";
     const r={
       id:old?.id||uid(),url,title:$("rTitle").value.trim(),
-      description:$("rDescription").value.trim(),image,
+      description:$("rDescription").value.trim(),image,thumbnail,
       platform:$("rPlatform").value==="auto"?detectPlatform(url):$("rPlatform").value,
       status,tagIds:[...pickedTags],createdAt:old?.createdAt||now(),updatedAt:now()
     };
@@ -1240,45 +1293,44 @@ $("editForm").addEventListener("submit",async event=>{
     if(old)next.resources[next.resources.indexOf(old)]=r;else next.resources.push(r);
     validate(next);
   }catch(error){$("editError").textContent=error.message;return}
-
-  setBusy(true);$("editStatus").textContent="正在统一提交封面与资源配置，请勿关闭页面…";
+  setBusy(true);$("editStatus").textContent="正在统一提交缩略图、详情图和配置…";
   try{
-    await publish(next,old?"更新收藏与封面":"新增收藏与封面",imageEntry);
+    await publish(next,old?"更新收藏及轻量封面":"新增收藏及轻量封面",images);
     $("editDialog").close();
-    notice("已发布：封面与资源配置属于同一次提交。\n退出管理员后仍显示最新内容，封面不必等待 Pages 部署。");
-  }catch(error){
-    $("editError").textContent=writeError(error);
-  }finally{setBusy(false);$("editStatus").textContent="";render()}
+    notice("已发布。新封面已生成轻量缩略图，并保留本地图片缓存。");
+  }catch(error){$("editError").textContent=writeError(error)}
+  finally{setBusy(false);$("editStatus").textContent="";render()}
 });
 $("deleteResource").addEventListener("click",async()=>{
   if(!canWrite()||!editingId)return;
-  if(!confirm("删除此收藏入口？\n旧封面文件保留，不删除原平台内容。"))return;
+  if(!confirm("删除此收藏入口？旧图片保留。"))return;
   const next=copy(data);next.resources=next.resources.filter(r=>r.id!==editingId);
   await saveAction(next,"删除收藏","editError","editDialog");
 });
 $("previewEdit").addEventListener("click",()=>{
   if(!canWrite())return;$("previewDialog").close();openEdit(previewId);
 });
-$("retryCover").addEventListener("click",renderPreview);
+$("retryCover").addEventListener("click",()=>{
+  winnerURLs.clear();renderPreview();
+});
 ["rUrl","rTitle","rPlatform"].forEach(id=>$(id).addEventListener("change",updateEditCover));
 $("editDialog").addEventListener("close",()=>{
-  clearPendingImage();$("editCover").replaceChildren();
+  replaceContent($("editCover"));clearPending();
 });
+$("previewDialog").addEventListener("close",()=>replaceContent($("previewHero")));
 
-/* ---------------- 元信息接口，可选 ----------------
-   POST {"url":"https://..."}
-   返回 {"title":"...","description":"...","image":"https://...","platform":"wechat"}
-   后端需实现 CORS、限流、超时、大小限制、防 SSRF 及重定向校验。
+/* ================= 元信息接口 =================
+ POST {"url":"https://..."}
+ 返回 {"title":"...","description":"...","image":"https://...","platform":"wechat"}
+ 后端必须做好 CORS、限流、超时、大小限制、防 SSRF 和重定向校验。
 */
 $("readMetadata").addEventListener("click",async()=>{
   if(!canWrite())return;
   if(processing){$("editError").textContent="请等待图片处理完成。";return}
   const url=safeURL($("rUrl").value),endpoint=data.settings.metadataApi;
   if(!url){$("editError").textContent="请先填写资源链接。";return}
-  if(!endpoint){
-    $("editError").textContent="未配置网页预览接口。可手动填写标题、简介并粘贴封面。";return;
-  }
-  if(!confirm("读取结果将更新对应字段。已粘贴的待上传图片会保留并优先使用。继续？"))return;
+  if(!endpoint){$("editError").textContent="未配置预览接口，可手动填写并粘贴封面。";return}
+  if(!confirm("读取结果将更新对应字段，已粘贴的待上传图片会保留。继续？"))return;
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
   setBusy(true);$("editError").textContent="";$("editStatus").textContent="正在读取网页信息…";
   try{
@@ -1293,32 +1345,28 @@ $("readMetadata").addEventListener("click",async()=>{
     if(typeof result.title==="string")$("rTitle").value=result.title.slice(0,160);
     const desc=result.description??result.summary;
     if(typeof desc==="string")$("rDescription").value=desc.slice(0,3000);
-    const image=result.image??result.thumbnail??result.cover;
+    const image=result.image??result.cover;
     if(typeof image==="string"&&image){
       try{$("rImage").value=imageValue(new URL(image,url).href)}catch{}
     }
     if($("rPlatform").value==="auto"&&has(PLATFORMS,result.platform))
       $("rPlatform").value=result.platform;
     updateEditCover();
-  }catch(error){
-    $("editError").textContent=(error.name==="AbortError"?"读取超时。":error.message)+
-      "\n读取失败不代表资源失效，可继续手动收录。";
-  }finally{clearTimeout(timer);setBusy(false);$("editStatus").textContent=""}
+  }catch(error){$("editError").textContent=error.name==="AbortError"?"读取超时。":error.message}
+  finally{clearTimeout(timer);setBusy(false);$("editStatus").textContent=""}
 });
 
-/* ---------------- 标签管理 ---------------- */
+/* ================= 标签 ================= */
 function renderTagManager(){
   $("tagManageList").replaceChildren(...data.tags.map(t=>{
-    const row=node("div","tag-row");
-    const title=node("span","",t.name);
+    const row=node("div","tag-row"),title=node("span","",t.name);
     title.append(node("small","",data.resources.filter(r=>r.tagIds.includes(t.id)).length+" 项"));
     const actions=node("div","actions");
     const rename=button("改名",async()=>{
       if(!canWrite())return;
       const name=prompt("标签新名称：",t.name);if(name===null)return;
       try{
-        const next=copy(data);
-        next.tags.find(x=>x.id===t.id).name=newTagName(name,data.tags,t.id);
+        const next=copy(data);next.tags.find(x=>x.id===t.id).name=newTagName(name,data.tags,t.id);
         await saveAction(next,"修改标签","tagsError");
       }catch(error){$("tagsError").textContent=error.message}
     },"btn small ghost");
@@ -1333,8 +1381,7 @@ function renderTagManager(){
   }));
 }
 $("manageTags").addEventListener("click",()=>{
-  if(!canWrite())return;
-  $("tagName").value="";$("tagsError").textContent="";
+  if(!canWrite())return;$("tagName").value="";$("tagsError").textContent="";
   renderTagManager();$("tagsDialog").showModal();
 });
 $("createTag").addEventListener("click",async()=>{
@@ -1346,10 +1393,9 @@ $("createTag").addEventListener("click",async()=>{
   }catch(error){$("tagsError").textContent=error.message}
 });
 
-/* ---------------- 设置、备份 ---------------- */
+/* ================= 设置 / 备份 ================= */
 $("settingsBtn").addEventListener("click",()=>{
-  if(!token||busy)return;
-  $("metadataApi").value=data.settings.metadataApi;
+  if(!token||busy)return;$("metadataApi").value=data.settings.metadataApi;
   $("settingsError").textContent=locked?"写入已暂停，请先读取最新数据。":"";
   $("settingsDialog").showModal();
 });
@@ -1371,8 +1417,7 @@ $("exportBtn").addEventListener("click",()=>{
   if(!token||busy)return;
   const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));
   const a=node("a");a.href=url;a.download="网络收藏配置-"+now().slice(0,10)+".json";
-  document.body.append(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),10000);
+  document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
 });
 $("importBtn").addEventListener("click",()=>{
   if(!canWrite())return;$("importFile").value="";$("importFile").click();
@@ -1383,16 +1428,14 @@ $("importFile").addEventListener("change",async event=>{
   try{
     if(file.size>MAX_DATA)throw Error("备份超过 4 MB。");
     const next=validate(JSON.parse(await file.text()));
-    if(!confirm("将替换公共配置，包含 "+next.resources.length+
-      " 项资源。只导入可信备份；预览接口设置也将替换。"))return;
-    await publish(next,"导入收藏配置");
-    $("metadataApi").value=data.settings.metadataApi;
-    notice("配置已导入。图片文件不包含在 JSON 备份中，请确保原图片仍存在。");
+    if(!confirm("替换公共配置，共 "+next.resources.length+" 项资源？仅导入可信备份。"))return;
+    await publish(next,"导入收藏配置");$("metadataApi").value=data.settings.metadataApi;
+    notice("配置已导入。JSON 不包含图片文件，请确保图片仍存在。");
   }catch(error){$("settingsError").textContent=writeError(error)}
   finally{setBusy(false);render()}
 });
 
-/* ---------------- 搜索与其他交互 ---------------- */
+/* ================= 通用交互 ================= */
 $("search").addEventListener("input",event=>{
   query=event.target.value;$("externalLinks").hidden=true;renderCards();
 });
@@ -1402,8 +1445,7 @@ $("searchForm").addEventListener("submit",event=>{
   const url=safeURL(query);
   if(url){
     const r=data.resources.find(x=>x.url===url);
-    if(r)openPreview(r.id);
-    else if(canWrite())openEdit(null,url);
+    if(r)openPreview(r.id);else if(canWrite())openEdit(null,url);
     else toast("该链接尚未收录，请由管理员添加。");
     return;
   }
@@ -1419,8 +1461,7 @@ $("searchForm").addEventListener("submit",event=>{
 $("platformFilter").append(new Option("所有平台",""));
 $("rPlatform").append(new Option("自动识别","auto"));
 Object.entries(PLATFORMS).forEach(([id,p])=>{
-  $("platformFilter").append(new Option(p.name,id));
-  $("rPlatform").append(new Option(p.name,id));
+  $("platformFilter").append(new Option(p.name,id));$("rPlatform").append(new Option(p.name,id));
 });
 $("platformFilter").addEventListener("change",event=>{platform=event.target.value;renderCards()});
 $("sort").addEventListener("change",event=>{sort=event.target.value;renderCards()});
@@ -1443,20 +1484,14 @@ $("loginDialog").addEventListener("close",()=>{$("tokenInput").value=""});
 window.addEventListener("beforeunload",event=>{
   if(busy&&token){event.preventDefault();event.returnValue=""}
 });
-
-/* 首次载入失败不伪装为已有数据。 */
 async function bootstrap(){
   render();setBusy(true);
   try{
-    const loaded=await loadPublic();
-    data=loaded.data;revision=loaded.head;dataSource=loaded.source;
-    notice(loaded.missing?"尚未创建收藏配置。管理员首次保存后自动创建。":
-      loaded.fallback?"使用备用数据源。若内容未更新，请稍后点击“刷新数据”。":"",
-      loaded.fallback);
+    const loaded=await loadPublic();data=loaded.data;revision=loaded.head;dataSource=loaded.source;
+    notice(loaded.missing?"尚未创建配置，请管理员登录后添加。":
+      loaded.fallback?"正在使用备用配置，可能存在部署延迟。":"",loaded.fallback);
   }catch(error){
-    dataSource="读取失败";
-    notice("无法读取公共资源库。\n"+error.message+
-      "\n请检查网络、仓库权限和文件路径；不会自动覆盖仓库数据。",true);
+    dataSource="读取失败";notice("无法读取资源库。\n"+error.message,true);
   }finally{setBusy(false);render()}
 }
 bootstrap();
