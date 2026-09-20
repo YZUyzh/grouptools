@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "settings": {
+    "metadataApi": ""
+  },
+  "tags": [
+    {
+      "id": "tag-0",
+      "name": "学习教程"
+    },
+    {
+      "id": "tag-1",
+      "name": "科研资料"
+    },
+    {
+      "id": "tag-2",
+      "name": "专业知识"
+    },
+    {
+      "id": "tag-3",
+      "name": "实用工具"
+    },
+    {
+      "id": "tag-4",
+      "name": "行业资讯"
+    },
+    {
+      "id": "tag-5",
+      "name": "优质视频"
+    },
+    {
+      "id": "tag-6",
+      "name": "深度文章"
+    },
+    {
+      "id": "tag-7",
+      "name": "灵感创意"
+    },
+    {
+      "id": "tag-8",
+      "name": "生活百科"
+    },
+    {
+      "id": "tag-9",
+      "name": "值得再看"
+    },
+    {
+      "id": "c7274d0f-a3b9-4f7a-9fec-c227a2e4d497",
+      "name": "算电协同"
+    }
+  ],
+  "resources": []
+}
