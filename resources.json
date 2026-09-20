@@ -467,10 +467,10 @@
       "category": "d448c715-17da-4149-81d9-2e4bb3196b48",
       "type": "tool",
       "url": "./files/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7-c84e37c6/%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86.html",
-      "description": "",
-      "iconUrl": "",
+      "description": "收藏微信公众号文章、哔站视频、知乎文章等各类网络资源",
+      "iconUrl": "./icon/ef03c3c6-45b8-40c4-b204-d3814f4eb579.png",
       "iconPreset": "code",
-      "iconMode": "builtin",
+      "iconMode": "auto",
       "managedFiles": [
         "files/实用工具-c84e37c6/网络资源管理.html"
       ],
