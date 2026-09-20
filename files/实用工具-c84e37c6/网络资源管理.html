@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light">
+<title>电力小分队 · 网络收藏</title>
+<style>
+:root{
+  --bg:#f5f6f8;--paper:#fff;--ink:#344057;--sub:#8e99ac;
+  --line:#e8ebf1;--strong:#dce2ec;
+  --accent:#7463b9;--soft:#f0edf8;--hover:#6655a9;
+  --danger:#b56676;--success:#588773
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden}
+body{
+  background:var(--bg);color:var(--ink);
+  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",
+  "PingFang SC","Microsoft YaHei",sans-serif
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;color:inherit}
+button:disabled{opacity:.45;cursor:not-allowed}
+a{color:inherit;text-decoration:none}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid #d9cfee;outline-offset:3px}
+.ico{width:18px;height:18px;display:inline-block;vertical-align:middle;flex-shrink:0}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:34px;padding:6px 12px;border:1px solid var(--strong);
+  border-radius:8px;background:#fff;color:#7f8ba0;
+  font-size:12px;white-space:nowrap
+}
+.btn:hover:not(:disabled){background:#f8f9fc;border-color:#cdd5e2}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:white}
+.btn.primary:hover:not(:disabled){background:var(--hover)}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.danger{color:var(--danger)}
+.btn.small{font-size:11px;min-height:28px;padding:4px 8px}
+.actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+#app{height:100vh;height:100dvh}
+.layout{height:100%;display:grid;grid-template-columns:230px minmax(0,1fr)}
+aside{
+  display:flex;flex-direction:column;min-height:0;
+  background:#fbfcfd;border-right:1px solid var(--line);
+  padding:27px 15px 17px
+}
+.brand{display:flex;align-items:center;gap:10px;padding:0 8px 28px}
+.brand-icon{
+  width:38px;height:38px;border-radius:11px;
+  display:grid;place-items:center;background:var(--soft);color:var(--accent)
+}
+.brand strong{display:block;font-size:16px;font-weight:600}
+.brand small{display:block;font-size:8px;letter-spacing:1.5px;color:#a4adbd;margin-top:3px}
+.nav{
+  width:100%;display:flex;align-items:center;gap:9px;text-align:left;
+  padding:10px 11px;margin:3px 0;border:0;border-radius:8px;background:none;
+  color:#8290a4;font-size:12px
+}
+.nav:hover{background:#f2f4f8}
+.nav.active{background:var(--soft);color:var(--accent)}
+.nav-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav small{font-size:10px;color:#a5afbf}
+.dot{width:7px;height:7px;border-radius:50%;background:#b7a9cd;flex-shrink:0}
+.side-label{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 10px 8px;font-size:10px;color:#a2acbc
+}
+.side-label button{background:none;border:0;color:#9c8bb4;font-size:10px;padding:0}
+#tagNav{flex:1;min-height:0;overflow:auto;scrollbar-width:thin}
+.side-foot{
+  margin-top:15px;padding:15px 9px 0;border-top:1px solid var(--line);
+  color:#a3adbd;font-size:10px;line-height:1.9
+}
+.side-foot strong{display:block;font-weight:400;color:#8c98ab;font-size:11px}
+main{
+  min-width:0;min-height:0;display:flex;flex-direction:column;
+  padding:28px 32px 16px;gap:20px
+}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.header-left{display:flex;align-items:center;gap:9px}
+.eyebrow{font-size:9px;color:#a2adbd;letter-spacing:1.5px}
+h1{font-size:23px;line-height:1.4;font-weight:600;margin:3px 0 0}
+#menuBtn{display:none}
+#adminBadge{font-size:10px;color:var(--success)}
+.search-area{max-width:950px;width:100%;margin:0 auto}
+.searchbox{
+  display:flex;align-items:center;gap:10px;padding:7px 8px 7px 15px;
+  background:#fff;border:1px solid #e1e6ef;border-radius:11px
+}
+.searchbox>.ico{color:#a8b2c1}
+#search{
+  flex:1;min-width:0;padding:7px 0;background:none;border:0;outline:none;
+  font-size:13px;color:var(--ink)
+}
+#search::placeholder{color:#acb5c4}
+#clearSearch{border:0;background:none;color:#a7b1c2;font-size:18px;padding:0 6px}
+.search-hint{font-size:10px;color:#a0abbb;margin:8px 3px 0;line-height:1.8}
+#externalLinks{display:flex;gap:12px;flex-wrap:wrap;margin:7px 3px 0}
+#externalLinks a{font-size:10px;color:#9480b3}
+#notice{
+  flex-shrink:0;padding:10px 13px;border:1px solid #e4ddf0;border-radius:8px;
+  background:var(--soft);color:#8c7bab;font-size:11px;white-space:pre-line;
+  overflow-wrap:anywhere;max-height:115px;overflow:auto
+}
+#notice.error{background:#fcf1f4;border-color:#efdee3;color:#b47887}
+.workbench{
+  flex:1;min-height:0;display:flex;flex-direction:column;background:#fff;
+  border:1px solid var(--line);border-radius:13px;overflow:hidden
+}
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:14px 18px;border-bottom:1px solid var(--line)
+}
+.section-title{display:flex;align-items:center;gap:8px;min-width:0}
+#viewTitle{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#resultCount{font-size:10px;color:#a4afbf;white-space:nowrap}
+.filter{background:none;border:0;padding:4px;color:#939fb2;font-size:11px;max-width:140px}
+#scroll{
+  flex:1;min-height:0;overflow:auto;padding:18px;
+  scrollbar-width:thin;scrollbar-color:#d4dae5 transparent
+}
+#cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:14px}
+.card{
+  display:flex;flex-direction:column;min-width:0;border:1px solid var(--line);
+  border-radius:11px;overflow:hidden;background:#fff;
+  transition:box-shadow .16s,border-color .16s
+}
+.card:hover{border-color:#d6cae7;box-shadow:0 6px 22px #44305f08}
+.cover-button{display:block;width:100%;padding:0;border:0;background:none;text-align:initial}
+.cover{
+  position:relative;aspect-ratio:16/9;width:100%;overflow:hidden;
+  background:var(--cover-bg,#f2eff8)
+}
+.cover-fallback{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:8px;color:var(--cover-color,#a694bc);
+  background:linear-gradient(135deg,#ffffff66,transparent)
+}
+.cover-fallback b{font-size:31px;font-weight:600;opacity:.8;letter-spacing:2px}
+.cover-fallback small{font-size:10px;letter-spacing:1.5px;opacity:.8}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover-label{
+  position:absolute;left:10px;bottom:9px;font-size:9px;border-radius:5px;
+  padding:2px 7px;background:#ffffffeb;color:#91829f
+}
+.invalid-label{
+  position:absolute;right:9px;top:9px;background:#fff1f4ed;color:#b87583;
+  border-radius:5px;padding:2px 7px;font-size:9px
+}
+.card-body{display:flex;flex-direction:column;flex:1;padding:14px;gap:9px}
+.card-title{
+  font-size:13px;font-weight:550;color:#4c5871;line-height:1.8;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden;overflow-wrap:anywhere
+}
+.card-title:hover{color:var(--accent)}
+.card-desc{
+  font-size:11px;color:#98a4b6;line-height:1.9;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden;overflow-wrap:anywhere
+}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.card .chips{margin-top:auto}
+.chip{
+  border:0;border-radius:5px;padding:2px 7px;background:#f4f0fa;
+  color:#9c8bb5;font-size:10px;max-width:100%;overflow-wrap:anywhere
+}
+button.chip:hover{background:#eae2f5}
+.card-bottom{
+  display:flex;align-items:center;justify-content:space-between;gap:7px;
+  border-top:1px solid #f0f2f6;padding-top:10px;margin-top:2px
+}
+.card-date{font-size:9px;color:#adb7c6}
+.card-bottom .btn{font-size:10px;padding:4px 7px;min-height:27px}
+.card-bottom .ico{width:13px;height:13px}
+.empty{
+  text-align:center;padding:55px 15px;color:#a2adbd;font-size:12px;
+  white-space:pre-line;line-height:2
+}
+.empty>.ico{display:block;width:33px;height:33px;margin:0 auto 12px;color:#c5ceda}
+footer{
+  display:flex;justify-content:space-between;gap:10px;padding:9px 18px;
+  border-top:1px solid var(--line);font-size:9px;color:#a8b2c2
+}
+dialog{
+  width:min(590px,calc(100% - 24px));max-height:91vh;max-height:91dvh;
+  padding:0;border:1px solid #e4e8f0;border-radius:14px;
+  background:white;color:var(--ink);overflow:auto;scrollbar-width:thin;
+  box-shadow:0 22px 85px #28375030
+}
+dialog::backdrop{background:#27334a55;backdrop-filter:blur(3px)}
+.dialog-body{padding:24px}
+dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
+.dialog-sub{font-size:11px;color:#9ca8b9;line-height:1.9;margin:0 0 19px}
+.field{display:block;color:#8493a9;font-size:12px;margin-bottom:14px}
+.field input,.field textarea,.field select{
+  display:block;width:100%;min-width:0;margin-top:6px;padding:10px 11px;
+  border:1px solid #e0e5ee;border-radius:8px;background:#fcfcfe;color:var(--ink)
+}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:#c3b2df;background:#fff}
+.field input::placeholder,.field textarea::placeholder{color:#b0b9c8}
+.field textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.inline{display:flex;align-items:center;gap:8px}
+.inline input{flex:1;min-width:0;padding:8px 10px;border:1px solid #e0e5ee;border-radius:8px}
+.tag-picker{display:flex;flex-wrap:wrap;gap:8px;margin:9px 0 14px}
+.tag-option{
+  font-size:11px;border:1px solid #e3dceb;background:white;color:#9c8bb2;
+  padding:6px 10px;border-radius:7px
+}
+.tag-option.active{background:var(--soft);border-color:#c4b2df;color:var(--accent)}
+.tag-option.active:before{content:"✓ ";font-weight:600}
+.hint{font-size:11px;color:#98a5b8;line-height:1.9;white-space:pre-line;overflow-wrap:anywhere}
+.warning{font-size:11px;color:#a18a65;background:#faf6ef;border:1px solid #eee4d5;border-radius:8px;padding:10px 12px;line-height:1.9}
+.error-text{font-size:11px;color:var(--danger);line-height:1.9;white-space:pre-line;overflow-wrap:anywhere}
+.dialog-actions{
+  display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;
+  margin-top:20px;padding-top:16px;border-top:1px solid var(--line)
+}
+#editCover{max-width:270px;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:15px}
+#previewDialog{width:min(760px,calc(100% - 24px))}
+#previewHero .cover{max-height:410px}
+#previewHero img{object-fit:contain;background:#f5f6f9}
+#previewTitle{font-size:21px;line-height:1.6;overflow-wrap:anywhere}
+#previewMeta{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:#9ca8ba;margin:10px 0 13px}
+#previewDescription{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:2;color:#8492a7;margin-top:18px}
+#previewUrl{display:block;font-size:10px;color:#9c8cb5;overflow-wrap:anywhere;margin-top:17px}
+.tag-row{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding:11px 0}
+.tag-row span{font-size:12px;overflow-wrap:anywhere}
+.tag-row small{font-size:10px;color:#a5b0c0;margin-left:7px}
+#working,#toast{
+  position:fixed;left:50%;transform:translateX(-50%);z-index:110;
+  max-width:90%;font-size:12px;border-radius:9px;padding:10px 16px;
+  box-shadow:0 7px 25px #28375020
+}
+#working{top:16px;background:#fff;border:1px solid var(--line);color:var(--accent)}
+#toast{bottom:23px;background:#455169;color:#fff}
+#backdrop{display:none}
+@media(min-width:1550px){main{padding-left:48px;padding-right:48px}}
+@media(max-width:1000px){
+  .layout{grid-template-columns:195px minmax(0,1fr)}
+  aside{padding:24px 11px 17px}
+  main{padding:23px 20px 14px;gap:17px}
+  #cards{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+}
+@media(max-width:640px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  aside{position:fixed;inset:0 auto 0 0;width:245px;z-index:30;transform:translateX(-100%);transition:transform .18s}
+  aside.open{transform:translateX(0)}
+  #backdrop.open{display:block;position:fixed;inset:0;background:#27344c44;border:0;z-index:29}
+  #menuBtn{display:inline-flex;padding:5px}
+  main{padding:16px 11px 10px;gap:15px}
+  h1{font-size:20px}
+  .eyebrow{font-size:8px}
+  header>.actions{gap:2px}
+  header>.actions .btn{font-size:10px;min-height:29px;padding:5px 7px}
+  #adminBadge{display:none!important}
+  #search{font-size:12px}
+  .searchbox{padding-left:11px}
+  .search-hint{font-size:9px}
+  .toolbar{padding:12px;flex-wrap:wrap}
+  .filter{font-size:10px;max-width:115px}
+  #scroll{padding:11px}
+  #cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .card-body{padding:10px;gap:7px}
+  .card-title{font-size:11px}
+  .card-desc{font-size:10px}
+  .chip{font-size:9px;padding:1px 5px}
+  .cover-fallback b{font-size:24px}
+  .cover-fallback small{font-size:8px}
+  .cover-label{font-size:8px;left:7px;bottom:7px}
+  .card-date{display:none}
+  .card-bottom{justify-content:flex-end}
+  .card-bottom .actions{gap:2px}
+  .card-bottom .btn{font-size:9px;min-height:25px;padding:3px 5px}
+  .card-bottom .ico{display:none}
+  footer{padding:8px 12px}
+  footer span:last-child{display:none}
+  .dialog-body{padding:20px}
+  .row{grid-template-columns:1fr;gap:0}
+  #previewTitle{font-size:18px}
+}
+@media(max-width:370px){#cards{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<fieldset id="app" disabled>
+<div class="layout">
+  <aside id="sidebar">
+    <div class="brand">
+      <div class="brand-icon" data-icon="bookmark"></div>
+      <div>
+        <strong>电力小分队</strong>
+        <small>NETWORK COLLECTIONS</small>
+      </div>
+    </div>
+    <button id="allNav" class="nav active" type="button">
+      <span data-icon="grid"></span>
+      <span class="nav-name">全部收藏</span>
+      <small id="allCount">0</small>
+    </button>
+    <div class="side-label">
+      <span>收藏标签 · 可多标签归类</span>
+      <button id="manageTags" type="button" hidden>管理</button>
+    </div>
+    <nav id="tagNav" aria-label="收藏标签"></nav>
+    <div class="side-foot">
+      <strong id="permissionText">访客模式 · 仅可浏览</strong>
+      扬州大学 · 课题组<br>
+      资源收藏 / 图文预览
+    </div>
+  </aside>
+
+  <button id="backdrop" type="button" aria-label="关闭导航"></button>
+
+  <main>
+    <header>
+      <div class="header-left">
+        <button id="menuBtn" class="btn ghost" type="button"
+          aria-label="打开导航" aria-expanded="false">
+          <span data-icon="menu"></span>
+        </button>
+        <div>
+          <div class="eyebrow">WORKSPACE / COLLECTIONS</div>
+          <h1>网络资源收藏</h1>
+        </div>
+      </div>
+      <div class="actions">
+        <span id="adminBadge" hidden>管理模式</span>
+        <button id="addBtn" class="btn primary" type="button" hidden>＋ 添加</button>
+        <button id="settingsBtn" class="btn ghost" type="button" hidden>设置</button>
+        <button id="adminBtn" class="btn" type="button">管理员</button>
+      </div>
+    </header>
+
+    <section class="search-area">
+      <form id="searchForm" class="searchbox">
+        <span data-icon="search"></span>
+        <input id="search" type="search" maxlength="4000"
+          placeholder="输入标题、链接、简介或标签"
+          aria-label="搜索资源">
+        <button id="clearSearch" type="button" aria-label="清空搜索" hidden>×</button>
+        <button class="btn primary" type="submit">搜索</button>
+      </form>
+      <div id="searchHint" class="search-hint">
+        实时搜索已收藏资源；点击封面查看图文预览。
+      </div>
+      <div id="externalLinks" hidden></div>
+    </section>
+
+    <div id="notice" role="status" hidden></div>
+
+    <section class="workbench">
+      <div class="toolbar">
+        <div class="section-title">
+          <span id="viewTitle">全部收藏</span>
+          <span id="resultCount">0 项</span>
+        </div>
+        <div class="actions">
+          <select id="platformFilter" class="filter" aria-label="平台筛选"></select>
+          <select id="sort" class="filter" aria-label="排序">
+            <option value="new">最近收录</option>
+            <option value="title">名称排序</option>
+          </select>
+          <button id="resetFilters" class="btn small ghost" type="button">重置</button>
+        </div>
+      </div>
+      <div id="scroll">
+        <div id="cards"></div>
+        <div id="empty" class="empty" hidden></div>
+      </div>
+      <footer>
+        <span id="footerText"></span>
+        <span>收藏入口，不保存原文或视频副本</span>
+      </footer>
+    </section>
+  </main>
+</div>
+</fieldset>
+
+<!-- 图文预览：访客可用 -->
+<dialog id="previewDialog">
+  <div id="previewHero"></div>
+  <div class="dialog-body">
+    <h2 id="previewTitle"></h2>
+    <div id="previewMeta"></div>
+    <div id="previewTags" class="chips"></div>
+    <div id="previewDescription"></div>
+    <a id="previewUrl" target="_blank" rel="noopener noreferrer"></a>
+    <div class="dialog-actions">
+      <button class="btn" type="button" data-close="previewDialog">关闭</button>
+      <button id="previewEdit" class="btn" type="button" hidden>编辑</button>
+      <a id="previewOpen" class="btn primary" target="_blank" rel="noopener noreferrer">
+        打开原资源 <span data-icon="arrow"></span>
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<!-- 登录：与原资源中心使用同一个 GitHub 令牌 -->
+<dialog id="loginDialog">
+<form id="loginForm">
+<fieldset class="lockable dialog-body">
+  <h2>管理员登录</h2>
+  <p class="dialog-sub">直接使用原“电力小分队 · 资源中心”的同一个 GitHub 令牌。</p>
+  <label class="field">GitHub 访问令牌
+    <input id="tokenInput" type="password" autocomplete="off" spellcheck="false" required>
+  </label>
+  <p id="repoHint" class="hint"></p>
+  <div class="warning">
+    令牌需授权目标仓库，Contents 权限为 Read and write。
+    令牌仅保存在当前页面内存中，不写入仓库或浏览器存储。
+  </div>
+  <p class="hint">两个页面共用同一个令牌，但不会自动共享登录状态。
+刷新或关闭页面后，需要重新输入。请勿将令牌写进 HTML。</p>
+  <div id="loginError" class="error-text" role="alert"></div>
+  <div class="dialog-actions">
+    <button class="btn" type="button" data-close="loginDialog">取消</button>
+    <button class="btn primary" type="submit">连接仓库</button>
+  </div>
+</fieldset>
+</form>
+</dialog>
+
+<!-- 管理员添加与编辑 -->
+<dialog id="editDialog">
+<form id="editForm">
+<fieldset class="lockable dialog-body">
+  <h2 id="editHeading">添加收藏</h2>
+  <p class="dialog-sub">填写标题、封面和简介，可同时选择多个标签。</p>
+
+  <label class="field">资源链接
+    <input id="rUrl" type="url" maxlength="4000" placeholder="https://…" required>
+  </label>
+  <div class="actions" style="margin-bottom:13px">
+    <button id="readMetadata" class="btn small" type="button">读取标题与封面</button>
+    <span id="metadataStatus" class="hint"></span>
+  </div>
+
+  <label class="field">资源标题
+    <input id="rTitle" maxlength="160" placeholder="文章、视频或网站的名称" required>
+  </label>
+  <label class="field">封面图片地址
+    <input id="rImage" type="url" maxlength="4000"
+      placeholder="https://…/cover.jpg，留空使用平台底图">
+  </label>
+  <div id="editCover"></div>
+
+  <label class="field">简介
+    <textarea id="rDescription" maxlength="3000"
+      placeholder="主要内容、适合人群、值得收藏的原因……"></textarea>
+  </label>
+
+  <div class="row">
+    <label class="field">来源平台
+      <select id="rPlatform"></select>
+    </label>
+    <label class="field">有效性
+      <select id="rStatus">
+        <option value="unchecked">尚未核验</option>
+        <option value="valid">人工确认可访问</option>
+        <option value="unknown">无法判断 / 需要登录</option>
+        <option value="invalid">人工确认已失效</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="hint">收藏标签 · 可多选，再次点击可取消</div>
+  <div id="tagPicker" class="tag-picker"></div>
+  <div class="inline">
+    <input id="draftTagName" maxlength="24" placeholder="新标签名称">
+    <button id="addDraftTag" class="btn small" type="button">添加标签</button>
+  </div>
+
+  <p class="hint">封面可能因原站防盗链失效，建议使用稳定的自有 HTTPS 图片地址。
+没有预览接口时可手动填写。修改资源链接会重置有效性记录。</p>
+  <div id="editError" class="error-text" role="alert"></div>
+  <div class="dialog-actions">
+    <button id="deleteResource" class="btn danger" type="button" hidden>删除</button>
+    <button class="btn" type="button" data-close="editDialog">取消</button>
+    <button class="btn primary" type="submit">保存并发布</button>
+  </div>
+</fieldset>
+</form>
+</dialog>
+
+<!-- 公共标签管理 -->
+<dialog id="tagsDialog">
+<fieldset class="lockable dialog-body">
+  <h2>管理收藏标签</h2>
+  <p class="dialog-sub">只有管理员可修改。一个资源可以属于多个标签。</p>
+  <div class="inline">
+    <input id="tagName" maxlength="24" placeholder="新标签名称">
+    <button id="createTag" class="btn primary" type="button">新增</button>
+  </div>
+  <div id="tagManageList" style="margin-top:12px"></div>
+  <p class="hint">删除标签只取消分类关联，不会删除资源。
+没有标签的资源仍在“全部收藏”中显示。</p>
+  <div id="tagsError" class="error-text" role="alert"></div>
+  <div class="dialog-actions">
+    <button class="btn" type="button" data-close="tagsDialog">完成</button>
+  </div>
+</fieldset>
+</dialog>
+
+<!-- 设置 -->
+<dialog id="settingsDialog">
+<form id="settingsForm">
+<fieldset class="lockable dialog-body">
+  <h2>资源库设置</h2>
+  <p id="settingsRepo" class="dialog-sub"></p>
+  <label class="field">可选：网页预览接口
+    <input id="metadataApi" type="url" maxlength="2000"
+      placeholder="https://你的服务/metadata">
+  </label>
+  <p class="hint">接口用于管理员收录时获取真实标题、摘要和封面。
+未配置时仍可手动收录和显示图文卡片。
+此地址会公开保存，不能包含私密 API 密钥。</p>
+
+  <div class="actions">
+    <button id="refreshRepo" class="btn small" type="button">读取最新数据</button>
+    <button id="exportBtn" class="btn small" type="button">备份</button>
+    <button id="importBtn" class="btn small" type="button">导入备份</button>
+    <button id="cleanInvalid" class="btn small danger" type="button">清理失效资源</button>
+  </div>
+
+  <p class="hint">清理仅针对管理员人工确认失效的资源。
+登录限制、验证码、网络超时和 HTTP 403，不能直接认定为内容删除。</p>
+  <div id="settingsError" class="error-text" role="alert"></div>
+  <div class="dialog-actions">
+    <button class="btn" type="button" data-close="settingsDialog">关闭</button>
+    <button class="btn primary" type="submit">保存设置</button>
+  </div>
+</fieldset>
+</form>
+</dialog>
+
+<input id="importFile" type="file" accept=".json,application/json" hidden>
+<div id="working" role="status" hidden></div>
+<div id="toast" role="status" hidden></div>
+
+<script>
+"use strict";
+
+/* ==========================================================
+   仓库与原 HTML 完全一致，可使用原来的同一个 GitHub 令牌。
+   不要在此填写令牌。
+   ========================================================== */
+const REPO = Object.freeze({
+  owner: "YZUyzh",
+  repo: "grouptools",
+  branch: "main"
+});
+
+const CONFIG = Object.freeze({
+  dataFile: "visual-resource-library.json",
+  publicUrl: "./visual-resource-library.json",
+  maxBytes: 4 * 1024 * 1024
+});
+
+/*
+预览接口约定（可选，需要自行部署后端）：
+
+POST https://你的服务/metadata
+Content-Type: application/json
+请求：
+  {"url":"https://目标内容网址"}
+
+响应：
+  {
+    "title":"真实标题",
+    "description":"真实摘要",
+    "image":"https://真实封面地址",
+    "platform":"bilibili"
+  }
+
+也兼容 summary / thumbnail / cover 字段。
+
+后端必须：
+- 正确设置 CORS、超时、响应大小与请求频率限制；
+- 校验目标和每次重定向，防止 SSRF、内网访问与 DNS 重绑定；
+- 禁止访问环回、私网、保留地址和云元数据服务；
+- 不把登录页、验证码、403、429、超时当作内容删除；
+- 遵守来源平台规则，不伪造标题或摘要；
+- 将私密第三方 API Key 保存在后端。
+GitHub 令牌不会发送到该接口。
+*/
+
+const $ = id => document.getElementById(id);
+const copy = value => JSON.parse(JSON.stringify(value));
+const now = () => new Date().toISOString();
+const uid = () => crypto.randomUUID
+  ? crypto.randomUUID()
+  : "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2);
+
+const INITIAL = {
+  version:1,
+  settings:{metadataApi:""},
+  tags:[
+    "学习教程","科研资料","专业知识","实用工具","行业资讯",
+    "优质视频","深度文章","灵感创意","生活百科","值得再看"
+  ].map((name,i)=>({id:"tag-"+i,name})),
+  resources:[]
+};
+
+const PLATFORMS = {
+  wechat:{name:"微信公众号",short:"微",color:"#83a995",bg:"#edf5f0"},
+  douyin:{name:"抖音",short:"抖",color:"#939eaf",bg:"#eef1f7"},
+  bilibili:{name:"哔哩哔哩",short:"哔",color:"#82a6c1",bg:"#edf5fc"},
+  channels:{name:"视频号",short:"视",color:"#b3a07b",bg:"#f8f3e9"},
+  zhihu:{name:"知乎",short:"知",color:"#8c9fc6",bg:"#eef3fc"},
+  xiaohongshu:{name:"小红书",short:"红",color:"#c38f9b",bg:"#fbf0f3"},
+  github:{name:"GitHub",short:"GH",color:"#93a0ae",bg:"#eff3f7"},
+  other:{name:"网页资源",short:"链",color:"#a391bc",bg:"#f3eff9"}
+};
+
+const STATUS = {
+  unchecked:"尚未核验",
+  valid:"人工确认可访问",
+  unknown:"无法判断",
+  invalid:"人工确认已失效"
+};
+
+let data = copy(INITIAL);
+let token = "";             // 只保存在当前页面内存
+let snapshot = null;
+let busy = false;
+let writeLocked = false;
+let activeTag = null;
+let query = "";
+let platform = "";
+let sort = "new";
+let editingId = null;
+let previewId = null;
+let draftTags = [];
+let pickedTags = new Set();
+let toastTimer;
+
+const ICONS = {
+  bookmark:["M6 3h12v19l-6-4-6 4V3Z"],
+  grid:["M3 3h7v7H3V3Zm11 0h7v7h-7V3ZM3 14h7v7H3v-7Zm11 0h7v7h-7v-7Z"],
+  search:["M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z","m16 16 5 5"],
+  menu:["M4 6h16M4 12h16M4 18h16"],
+  arrow:["M7 17 17 7M7 7h10v10"]
+};
+
+function icon(name){
+  const ns="http://www.w3.org/2000/svg";
+  const svg=document.createElementNS(ns,"svg");
+  for(const [k,v] of Object.entries({
+    class:"ico",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",
+    "stroke-width":"1.7","stroke-linecap":"round","stroke-linejoin":"round",
+    "aria-hidden":"true"
+  }))svg.setAttribute(k,v);
+  for(const d of ICONS[name]||ICONS.bookmark){
+    const p=document.createElementNS(ns,"path");
+    p.setAttribute("d",d);svg.append(p);
+  }
+  return svg;
+}
+
+document.querySelectorAll("[data-icon]").forEach(el=>{
+  el.replaceChildren(icon(el.dataset.icon));
+});
+
+function node(tag,cls="",text){
+  const el=document.createElement(tag);
+  if(cls)el.className=cls;
+  if(text!==undefined)el.textContent=text;
+  return el;
+}
+
+function button(text,handler,cls="btn"){
+  const el=node("button",cls,text);
+  el.type="button";
+  el.addEventListener("click",handler);
+  return el;
+}
+
+function safeURL(value){
+  if(typeof value!=="string"||!value.trim()||value.length>4000||
+     /[\u0000-\u001f\u007f\\]/.test(value))return null;
+  try{
+    const u=new URL(value.trim());
+    return ["http:","https:"].includes(u.protocol)&&!u.username&&!u.password
+      ?u.href:null;
+  }catch{return null}
+}
+
+function imageURL(value){
+  if(value==="")return "";
+  const url=safeURL(value);
+  if(!url||new URL(url).protocol!=="https:")
+    throw Error("封面图片请使用完整的 HTTPS 地址。");
+  return url;
+}
+
+function endpointURL(value){
+  if(value==="")return "";
+  const url=safeURL(value);
+  if(!url||new URL(url).protocol!=="https:"||new URL(url).hash)
+    throw Error("预览接口必须是无片段标识的 HTTPS 地址。");
+  return url;
+}
+
+function detectPlatform(value){
+  const url=safeURL(value);
+  if(!url)return "other";
+  const h=new URL(url).hostname.toLowerCase();
+  const is=d=>h===d||h.endsWith("."+d);
+  if(is("channels.weixin.qq.com"))return "channels";
+  if(is("mp.weixin.qq.com"))return "wechat";
+  if(is("douyin.com")||is("iesdouyin.com"))return "douyin";
+  if(is("bilibili.com")||is("b23.tv"))return "bilibili";
+  if(is("zhihu.com"))return "zhihu";
+  if(is("xiaohongshu.com")||is("xhslink.com"))return "xiaohongshu";
+  if(is("github.com"))return "github";
+  return "other";
+}
+
+function link(url,cls="",text){
+  const el=node("a",cls,text);
+  el.href=url;
+  el.target="_blank";
+  el.rel="noopener noreferrer";
+  el.referrerPolicy="no-referrer";
+  return el;
+}
+
+function notice(text="",error=false){
+  $("notice").textContent=text;
+  $("notice").hidden=!text;
+  $("notice").classList.toggle("error",error);
+}
+
+function toast(text){
+  clearTimeout(toastTimer);
+  $("toast").textContent=text;
+  $("toast").hidden=false;
+  toastTimer=setTimeout(()=>$("toast").hidden=true,3500);
+}
+
+function setBusy(value,text="正在处理…"){
+  busy=value;
+  $("app").disabled=value;
+  document.querySelectorAll(".lockable").forEach(el=>el.disabled=value);
+  $("working").textContent=text;
+  $("working").hidden=!value;
+}
+
+function canWrite(){
+  return !!token&&!!snapshot&&!busy&&!writeLocked;
+}
+
+function validDate(value){
+  return typeof value==="string"&&value.length<=40&&
+    Number.isFinite(Date.parse(value));
+}
+
+function dateText(value){
+  return new Date(value).toLocaleDateString("zh-CN");
+}
+
+function tagName(value,tags,ignoreId=null){
+  if(typeof value!=="string"||!value.trim()||value.trim().length>24)
+    throw Error("标签名称需为 1～24 个字符。");
+  const name=value.trim();
+  if(tags.some(t=>t.id!==ignoreId&&t.name===name))
+    throw Error("已存在同名标签。");
+  return name;
+}
+
+/* 数据校验：兼容上一版 visual-resource-library.json */
+function validate(value){
+  if(!value||value.version!==1||!Array.isArray(value.tags)||
+     value.tags.length>100||!Array.isArray(value.resources)||
+     value.resources.length>10000)
+    throw Error("资源库格式无效，最多支持 100 个标签和 10000 项资源。");
+
+  const tagIds=new Set(),names=new Set();
+  const tags=value.tags.map(t=>{
+    if(!t||typeof t.id!=="string"||!t.id||t.id.length>100||
+       tagIds.has(t.id)||typeof t.name!=="string"||!t.name.trim()||
+       t.name.length>24||names.has(t.name.trim()))
+      throw Error("标签格式无效或存在重复标签。");
+    tagIds.add(t.id);names.add(t.name.trim());
+    return {id:t.id,name:t.name.trim()};
+  });
+
+  const ids=new Set(),urls=new Set();
+  const resources=value.resources.map(r=>{
+    if(!r||typeof r.id!=="string"||!r.id||r.id.length>100||ids.has(r.id))
+      throw Error("资源编号无效或重复。");
+
+    const url=safeURL(r.url);
+    if(!url||urls.has(url)||typeof r.title!=="string"||
+       !r.title.trim()||r.title.length>160)
+      throw Error("资源标题、网址无效或网址重复。");
+
+    const description=r.description??"";
+    const image=r.image??"";
+    const p=r.platform??detectPlatform(url);
+    const status=r.status??"unchecked";
+
+    if(typeof description!=="string"||description.length>3000||
+       typeof image!=="string"||!Object.hasOwn(PLATFORMS,p)||
+       !Object.hasOwn(STATUS,status)||!Array.isArray(r.tagIds)||
+       r.tagIds.length>100||r.tagIds.some(id=>!tagIds.has(id))||
+       !validDate(r.createdAt)||!validDate(r.updatedAt))
+      throw Error("资源简介、图片、平台、标签或时间记录无效。");
+
+    ids.add(r.id);urls.add(url);
+
+    return {
+      id:r.id,url,title:r.title.trim(),description,
+      image:imageURL(image),platform:p,
+      tagIds:[...new Set(r.tagIds)],status,
+      createdAt:r.createdAt,updatedAt:r.updatedAt
+    };
+  });
+
+  const endpoint=value.settings?.metadataApi??"";
+  if(typeof endpoint!=="string"||endpoint.length>2000)
+    throw Error("预览接口配置无效。");
+
+  return {
+    version:1,
+    settings:{metadataApi:endpointURL(endpoint)},
+    tags,resources
+  };
+}
+
+/* 图文封面：没有图片或图片加载失败时使用平台底图 */
+function cover(resource,eager=false){
+  const p=PLATFORMS[resource.platform]||PLATFORMS.other;
+  const box=node("div","cover");
+  box.style.setProperty("--cover-bg",p.bg);
+  box.style.setProperty("--cover-color",p.color);
+
+  const fallback=node("div","cover-fallback");
+  fallback.append(node("b","",p.short),node("small","",p.name));
+  box.append(fallback);
+
+  if(resource.image){
+    const img=node("img");
+    img.alt=resource.title?resource.title+" 的封面":"资源封面";
+    img.loading=eager?"eager":"lazy";
+    img.decoding="async";
+    img.referrerPolicy="no-referrer";
+    img.hidden=true;
+    img.addEventListener("load",()=>{
+      img.hidden=false;fallback.hidden=true;
+    });
+    img.addEventListener("error",()=>{
+      img.remove();fallback.hidden=false;
+    });
+    box.append(img);img.src=resource.image;
+  }
+
+  box.append(node("span","cover-label",p.name));
+  if(resource.status==="invalid")
+    box.append(node("span","invalid-label","确认失效"));
+  return box;
+}
+
+/* 导航与搜索 */
+function closeSidebar(){
+  $("sidebar").classList.remove("open");
+  $("backdrop").classList.remove("open");
+  $("menuBtn").setAttribute("aria-expanded","false");
+}
+
+function selectTag(id){
+  if(busy)return;
+  activeTag=id;
+  closeSidebar();render();
+  $("scroll").scrollTop=0;
+}
+
+function reset(){
+  activeTag=null;query="";platform="";
+  $("search").value="";
+  $("platformFilter").value="";
+  $("clearSearch").hidden=true;
+  $("externalLinks").hidden=true;
+  $("searchHint").textContent="实时搜索已收藏资源；点击封面查看图文预览。";
+  closeSidebar();render();
+}
+
+function filtered(){
+  const q=query.trim().toLocaleLowerCase();
+  const list=data.resources.filter(r=>{
+    if(activeTag&&!r.tagIds.includes(activeTag))return false;
+    if(platform&&r.platform!==platform)return false;
+    if(!q)return true;
+    const tags=r.tagIds.map(id=>data.tags.find(t=>t.id===id)?.name||"");
+    return [r.title,r.url,r.description,PLATFORMS[r.platform].name,...tags]
+      .join(" ").toLocaleLowerCase().includes(q);
+  });
+  list.sort((a,b)=>sort==="title"
+    ?a.title.localeCompare(b.title,"zh-CN")
+    :Date.parse(b.createdAt)-Date.parse(a.createdAt));
+  return list;
+}
+
+function renderNav(){
+  $("allCount").textContent=data.resources.length;
+  $("allNav").classList.toggle("active",!activeTag);
+  const fragment=document.createDocumentFragment();
+
+  for(const tag of data.tags){
+    const count=data.resources.filter(r=>r.tagIds.includes(tag.id)).length;
+    const el=button("",()=>selectTag(tag.id),
+      "nav"+(tag.id===activeTag?" active":""));
+    el.append(
+      node("span","dot"),
+      node("span","nav-name",tag.name),
+      node("small","",String(count))
+    );
+    if(tag.id===activeTag)el.setAttribute("aria-current","page");
+    fragment.append(el);
+  }
+  $("tagNav").replaceChildren(fragment);
+}
+
+function renderCards(){
+  const list=filtered();
+  const fragment=document.createDocumentFragment();
+
+  for(const r of list){
+    const card=node("article","card");
+    const image=button("",()=>openPreview(r.id),"cover-button");
+    image.setAttribute("aria-label","预览 "+r.title);
+    image.append(cover(r));card.append(image);
+
+    const body=node("div","card-body");
+    body.append(link(r.url,"card-title",r.title));
+
+    // 无简介时不显示技术性占位提示。
+    if(r.description.trim())
+      body.append(node("div","card-desc",r.description));
+
+    const chips=node("div","chips");
+    for(const id of r.tagIds){
+      const tag=data.tags.find(t=>t.id===id);
+      if(tag)chips.append(button("# "+tag.name,()=>selectTag(id),"chip"));
+    }
+    body.append(chips);
+
+    const bottom=node("div","card-bottom");
+    bottom.append(node("span","card-date",dateText(r.createdAt)));
+    const actions=node("div","actions");
+    actions.append(button("预览",()=>openPreview(r.id),"btn small ghost"));
+
+    if(token){
+      const edit=button("编辑",()=>openEdit(r.id),"btn small ghost");
+      edit.disabled=writeLocked;actions.append(edit);
+    }
+
+    const open=link(r.url,"btn small","打开");
+    open.append(icon("arrow"));actions.append(open);
+    bottom.append(actions);body.append(bottom);card.append(body);
+    fragment.append(card);
+  }
+
+  $("cards").replaceChildren(fragment);
+  $("viewTitle").textContent=activeTag
+    ?data.tags.find(t=>t.id===activeTag)?.name||"收藏"
+    :"全部收藏";
+  $("resultCount").textContent=list.length+" 项";
+  $("empty").hidden=!!list.length;
+
+  let text="没有匹配的资源。\n可更换关键词，或点击“重置”清除筛选。";
+  if(!data.resources.length){
+    text=token
+      ?"尚未收录资源。\n点击右上角“添加”，创建第一张图文卡片。"
+      :"资源库暂时没有内容。\n管理员发布后即可在这里浏览。";
+  }
+
+  $("empty").replaceChildren(icon("bookmark"),node("div","",text));
+  $("footerText").textContent=
+    `当前 ${list.length} 项 / 全部 ${data.resources.length} 项 · `+
+    (token?"管理模式":"只读浏览");
+}
+
+function render(){
+  if(activeTag&&!data.tags.some(t=>t.id===activeTag))activeTag=null;
+  renderNav();renderCards();
+
+  $("adminBtn").textContent=token?"退出管理":"管理员";
+  ["adminBadge","addBtn","settingsBtn","manageTags"]
+    .forEach(id=>$(id).hidden=!token);
+
+  $("addBtn").disabled=writeLocked;
+  $("manageTags").disabled=writeLocked;
+  $("permissionText").textContent=token
+    ?"管理员模式 · 可维护资源":"访客模式 · 仅可浏览";
+
+  if(writeLocked)notice(
+    "上次保存结果未确认，或仓库配置已变化。写入已暂停，请进入设置读取最新数据。",true
+  );
+}
+
+/* 详情预览 */
+function openPreview(id){
+  if(busy)return;
+  const r=data.resources.find(x=>x.id===id);
+  if(!r)return;
+  previewId=id;
+
+  $("previewHero").replaceChildren(cover(r,true));
+  $("previewTitle").textContent=r.title;
+  $("previewMeta").replaceChildren(
+    node("span","",PLATFORMS[r.platform].name),
+    node("span","","收录于 "+dateText(r.createdAt)),
+    node("span","",STATUS[r.status])
+  );
+  $("previewTags").replaceChildren(...r.tagIds.map(id=>{
+    return node("span","chip","# "+data.tags.find(t=>t.id===id).name);
+  }));
+  $("previewDescription").textContent=r.description;
+  $("previewDescription").hidden=!r.description.trim();
+  $("previewUrl").href=r.url;
+  $("previewUrl").textContent=r.url;
+  $("previewOpen").href=r.url;
+  $("previewEdit").hidden=!token;
+  $("previewEdit").disabled=writeLocked;
+  $("previewDialog").showModal();
+}
+
+/* GitHub：与原 HTML 使用相同仓库、相同令牌授权 */
+function apiBase(){
+  return "https://api.github.com/repos/"+
+    encodeURIComponent(REPO.owner)+"/"+encodeURIComponent(REPO.repo);
+}
+
+function filePath(){
+  return "/contents/"+CONFIG.dataFile.split("/").map(encodeURIComponent).join("/");
+}
+
+async function api(path,options={},key=token){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),45000);
+  try{
+    const response=await fetch(apiBase()+path,{
+      ...options,
+      signal:controller.signal,
+      credentials:"omit",
+      redirect:"error",
+      cache:"no-store",
+      referrerPolicy:"no-referrer",
+      headers:{
+        Accept:"application/vnd.github+json",
+        Authorization:"Bearer "+key,
+        ...(options.body?{"Content-Type":"application/json"}:{})
+      }
+    });
+
+    const result=await response.json().catch(()=>({}));
+    if(!response.ok){
+      const hints={
+        401:"令牌无效或已过期。",
+        403:"访问被拒绝，请检查 Contents 写权限、限流或仓库规则。",
+        404:"仓库、分支或文件不存在，或令牌无权访问。",
+        409:"仓库配置发生冲突。",
+        422:"GitHub 拒绝提交，请检查分支规则或文件版本。"
+      };
+      const error=Error(
+        (hints[response.status]||"GitHub 请求失败。")+
+        "\nHTTP "+response.status+
+        (result.message?"\n"+String(result.message).slice(0,350):"")
+      );
+      error.status=response.status;
+      throw error;
+    }
+    return result;
+  }catch(error){
+    if(error.name==="AbortError")
+      throw Error("GitHub 请求超时。保存时超时需重新读取仓库确认结果。");
+    throw error;
+  }finally{clearTimeout(timer)}
+}
+
+function encode64(text){
+  const bytes=new TextEncoder().encode(text),parts=[];
+  for(let i=0;i<bytes.length;i+=24576)
+    parts.push(btoa(String.fromCharCode(...bytes.subarray(i,i+24576))));
+  return parts.join("");
+}
+
+function decode64(text){
+  const raw=atob(text.replace(/\s/g,""));
+  return new TextDecoder("utf-8",{fatal:true})
+    .decode(Uint8Array.from(raw,c=>c.charCodeAt(0)));
+}
+
+async function repositoryFile(key=token){
+  try{
+    return await api(filePath()+"?ref="+encodeURIComponent(REPO.branch),{},key);
+  }catch(error){
+    if(error.status===404)return null;
+    throw error;
+  }
+}
+
+async function loadRepository(key){
+  const repo=await api("",{},key);
+  if(!repo.permissions?.push)
+    throw Error("该账号没有目标仓库的写入权限。");
+  if(repo.private)
+    throw Error("此版本面向公开资源库，请使用公开仓库。");
+
+  await api("/branches/"+encodeURIComponent(REPO.branch),{},key);
+
+  const file=await repositoryFile(key);
+  if(!file)return {data:validate(copy(INITIAL)),sha:null};
+
+  if(file.type!=="file"||file.size>CONFIG.maxBytes)
+    throw Error("配置路径不是普通文件，或配置文件过大。");
+
+  let text;
+  if(file.encoding==="base64"&&typeof file.content==="string"){
+    text=decode64(file.content);
+  }else{
+    const blob=await api("/git/blobs/"+file.sha,{},key);
+    if(blob.encoding!=="base64")throw Error("无法读取配置编码。");
+    text=decode64(blob.content);
+  }
+
+  return {data:validate(JSON.parse(text)),sha:file.sha};
+}
+
+async function commit(next,description){
+  if(!token||!snapshot||writeLocked)
+    throw Error("请重新登录或读取最新数据后继续。");
+
+  const clean=validate(next);
+  const text=JSON.stringify(clean,null,2)+"\n";
+  if(new TextEncoder().encode(text).length>CONFIG.maxBytes)
+    throw Error("配置文件超过大小限制，请拆分资源库。");
+
+  const remote=await repositoryFile();
+  if((remote?.sha||null)!==snapshot.sha){
+    writeLocked=true;
+    throw Error("配置已被其他页面修改，本次没有覆盖。");
+  }
+
+  const body={
+    message:description,
+    branch:REPO.branch,
+    content:encode64(text)
+  };
+  if(snapshot.sha)body.sha=snapshot.sha;
+
+  try{
+    const result=await api(filePath(),{
+      method:"PUT",body:JSON.stringify(body)
+    });
+    if(!result.content?.sha){
+      writeLocked=true;
+      throw Error("保存结果未确认，请读取仓库最新数据。");
+    }
+    data=clean;
+    snapshot={sha:result.content.sha};
+  }catch(error){
+    if(!error.status||error.status>=500||[409,422].includes(error.status))
+      writeLocked=true;
+    throw error;
+  }
+}
+
+function writeError(error){
+  return error.message+(writeLocked
+    ?"\n已暂停写入。请关闭弹窗，在设置中读取仓库最新数据。":"");
+}
+
+async function saveAction(next,description,{dialog="",errorId=""}={}){
+  if(!canWrite())return false;
+  if(errorId)$(errorId).textContent="";
+  setBusy(true,"正在保存到 GitHub…");
+  try{
+    await commit(next,description);
+    if(dialog)$(dialog).close();
+    notice("已保存到仓库。访客将在 Pages 部署完成后看到更新。");
+    return true;
+  }catch(error){
+    if(errorId)$(errorId).textContent=writeError(error);
+    else notice(writeError(error),true);
+    return false;
+  }finally{
+    setBusy(false);render();
+    if($("tagsDialog").open)renderTagManager();
+  }
+}
+
+/* 访客读取公开数据 */
+async function loadPublic(){
+  if(!["http:","https:"].includes(location.protocol))
+    throw Error("请通过网站地址访问，不要直接双击本地 HTML。");
+
+  const url=new URL(CONFIG.publicUrl,location.href);
+  url.searchParams.set("_",Date.now());
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),25000);
+
+  try{
+    const response=await fetch(url,{
+      signal:controller.signal,credentials:"omit",cache:"no-store",
+      referrerPolicy:"no-referrer"
+    });
+    if(response.status===404)
+      return {data:validate(copy(INITIAL)),missing:true};
+    if(!response.ok)throw Error("公开数据读取失败：HTTP "+response.status);
+
+    const blob=await response.blob();
+    if(blob.size>CONFIG.maxBytes)throw Error("公开配置文件过大。");
+    return {data:validate(JSON.parse(await blob.text())),missing:false};
+  }finally{clearTimeout(timer)}
+}
+
+/* 登录、退出 */
+$("adminBtn").addEventListener("click",async()=>{
+  if(busy)return;
+
+  if(token){
+    token="";
+    snapshot=null;
+    writeLocked=false;
+    document.querySelectorAll("dialog[open]").forEach(el=>el.close());
+    data=validate(copy(INITIAL));
+
+    setBusy(true,"正在退出管理…");
+    try{
+      const loaded=await loadPublic();
+      data=loaded.data;notice("");
+    }catch{
+      notice("已退出管理。公开数据读取失败，请刷新页面重试。",true);
+    }finally{
+      setBusy(false);reset();
+    }
+    return;
+  }
+
+  $("tokenInput").value="";
+  $("loginError").textContent="";
+  $("repoHint").textContent=
+    "目标仓库："+REPO.owner+"/"+REPO.repo+
+    "\n分支："+REPO.branch+
+    "\n数据文件："+CONFIG.dataFile;
+  $("loginDialog").showModal();
+  $("tokenInput").focus();
+});
+
+$("loginForm").addEventListener("submit",async event=>{
+  event.preventDefault();
+  if(busy)return;
+
+  let key=$("tokenInput").value.trim();
+  $("tokenInput").value="";
+  if(!key)return;
+
+  setBusy(true,"正在连接原资源中心的仓库…");
+  $("loginError").textContent="";
+
+  try{
+    if(location.protocol!=="https:")
+      throw Error("管理员登录必须通过已部署的 HTTPS 页面。");
+
+    const loaded=await loadRepository(key);
+    token=key;
+    snapshot={sha:loaded.sha};
+    data=loaded.data;
+    writeLocked=false;
+
+    $("loginDialog").close();
+    reset();
+    notice("已连接 "+REPO.owner+"/"+REPO.repo+
+      "。可使用原资源中心的同一个令牌维护本收藏库。");
+  }catch(error){
+    $("loginError").textContent=error.message;
+  }finally{
+    key="";setBusy(false);render();
+  }
+});
+
+/* 添加和编辑，多标签选择 */
+function renderTagPicker(){
+  $("tagPicker").replaceChildren(...draftTags.map(tag=>{
+    const el=button(tag.name,()=>{
+      if(!canWrite())return;
+      pickedTags.has(tag.id)?pickedTags.delete(tag.id):pickedTags.add(tag.id);
+      renderTagPicker();
+    },"tag-option"+(pickedTags.has(tag.id)?" active":""));
+    el.setAttribute("aria-pressed",String(pickedTags.has(tag.id)));
+    return el;
+  }));
+}
+
+function updateEditCover(){
+  let image="";
+  try{image=imageURL($("rImage").value.trim())}catch{}
+  const p=$("rPlatform").value==="auto"
+    ?detectPlatform($("rUrl").value):$("rPlatform").value;
+  $("editCover").replaceChildren(cover({
+    title:$("rTitle").value,image,platform:p,status:"unchecked"
+  },true));
+}
+
+function openEdit(id=null,initialUrl=""){
+  if(!canWrite())return;
+  const r=data.resources.find(x=>x.id===id);
+  if(id&&!r)return;
+
+  editingId=r?.id||null;
+  draftTags=copy(data.tags);
+  pickedTags=new Set(r?.tagIds||(activeTag?[activeTag]:[]));
+
+  $("editHeading").textContent=r?"编辑收藏":"添加收藏";
+  $("rUrl").value=r?.url||initialUrl;
+  $("rTitle").value=r?.title||"";
+  $("rImage").value=r?.image||"";
+  $("rDescription").value=r?.description||"";
+  $("rPlatform").value=r?.platform||"auto";
+  $("rStatus").value=r?.status||"unchecked";
+  $("draftTagName").value="";
+  $("editError").textContent="";
+  $("metadataStatus").textContent="";
+  $("deleteResource").hidden=!r;
+
+  renderTagPicker();updateEditCover();
+  $("editDialog").showModal();
+}
+
+$("addDraftTag").addEventListener("click",()=>{
+  if(!canWrite())return;
+  try{
+    if(draftTags.length>=100)throw Error("最多支持 100 个标签。");
+    const tag={id:uid(),name:tagName($("draftTagName").value,draftTags)};
+    draftTags.push(tag);pickedTags.add(tag.id);
+    $("draftTagName").value="";$("editError").textContent="";
+    renderTagPicker();
+  }catch(error){$("editError").textContent=error.message}
+});
+
+$("editForm").addEventListener("submit",async event=>{
+  event.preventDefault();
+  if(!canWrite())return;
+
+  try{
+    const next=copy(data),old=next.resources.find(r=>r.id===editingId);
+    const url=safeURL($("rUrl").value);
+    if(!url)throw Error("请输入完整有效的 HTTP / HTTPS 链接。");
+
+    const changed=!!old&&old.url!==url;
+    const status=changed?"unchecked":$("rStatus").value;
+
+    if(status==="invalid"&&old?.status!=="invalid"&&
+       !confirm("确认已人工核验内容删除或永久不可访问？\n登录限制、验证码、超时和 403 不能直接视为内容删除。"))
+      return;
+
+    const resource={
+      id:old?.id||uid(),url,
+      title:$("rTitle").value.trim(),
+      description:$("rDescription").value.trim(),
+      image:imageURL($("rImage").value.trim()),
+      platform:$("rPlatform").value==="auto"
+        ?detectPlatform(url):$("rPlatform").value,
+      tagIds:[...pickedTags],status,
+      createdAt:old?.createdAt||now(),updatedAt:now()
+    };
+
+    next.tags=copy(draftTags);
+    if(old)next.resources[next.resources.indexOf(old)]=resource;
+    else next.resources.push(resource);
+
+    await saveAction(next,old?"更新网络收藏":"新增网络收藏",{
+      dialog:"editDialog",errorId:"editError"
+    });
+  }catch(error){$("editError").textContent=error.message}
+});
+
+$("deleteResource").addEventListener("click",async()=>{
+  if(!canWrite()||!editingId)return;
+  if(!confirm("删除此收藏？\n仅删除本站入口，不删除原平台内容。"))return;
+  const next=copy(data);
+  next.resources=next.resources.filter(r=>r.id!==editingId);
+  await saveAction(next,"删除网络收藏",{
+    dialog:"editDialog",errorId:"editError"
+  });
+});
+
+$("previewEdit").addEventListener("click",()=>{
+  if(!canWrite())return;
+  $("previewDialog").close();openEdit(previewId);
+});
+
+["rUrl","rTitle","rImage","rPlatform"].forEach(id=>{
+  $(id).addEventListener("change",updateEditCover);
+});
+
+/* 可选网页元信息接口 */
+async function metadata(url,endpoint){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),20000);
+  try{
+    const response=await fetch(endpoint,{
+      method:"POST",signal:controller.signal,
+      credentials:"omit",mode:"cors",redirect:"error",
+      referrerPolicy:"no-referrer",
+      headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body:JSON.stringify({url})
+    });
+
+    if(!response.ok)throw Error("预览接口返回 HTTP "+response.status);
+    const result=await response.json();
+    if(!result||typeof result!=="object"||Array.isArray(result))
+      throw Error("预览接口返回格式不正确。");
+
+    const title=typeof result.title==="string"?result.title.trim().slice(0,160):"";
+    const rawDescription=result.description??result.summary;
+    const description=typeof rawDescription==="string"
+      ?rawDescription.trim().slice(0,3000):"";
+    const rawImage=result.image??result.thumbnail??result.cover;
+    let image="";
+    if(typeof rawImage==="string"&&rawImage.trim()){
+      try{image=imageURL(new URL(rawImage.trim(),url).href)}catch{}
+    }
+
+    if(!title&&!description&&!image)
+      throw Error("接口未返回可用标题、简介或封面。");
+
+    return {
+      title,description,image,
+      platform:Object.hasOwn(PLATFORMS,result.platform)
+        ?result.platform:detectPlatform(url)
+    };
+  }catch(error){
+    if(error.name==="AbortError")
+      throw Error("读取预览超时，可继续手动填写。");
+    throw error;
+  }finally{clearTimeout(timer)}
+}
+
+$("readMetadata").addEventListener("click",async()=>{
+  if(!canWrite())return;
+  $("editError").textContent="";
+  $("metadataStatus").textContent="";
+
+  const url=safeURL($("rUrl").value);
+  if(!url){
+    $("editError").textContent="请先填写完整的资源链接。";return;
+  }
+  if(!data.settings.metadataApi){
+    $("editError").textContent=
+      "尚未配置网页预览接口。\n可手动填写标题、封面和简介，或在设置中配置接口。\n纯 HTML 无法保证直接读取微信、抖音、B 站等跨站内容。";
+    return;
+  }
+
+  if([$ ("rTitle").value,$("rImage").value,$("rDescription").value]
+    .some(value=>value.trim())&&
+    !confirm("读取结果将覆盖对应字段，接口未返回的字段保持不变。继续？"))return;
+
+  setBusy(true,"正在读取标题与封面…");
+  try{
+    const result=await metadata(url,data.settings.metadataApi);
+    if(result.title)$("rTitle").value=result.title;
+    if(result.description)$("rDescription").value=result.description;
+    if(result.image)$("rImage").value=result.image;
+    if($("rPlatform").value==="auto")$("rPlatform").value=result.platform;
+    $("metadataStatus").textContent="已填入预览信息，请核对后保存。";
+    updateEditCover();
+  }catch(error){
+    $("editError").textContent=error.message+
+      "\n读取失败不代表资源失效，可继续手动收录。";
+  }finally{setBusy(false);render()}
+});
+
+/* 标签管理 */
+function renderTagManager(){
+  $("tagManageList").replaceChildren(...data.tags.map(tag=>{
+    const row=node("div","tag-row");
+    const count=data.resources.filter(r=>r.tagIds.includes(tag.id)).length;
+    const text=node("span","",tag.name);
+    text.append(node("small","",count+" 项"));
+
+    const actions=node("div","actions");
+    const rename=button("改名",async()=>{
+      if(!canWrite())return;
+      const value=prompt("标签新名称：",tag.name);
+      if(value===null||value.trim()===tag.name)return;
+      try{
+        const next=copy(data);
+        next.tags.find(t=>t.id===tag.id).name=tagName(value,data.tags,tag.id);
+        await saveAction(next,"修改收藏标签",{errorId:"tagsError"});
+      }catch(error){$("tagsError").textContent=error.message}
+    },"btn small ghost");
+
+    const remove=button("删除",async()=>{
+      if(!canWrite())return;
+      if(!confirm(`删除标签“${tag.name}”？\n取消 ${count} 项资源的标签关联，但保留资源。`))return;
+      const next=copy(data);
+      next.tags=next.tags.filter(t=>t.id!==tag.id);
+      next.resources.forEach(r=>{
+        if(r.tagIds.includes(tag.id)){
+          r.tagIds=r.tagIds.filter(id=>id!==tag.id);
+          r.updatedAt=now();
+        }
+      });
+      await saveAction(next,"删除收藏标签",{errorId:"tagsError"});
+    },"btn small ghost danger");
+
+    rename.disabled=writeLocked;remove.disabled=writeLocked;
+    actions.append(rename,remove);row.append(text,actions);
+    return row;
+  }));
+}
+
+$("manageTags").addEventListener("click",()=>{
+  if(!canWrite())return;
+  $("tagName").value="";$("tagsError").textContent="";
+  renderTagManager();$("tagsDialog").showModal();
+});
+
+$("createTag").addEventListener("click",async()=>{
+  if(!canWrite())return;
+  try{
+    if(data.tags.length>=100)throw Error("最多支持 100 个标签。");
+    const next=copy(data);
+    next.tags.push({id:uid(),name:tagName($("tagName").value,data.tags)});
+    const ok=await saveAction(next,"新增收藏标签",{errorId:"tagsError"});
+    if(ok)$("tagName").value="";
+  }catch(error){$("tagsError").textContent=error.message}
+});
+
+/* 设置与维护 */
+$("settingsBtn").addEventListener("click",()=>{
+  if(!token||busy)return;
+  $("settingsRepo").textContent=
+    "共用原仓库："+REPO.owner+"/"+REPO.repo+" · "+REPO.branch+
+    "\n独立数据文件："+CONFIG.dataFile;
+  $("metadataApi").value=data.settings.metadataApi;
+  $("settingsError").textContent="";
+  $("settingsDialog").showModal();
+});
+
+$("settingsForm").addEventListener("submit",async event=>{
+  event.preventDefault();
+  if(writeLocked){
+    $("settingsError").textContent="请先点击“读取最新数据”。";return;
+  }
+  if(!canWrite())return;
+  const next=copy(data);
+  next.settings.metadataApi=$("metadataApi").value.trim();
+  await saveAction(next,"保存收藏库设置",{
+    dialog:"settingsDialog",errorId:"settingsError"
+  });
+});
+
+$("refreshRepo").addEventListener("click",async()=>{
+  if(!token||busy)return;
+  setBusy(true,"正在读取最新数据…");
+  $("settingsError").textContent="";
+  try{
+    const loaded=await loadRepository(token);
+    data=loaded.data;snapshot={sha:loaded.sha};writeLocked=false;
+    $("metadataApi").value=data.settings.metadataApi;
+    notice("已读取仓库最新数据。");
+    toast("读取完成");
+  }catch(error){$("settingsError").textContent=error.message}
+  finally{setBusy(false);render()}
+});
+
+$("cleanInvalid").addEventListener("click",async()=>{
+  if(!canWrite()){
+    $("settingsError").textContent="请先读取最新数据。";return;
+  }
+  const count=data.resources.filter(r=>r.status==="invalid").length;
+  if(!count){toast("没有人工确认失效的资源");return}
+  if(!confirm(`清理 ${count} 项人工确认失效的资源？\n仅删除本站入口，建议先备份。`))return;
+  const next=copy(data);
+  next.resources=next.resources.filter(r=>r.status!=="invalid");
+  await saveAction(next,"清理失效收藏",{errorId:"settingsError"});
+});
+
+/* 备份与导入 */
+function downloadJSON(value,name){
+  const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{
+    type:"application/json;charset=utf-8"
+  }));
+  const a=node("a");a.href=url;a.download=name;
+  document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
+}
+
+$("exportBtn").addEventListener("click",()=>{
+  if(!token||busy)return;
+  downloadJSON(data,"网络收藏备份-"+now().slice(0,10)+".json");
+});
+
+$("importBtn").addEventListener("click",()=>{
+  if(!canWrite()){
+    $("settingsError").textContent="请先读取最新数据。";return;
+  }
+  $("importFile").value="";$("importFile").click();
+});
+
+$("importFile").addEventListener("change",async event=>{
+  const file=event.target.files[0];
+  if(!file||!canWrite())return;
+
+  setBusy(true,"正在校验备份…");
+  $("settingsError").textContent="";
+  try{
+    if(file.size>CONFIG.maxBytes)throw Error("备份文件过大。");
+    const next=validate(JSON.parse(await file.text()));
+    if(!confirm(
+      `替换公共收藏库？\n备份包含 ${next.tags.length} 个标签、${next.resources.length} 项资源。\n`+
+      "仅导入可信备份；预览接口地址也将一并替换。"
+    ))return;
+    await commit(next,"导入网络收藏备份");
+    $("metadataApi").value=data.settings.metadataApi;
+    notice("备份已导入并提交，等待 Pages 部署完成。");
+  }catch(error){$("settingsError").textContent=writeError(error)}
+  finally{setBusy(false);render()}
+});
+
+/* 搜索：实时检索当前资源库，站外搜索使用原生链接 */
+function showExternalSearch(text){
+  const q=encodeURIComponent(text);
+  const items=[
+    ["B 站搜索","https://search.bilibili.com/all?keyword="+q],
+    ["公众号搜索","https://weixin.sogou.com/weixin?type=2&query="+q],
+    ["抖音搜索","https://www.douyin.com/search/"+q],
+    ["知乎搜索","https://www.zhihu.com/search?type=content&q="+q]
+  ];
+  $("externalLinks").replaceChildren(...items.map(([name,url])=>link(url,"",name+" ↗")));
+  $("externalLinks").hidden=false;
+}
+
+$("searchForm").addEventListener("submit",event=>{
+  event.preventDefault();
+  query=$("search").value.trim();
+  renderCards();
+  if(!query){
+    $("externalLinks").hidden=true;return;
+  }
+
+  const url=safeURL(query);
+  if(url){
+    $("externalLinks").hidden=true;
+    const existing=data.resources.find(r=>r.url===url);
+    if(existing){
+      openPreview(existing.id);
+    }else if(canWrite()){
+      openEdit(null,url);
+    }else{
+      $("searchHint").textContent="此链接尚未收录。访客只能查看已发布资源，由管理员添加新收藏。";
+    }
+  }else{
+    showExternalSearch(query);
+    $("searchHint").textContent="已搜索当前资源库；下方入口在原平台搜索，不会自动抓取其搜索结果。";
+  }
+});
+
+$("search").addEventListener("input",event=>{
+  query=event.target.value;
+  $("clearSearch").hidden=!query;
+  $("externalLinks").hidden=true;
+  $("searchHint").textContent="实时搜索已收藏资源；点击封面查看图文预览。";
+  renderCards();
+});
+
+$("clearSearch").addEventListener("click",()=>{
+  query="";$("search").value="";$("clearSearch").hidden=true;
+  $("externalLinks").hidden=true;
+  $("searchHint").textContent="实时搜索已收藏资源；点击封面查看图文预览。";
+  renderCards();
+});
+
+/* 界面事件 */
+$("platformFilter").append(new Option("所有平台",""));
+$("rPlatform").append(new Option("自动识别","auto"));
+Object.entries(PLATFORMS).forEach(([key,p])=>{
+  $("platformFilter").append(new Option(p.name,key));
+  $("rPlatform").append(new Option(p.name,key));
+});
+
+$("platformFilter").addEventListener("change",event=>{
+  platform=event.target.value;renderCards();
+});
+$("sort").addEventListener("change",event=>{
+  sort=event.target.value;renderCards();
+});
+$("allNav").addEventListener("click",()=>selectTag(null));
+$("resetFilters").addEventListener("click",reset);
+$("addBtn").addEventListener("click",()=>openEdit());
+
+$("menuBtn").addEventListener("click",()=>{
+  const open=!$("sidebar").classList.contains("open");
+  $("sidebar").classList.toggle("open",open);
+  $("backdrop").classList.toggle("open",open);
+  $("menuBtn").setAttribute("aria-expanded",String(open));
+});
+$("backdrop").addEventListener("click",closeSidebar);
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape")closeSidebar();
+});
+
+document.querySelectorAll("[data-close]").forEach(el=>{
+  el.addEventListener("click",()=>{
+    if(!busy)$(el.dataset.close).close();
+  });
+});
+
+document.querySelectorAll("dialog").forEach(el=>{
+  el.addEventListener("cancel",event=>{
+    if(busy)event.preventDefault();
+  });
+});
+
+$("loginDialog").addEventListener("close",()=>{
+  $("tokenInput").value="";
+});
+
+window.addEventListener("beforeunload",event=>{
+  if(busy&&token){
+    event.preventDefault();event.returnValue="";
+  }
+});
+
+/* 启动 */
+async function bootstrap(){
+  render();
+  setBusy(true,"正在读取收藏库…");
+  try{
+    const loaded=await loadPublic();
+    data=loaded.data;
+    if(loaded.missing){
+      notice(
+        "尚未发布收藏数据。使用原资源中心的同一个令牌登录后，首次保存会自动创建 "+
+        CONFIG.dataFile+"。"
+      );
+    }
+  }catch(error){
+    notice(error.name==="AbortError"?"读取超时，请刷新重试。":error.message,true);
+  }finally{
+    setBusy(false);render();
+  }
+}
+bootstrap();
+</script>
+</body>
+</html>
