@@ -4,13 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<meta name="color-scheme" content="light">
 <title>电力小分队 · 网络收藏</title>
 <style>
 :root{
-  --bg:#f5f6f8;--paper:#fff;--ink:#354158;--sub:#909caf;
-  --line:#e8ebf2;--strong:#dce2ec;--accent:#7463b9;
-  --soft:#f0edf8;--danger:#b56878;--success:#578672
+  --bg:#f5f6f9;--paper:#fff;--ink:#354158;--sub:#8794a9;
+  --line:#e7ebf2;--accent:#7463b9;--soft:#f0edf8;
+  --danger:#b56878;--success:#51816f
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;overflow:hidden}
@@ -26,255 +25,223 @@ a{color:inherit;text-decoration:none}
 fieldset{border:0;margin:0;padding:0;min-width:0}
 [hidden]{display:none!important}
 :focus-visible{outline:3px solid #d9ceee;outline-offset:3px}
-.ico{width:18px;height:18px;display:inline-block;vertical-align:middle;flex-shrink:0}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  min-height:34px;padding:6px 12px;border:1px solid var(--strong);
-  border-radius:8px;background:white;color:#8190a4;font-size:12px;white-space:nowrap
+  min-height:34px;padding:6px 12px;border:1px solid #dce2ec;
+  border-radius:8px;background:white;color:#7b8aa0;
+  font-size:12px;white-space:nowrap
 }
-.btn:hover:not(:disabled){background:#f8f9fc;border-color:#cdd5e2}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:white}
-.btn.primary:hover:not(:disabled){background:#6553a8}
+.btn:hover:not(:disabled){background:#f8f9fc}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn.ghost{background:transparent;border-color:transparent}
+.btn.small{min-height:28px;padding:4px 8px;font-size:11px}
 .btn.danger{color:var(--danger)}
-.btn.small{font-size:11px;min-height:28px;padding:4px 8px}
 .actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 #app{height:100vh;height:100dvh}
-.layout{height:100%;display:grid;grid-template-columns:230px minmax(0,1fr)}
+.layout{height:100%;display:grid;grid-template-columns:225px minmax(0,1fr)}
 aside{
-  display:flex;flex-direction:column;min-height:0;padding:27px 15px 17px;
+  display:flex;flex-direction:column;min-height:0;padding:26px 15px 17px;
   background:#fbfcfd;border-right:1px solid var(--line)
 }
-.brand{display:flex;align-items:center;gap:10px;padding:0 8px 28px}
-.brand-icon{
-  display:grid;place-items:center;width:38px;height:38px;
-  background:var(--soft);color:var(--accent);border-radius:11px
+.brand{display:flex;align-items:center;gap:10px;padding:0 8px 26px}
+.brand-mark{
+  width:38px;height:38px;display:grid;place-items:center;
+  background:var(--soft);color:var(--accent);border-radius:11px;font-size:23px
 }
-.brand strong{display:block;font-size:16px;font-weight:600}
-.brand small{display:block;font-size:8px;color:#a3adbc;letter-spacing:1.5px;margin-top:3px}
+.brand strong{display:block;font-size:16px}
+.brand small{font-size:8px;color:#a3adbc;letter-spacing:1.5px}
 .nav{
-  display:flex;align-items:center;gap:9px;width:100%;text-align:left;
-  padding:10px 11px;margin:3px 0;border:0;border-radius:8px;background:none;
-  color:#8290a4;font-size:12px
+  display:flex;align-items:center;gap:9px;width:100%;padding:10px 11px;
+  margin:3px 0;text-align:left;border:0;border-radius:8px;
+  background:none;color:#8290a4;font-size:12px
 }
 .nav:hover{background:#f2f4f8}
 .nav.active{background:var(--soft);color:var(--accent)}
 .nav-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.nav small{font-size:10px;color:#a6afbf}
-.dot{width:7px;height:7px;background:#b9aacd;border-radius:50%;flex-shrink:0}
+.nav small{font-size:10px;color:#a3afbd}
+.dot{width:7px;height:7px;background:#b7a6cb;border-radius:50%}
 .side-label{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:23px 10px 9px;font-size:10px;color:#a0aabc
+  display:flex;align-items:center;justify-content:space-between;
+  padding:23px 10px 8px;font-size:10px;color:#99a5b6
 }
-.side-label button{padding:0;border:0;background:none;color:#9b88b4;font-size:10px}
 #tagNav{flex:1;min-height:0;overflow:auto;scrollbar-width:thin}
 .side-foot{
-  border-top:1px solid var(--line);padding:15px 9px 0;margin-top:15px;
-  font-size:10px;color:#a6afbf;line-height:1.9
+  padding:15px 9px 0;border-top:1px solid var(--line);
+  color:#9ba7b8;font-size:10px;line-height:1.9;margin-top:15px
 }
-.side-foot strong{display:block;font-size:11px;font-weight:400;color:#8e9aad}
+.side-foot strong{display:block;font-size:11px;font-weight:500}
 main{
-  min-width:0;min-height:0;display:flex;flex-direction:column;
-  padding:28px 32px 16px;gap:20px
+  display:flex;flex-direction:column;min-height:0;min-width:0;
+  padding:27px 30px 15px;gap:18px
 }
 header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .header-left{display:flex;align-items:center;gap:9px}
 .eyebrow{font-size:9px;color:#a1acbc;letter-spacing:1.5px}
 h1{font-size:23px;font-weight:600;margin:3px 0 0;line-height:1.4}
 #menuBtn{display:none}
-#adminBadge{font-size:10px;color:var(--success)}
-.search-area{max-width:950px;width:100%;margin:0 auto}
+#adminBadge{color:var(--success);font-size:10px}
 .searchbox{
-  display:flex;align-items:center;gap:10px;padding:7px 8px 7px 15px;
-  border:1px solid #e1e6ef;border-radius:11px;background:#fff
+  display:flex;align-items:center;gap:9px;padding:8px 9px 8px 15px;
+  background:#fff;border:1px solid #e0e6ef;border-radius:11px
 }
-.searchbox>.ico{color:#a8b2c2}
-#search{
-  flex:1;min-width:0;padding:7px 0;border:0;background:none;outline:none;
-  font-size:13px;color:var(--ink)
-}
-#search::placeholder{color:#aeb6c4}
-#clearSearch{border:0;background:none;font-size:18px;color:#a4afbe;padding:0 6px}
-.search-hint{font-size:10px;color:#a1abbb;margin:8px 3px 0}
-#externalLinks{display:flex;gap:12px;flex-wrap:wrap;margin:7px 3px 0}
-#externalLinks a{font-size:10px;color:#9582b3}
+#search{flex:1;min-width:0;padding:7px 0;border:0;outline:none;background:none;color:var(--ink)}
+#search::placeholder{color:#a7b1c0}
+.search-hint{font-size:10px;color:#9ca8b8;margin:7px 3px 0}
+#externalLinks{display:flex;flex-wrap:wrap;gap:12px;margin-top:7px}
+#externalLinks a{font-size:11px;color:var(--accent)}
 #notice{
   flex-shrink:0;padding:10px 13px;background:var(--soft);
-  border:1px solid #e4ddef;border-radius:8px;color:#8d7cab;font-size:11px;
-  white-space:pre-line;overflow-wrap:anywhere;max-height:115px;overflow:auto
+  border:1px solid #e3dced;border-radius:8px;font-size:11px;color:#8d7bab;
+  white-space:pre-line;overflow-wrap:anywhere;max-height:110px;overflow:auto
 }
-#notice.error{background:#fcf1f4;border-color:#efdee3;color:#b47887}
+#notice.error{background:#fcf1f4;border-color:#efdee3;color:#af6579}
 .workbench{
-  flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;
-  border:1px solid var(--line);border-radius:13px;background:white
+  display:flex;flex-direction:column;flex:1;min-height:0;
+  border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden
 }
 .toolbar{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:14px 18px;border-bottom:1px solid var(--line)
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;gap:10px;border-bottom:1px solid var(--line);flex-wrap:wrap
 }
-.section-title{display:flex;align-items:center;gap:8px;min-width:0}
-#viewTitle{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#resultCount{font-size:10px;color:#a4afbf;white-space:nowrap}
-.filter{border:0;background:none;font-size:11px;color:#919eb2;padding:4px;max-width:140px}
-#scroll{
-  flex:1;min-height:0;overflow:auto;padding:18px;
-  scrollbar-width:thin;scrollbar-color:#d4dbe5 transparent
-}
+#viewTitle{font-size:13px;font-weight:600}
+#resultCount{font-size:10px;color:#a2afbf;margin-left:7px}
+.filter{padding:4px;border:0;background:none;color:#8998ad;font-size:11px;max-width:140px}
+#scroll{flex:1;min-height:0;overflow:auto;padding:18px;scrollbar-width:thin}
 #cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:14px}
 .card{
-  display:flex;flex-direction:column;min-width:0;overflow:hidden;
-  background:white;border:1px solid var(--line);border-radius:11px;
-  transition:border-color .16s,box-shadow .16s
+  min-width:0;display:flex;flex-direction:column;overflow:hidden;
+  border:1px solid var(--line);border-radius:11px;background:#fff
 }
-.card:hover{border-color:#d6cae7;box-shadow:0 6px 22px #44305f08}
-.cover-button{width:100%;display:block;padding:0;border:0;background:none;text-align:initial}
+.card:hover{border-color:#d4c8e6}
+.cover-button{display:block;width:100%;padding:0;border:0;background:none;text-align:initial}
 .cover{
   position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;
-  background:var(--cover-bg,#f2eff8)
+  background:var(--cover-bg,#f3eff9)
 }
 .cover-fallback{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:8px;color:var(--cover-color,#a391bd);
-  background:linear-gradient(135deg,#ffffff66,transparent)
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;gap:7px;
+  color:var(--cover-color,#a18db9)
 }
-.cover-fallback b{font-size:31px;font-weight:600;letter-spacing:2px;opacity:.8}
-.cover-fallback small{font-size:10px;letter-spacing:1.5px;opacity:.8}
+.cover-fallback b{font-size:31px;opacity:.8}
+.cover-fallback small{font-size:10px;letter-spacing:1px}
 .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cover-label{
-  position:absolute;left:10px;bottom:9px;padding:2px 7px;
-  font-size:9px;background:#ffffffeb;color:#91829f;border-radius:5px
+  position:absolute;left:9px;bottom:9px;background:#fffffff0;
+  color:#95839f;border-radius:5px;padding:2px 7px;font-size:9px
 }
-.invalid-label{
-  position:absolute;right:9px;top:9px;background:#fff1f4ed;
-  color:#b87583;padding:2px 7px;font-size:9px;border-radius:5px
+.cover-state{
+  position:absolute;right:8px;top:8px;max-width:90%;
+  padding:2px 7px;background:#ffffffea;border-radius:5px;font-size:9px;color:#9b89b2
 }
+.cover-state.error{background:#fff3f5ed;color:#af7182}
 .card-body{display:flex;flex-direction:column;flex:1;padding:14px;gap:9px}
 .card-title{
-  font-size:13px;font-weight:550;color:#4c5871;line-height:1.8;
+  color:#4b5770;font-size:13px;font-weight:550;line-height:1.8;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
   overflow:hidden;overflow-wrap:anywhere
 }
 .card-title:hover{color:var(--accent)}
 .card-desc{
-  font-size:11px;color:#99a5b6;line-height:1.9;
+  color:#98a4b5;font-size:11px;line-height:1.9;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
   overflow:hidden;overflow-wrap:anywhere
 }
 .chips{display:flex;gap:5px;flex-wrap:wrap}
 .card .chips{margin-top:auto}
 .chip{
-  border:0;border-radius:5px;padding:2px 7px;font-size:10px;
-  color:#9b89b3;background:#f4f0fa;max-width:100%;overflow-wrap:anywhere
+  border:0;border-radius:5px;padding:2px 7px;background:#f4f0fa;
+  color:#9b88b3;font-size:10px;max-width:100%;overflow-wrap:anywhere
 }
-button.chip:hover{background:#eae2f5}
 .card-bottom{
   display:flex;align-items:center;justify-content:space-between;gap:7px;
-  padding-top:10px;margin-top:2px;border-top:1px solid #f0f2f6
+  margin-top:2px;padding-top:10px;border-top:1px solid #f0f2f6
 }
-.card-date{font-size:9px;color:#aeb8c7}
-.card-bottom .btn{font-size:10px;min-height:27px;padding:4px 7px}
-.card-bottom .ico{width:13px;height:13px}
-.empty{
-  text-align:center;padding:55px 15px;font-size:12px;color:#a3adbd;
-  white-space:pre-line;line-height:2
-}
-.empty>.ico{display:block;width:33px;height:33px;margin:0 auto 12px;color:#c4cdd9}
+.card-date{font-size:9px;color:#a8b4c4}
+.card-bottom .btn{font-size:10px;padding:4px 7px;min-height:27px}
+.empty{text-align:center;padding:55px 15px;color:#9ba8ba;font-size:12px;line-height:2;white-space:pre-line}
 footer{
-  display:flex;justify-content:space-between;gap:10px;
-  padding:9px 18px;border-top:1px solid var(--line);font-size:9px;color:#a7b1c1
+  display:flex;justify-content:space-between;gap:8px;
+  border-top:1px solid var(--line);padding:9px 18px;font-size:9px;color:#9facbd
 }
 dialog{
-  width:min(590px,calc(100% - 24px));max-height:91vh;max-height:91dvh;
-  margin:auto;padding:0;overflow:auto;scrollbar-width:thin;background:#fff;
-  color:var(--ink);border:1px solid #e4e8f0;border-radius:14px;
+  width:min(600px,calc(100% - 24px));max-height:91vh;max-height:91dvh;
+  margin:auto;padding:0;overflow:auto;scrollbar-width:thin;
+  border:1px solid #e3e8ef;border-radius:14px;background:#fff;color:var(--ink);
   box-shadow:0 22px 85px #28375030
 }
 dialog::backdrop{background:#27334a55;backdrop-filter:blur(3px)}
 .dialog-body{padding:24px}
 dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
-.dialog-sub{font-size:11px;color:#9ca8b9;line-height:1.9;margin:0 0 19px}
-.field{display:block;font-size:12px;color:#8594aa;margin-bottom:14px}
+.dialog-sub{font-size:11px;color:#99a6b8;line-height:1.9;margin:0 0 18px}
+.field{display:block;color:#8191a7;font-size:12px;margin-bottom:14px}
 .field input,.field textarea,.field select{
   display:block;width:100%;min-width:0;margin-top:6px;padding:10px 11px;
   border:1px solid #e0e5ee;border-radius:8px;background:#fcfcfe;color:var(--ink)
 }
-.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:#c3b2df;background:#fff}
-.field input::placeholder,.field textarea::placeholder{color:#aeb8c7}
-.field textarea{min-height:90px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:#bfaedb}
+.field textarea{min-height:85px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:#acb6c5}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .inline{display:flex;align-items:center;gap:8px}
-.inline input{flex:1;min-width:0;padding:8px 10px;border:1px solid #e0e5ee;border-radius:8px}
-.tag-picker{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0 14px}
-.tag-option{
-  padding:6px 10px;border:1px solid #e4dcec;border-radius:7px;
-  background:#fff;color:#9c8ab3;font-size:11px
-}
-.tag-option.active{background:var(--soft);border-color:#c4b2df;color:var(--accent)}
-.tag-option.active:before{content:"✓ ";font-weight:600}
-.hint{font-size:11px;color:#98a5b8;line-height:1.9;white-space:pre-line;overflow-wrap:anywhere}
-.warning{
-  font-size:11px;color:#a18a65;background:#faf6ef;border:1px solid #eee4d5;
-  border-radius:8px;padding:10px 12px;line-height:1.9
-}
-.error-text{font-size:11px;color:var(--danger);line-height:1.9;white-space:pre-line;overflow-wrap:anywhere}
+.inline input{flex:1;min-width:0;border:1px solid #e0e5ee;border-radius:8px;padding:8px 10px}
+.hint{font-size:11px;color:#94a2b7;line-height:1.9;white-space:pre-line;overflow-wrap:anywhere}
+.warning{font-size:11px;color:#9b8564;background:#faf6ef;padding:10px 12px;border:1px solid #eee3d3;border-radius:8px}
+.error-text{color:var(--danger);font-size:11px;white-space:pre-line;overflow-wrap:anywhere}
 .dialog-actions{
-  display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;
-  border-top:1px solid var(--line);padding-top:16px;margin-top:20px
+  display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px;
+  margin-top:20px;padding-top:16px;border-top:1px solid var(--line)
 }
 .paste-area{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:19px 12px;gap:9px;border:1px dashed #cdbfe0;border-radius:10px;
-  background:#faf8fd;text-align:center;margin-bottom:12px
+  display:flex;flex-direction:column;align-items:center;gap:9px;
+  padding:20px 12px;background:#faf8fd;border:1px dashed #cbbcdf;
+  border-radius:10px;text-align:center;margin-bottom:12px
 }
-.paste-area strong{font-size:12px;color:#8f7dad;font-weight:500}
-.paste-area>span{font-size:10px;color:#a4a0b4}
-.paste-area:focus{border-color:var(--accent);background:var(--soft)}
+.paste-area strong{font-size:12px;color:#8b76a8}
+.paste-area>span{font-size:10px;color:#a29aaf}
 .paste-area .actions{justify-content:center}
-#editCover{max-width:285px;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:12px 0 15px}
+#editCover{max-width:290px;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:12px 0}
+.tag-picker{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0 14px}
+.tag-option{padding:6px 10px;background:#fff;border:1px solid #e2d9eb;border-radius:7px;color:#9b87b3;font-size:11px}
+.tag-option.active{background:var(--soft);border-color:#c3b0dd;color:var(--accent)}
+.tag-option.active:before{content:"✓ "}
+.tag-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
+.tag-row span{font-size:12px;overflow-wrap:anywhere}
+.tag-row small{font-size:10px;color:#a3aec0;margin-left:6px}
 #previewDialog{width:min(760px,calc(100% - 24px))}
 #previewHero .cover{max-height:410px}
 #previewHero img{object-fit:contain;background:#f5f6f9}
 #previewTitle{font-size:21px;line-height:1.6;overflow-wrap:anywhere}
-#previewMeta{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#9ca8ba;margin:10px 0 13px}
-#previewDescription{font-size:13px;color:#8492a7;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere;margin-top:18px}
-#previewUrl{display:block;font-size:10px;color:#9c8cb5;overflow-wrap:anywhere;margin-top:17px}
-.tag-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
-.tag-row span{font-size:12px;overflow-wrap:anywhere}
-.tag-row small{font-size:10px;color:#a5afc0;margin-left:7px}
-#working,#toast{
-  position:fixed;left:50%;transform:translateX(-50%);max-width:90%;z-index:110;
-  font-size:12px;padding:10px 16px;border-radius:9px;box-shadow:0 7px 25px #28375020
+#previewMeta{font-size:11px;color:#99a6b9;margin:10px 0}
+#previewDescription{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;color:#8190a5;line-height:2;margin-top:17px}
+#previewUrl{display:block;color:var(--accent);font-size:10px;overflow-wrap:anywhere;margin-top:15px}
+#toast{
+  position:fixed;bottom:23px;left:50%;transform:translateX(-50%);
+  max-width:90%;z-index:100;background:#455169;color:white;padding:10px 16px;
+  border-radius:9px;font-size:12px
 }
-#working{top:16px;background:#fff;border:1px solid var(--line);color:var(--accent)}
-#toast{bottom:23px;background:#455169;color:#fff}
 #backdrop{display:none}
-@media(min-width:1550px){main{padding-left:48px;padding-right:48px}}
 @media(max-width:1000px){
-  .layout{grid-template-columns:195px minmax(0,1fr)}
-  aside{padding:24px 11px 17px}
-  main{padding:23px 20px 14px;gap:17px}
-  #cards{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+  .layout{grid-template-columns:190px minmax(0,1fr)}
+  aside{padding:24px 11px}
+  main{padding:22px 20px 14px;gap:15px}
+  #cards{grid-template-columns:repeat(auto-fill,minmax(235px,1fr))}
 }
 @media(max-width:640px){
   .layout{grid-template-columns:minmax(0,1fr)}
-  aside{
-    position:fixed;inset:0 auto 0 0;width:245px;z-index:30;
-    transform:translateX(-100%);transition:transform .18s
-  }
+  aside{position:fixed;inset:0 auto 0 0;width:245px;z-index:30;transform:translateX(-100%)}
   aside.open{transform:translateX(0)}
-  #backdrop.open{display:block;position:fixed;inset:0;background:#27344c44;border:0;z-index:29}
+  #backdrop.open{display:block;position:fixed;inset:0;z-index:29;border:0;background:#27344c44}
   #menuBtn{display:inline-flex;padding:5px}
-  main{padding:16px 11px 10px;gap:15px}
+  main{padding:15px 10px 10px;gap:13px}
   h1{font-size:20px}
   .eyebrow{font-size:8px}
   header>.actions{gap:2px}
-  header>.actions .btn{font-size:10px;min-height:29px;padding:5px 7px}
+  header .btn{font-size:10px;padding:5px 7px;min-height:29px}
   #adminBadge{display:none!important}
   #search{font-size:12px}
-  .searchbox{padding-left:11px}
-  .search-hint{font-size:9px}
-  .toolbar{padding:12px;flex-wrap:wrap}
-  .filter{font-size:10px;max-width:115px}
+  .toolbar{padding:12px}
+  .filter{max-width:110px;font-size:10px}
   #scroll{padding:11px}
   #cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
   .card-body{padding:10px;gap:7px}
@@ -283,20 +250,15 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
   .chip{font-size:9px;padding:1px 5px}
   .cover-fallback b{font-size:24px}
   .cover-fallback small{font-size:8px}
-  .cover-label{font-size:8px;left:7px;bottom:7px}
   .card-date{display:none}
   .card-bottom{justify-content:flex-end}
-  .card-bottom .actions{gap:2px}
   .card-bottom .btn{font-size:9px;min-height:25px;padding:3px 5px}
-  .card-bottom .ico{display:none}
-  footer{padding:8px 12px}
-  footer span:last-child{display:none}
-  .dialog-body{padding:20px}
+  .card-bottom .actions{gap:2px}
   .row{grid-template-columns:1fr;gap:0}
-  #previewTitle{font-size:18px}
+  .dialog-body{padding:20px}
+  footer span:last-child{display:none}
 }
 @media(max-width:370px){#cards{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -305,21 +267,21 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
 <div class="layout">
   <aside id="sidebar">
     <div class="brand">
-      <div class="brand-icon" data-icon="bookmark"></div>
+      <div class="brand-mark">▣</div>
       <div><strong>电力小分队</strong><small>NETWORK COLLECTIONS</small></div>
     </div>
     <button id="allNav" class="nav active" type="button">
-      <span data-icon="grid"></span>
-      <span class="nav-name">全部收藏</span><small id="allCount">0</small>
+      <span>▦</span><span class="nav-name">全部收藏</span><small id="allCount">0</small>
     </button>
     <div class="side-label">
       <span>收藏标签 · 支持多标签</span>
-      <button id="manageTags" type="button" hidden>管理</button>
+      <button id="manageTags" class="btn small ghost" type="button" hidden>管理</button>
     </div>
     <nav id="tagNav" aria-label="收藏标签"></nav>
     <div class="side-foot">
       <strong id="permissionText">访客模式 · 仅可浏览</strong>
-      扬州大学 · 课题组<br>图文收藏 / 有序整理
+      扬州大学 · 课题组<br>
+      COLLECTIONS / V13
     </div>
   </aside>
 
@@ -328,27 +290,25 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
   <main>
     <header>
       <div class="header-left">
-        <button id="menuBtn" class="btn ghost" type="button"
-          aria-label="打开导航" aria-expanded="false"><span data-icon="menu"></span></button>
+        <button id="menuBtn" class="btn ghost" type="button" aria-label="打开导航">☰</button>
         <div><div class="eyebrow">WORKSPACE / COLLECTIONS</div><h1>网络资源收藏</h1></div>
       </div>
       <div class="actions">
         <span id="adminBadge" hidden>管理模式</span>
+        <button id="refreshBtn" class="btn ghost" type="button">刷新数据</button>
         <button id="addBtn" class="btn primary" type="button" hidden>＋ 添加</button>
         <button id="settingsBtn" class="btn ghost" type="button" hidden>设置</button>
         <button id="adminBtn" class="btn" type="button">管理员</button>
       </div>
     </header>
 
-    <section class="search-area">
+    <section>
       <form id="searchForm" class="searchbox">
-        <span data-icon="search"></span>
         <input id="search" type="search" maxlength="4000"
-          placeholder="输入标题、链接、简介或标签" aria-label="搜索资源">
-        <button id="clearSearch" type="button" aria-label="清空搜索" hidden>×</button>
+          placeholder="搜索标题、链接、简介或标签" aria-label="搜索资源">
         <button class="btn primary" type="submit">搜索</button>
       </form>
-      <div id="searchHint" class="search-hint">实时搜索已收藏资源；点击封面查看图文预览。</div>
+      <div class="search-hint">点击封面查看图文预览，点击标题打开原资源。</div>
       <div id="externalLinks" hidden></div>
     </section>
 
@@ -356,9 +316,7 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
 
     <section class="workbench">
       <div class="toolbar">
-        <div class="section-title">
-          <span id="viewTitle">全部收藏</span><span id="resultCount">0 项</span>
-        </div>
+        <div><span id="viewTitle">全部收藏</span><span id="resultCount">0 项</span></div>
         <div class="actions">
           <select id="platformFilter" class="filter" aria-label="平台筛选"></select>
           <select id="sort" class="filter" aria-label="排序">
@@ -367,11 +325,8 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
           <button id="resetFilters" class="btn small ghost" type="button">重置</button>
         </div>
       </div>
-      <div id="scroll">
-        <div id="cards"></div>
-        <div id="empty" class="empty" hidden></div>
-      </div>
-      <footer><span id="footerText"></span><span>收藏入口，不保存原文或视频副本</span></footer>
+      <div id="scroll"><div id="cards"></div><div id="empty" class="empty" hidden></div></div>
+      <footer><span id="footerText"></span><span id="sourceText"></span></footer>
     </section>
   </main>
 </div>
@@ -385,12 +340,12 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
     <div id="previewTags" class="chips"></div>
     <div id="previewDescription"></div>
     <a id="previewUrl" target="_blank" rel="noopener noreferrer"></a>
+    <p id="previewImageHint" class="hint"></p>
     <div class="dialog-actions">
+      <button id="retryCover" class="btn" type="button">重新加载封面</button>
       <button class="btn" type="button" data-close="previewDialog">关闭</button>
       <button id="previewEdit" class="btn" type="button" hidden>编辑</button>
-      <a id="previewOpen" class="btn primary" target="_blank" rel="noopener noreferrer">
-        打开原资源 <span data-icon="arrow"></span>
-      </a>
+      <a id="previewOpen" class="btn primary" target="_blank" rel="noopener noreferrer">打开原资源 ↗</a>
     </div>
   </div>
 </dialog>
@@ -399,16 +354,14 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
 <form id="loginForm">
 <fieldset class="lockable dialog-body">
   <h2>管理员登录</h2>
-  <p class="dialog-sub">使用原“电力小分队 · 资源中心”的同一个 GitHub 令牌。</p>
+  <p class="dialog-sub">使用原资源中心的同一个 GitHub 令牌。</p>
   <label class="field">GitHub 访问令牌
     <input id="tokenInput" type="password" autocomplete="off" spellcheck="false" required>
   </label>
-  <p id="repoHint" class="hint"></p>
-  <div class="warning">
-    令牌需授权目标仓库，Contents 权限为 Read and write。
-    令牌仅保存在当前页面内存中，不写入仓库或浏览器存储。
-  </div>
-  <p class="hint">两个页面共用令牌，但不自动共享登录状态。刷新或关闭页面后需重新输入。</p>
+  <p class="hint">仓库：YZUyzh/grouptools
+分支：main
+权限：Contents / Read and write</p>
+  <div class="warning">令牌只保存在当前页面内存中，不写入 HTML、仓库或浏览器存储。</div>
   <div id="loginError" class="error-text" role="alert"></div>
   <div class="dialog-actions">
     <button class="btn" type="button" data-close="loginDialog">取消</button>
@@ -422,41 +375,38 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
 <form id="editForm">
 <fieldset class="lockable dialog-body">
   <h2 id="editHeading">添加收藏</h2>
-  <p class="dialog-sub">填写标题、简介和封面，再选择一个或多个标签。</p>
-
+  <p class="dialog-sub">图片与资源配置在同一次 Git 提交中发布。</p>
   <label class="field">资源链接
-    <input id="rUrl" type="url" maxlength="4000" placeholder="https://…" required>
+    <input id="rUrl" type="url" maxlength="4000" required placeholder="https://…">
   </label>
   <div class="actions" style="margin-bottom:13px">
     <button id="readMetadata" class="btn small" type="button">读取标题与封面</button>
-    <span id="metadataStatus" class="hint"></span>
   </div>
-
   <label class="field">资源标题
-    <input id="rTitle" maxlength="160" placeholder="文章、视频或网站名称" required>
+    <input id="rTitle" maxlength="160" required>
   </label>
 
-  <div id="pasteArea" class="paste-area" tabindex="0"
-       role="group" aria-label="封面图片粘贴区域">
-    <strong>直接粘贴图片或截图作为封面</strong>
-    <span>复制图片后，在编辑窗口按 Ctrl+V / ⌘V</span>
+  <div id="pasteArea" class="paste-area" tabindex="0" role="group" aria-label="粘贴封面图片">
+    <strong>复制图片或截图，直接粘贴到编辑窗口</strong>
+    <span>Ctrl+V / ⌘V · 也可以选择本地图片</span>
     <div class="actions">
       <button id="pickCover" class="btn small" type="button">选择本地图片</button>
       <button id="cancelCover" class="btn small ghost" type="button" hidden>取消待上传图片</button>
     </div>
   </div>
-  <input id="coverFile" type="file"
-    accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+  <input id="coverFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
 
-  <label class="field">或使用图片地址（可选）
-    <input id="rImage" type="url" maxlength="4000" placeholder="https://…/cover.jpg">
+  <label class="field">图片地址（可选）
+    <input id="rImage" maxlength="4000" placeholder="HTTPS 图片地址或 ./images/…">
   </label>
   <p id="coverStatus" class="hint" role="status"></p>
   <div id="editCover"></div>
+  <div class="actions">
+    <button id="removeCover" class="btn small ghost danger" type="button">移除封面</button>
+  </div>
 
-  <label class="field">简介
-    <textarea id="rDescription" maxlength="3000"
-      placeholder="主要内容、适合人群、值得收藏的原因……"></textarea>
+  <label class="field" style="margin-top:14px">简介
+    <textarea id="rDescription" maxlength="3000" placeholder="内容介绍、收藏原因……"></textarea>
   </label>
   <div class="row">
     <label class="field">来源平台<select id="rPlatform"></select></label>
@@ -470,15 +420,15 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
     </label>
   </div>
 
-  <div class="hint">收藏标签 · 可多选，再次点击可取消</div>
+  <div class="hint">收藏标签 · 可同时选择多个</div>
   <div id="tagPicker" class="tag-picker"></div>
   <div class="inline">
     <input id="draftTagName" maxlength="24" placeholder="新标签名称">
     <button id="addDraftTag" class="btn small" type="button">添加标签</button>
   </div>
-
-  <p class="hint">粘贴图片只在保存时上传。原图最大 20 MB，自动缩小并压缩；GIF 将转为静态封面。
-封面图片会公开发布，请只使用有权分享的图片。修改资源链接会重置有效性记录。</p>
+  <p class="hint">原图最大 20 MB，自动缩小并压缩。GIF 会转为静态封面。
+未保存的粘贴图片不会发布。只上传有权公开分享的图片。</p>
+  <div id="editStatus" class="hint" role="status"></div>
   <div id="editError" class="error-text" role="alert"></div>
   <div class="dialog-actions">
     <button id="deleteResource" class="btn danger" type="button" hidden>删除</button>
@@ -491,14 +441,13 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
 
 <dialog id="tagsDialog">
 <fieldset class="lockable dialog-body">
-  <h2>管理收藏标签</h2>
-  <p class="dialog-sub">只有管理员可修改。一个资源可以属于多个标签。</p>
+  <h2>管理标签</h2>
+  <p class="dialog-sub">删除标签只取消关联，不删除资源。</p>
   <div class="inline">
     <input id="tagName" maxlength="24" placeholder="新标签名称">
     <button id="createTag" class="btn primary" type="button">新增</button>
   </div>
-  <div id="tagManageList" style="margin-top:12px"></div>
-  <p class="hint">删除标签只取消分类关联，不删除资源。无标签资源仍显示在“全部收藏”。</p>
+  <div id="tagManageList"></div>
   <div id="tagsError" class="error-text" role="alert"></div>
   <div class="dialog-actions">
     <button class="btn" type="button" data-close="tagsDialog">完成</button>
@@ -510,20 +459,20 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
 <form id="settingsForm">
 <fieldset class="lockable dialog-body">
   <h2>资源库设置</h2>
-  <p id="settingsRepo" class="dialog-sub"></p>
+  <p class="dialog-sub">配置：visual-resource-library.json<br>图片：images/collection-covers/</p>
   <label class="field">可选：网页预览接口
     <input id="metadataApi" type="url" maxlength="2000" placeholder="https://你的服务/metadata">
   </label>
-  <p class="hint">用于管理员收录时获取真实标题、摘要和封面。未配置时可手动收录、粘贴图片。
-接口地址会公开保存，不能包含私密 API 密钥。</p>
+  <p class="hint">接口用于读取标题、摘要和远程封面；不配置也可手动填写、粘贴图片。
+接口地址公开保存，不能包含私密密钥。GitHub 令牌不会发送给该接口。</p>
   <div class="actions">
     <button id="refreshRepo" class="btn small" type="button">读取最新数据</button>
     <button id="exportBtn" class="btn small" type="button">备份配置</button>
     <button id="importBtn" class="btn small" type="button">导入配置</button>
     <button id="cleanInvalid" class="btn small danger" type="button">清理失效资源</button>
   </div>
-  <p class="hint">配置备份只包含资源信息与图片地址，不包含图片文件。
-清理仅针对人工确认失效的资源，不会删除旧封面图片。</p>
+  <p class="hint">配置备份包含图片地址，不包含图片文件。
+删除收藏或更换封面不会自动删除旧图片，以免影响其他引用。</p>
   <div id="settingsError" class="error-text" role="alert"></div>
   <div class="dialog-actions">
     <button class="btn" type="button" data-close="settingsDialog">关闭</button>
@@ -534,152 +483,158 @@ dialog h2{font-size:19px;font-weight:600;margin:0 0 6px}
 </dialog>
 
 <input id="importFile" type="file" accept=".json,application/json" hidden>
-<div id="working" role="status" hidden></div>
 <div id="toast" role="status" hidden></div>
 
 <script>
 "use strict";
 
-/* =========================================================
-   与原资源中心相同的仓库、分支、令牌授权。
-   请勿将令牌写入代码。
-   本 HTML 请放在仓库根目录。
-   ========================================================= */
-const REPO = Object.freeze({
-  owner:"YZUyzh",
-  repo:"grouptools",
-  branch:"main"
-});
-const CONFIG = Object.freeze({
-  dataFile:"visual-resource-library.json",
-  publicUrl:"./visual-resource-library.json",
-  coverFolder:"images/collection-covers",
-  maxDataBytes:4*1024*1024,
-  maxImageSource:20*1024*1024,
-  maxImageResult:1024*1024
-});
+/* ---------------- 配置 ---------------- */
+const VERSION="V13";
+const REPO=Object.freeze({owner:"YZUyzh",repo:"grouptools",branch:"main"});
+const DATA_FILE="visual-resource-library.json";
+const COVER_FOLDER="images/collection-covers";
+const MAX_DATA=4*1024*1024;
+const BASE=new URL("./",location.href);
 
-/*
-可选网页预览接口：
-POST https://你的服务/metadata
-请求：{"url":"https://目标资源网址"}
-响应：
-{
-  "title":"真实标题",
-  "description":"真实摘要",
-  "image":"https://真实封面地址",
-  "platform":"bilibili"
-}
+const $=id=>document.getElementById(id);
+const copy=v=>JSON.parse(JSON.stringify(v));
+const now=()=>new Date().toISOString();
+const uid=()=>crypto.randomUUID();
+const has=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
 
-兼容 summary、thumbnail、cover 字段。
-后端必须正确设置 CORS、请求限流、超时和响应大小限制；
-防 SSRF，校验 DNS、目标 IP 和每次重定向，
-禁止访问内网、环回、保留地址和云元数据服务。
-私密 API Key 放后端，不要放 HTML。
-GitHub 令牌不会发送到预览接口。
-*/
-
-const $ = id=>document.getElementById(id);
-const copy = value=>JSON.parse(JSON.stringify(value));
-const now = ()=>new Date().toISOString();
-const uid = ()=>crypto.randomUUID
-  ?crypto.randomUUID()
-  :"id-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2);
-
-const INITIAL = {
+const INITIAL={
   version:1,
   settings:{metadataApi:""},
-  tags:[
-    "学习教程","科研资料","专业知识","实用工具","行业资讯",
-    "优质视频","深度文章","灵感创意","生活百科","值得再看"
-  ].map((name,i)=>({id:"tag-"+i,name})),
+  tags:["学习教程","科研资料","专业知识","实用工具","行业资讯",
+    "优质视频","深度文章","灵感创意","生活百科","值得再看"]
+    .map((name,i)=>({id:"tag-"+i,name})),
   resources:[]
 };
-
-const PLATFORMS = {
-  wechat:{name:"微信公众号",short:"微",color:"#83a995",bg:"#edf5f0"},
-  douyin:{name:"抖音",short:"抖",color:"#939eaf",bg:"#eef1f7"},
-  bilibili:{name:"哔哩哔哩",short:"哔",color:"#82a6c1",bg:"#edf5fc"},
-  channels:{name:"视频号",short:"视",color:"#b3a07b",bg:"#f8f3e9"},
-  zhihu:{name:"知乎",short:"知",color:"#8c9fc6",bg:"#eef3fc"},
-  xiaohongshu:{name:"小红书",short:"红",color:"#c38f9b",bg:"#fbf0f3"},
-  github:{name:"GitHub",short:"GH",color:"#93a0ae",bg:"#eff3f7"},
-  other:{name:"网页资源",short:"链",color:"#a391bc",bg:"#f3eff9"}
+const PLATFORMS={
+  wechat:{name:"微信公众号",short:"微",bg:"#edf5f0",color:"#83a995"},
+  douyin:{name:"抖音",short:"抖",bg:"#eef1f7",color:"#939eaf"},
+  bilibili:{name:"哔哩哔哩",short:"哔",bg:"#edf5fc",color:"#82a6c1"},
+  channels:{name:"视频号",short:"视",bg:"#f8f3e9",color:"#b3a07b"},
+  zhihu:{name:"知乎",short:"知",bg:"#eef3fc",color:"#8c9fc6"},
+  xiaohongshu:{name:"小红书",short:"红",bg:"#fbf0f3",color:"#c38f9b"},
+  github:{name:"GitHub",short:"GH",bg:"#eff3f7",color:"#93a0ae"},
+  other:{name:"网页资源",short:"链",bg:"#f3eff9",color:"#a391bc"}
 };
-const STATUS = {
+const STATUS={
   unchecked:"尚未核验",valid:"人工确认可访问",
   unknown:"无法判断",invalid:"人工确认已失效"
 };
 
-let data=copy(INITIAL),token="",snapshot=null,busy=false,writeLocked=false;
+let data=copy(INITIAL),token="",snapshot=null;
+let busy=false,locked=false,revision="",dataSource="正在读取";
 let activeTag=null,query="",platform="",sort="new";
 let editingId=null,previewId=null,draftTags=[],pickedTags=new Set();
-let pendingCover=null,pendingCoverURL="",coverProcessing=false,coverTask=0;
+let pendingImage=null,pendingURL="",processing=false,imageTask=0;
 let toastTimer;
 
-/* 图标 */
-const ICONS={
-  bookmark:["M6 3h12v19l-6-4-6 4V3Z"],
-  grid:["M3 3h7v7H3V3Zm11 0h7v7h-7V3ZM3 14h7v7H3v-7Zm11 0h7v7h-7v-7Z"],
-  search:["M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z","m16 16 5 5"],
-  menu:["M4 6h16M4 12h16M4 18h16"],
-  arrow:["M7 17 17 7M7 7h10v10"]
-};
-function icon(name){
-  const ns="http://www.w3.org/2000/svg";
-  const svg=document.createElementNS(ns,"svg");
-  for(const [k,v] of Object.entries({
-    class:"ico",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",
-    "stroke-width":"1.7","stroke-linecap":"round","stroke-linejoin":"round",
-    "aria-hidden":"true"
-  }))svg.setAttribute(k,v);
-  for(const d of ICONS[name]||ICONS.bookmark){
-    const p=document.createElementNS(ns,"path");
-    p.setAttribute("d",d);svg.append(p);
-  }
-  return svg;
-}
-document.querySelectorAll("[data-icon]").forEach(el=>{
-  el.replaceChildren(icon(el.dataset.icon));
-});
+/* 当前会话内的已发布封面，用于网络暂时不可用时兜底。
+   不保存令牌，也不写浏览器存储。 */
+const sessionImages=new Map();
 
-/* 基础函数 */
+/* ---------------- 基础工具 ---------------- */
 function node(tag,cls="",text){
-  const el=document.createElement(tag);
-  if(cls)el.className=cls;
-  if(text!==undefined)el.textContent=text;
-  return el;
+  const n=document.createElement(tag);
+  if(cls)n.className=cls;
+  if(text!==undefined)n.textContent=text;
+  return n;
 }
-function button(text,handler,cls="btn"){
-  const el=node("button",cls,text);
-  el.type="button";el.addEventListener("click",handler);return el;
+function button(text,fn,cls="btn"){
+  const n=node("button",cls,text);n.type="button";
+  n.addEventListener("click",fn);return n;
 }
+function link(url,cls="",text){
+  const a=node("a",cls,text);a.href=url;
+  a.target="_blank";a.rel="noopener noreferrer";
+  a.referrerPolicy="no-referrer";return a;
+}
+function notice(text="",error=false){
+  $("notice").textContent=text;$("notice").hidden=!text;
+  $("notice").classList.toggle("error",error);
+}
+function toast(text){
+  clearTimeout(toastTimer);$("toast").textContent=text;
+  $("toast").hidden=false;
+  toastTimer=setTimeout(()=>$("toast").hidden=true,3500);
+}
+function setBusy(value){
+  busy=value;$("app").disabled=value;
+  document.querySelectorAll(".lockable").forEach(n=>n.disabled=value);
+}
+function canWrite(){return !!token&&!!snapshot&&!busy&&!locked}
 function safeURL(value){
   if(typeof value!=="string"||!value.trim()||value.length>4000||
      /[\u0000-\u001f\u007f\\]/.test(value))return null;
   try{
     const u=new URL(value.trim());
-    return ["https:","http:"].includes(u.protocol)&&!u.username&&!u.password?u.href:null;
+    return ["http:","https:"].includes(u.protocol)&&!u.username&&!u.password?u.href:null;
   }catch{return null}
 }
-function imageURL(value){
+function safePath(value){
+  return typeof value==="string"&&value.length<=1800&&
+    value.split("/").every(p=>p&&p!=="."&&p!==".."&&
+      !/[\u0000-\u001f\u007f\\?#]/.test(p));
+}
+function encodedPath(path){return path.split("/").map(encodeURIComponent).join("/")}
+function rawURL(path,ref=revision||REPO.branch){
+  return "https://raw.githubusercontent.com/"+
+    encodeURIComponent(REPO.owner)+"/"+encodeURIComponent(REPO.repo)+"/"+
+    encodeURIComponent(ref)+"/"+encodedPath(path);
+}
+
+/* 兼容上一版存储的绝对 Pages 图片地址和新版相对图片地址。 */
+function repositoryImagePath(value){
+  if(typeof value!=="string"||!value)return null;
+  try{
+    let path=null;
+    if(value.startsWith("./")){
+      path=value.slice(2).split("/").map(decodeURIComponent).join("/");
+    }else{
+      const url=new URL(value);
+      const standard=new URL(
+        "https://"+REPO.owner.toLowerCase()+".github.io/"+REPO.repo+"/"
+      );
+      for(const base of [BASE,standard]){
+        if(url.origin===base.origin&&url.pathname.startsWith(base.pathname)){
+          path=url.pathname.slice(base.pathname.length)
+            .split("/").map(decodeURIComponent).join("/");
+          break;
+        }
+      }
+      if(url.hostname==="raw.githubusercontent.com"){
+        const parts=url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
+        if(parts[0]?.toLowerCase()===REPO.owner.toLowerCase()&&parts[1]===REPO.repo){
+          path=parts.slice(3).join("/");
+        }
+      }
+    }
+    return path&&safePath(path)&&/^(images|icon|files|tools)\//.test(path)?path:null;
+  }catch{return null}
+}
+function imageValue(value){
   if(value==="")return "";
+  if(typeof value!=="string")throw Error("图片地址格式不正确。");
+  const path=repositoryImagePath(value.trim());
+  if(path)return "./"+encodedPath(path);
   const url=safeURL(value);
   if(!url||new URL(url).protocol!=="https:")
-    throw Error("封面图片链接必须是完整的 HTTPS 地址。");
+    throw Error("图片请使用 HTTPS 地址或本站 ./images/… 路径。");
   return url;
 }
-function endpointURL(value){
-  if(value==="")return "";
+function endpointValue(value){
+  if(!value)return "";
   const url=safeURL(value);
   if(!url||new URL(url).protocol!=="https:"||new URL(url).hash)
-    throw Error("预览接口必须是无片段标识的 HTTPS 地址。");
+    throw Error("预览接口必须是 HTTPS 地址。");
   return url;
 }
 function detectPlatform(value){
-  const url=safeURL(value);
-  if(!url)return "other";
-  const h=new URL(url).hostname.toLowerCase();
+  const safe=safeURL(value);if(!safe)return "other";
+  const h=new URL(safe).hostname;
   const is=d=>h===d||h.endsWith("."+d);
   if(is("channels.weixin.qq.com"))return "channels";
   if(is("mp.weixin.qq.com"))return "wechat";
@@ -690,84 +645,71 @@ function detectPlatform(value){
   if(is("github.com"))return "github";
   return "other";
 }
-function link(url,cls="",text){
-  const el=node("a",cls,text);
-  el.href=url;el.target="_blank";el.rel="noopener noreferrer";
-  el.referrerPolicy="no-referrer";return el;
-}
-function notice(text="",error=false){
-  $("notice").textContent=text;$("notice").hidden=!text;
-  $("notice").classList.toggle("error",error);
-}
-function toast(text){
-  clearTimeout(toastTimer);
-  $("toast").textContent=text;$("toast").hidden=false;
-  toastTimer=setTimeout(()=>$("toast").hidden=true,3500);
-}
-function setBusy(value,text="正在处理…"){
-  busy=value;$("app").disabled=value;
-  document.querySelectorAll(".lockable").forEach(el=>el.disabled=value);
-  $("working").textContent=text;$("working").hidden=!value;
-}
-function canWrite(){return !!token&&!!snapshot&&!busy&&!writeLocked}
-function validDate(value){
-  return typeof value==="string"&&value.length<=40&&Number.isFinite(Date.parse(value));
-}
 function dateText(value){return new Date(value).toLocaleDateString("zh-CN")}
-function tagName(value,tags,ignoreId=null){
-  if(typeof value!=="string"||!value.trim()||value.trim().length>24)
-    throw Error("标签名称需为 1～24 个字符。");
-  const name=value.trim();
-  if(tags.some(t=>t.id!==ignoreId&&t.name===name))throw Error("已存在同名标签。");
+function validDate(v){return typeof v==="string"&&v.length<=40&&Number.isFinite(Date.parse(v))}
+function newTagName(value,tags,ignore=null){
+  const name=String(value).trim();
+  if(!name||name.length>24)throw Error("标签名称需为 1～24 个字符。");
+  if(tags.some(t=>t.id!==ignore&&t.name===name))throw Error("标签名称重复。");
   return name;
 }
-
-/* 数据兼容与校验 */
 function validate(value){
   if(!value||value.version!==1||!Array.isArray(value.tags)||
      value.tags.length>100||!Array.isArray(value.resources)||value.resources.length>10000)
-    throw Error("资源库格式无效，最多支持 100 个标签和 10000 项资源。");
-
+    throw Error("配置格式不正确。");
   const tids=new Set(),names=new Set();
   const tags=value.tags.map(t=>{
     if(!t||typeof t.id!=="string"||!t.id||t.id.length>100||tids.has(t.id)||
        typeof t.name!=="string"||!t.name.trim()||t.name.length>24||names.has(t.name.trim()))
       throw Error("标签格式无效或重复。");
-    tids.add(t.id);names.add(t.name.trim());
-    return {id:t.id,name:t.name.trim()};
+    tids.add(t.id);names.add(t.name.trim());return {id:t.id,name:t.name.trim()};
   });
-
   const ids=new Set(),urls=new Set();
   const resources=value.resources.map(r=>{
     if(!r||typeof r.id!=="string"||!r.id||r.id.length>100||ids.has(r.id))
       throw Error("资源编号无效或重复。");
     const url=safeURL(r.url);
     if(!url||urls.has(url)||typeof r.title!=="string"||!r.title.trim()||r.title.length>160)
-      throw Error("资源标题、网址无效或网址重复。");
-
+      throw Error("资源标题或链接无效，或链接重复。");
     const description=r.description??"",image=r.image??"";
     const p=r.platform??detectPlatform(url),status=r.status??"unchecked";
-    if(typeof description!=="string"||description.length>3000||typeof image!=="string"||
-       !Object.hasOwn(PLATFORMS,p)||!Object.hasOwn(STATUS,status)||
-       !Array.isArray(r.tagIds)||r.tagIds.length>100||r.tagIds.some(id=>!tids.has(id))||
+    if(typeof description!=="string"||description.length>3000||
+       !has(PLATFORMS,p)||!has(STATUS,status)||!Array.isArray(r.tagIds)||
+       r.tagIds.length>100||r.tagIds.some(id=>!tids.has(id))||
        !validDate(r.createdAt)||!validDate(r.updatedAt))
-      throw Error("资源简介、图片、平台、标签或时间记录无效。");
-
+      throw Error("资源简介、平台、状态、标签或日期无效。");
     ids.add(r.id);urls.add(url);
     return {
-      id:r.id,url,title:r.title.trim(),description,image:imageURL(image),
-      platform:p,tagIds:[...new Set(r.tagIds)],status,
+      id:r.id,url,title:r.title.trim(),description,image:imageValue(image),
+      platform:p,status,tagIds:[...new Set(r.tagIds)],
       createdAt:r.createdAt,updatedAt:r.updatedAt
     };
   });
-
   const endpoint=value.settings?.metadataApi??"";
   if(typeof endpoint!=="string"||endpoint.length>2000)throw Error("预览接口配置无效。");
-  return {version:1,settings:{metadataApi:endpointURL(endpoint)},tags,resources};
+  return {version:1,settings:{metadataApi:endpointValue(endpoint)},tags,resources};
 }
 
-/* 封面展示 */
-function cover(resource,eager=false){
+/* ---------------- 封面加载 ---------------- */
+function imageCandidates(value){
+  if(!value)return [];
+  if(value.startsWith("blob:"))return [value];
+  const path=repositoryImagePath(value);
+  if(!path)return [value];
+
+  const list=[rawURL(path)];
+  if(sessionImages.has(path))list.push(sessionImages.get(path));
+
+  /* 未取得精确版本时才使用带时间参数的 Pages 地址兜底；
+     有精确提交版本时，不用旧 Pages 图片冒充最新封面。 */
+  if(!revision){
+    const u=new URL("./"+encodedPath(path),BASE);
+    u.searchParams.set("v",Date.now());
+    list.push(u.href);
+  }
+  return [...new Set(list)];
+}
+function makeCover(resource,eager=false){
   const p=PLATFORMS[resource.platform]||PLATFORMS.other;
   const box=node("div","cover");
   box.style.setProperty("--cover-bg",p.bg);
@@ -776,372 +718,435 @@ function cover(resource,eager=false){
   fallback.append(node("b","",p.short),node("small","",p.name));
   box.append(fallback);
 
-  if(resource.image){
+  const candidates=imageCandidates(resource.image);
+  if(candidates.length){
+    const state=node("span","cover-state","封面加载中");
     const img=node("img");
-    img.alt=resource.title?resource.title+" 的封面":"资源封面";
-    img.loading=eager?"eager":"lazy";img.decoding="async";
-    img.referrerPolicy="no-referrer";img.hidden=true;
-    img.addEventListener("load",()=>{img.hidden=false;fallback.hidden=true});
-    img.addEventListener("error",()=>{img.remove();fallback.hidden=false});
-    box.append(img);img.src=resource.image;
+    img.alt=(resource.title||"资源")+"的封面";
+    img.referrerPolicy="no-referrer";
+    img.decoding="async";
+    img.loading=eager?"eager":"lazy";
+    img.hidden=true;
+    let index=0;
+    img.onload=()=>{
+      img.hidden=false;fallback.hidden=true;state.remove();
+    };
+    img.onerror=()=>{
+      if(++index<candidates.length){img.src=candidates[index];return}
+      img.remove();state.textContent="封面加载失败";
+      state.classList.add("error");
+      state.title="点击预览后可重新加载；若为远程图片，建议改为粘贴上传。";
+    };
+    box.append(img,state);img.src=candidates[0];
+  }else{
+    const hint=node("span","cover-state","未设置封面");
+    box.append(hint);
   }
   box.append(node("span","cover-label",p.name));
-  if(resource.status==="invalid")box.append(node("span","invalid-label","确认失效"));
   return box;
 }
 
-/* 导航、搜索与渲染 */
+/* ---------------- 界面 ---------------- */
 function closeSidebar(){
   $("sidebar").classList.remove("open");$("backdrop").classList.remove("open");
-  $("menuBtn").setAttribute("aria-expanded","false");
 }
 function selectTag(id){
-  if(busy)return;
-  activeTag=id;closeSidebar();render();$("scroll").scrollTop=0;
-}
-function reset(){
-  activeTag=null;query="";platform="";
-  $("search").value="";$("platformFilter").value="";
-  $("clearSearch").hidden=true;$("externalLinks").hidden=true;
-  $("searchHint").textContent="实时搜索已收藏资源；点击封面查看图文预览。";
-  closeSidebar();render();
+  if(busy)return;activeTag=id;closeSidebar();render();$("scroll").scrollTop=0;
 }
 function filtered(){
   const q=query.trim().toLocaleLowerCase();
-  const list=data.resources.filter(r=>{
+  return data.resources.filter(r=>{
     if(activeTag&&!r.tagIds.includes(activeTag))return false;
     if(platform&&r.platform!==platform)return false;
-    if(!q)return true;
-    const tags=r.tagIds.map(id=>data.tags.find(t=>t.id===id)?.name||"");
-    return [r.title,r.url,r.description,PLATFORMS[r.platform].name,...tags]
+    return !q||[r.title,r.url,r.description,PLATFORMS[r.platform].name,
+      ...r.tagIds.map(id=>data.tags.find(t=>t.id===id)?.name||"")]
       .join(" ").toLocaleLowerCase().includes(q);
-  });
-  list.sort((a,b)=>sort==="title"
-    ?a.title.localeCompare(b.title,"zh-CN")
-    :Date.parse(b.createdAt)-Date.parse(a.createdAt));
-  return list;
-}
-function renderNav(){
-  $("allCount").textContent=data.resources.length;
-  $("allNav").classList.toggle("active",!activeTag);
-  $("tagNav").replaceChildren(...data.tags.map(tag=>{
-    const count=data.resources.filter(r=>r.tagIds.includes(tag.id)).length;
-    const el=button("",()=>selectTag(tag.id),"nav"+(tag.id===activeTag?" active":""));
-    el.append(node("span","dot"),node("span","nav-name",tag.name),node("small","",String(count)));
-    if(tag.id===activeTag)el.setAttribute("aria-current","page");
-    return el;
-  }));
+  }).sort((a,b)=>sort==="title"?a.title.localeCompare(b.title,"zh-CN"):
+    Date.parse(b.createdAt)-Date.parse(a.createdAt));
 }
 function renderCards(){
-  const list=filtered(),fragment=document.createDocumentFragment();
-  for(const r of list){
+  const list=filtered();
+  $("cards").replaceChildren(...list.map(r=>{
     const card=node("article","card");
     const image=button("",()=>openPreview(r.id),"cover-button");
     image.setAttribute("aria-label","预览 "+r.title);
-    image.append(cover(r));card.append(image);
-
+    image.append(makeCover(r));card.append(image);
     const body=node("div","card-body");
     body.append(link(r.url,"card-title",r.title));
-    if(r.description.trim())body.append(node("div","card-desc",r.description));
+    if(r.description)body.append(node("div","card-desc",r.description));
     const chips=node("div","chips");
-    for(const id of r.tagIds){
-      const tag=data.tags.find(t=>t.id===id);
-      if(tag)chips.append(button("# "+tag.name,()=>selectTag(id),"chip"));
-    }
+    r.tagIds.forEach(id=>{
+      const t=data.tags.find(x=>x.id===id);
+      if(t)chips.append(button("# "+t.name,()=>selectTag(id),"chip"));
+    });
     body.append(chips);
     const bottom=node("div","card-bottom");
     bottom.append(node("span","card-date",dateText(r.createdAt)));
     const actions=node("div","actions");
     actions.append(button("预览",()=>openPreview(r.id),"btn small ghost"));
     if(token){
-      const edit=button("编辑",()=>openEdit(r.id),"btn small ghost");
-      edit.disabled=writeLocked;actions.append(edit);
+      const b=button("编辑",()=>openEdit(r.id),"btn small ghost");
+      b.disabled=locked;actions.append(b);
     }
-    const open=link(r.url,"btn small","打开");
-    open.append(icon("arrow"));actions.append(open);
-    bottom.append(actions);body.append(bottom);card.append(body);fragment.append(card);
-  }
-  $("cards").replaceChildren(fragment);
-  $("viewTitle").textContent=activeTag?data.tags.find(t=>t.id===activeTag)?.name||"收藏":"全部收藏";
+    actions.append(link(r.url,"btn small","打开 ↗"));
+    bottom.append(actions);body.append(bottom);card.append(body);return card;
+  }));
+  $("viewTitle").textContent=activeTag?data.tags.find(t=>t.id===activeTag)?.name:"全部收藏";
   $("resultCount").textContent=list.length+" 项";
   $("empty").hidden=!!list.length;
-  let text="没有匹配的资源。\n可更换关键词，或点击“重置”清除筛选。";
-  if(!data.resources.length)text=token
-    ?"尚未收录资源。\n点击右上角“添加”，创建第一张图文卡片。"
-    :"资源库暂时没有内容。\n管理员发布后即可在这里浏览。";
-  $("empty").replaceChildren(icon("bookmark"),node("div","",text));
-  $("footerText").textContent=`当前 ${list.length} 项 / 全部 ${data.resources.length} 项 · `+
+  $("empty").textContent=data.resources.length?
+    "没有匹配的资源。\n可清除搜索条件或点击重置。":
+    (token?"暂无收藏。点击“添加”创建第一项资源。":"暂无已发布收藏。");
+  $("footerText").textContent=`${list.length} / ${data.resources.length} 项 · ${VERSION} · `+
     (token?"管理模式":"只读浏览");
 }
 function render(){
   if(activeTag&&!data.tags.some(t=>t.id===activeTag))activeTag=null;
-  renderNav();renderCards();
+  $("allCount").textContent=data.resources.length;
+  $("allNav").classList.toggle("active",!activeTag);
+  $("tagNav").replaceChildren(...data.tags.map(t=>{
+    const b=button("",()=>selectTag(t.id),"nav"+(activeTag===t.id?" active":""));
+    b.append(node("span","dot"),node("span","nav-name",t.name),
+      node("small","",String(data.resources.filter(r=>r.tagIds.includes(t.id)).length)));
+    return b;
+  }));
+  ["addBtn","settingsBtn","manageTags","adminBadge"].forEach(id=>$(id).hidden=!token);
+  $("addBtn").disabled=locked;$("manageTags").disabled=locked;
   $("adminBtn").textContent=token?"退出管理":"管理员";
-  ["adminBadge","addBtn","settingsBtn","manageTags"].forEach(id=>$(id).hidden=!token);
-  $("addBtn").disabled=writeLocked;$("manageTags").disabled=writeLocked;
   $("permissionText").textContent=token?"管理员模式 · 可维护资源":"访客模式 · 仅可浏览";
-  if(writeLocked)notice(
-    "保存结果未确认或仓库配置已变化。写入已暂停，请进入设置读取最新数据。",true);
+  $("sourceText").textContent=dataSource+(revision?" · "+revision.slice(0,7):"");
+  renderCards();
 }
-function openPreview(id){
-  if(busy)return;
-  const r=data.resources.find(x=>x.id===id);if(!r)return;
-  previewId=id;
-  $("previewHero").replaceChildren(cover(r,true));
+function resetFilters(){
+  activeTag=null;query="";platform="";
+  $("search").value="";$("platformFilter").value="";
+  $("externalLinks").hidden=true;closeSidebar();render();
+}
+function renderPreview(){
+  const r=data.resources.find(x=>x.id===previewId);if(!r)return;
+  $("previewHero").replaceChildren(makeCover(r,true));
   $("previewTitle").textContent=r.title;
-  $("previewMeta").replaceChildren(
-    node("span","",PLATFORMS[r.platform].name),
-    node("span","","收录于 "+dateText(r.createdAt)),
-    node("span","",STATUS[r.status])
-  );
+  $("previewMeta").textContent=PLATFORMS[r.platform].name+" · "+
+    dateText(r.createdAt)+" · "+STATUS[r.status];
   $("previewTags").replaceChildren(...r.tagIds.map(id=>
     node("span","chip","# "+data.tags.find(t=>t.id===id).name)));
   $("previewDescription").textContent=r.description;
-  $("previewDescription").hidden=!r.description.trim();
+  $("previewDescription").hidden=!r.description;
   $("previewUrl").href=r.url;$("previewUrl").textContent=r.url;
-  $("previewOpen").href=r.url;$("previewEdit").hidden=!token;
-  $("previewEdit").disabled=writeLocked;
-  $("previewDialog").showModal();
+  $("previewOpen").href=r.url;
+  $("previewEdit").hidden=!token;$("previewEdit").disabled=locked;
+  const path=repositoryImagePath(r.image);
+  $("previewImageHint").textContent=!r.image?"此资源没有保存封面图片。":
+    path?"封面来自仓库："+path+"\n优先读取对应提交版本，不依赖 Pages 部署完成。":
+    "封面来自外部网站。若加载失败，可能是防盗链、地址失效或网络问题；建议管理员改为粘贴图片上传。";
+}
+function openPreview(id){
+  if(busy)return;previewId=id;renderPreview();$("previewDialog").showModal();
 }
 
-/* GitHub API */
+/* ---------------- GitHub API ---------------- */
 function apiBase(){
   return "https://api.github.com/repos/"+encodeURIComponent(REPO.owner)+"/"+encodeURIComponent(REPO.repo);
 }
-function contentsPath(path){
-  return "/contents/"+path.split("/").map(encodeURIComponent).join("/");
-}
+function branchPath(){return REPO.branch.split("/").map(encodeURIComponent).join("/")}
 async function api(path,options={},key=token){
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),60000);
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);
   try{
+    const headers={Accept:"application/vnd.github+json"};
+    if(key)headers.Authorization="Bearer "+key;
+    if(options.body)headers["Content-Type"]="application/json";
     const response=await fetch(apiBase()+path,{
-      ...options,signal:controller.signal,credentials:"omit",redirect:"error",cache:"no-store",
-      referrerPolicy:"no-referrer",
-      headers:{
-        Accept:"application/vnd.github+json",Authorization:"Bearer "+key,
-        ...(options.body?{"Content-Type":"application/json"}:{})
-      }
+      ...options,headers,signal:controller.signal,cache:"no-store",
+      credentials:"omit",redirect:"error",referrerPolicy:"no-referrer"
     });
     const result=await response.json().catch(()=>({}));
     if(!response.ok){
       const hints={
         401:"令牌无效或已过期。",
-        403:"访问被拒绝，请检查 Contents 写权限、限流或仓库规则。",
-        404:"目标不存在或令牌无权访问。",
+        403:"GitHub 拒绝访问，请检查权限、限流或仓库规则。",
+        404:"仓库对象不存在或无权访问。",
         409:"仓库提交冲突。",
-        422:"GitHub 拒绝提交，请检查分支规则或文件版本。"
+        422:"GitHub 拒绝提交，请检查分支规则或仓库变化。"
       };
       const error=Error((hints[response.status]||"GitHub 请求失败。")+
         "\nHTTP "+response.status+
-        (result.message?"\n"+String(result.message).slice(0,350):""));
+        (result.message?"\n"+String(result.message).slice(0,300):""));
       error.status=response.status;throw error;
     }
     return result;
   }catch(error){
-    if(error.name==="AbortError")throw Error("GitHub 请求超时，请重新读取仓库确认保存结果。");
+    if(error.name==="AbortError")throw Error("GitHub 请求超时。");
     throw error;
   }finally{clearTimeout(timer)}
 }
-function bytesBase64(bytes){
-  const parts=[];
+function b64(bytes){
+  const out=[];
   for(let i=0;i<bytes.length;i+=24576)
-    parts.push(btoa(String.fromCharCode(...bytes.subarray(i,i+24576))));
-  return parts.join("");
+    out.push(btoa(String.fromCharCode(...bytes.subarray(i,i+24576))));
+  return out.join("");
 }
-function decode64(text){
-  const raw=atob(text.replace(/\s/g,""));
-  return new TextDecoder("utf-8",{fatal:true}).decode(Uint8Array.from(raw,c=>c.charCodeAt(0)));
+function unb64(text){
+  return new TextDecoder("utf-8",{fatal:true}).decode(
+    Uint8Array.from(atob(text.replace(/\s/g,"")),c=>c.charCodeAt(0)));
 }
-async function repositoryFile(key=token){
+async function head(key=token){
+  return (await api("/git/ref/heads/"+branchPath(),{},key)).object.sha;
+}
+async function loadAtHead(key=""){
+  const h=await head(key);
+  let file;
   try{
-    return await api(contentsPath(CONFIG.dataFile)+"?ref="+encodeURIComponent(REPO.branch),{},key);
-  }catch(error){if(error.status===404)return null;throw error}
-}
-async function loadRepository(key){
-  const repo=await api("",{},key);
-  if(!repo.permissions?.push)throw Error("该账号没有目标仓库写入权限。");
-  if(repo.private)throw Error("此版本面向公开资源库，请使用公开仓库。");
-  await api("/branches/"+encodeURIComponent(REPO.branch),{},key);
-  const file=await repositoryFile(key);
-  if(!file)return {data:validate(copy(INITIAL)),sha:null};
-  if(file.type!=="file"||file.size>CONFIG.maxDataBytes)
-    throw Error("配置路径不是普通文件，或配置文件过大。");
+    file=await api("/contents/"+encodedPath(DATA_FILE)+"?ref="+encodeURIComponent(h),{},key);
+  }catch(error){
+    if(error.status===404)return {data:validate(copy(INITIAL)),head:h,missing:true};
+    throw error;
+  }
+  if(file.type!=="file"||file.size>MAX_DATA)throw Error("配置文件无效或过大。");
   let text;
-  if(file.encoding==="base64"&&typeof file.content==="string")text=decode64(file.content);
+  if(file.encoding==="base64"&&typeof file.content==="string")text=unb64(file.content);
   else{
     const blob=await api("/git/blobs/"+file.sha,{},key);
-    if(blob.encoding!=="base64")throw Error("无法读取配置编码。");
-    text=decode64(blob.content);
+    if(blob.encoding!=="base64")throw Error("配置编码不支持。");
+    text=unb64(blob.content);
   }
-  return {data:validate(JSON.parse(text)),sha:file.sha};
+  return {data:validate(JSON.parse(text)),head:h,missing:false};
 }
-async function assertFresh(){
-  if(!token||!snapshot||writeLocked)throw Error("请重新登录或读取最新数据。");
-  const remote=await repositoryFile();
-  if((remote?.sha||null)!==snapshot.sha){
-    writeLocked=true;throw Error("配置已被其他页面修改，本次没有覆盖。");
-  }
-}
-async function commit(next,description){
-  const clean=validate(next);
-  const text=JSON.stringify(clean,null,2)+"\n";
-  const bytes=new TextEncoder().encode(text);
-  if(bytes.length>CONFIG.maxDataBytes)throw Error("配置文件超过大小限制。");
-  await assertFresh();
-
-  const body={message:description,branch:REPO.branch,content:bytesBase64(bytes)};
-  if(snapshot.sha)body.sha=snapshot.sha;
+async function fetchPublicJSON(url){
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),18000);
   try{
-    const result=await api(contentsPath(CONFIG.dataFile),{method:"PUT",body:JSON.stringify(body)});
-    if(!result.content?.sha){
-      writeLocked=true;throw Error("保存结果未确认，请读取仓库最新数据。");
-    }
-    data=clean;snapshot={sha:result.content.sha};
+    const response=await fetch(url,{
+      signal:controller.signal,cache:"no-store",credentials:"omit",referrerPolicy:"no-referrer"
+    });
+    if(!response.ok)throw Error("读取失败：HTTP "+response.status);
+    const blob=await response.blob();
+    if(blob.size>MAX_DATA)throw Error("配置文件过大。");
+    return validate(JSON.parse(await blob.text()));
+  }finally{clearTimeout(timer)}
+}
+async function loadPublic(){
+  if(!["http:","https:"].includes(location.protocol))
+    throw Error("请通过部署的网站访问，不要直接双击 HTML。");
+  try{
+    const loaded=await loadAtHead("");
+    return {...loaded,source:"仓库最新提交",fallback:false};
+  }catch{}
+
+  /* 公共 API 可能限流；其次读取 raw 分支，再兜底 Pages。
+     兜底时明确提示，不把旧缓存冒充最新数据。 */
+  try{
+    const url=new URL(rawURL(DATA_FILE,REPO.branch));
+    url.searchParams.set("_",Date.now());
+    return {data:await fetchPublicJSON(url),head:"",source:"仓库分支读取",fallback:true};
+  }catch{}
+
+  const url=new URL(DATA_FILE,BASE);url.searchParams.set("_",Date.now());
+  return {data:await fetchPublicJSON(url),head:"",source:"Pages 备用配置",fallback:true};
+}
+
+/* ---------------- 原子提交 ----------------
+   图片 blob 和 JSON blob -> 同一个 tree -> 同一个 commit -> 更新分支。
+   不再先把图片单独发布，再发布 JSON。
+*/
+async function createBlob(bytes){
+  return (await api("/git/blobs",{
+    method:"POST",body:JSON.stringify({content:b64(bytes),encoding:"base64"})
+  })).sha;
+}
+async function publish(next,message,imageEntry=null){
+  if(!token||!snapshot||locked)throw Error("请先登录或读取最新数据。");
+  const clean=validate(next);
+  const bytes=new TextEncoder().encode(JSON.stringify(clean,null,2)+"\n");
+  if(bytes.length>MAX_DATA)throw Error("配置文件超过 4 MB。");
+
+  const expected=snapshot.head;
+  if(await head()!==expected){
+    locked=true;throw Error("仓库已经变化，本次没有覆盖。请读取最新数据后重试。");
+  }
+
+  const parent=await api("/git/commits/"+expected);
+  const entries=[];
+
+  if(imageEntry){
+    const sha=await createBlob(new Uint8Array(await imageEntry.blob.arrayBuffer()));
+    entries.push({path:imageEntry.path,mode:"100644",type:"blob",sha});
+  }
+  entries.push({path:DATA_FILE,mode:"100644",type:"blob",sha:await createBlob(bytes)});
+
+  const tree=await api("/git/trees",{
+    method:"POST",body:JSON.stringify({base_tree:parent.tree.sha,tree:entries})
+  });
+
+  if(await head()!==expected){
+    locked=true;throw Error("发布期间仓库发生变化，未更新分支。请读取最新数据。");
+  }
+  const commit=await api("/git/commits",{
+    method:"POST",body:JSON.stringify({message,tree:tree.sha,parents:[expected]})
+  });
+
+  try{
+    await api("/git/refs/heads/"+branchPath(),{
+      method:"PATCH",body:JSON.stringify({sha:commit.sha,force:false})
+    });
   }catch(error){
-    if(!error.status||error.status>=500||[409,422].includes(error.status))writeLocked=true;
-    throw error;
+    /* 响应丢失时尝试确认分支是否已成功更新。 */
+    let confirmed=false;
+    try{confirmed=(await head())===commit.sha}catch{}
+    if(!confirmed){
+      locked=true;
+      throw Error(error.message+
+        "\n未确认分支更新结果。请检查仓库并读取最新数据后继续。");
+    }
+  }
+
+  data=clean;snapshot={head:commit.sha};revision=commit.sha;
+  dataSource="已发布到仓库";
+
+  if(imageEntry){
+    if(sessionImages.has(imageEntry.path))
+      URL.revokeObjectURL(sessionImages.get(imageEntry.path));
+    sessionImages.set(imageEntry.path,URL.createObjectURL(imageEntry.blob));
   }
 }
 function writeError(error){
-  return error.message+(writeLocked?"\n已暂停写入。请关闭弹窗，在设置中读取最新数据。":"");
+  return error.message+(locked?"\n写入已暂停，请关闭弹窗，在设置中读取最新数据。":"");
 }
-async function saveAction(next,description,{dialog="",errorId=""}={}){
+async function saveAction(next,message,errorId,dialogId=""){
   if(!canWrite())return false;
-  if(errorId)$(errorId).textContent="";
-  setBusy(true,"正在保存到 GitHub…");
+  $(errorId).textContent="";setBusy(true);
   try{
-    await commit(next,description);
-    if(dialog)$(dialog).close();
-    notice("已保存到仓库。访客将在 Pages 部署完成后看到更新。");
+    await publish(next,message);
+    if(dialogId)$(dialogId).close();
+    notice("已发布到仓库。当前页面及退出管理后均保留最新内容。");
     return true;
-  }catch(error){
-    if(errorId)$(errorId).textContent=writeError(error);
-    else notice(writeError(error),true);
-    return false;
-  }finally{
+  }catch(error){$(errorId).textContent=writeError(error);return false}
+  finally{
     setBusy(false);render();
     if($("tagsDialog").open)renderTagManager();
   }
 }
-async function loadPublic(){
-  if(!["http:","https:"].includes(location.protocol))
-    throw Error("请通过网站地址访问，不要直接双击本地 HTML。");
-  const url=new URL(CONFIG.publicUrl,location.href);url.searchParams.set("_",Date.now());
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),25000);
-  try{
-    const response=await fetch(url,{
-      signal:controller.signal,credentials:"omit",cache:"no-store",referrerPolicy:"no-referrer"
-    });
-    if(response.status===404)return {data:validate(copy(INITIAL)),missing:true};
-    if(!response.ok)throw Error("公开配置读取失败：HTTP "+response.status);
-    const blob=await response.blob();
-    if(blob.size>CONFIG.maxDataBytes)throw Error("公开配置文件过大。");
-    return {data:validate(JSON.parse(await blob.text())),missing:false};
-  }finally{clearTimeout(timer)}
-}
 
-/* 登录、退出 */
-$("adminBtn").addEventListener("click",async()=>{
+/* ---------------- 登录、刷新、退出 ---------------- */
+async function refreshData(){
+  if(busy)return;
+  setBusy(true);
+  try{
+    if(token){
+      const loaded=await loadAtHead(token);
+      data=loaded.data;snapshot={head:loaded.head};revision=loaded.head;
+      locked=false;dataSource="仓库最新提交";
+      notice(loaded.missing?"尚未创建收藏配置，首次保存后自动创建。":"已读取仓库最新数据。");
+    }else{
+      const loaded=await loadPublic();
+      /* 已知当前精确版本时，手动刷新失败不回退到不确定版本。 */
+      if(revision&&loaded.fallback){
+        notice("暂时无法确认仓库最新版本，保留当前已知版本，避免回退旧内容。",true);
+        return;
+      }
+      data=loaded.data;revision=loaded.head;dataSource=loaded.source;
+      notice(loaded.missing?"尚未创建收藏配置，请管理员登录后添加。":
+        loaded.fallback?"当前使用备用读取方式，可能受到缓存或 Pages 部署延迟影响。":"已读取仓库最新数据。",
+        loaded.fallback);
+    }
+  }catch(error){
+    notice("刷新失败，已保留当前内容。\n"+error.message,true);
+  }finally{setBusy(false);render()}
+}
+$("adminBtn").addEventListener("click",()=>{
   if(busy)return;
   if(token){
-    token="";snapshot=null;writeLocked=false;
-    document.querySelectorAll("dialog[open]").forEach(el=>el.close());
-    clearPendingCover();
-    data=validate(copy(INITIAL));
-    setBusy(true,"正在退出管理…");
-    try{data=(await loadPublic()).data;notice("")}
-    catch{notice("已退出管理。公开数据读取失败，请刷新重试。",true)}
-    finally{setBusy(false);reset()}
+    token="";snapshot=null;locked=false;
+    document.querySelectorAll("dialog[open]").forEach(d=>d.close());
+    clearPendingImage();
+
+    /* 修复关键：退出只移除写权限，不重新加载旧 Pages JSON。 */
+    render();
+    notice("已退出管理员。继续显示刚刚确认的仓库内容，不回退到 Pages 旧配置。");
     return;
   }
   $("tokenInput").value="";$("loginError").textContent="";
-  $("repoHint").textContent="目标仓库："+REPO.owner+"/"+REPO.repo+
-    "\n分支："+REPO.branch+"\n数据文件："+CONFIG.dataFile;
   $("loginDialog").showModal();$("tokenInput").focus();
 });
 $("loginForm").addEventListener("submit",async event=>{
   event.preventDefault();if(busy)return;
   let key=$("tokenInput").value.trim();$("tokenInput").value="";
   if(!key)return;
-  setBusy(true,"正在连接仓库…");$("loginError").textContent="";
+  setBusy(true);$("loginError").textContent="";
   try{
-    if(location.protocol!=="https:")throw Error("管理员登录必须通过 HTTPS 页面。");
-    const loaded=await loadRepository(key);
-    token=key;snapshot={sha:loaded.sha};data=loaded.data;writeLocked=false;
-    $("loginDialog").close();reset();
-    notice("已连接原资源中心的同一仓库。可添加图文收藏、粘贴封面并选择多个标签。");
+    if(location.protocol!=="https:")throw Error("请通过 HTTPS 页面登录。");
+    const repo=await api("",{},key);
+    if(repo.private)throw Error("此页面面向公开资源库，请使用公开仓库。");
+    if(!repo.permissions?.push)throw Error("该账号没有仓库写入权限。");
+    const loaded=await loadAtHead(key);
+    token=key;data=loaded.data;snapshot={head:loaded.head};
+    revision=loaded.head;locked=false;dataSource="仓库最新提交";
+    $("loginDialog").close();resetFilters();
+    notice("已连接仓库。封面与资源配置将一起发布。");
   }catch(error){$("loginError").textContent=error.message}
   finally{key="";setBusy(false);render()}
 });
+$("refreshBtn").addEventListener("click",refreshData);
+$("refreshRepo").addEventListener("click",async()=>{
+  await refreshData();$("metadataApi").value=data.settings.metadataApi;
+});
 
-/* 图片粘贴、本地选择和压缩 */
-function clearPendingCover(){
-  coverTask++;coverProcessing=false;
-  if(pendingCoverURL)URL.revokeObjectURL(pendingCoverURL);
-  pendingCover=null;pendingCoverURL="";
-  $("coverFile").value="";$("cancelCover").hidden=true;
-  $("coverStatus").textContent="";
+/* ---------------- 图片处理 ---------------- */
+function clearPendingImage(){
+  imageTask++;processing=false;
+  if(pendingURL)URL.revokeObjectURL(pendingURL);
+  pendingImage=null;pendingURL="";
+  $("coverFile").value="";$("cancelCover").hidden=true;$("coverStatus").textContent="";
 }
-function sizeText(n){return n>=1048576?(n/1048576).toFixed(2)+" MB":Math.round(n/1024)+" KB"}
 async function compressImage(file){
   if(!["image/png","image/jpeg","image/webp","image/gif"].includes(file.type))
     throw Error("请选择 PNG、JPG、WEBP 或 GIF 图片。");
-  if(file.size>CONFIG.maxImageSource)throw Error("原图片不能超过 20 MB。");
-
-  const temporaryURL=URL.createObjectURL(file),img=new Image();
+  if(file.size>20*1024*1024)throw Error("原图片不能超过 20 MB。");
+  const url=URL.createObjectURL(file),img=new Image();
   try{
     await new Promise((resolve,reject)=>{
-      img.onload=resolve;
-      img.onerror=()=>reject(Error("无法读取图片，请重新复制或选择文件。"));
-      img.src=temporaryURL;
+      img.onload=resolve;img.onerror=()=>reject(Error("无法读取图片。"));img.src=url;
     });
-
-    const width=img.naturalWidth,height=img.naturalHeight;
-    if(!width||!height)throw Error("图片尺寸无效。");
-    if(width*height>40000000)throw Error("图片分辨率过大，请先裁剪到 4000 万像素以内。");
-
-    let scale=Math.min(1,1600/Math.max(width,height));
-    const canvas=document.createElement("canvas");
-    const context=canvas.getContext("2d");
-    if(!context)throw Error("浏览器不支持图片处理。");
-
-    for(let attempt=0;attempt<6;attempt++){
-      canvas.width=Math.max(1,Math.round(width*scale));
-      canvas.height=Math.max(1,Math.round(height*scale));
-      context.clearRect(0,0,canvas.width,canvas.height);
-      context.drawImage(img,0,0,canvas.width,canvas.height);
-      const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/webp",0.84-attempt*0.06));
+    const w=img.naturalWidth,h=img.naturalHeight;
+    if(!w||!h||w*h>40000000)throw Error("图片尺寸无效或超过 4000 万像素，请先缩小。");
+    let scale=Math.min(1,1600/Math.max(w,h));
+    const canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+    if(!ctx)throw Error("浏览器不支持图片处理。");
+    for(let i=0;i<6;i++){
+      canvas.width=Math.max(1,Math.round(w*scale));
+      canvas.height=Math.max(1,Math.round(h*scale));
+      ctx.drawImage(img,0,0,canvas.width,canvas.height);
+      const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/webp",0.84-i*0.06));
       if(!blob)throw Error("图片转换失败。");
-      if(blob.size<=CONFIG.maxImageResult)return blob;
+      if(blob.size<=1024*1024)return blob;
       scale*=0.78;
     }
     throw Error("压缩后图片仍过大，请裁剪后重试。");
-  }finally{URL.revokeObjectURL(temporaryURL)}
+  }finally{URL.revokeObjectURL(url)}
 }
-async function receiveCover(file){
+async function receiveImage(file){
   if(!canWrite()||!file)return;
-  const task=++coverTask;coverProcessing=true;
-  $("editError").textContent="";$("coverStatus").textContent="正在处理图片…";
+  const task=++imageTask;processing=true;
+  $("coverStatus").textContent="正在处理图片…";$("editError").textContent="";
   try{
-    const processed=await compressImage(file);
-    if(task!==coverTask||!$("editDialog").open)return;
-    if(pendingCoverURL)URL.revokeObjectURL(pendingCoverURL);
-    pendingCover=processed;pendingCoverURL=URL.createObjectURL(processed);
+    const blob=await compressImage(file);
+    if(task!==imageTask||!$("editDialog").open)return;
+    if(pendingURL)URL.revokeObjectURL(pendingURL);
+    pendingImage=blob;pendingURL=URL.createObjectURL(blob);
     $("cancelCover").hidden=false;
-    $("coverStatus").textContent="封面已就绪 · "+sizeText(processed.size)+
-      "。保存时上传；当前不会覆盖已有封面链接。";
+    $("coverStatus").textContent="待发布图片 · "+Math.round(blob.size/1024)+
+      " KB。点击“保存并发布”后才会写入仓库。";
     updateEditCover();
   }catch(error){
-    if(task!==coverTask)return;
-    $("editError").textContent=error.message;
-    $("coverStatus").textContent=pendingCover?"保留上一张待上传封面。":"";
-  }finally{if(task===coverTask)coverProcessing=false}
+    if(task===imageTask){
+      $("editError").textContent=error.message;
+      $("coverStatus").textContent=pendingImage?"仍保留上一张待发布图片。":"";
+    }
+  }finally{if(task===imageTask)processing=false}
 }
 $("pickCover").addEventListener("click",()=>{
   if(!canWrite())return;$("coverFile").value="";$("coverFile").click();
 });
 $("coverFile").addEventListener("change",event=>{
-  if(event.target.files[0])receiveCover(event.target.files[0]);
+  if(event.target.files[0])receiveImage(event.target.files[0]);
 });
 $("editDialog").addEventListener("paste",event=>{
   if(!canWrite())return;
@@ -1149,240 +1154,182 @@ $("editDialog").addEventListener("paste",event=>{
     .find(x=>x.kind==="file"&&x.type.startsWith("image/"));
   if(!item)return;
   event.preventDefault();
-  const file=item.getAsFile();if(file)receiveCover(file);
+  const file=item.getAsFile();if(file)receiveImage(file);
 });
 $("cancelCover").addEventListener("click",()=>{
-  if(!canWrite())return;clearPendingCover();updateEditCover();
+  if(!canWrite())return;clearPendingImage();updateEditCover();
+});
+$("removeCover").addEventListener("click",()=>{
+  if(!canWrite())return;
+  clearPendingImage();$("rImage").value="";updateEditCover();
 });
 $("rImage").addEventListener("input",()=>{
-  if(pendingCover||coverProcessing)clearPendingCover();
+  if(pendingImage||processing)clearPendingImage();
   updateEditCover();
 });
 
-async function uploadCover(blob){
-  const extension=blob.type==="image/webp"?"webp":blob.type==="image/jpeg"?"jpg":"png";
-  const path=CONFIG.coverFolder+"/"+uid()+"."+extension;
-  const publicURL=new URL("./"+path.split("/").map(encodeURIComponent).join("/"),location.href).href;
-  const bytes=new Uint8Array(await blob.arrayBuffer());
-
-  try{
-    const result=await api(contentsPath(path),{
-      method:"PUT",
-      body:JSON.stringify({
-        message:"上传网络收藏封面",
-        branch:REPO.branch,
-        content:bytesBase64(bytes)
-      })
-    });
-    if(!result.content?.sha)throw Error("GitHub 未返回图片文件版本。");
-    return publicURL;
-  }catch(error){
-    throw Error(error.message+"\n封面路径："+path+
-      "\n若网络中断，图片可能已上传。可在仓库检查后重试；此时不会发布资源配置。");
-  }
-}
-
-/* 编辑资源 */
+/* ---------------- 编辑 ---------------- */
 function renderTagPicker(){
-  $("tagPicker").replaceChildren(...draftTags.map(tag=>{
-    const el=button(tag.name,()=>{
+  $("tagPicker").replaceChildren(...draftTags.map(t=>{
+    const b=button(t.name,()=>{
       if(!canWrite())return;
-      pickedTags.has(tag.id)?pickedTags.delete(tag.id):pickedTags.add(tag.id);
+      pickedTags.has(t.id)?pickedTags.delete(t.id):pickedTags.add(t.id);
       renderTagPicker();
-    },"tag-option"+(pickedTags.has(tag.id)?" active":""));
-    el.setAttribute("aria-pressed",String(pickedTags.has(tag.id)));return el;
+    },"tag-option"+(pickedTags.has(t.id)?" active":""));
+    b.setAttribute("aria-pressed",String(pickedTags.has(t.id)));return b;
   }));
 }
 function updateEditCover(){
-  let image="";try{image=imageURL($("rImage").value.trim())}catch{}
-  const p=$("rPlatform").value==="auto"?detectPlatform($("rUrl").value):$("rPlatform").value;
-  $("editCover").replaceChildren(cover({
-    title:$("rTitle").value,image:pendingCoverURL||image,platform:p,status:"unchecked"
+  let image="";try{image=imageValue($("rImage").value.trim())}catch{}
+  $("editCover").replaceChildren(makeCover({
+    title:$("rTitle").value,image:pendingURL||image,
+    platform:$("rPlatform").value==="auto"?detectPlatform($("rUrl").value):$("rPlatform").value
   },true));
 }
-function openEdit(id=null,initialUrl=""){
+function openEdit(id=null,url=""){
   if(!canWrite())return;
-  const r=data.resources.find(x=>x.id===id);
-  if(id&&!r)return;
-  clearPendingCover();
-  editingId=r?.id||null;draftTags=copy(data.tags);
-  pickedTags=new Set(r?.tagIds||(activeTag?[activeTag]:[]));
+  const r=data.resources.find(x=>x.id===id);if(id&&!r)return;
+  clearPendingImage();editingId=id;
+  draftTags=copy(data.tags);pickedTags=new Set(r?.tagIds||(activeTag?[activeTag]:[]));
   $("editHeading").textContent=r?"编辑收藏":"添加收藏";
-  $("rUrl").value=r?.url||initialUrl;$("rTitle").value=r?.title||"";
+  $("rUrl").value=r?.url||url;$("rTitle").value=r?.title||"";
   $("rImage").value=r?.image||"";$("rDescription").value=r?.description||"";
   $("rPlatform").value=r?.platform||"auto";$("rStatus").value=r?.status||"unchecked";
-  $("draftTagName").value="";$("editError").textContent="";$("metadataStatus").textContent="";
-  $("deleteResource").hidden=!r;
-  renderTagPicker();updateEditCover();$("editDialog").showModal();
+  $("draftTagName").value="";$("editError").textContent="";$("editStatus").textContent="";
+  $("deleteResource").hidden=!r;renderTagPicker();updateEditCover();
+  $("editDialog").showModal();
 }
 $("addDraftTag").addEventListener("click",()=>{
   if(!canWrite())return;
   try{
     if(draftTags.length>=100)throw Error("最多支持 100 个标签。");
-    const tag={id:uid(),name:tagName($("draftTagName").value,draftTags)};
-    draftTags.push(tag);pickedTags.add(tag.id);
-    $("draftTagName").value="";$("editError").textContent="";renderTagPicker();
+    const t={id:uid(),name:newTagName($("draftTagName").value,draftTags)};
+    draftTags.push(t);pickedTags.add(t.id);$("draftTagName").value="";
+    $("editError").textContent="";renderTagPicker();
   }catch(error){$("editError").textContent=error.message}
 });
-
 $("editForm").addEventListener("submit",async event=>{
   event.preventDefault();if(!canWrite())return;
-  if(coverProcessing){
-    $("editError").textContent="图片正在处理中，请稍后保存。";return;
-  }
-
-  let next,resource,old;
+  if(processing){$("editError").textContent="图片正在处理中，请稍后保存。";return}
   $("editError").textContent="";
+  let next,old,imageEntry=null;
   try{
     next=copy(data);old=next.resources.find(r=>r.id===editingId);
     const url=safeURL($("rUrl").value);
-    if(!url)throw Error("请输入完整有效的 HTTP / HTTPS 链接。");
-    const changed=!!old&&old.url!==url;
+    if(!url)throw Error("资源链接需为完整的 HTTP / HTTPS 地址。");
+    const changed=old&&old.url!==url;
     const status=changed?"unchecked":$("rStatus").value;
     if(status==="invalid"&&old?.status!=="invalid"&&!confirm(
-      "确认已人工核验内容删除或永久不可访问？\n登录限制、验证码、超时和 403 不能直接视为内容删除。"
+      "确认内容已删除或永久不可访问？\n登录限制、验证码、超时和 403 不等于内容删除。"
     ))return;
 
-    resource={
+    let image;
+    if(pendingImage){
+      const ext=pendingImage.type==="image/webp"?"webp":pendingImage.type==="image/jpeg"?"jpg":"png";
+      const path=COVER_FOLDER+"/"+uid()+"."+ext;
+      imageEntry={path,blob:pendingImage};image="./"+encodedPath(path);
+    }else image=imageValue($("rImage").value.trim());
+
+    const r={
       id:old?.id||uid(),url,title:$("rTitle").value.trim(),
-      description:$("rDescription").value.trim(),
-      image:pendingCover?"":imageURL($("rImage").value.trim()),
+      description:$("rDescription").value.trim(),image,
       platform:$("rPlatform").value==="auto"?detectPlatform(url):$("rPlatform").value,
-      tagIds:[...pickedTags],status,
-      createdAt:old?.createdAt||now(),updatedAt:now()
+      status,tagIds:[...pickedTags],createdAt:old?.createdAt||now(),updatedAt:now()
     };
     next.tags=copy(draftTags);
-    if(old)next.resources[next.resources.indexOf(old)]=resource;
-    else next.resources.push(resource);
+    if(old)next.resources[next.resources.indexOf(old)]=r;else next.resources.push(r);
     validate(next);
   }catch(error){$("editError").textContent=error.message;return}
 
-  let uploaded=false;
-  setBusy(true,pendingCover?"正在上传封面图片…":"正在保存资源…");
+  setBusy(true);$("editStatus").textContent="正在统一提交封面与资源配置，请勿关闭页面…";
   try{
-    await assertFresh();
-    if(pendingCover){
-      resource.image=await uploadCover(pendingCover);
-      uploaded=true;
-      $("rImage").value=resource.image;
-      clearPendingCover();
-      $("coverStatus").textContent="封面已上传，正在发布资源配置…";
-      updateEditCover();
-    }
-    $("working").textContent="正在发布资源配置…";
-    await commit(next,old?"更新网络收藏及封面":"新增网络收藏及封面");
+    await publish(next,old?"更新收藏与封面":"新增收藏与封面",imageEntry);
     $("editDialog").close();
-    notice("资源已保存到仓库。"+(uploaded?"封面图片已上传。":"")+
-      "\n等待 GitHub Pages 部署完成后，访客即可看到更新。");
+    notice("已发布：封面与资源配置属于同一次提交。\n退出管理员后仍显示最新内容，封面不必等待 Pages 部署。");
   }catch(error){
-    $("editError").textContent=writeError(error)+(uploaded
-      ?"\n封面已上传，地址保留在图片输入框中；资源配置尚未确认发布。":"");
-  }finally{setBusy(false);render()}
+    $("editError").textContent=writeError(error);
+  }finally{setBusy(false);$("editStatus").textContent="";render()}
 });
-
 $("deleteResource").addEventListener("click",async()=>{
   if(!canWrite()||!editingId)return;
-  if(!confirm("删除此收藏？\n只删除本站入口，不删除原平台内容或旧封面图片。"))return;
+  if(!confirm("删除此收藏入口？\n旧封面文件保留，不删除原平台内容。"))return;
   const next=copy(data);next.resources=next.resources.filter(r=>r.id!==editingId);
-  await saveAction(next,"删除网络收藏",{dialog:"editDialog",errorId:"editError"});
+  await saveAction(next,"删除收藏","editError","editDialog");
 });
 $("previewEdit").addEventListener("click",()=>{
   if(!canWrite())return;$("previewDialog").close();openEdit(previewId);
 });
-["rUrl","rTitle","rImage","rPlatform"].forEach(id=>$(id).addEventListener("change",updateEditCover));
+$("retryCover").addEventListener("click",renderPreview);
+["rUrl","rTitle","rPlatform"].forEach(id=>$(id).addEventListener("change",updateEditCover));
 $("editDialog").addEventListener("close",()=>{
-  clearPendingCover();$("editCover").replaceChildren();
+  clearPendingImage();$("editCover").replaceChildren();
 });
 
-/* 可选网页预览接口 */
-async function fetchMetadata(url,endpoint){
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
-  try{
-    const response=await fetch(endpoint,{
-      method:"POST",signal:controller.signal,credentials:"omit",mode:"cors",
-      redirect:"error",referrerPolicy:"no-referrer",
-      headers:{"Content-Type":"application/json",Accept:"application/json"},
-      body:JSON.stringify({url})
-    });
-    if(!response.ok)throw Error("预览接口返回 HTTP "+response.status);
-    const result=await response.json();
-    if(!result||typeof result!=="object"||Array.isArray(result))throw Error("预览接口格式不正确。");
-
-    const title=typeof result.title==="string"?result.title.trim().slice(0,160):"";
-    const rawDescription=result.description??result.summary;
-    const description=typeof rawDescription==="string"?rawDescription.trim().slice(0,3000):"";
-    const rawImage=result.image??result.thumbnail??result.cover;
-    let image="";
-    if(typeof rawImage==="string"&&rawImage.trim()){
-      try{image=imageURL(new URL(rawImage.trim(),url).href)}catch{}
-    }
-    if(!title&&!description&&!image)throw Error("接口未返回可用标题、简介或封面。");
-    return {title,description,image,
-      platform:Object.hasOwn(PLATFORMS,result.platform)?result.platform:detectPlatform(url)};
-  }catch(error){
-    if(error.name==="AbortError")throw Error("预览读取超时，可继续手动填写。");
-    throw error;
-  }finally{clearTimeout(timer)}
-}
+/* ---------------- 元信息接口，可选 ----------------
+   POST {"url":"https://..."}
+   返回 {"title":"...","description":"...","image":"https://...","platform":"wechat"}
+   后端需实现 CORS、限流、超时、大小限制、防 SSRF 及重定向校验。
+*/
 $("readMetadata").addEventListener("click",async()=>{
   if(!canWrite())return;
-  if(coverProcessing){$("editError").textContent="请等待图片处理完成。";return}
-  $("editError").textContent="";$("metadataStatus").textContent="";
-  const url=safeURL($("rUrl").value);
-  if(!url){$("editError").textContent="请先填写完整的资源链接。";return}
-  if(!data.settings.metadataApi){
-    $("editError").textContent=
-      "尚未配置网页预览接口。\n可手动填写标题、简介，并粘贴图片作为封面。\n纯 HTML 无法保证自动读取微信、抖音、B 站等跨站内容。";
-    return;
+  if(processing){$("editError").textContent="请等待图片处理完成。";return}
+  const url=safeURL($("rUrl").value),endpoint=data.settings.metadataApi;
+  if(!url){$("editError").textContent="请先填写资源链接。";return}
+  if(!endpoint){
+    $("editError").textContent="未配置网页预览接口。可手动填写标题、简介并粘贴封面。";return;
   }
-
-  if([$ ("rTitle").value,$("rDescription").value,$("rImage").value].some(v=>v.trim())&&
-     !confirm("读取结果会填入标题、简介和网络封面；已有的待上传图片将保留并优先使用。继续？"))return;
-
-  setBusy(true,"正在读取网页信息…");
+  if(!confirm("读取结果将更新对应字段。已粘贴的待上传图片会保留并优先使用。继续？"))return;
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
+  setBusy(true);$("editError").textContent="";$("editStatus").textContent="正在读取网页信息…";
   try{
-    const result=await fetchMetadata(url,data.settings.metadataApi);
-    if(result.title)$("rTitle").value=result.title;
-    if(result.description)$("rDescription").value=result.description;
-    if(result.image)$("rImage").value=result.image;
-    if($("rPlatform").value==="auto")$("rPlatform").value=result.platform;
-    $("metadataStatus").textContent="已填入信息，请核对后保存。";
+    const response=await fetch(endpoint,{
+      method:"POST",signal:controller.signal,credentials:"omit",redirect:"error",
+      referrerPolicy:"no-referrer",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({url})
+    });
+    if(!response.ok)throw Error("接口返回 HTTP "+response.status);
+    const result=await response.json();
+    if(!result||typeof result!=="object")throw Error("接口格式无效。");
+    if(typeof result.title==="string")$("rTitle").value=result.title.slice(0,160);
+    const desc=result.description??result.summary;
+    if(typeof desc==="string")$("rDescription").value=desc.slice(0,3000);
+    const image=result.image??result.thumbnail??result.cover;
+    if(typeof image==="string"&&image){
+      try{$("rImage").value=imageValue(new URL(image,url).href)}catch{}
+    }
+    if($("rPlatform").value==="auto"&&has(PLATFORMS,result.platform))
+      $("rPlatform").value=result.platform;
     updateEditCover();
   }catch(error){
-    $("editError").textContent=error.message+"\n读取失败不代表资源失效，可继续手动收录。";
-  }finally{setBusy(false);render()}
+    $("editError").textContent=(error.name==="AbortError"?"读取超时。":error.message)+
+      "\n读取失败不代表资源失效，可继续手动收录。";
+  }finally{clearTimeout(timer);setBusy(false);$("editStatus").textContent=""}
 });
 
-/* 公共标签管理 */
+/* ---------------- 标签管理 ---------------- */
 function renderTagManager(){
-  $("tagManageList").replaceChildren(...data.tags.map(tag=>{
+  $("tagManageList").replaceChildren(...data.tags.map(t=>{
     const row=node("div","tag-row");
-    const count=data.resources.filter(r=>r.tagIds.includes(tag.id)).length;
-    const text=node("span","",tag.name);text.append(node("small","",count+" 项"));
+    const title=node("span","",t.name);
+    title.append(node("small","",data.resources.filter(r=>r.tagIds.includes(t.id)).length+" 项"));
     const actions=node("div","actions");
     const rename=button("改名",async()=>{
       if(!canWrite())return;
-      const value=prompt("标签新名称：",tag.name);
-      if(value===null||value.trim()===tag.name)return;
+      const name=prompt("标签新名称：",t.name);if(name===null)return;
       try{
         const next=copy(data);
-        next.tags.find(t=>t.id===tag.id).name=tagName(value,data.tags,tag.id);
-        await saveAction(next,"修改收藏标签",{errorId:"tagsError"});
+        next.tags.find(x=>x.id===t.id).name=newTagName(name,data.tags,t.id);
+        await saveAction(next,"修改标签","tagsError");
       }catch(error){$("tagsError").textContent=error.message}
     },"btn small ghost");
     const remove=button("删除",async()=>{
-      if(!canWrite())return;
-      if(!confirm(`删除标签“${tag.name}”？\n取消 ${count} 项资源的标签关联，但保留资源。`))return;
-      const next=copy(data);next.tags=next.tags.filter(t=>t.id!==tag.id);
-      next.resources.forEach(r=>{
-        if(r.tagIds.includes(tag.id)){
-          r.tagIds=r.tagIds.filter(id=>id!==tag.id);r.updatedAt=now();
-        }
-      });
-      await saveAction(next,"删除收藏标签",{errorId:"tagsError"});
+      if(!canWrite()||!confirm("删除标签“"+t.name+"”？资源保留。"))return;
+      const next=copy(data);next.tags=next.tags.filter(x=>x.id!==t.id);
+      next.resources.forEach(r=>r.tagIds=r.tagIds.filter(id=>id!==t.id));
+      await saveAction(next,"删除标签","tagsError");
     },"btn small ghost danger");
-    rename.disabled=writeLocked;remove.disabled=writeLocked;
-    actions.append(rename,remove);row.append(text,actions);return row;
+    rename.disabled=locked;remove.disabled=locked;
+    actions.append(rename,remove);row.append(title,actions);return row;
   }));
 }
 $("manageTags").addEventListener("click",()=>{
@@ -1394,149 +1341,122 @@ $("createTag").addEventListener("click",async()=>{
   if(!canWrite())return;
   try{
     if(data.tags.length>=100)throw Error("最多支持 100 个标签。");
-    const next=copy(data);
-    next.tags.push({id:uid(),name:tagName($("tagName").value,data.tags)});
-    if(await saveAction(next,"新增收藏标签",{errorId:"tagsError"}))$("tagName").value="";
+    const next=copy(data);next.tags.push({id:uid(),name:newTagName($("tagName").value,data.tags)});
+    if(await saveAction(next,"新增标签","tagsError"))$("tagName").value="";
   }catch(error){$("tagsError").textContent=error.message}
 });
 
-/* 设置、备份、清理 */
+/* ---------------- 设置、备份 ---------------- */
 $("settingsBtn").addEventListener("click",()=>{
   if(!token||busy)return;
-  $("settingsRepo").textContent="仓库："+REPO.owner+"/"+REPO.repo+" · "+REPO.branch+
-    "\n数据："+CONFIG.dataFile+"\n图片："+CONFIG.coverFolder+"/";
   $("metadataApi").value=data.settings.metadataApi;
-  $("settingsError").textContent="";$("settingsDialog").showModal();
+  $("settingsError").textContent=locked?"写入已暂停，请先读取最新数据。":"";
+  $("settingsDialog").showModal();
 });
 $("settingsForm").addEventListener("submit",async event=>{
   event.preventDefault();
-  if(writeLocked){$("settingsError").textContent="请先读取最新数据。";return}
-  if(!canWrite())return;
+  if(!canWrite()){$("settingsError").textContent="请先读取最新数据。";return}
   const next=copy(data);next.settings.metadataApi=$("metadataApi").value.trim();
-  await saveAction(next,"保存收藏库设置",{dialog:"settingsDialog",errorId:"settingsError"});
-});
-$("refreshRepo").addEventListener("click",async()=>{
-  if(!token||busy)return;
-  setBusy(true,"正在读取最新数据…");$("settingsError").textContent="";
-  try{
-    const loaded=await loadRepository(token);
-    data=loaded.data;snapshot={sha:loaded.sha};writeLocked=false;
-    $("metadataApi").value=data.settings.metadataApi;
-    notice("已读取仓库最新数据。");toast("读取完成");
-  }catch(error){$("settingsError").textContent=error.message}
-  finally{setBusy(false);render()}
+  await saveAction(next,"保存收藏库设置","settingsError","settingsDialog");
 });
 $("cleanInvalid").addEventListener("click",async()=>{
-  if(!canWrite()){$("settingsError").textContent="请先读取最新数据。";return}
+  if(!canWrite())return;
   const count=data.resources.filter(r=>r.status==="invalid").length;
   if(!count){toast("没有人工确认失效的资源");return}
-  if(!confirm(`清理 ${count} 项人工确认失效资源？\n仅删除本站入口，不删除旧封面。建议先备份。`))return;
+  if(!confirm("清理 "+count+" 项人工确认失效的收藏？旧图片保留。"))return;
   const next=copy(data);next.resources=next.resources.filter(r=>r.status!=="invalid");
-  await saveAction(next,"清理失效收藏",{errorId:"settingsError"});
+  await saveAction(next,"清理失效收藏","settingsError");
 });
-function downloadJSON(value,name){
-  const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:"application/json;charset=utf-8"}));
-  const a=node("a");a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),10000);
-}
 $("exportBtn").addEventListener("click",()=>{
-  if(token&&!busy)downloadJSON(data,"网络收藏配置-"+now().slice(0,10)+".json");
+  if(!token||busy)return;
+  const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));
+  const a=node("a");a.href=url;a.download="网络收藏配置-"+now().slice(0,10)+".json";
+  document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
 });
 $("importBtn").addEventListener("click",()=>{
-  if(!canWrite()){$("settingsError").textContent="请先读取最新数据。";return}
-  $("importFile").value="";$("importFile").click();
+  if(!canWrite())return;$("importFile").value="";$("importFile").click();
 });
 $("importFile").addEventListener("change",async event=>{
   const file=event.target.files[0];if(!file||!canWrite())return;
-  setBusy(true,"正在校验配置…");$("settingsError").textContent="";
+  setBusy(true);$("settingsError").textContent="";
   try{
-    if(file.size>CONFIG.maxDataBytes)throw Error("备份文件过大。");
+    if(file.size>MAX_DATA)throw Error("备份超过 4 MB。");
     const next=validate(JSON.parse(await file.text()));
-    if(!confirm(`替换公共收藏库？\n包含 ${next.tags.length} 个标签、${next.resources.length} 项资源。\n仅导入可信备份，预览接口地址也会替换。`))return;
-    await commit(next,"导入网络收藏配置");
+    if(!confirm("将替换公共配置，包含 "+next.resources.length+
+      " 项资源。只导入可信备份；预览接口设置也将替换。"))return;
+    await publish(next,"导入收藏配置");
     $("metadataApi").value=data.settings.metadataApi;
-    notice("配置已导入。图片文件不会由 JSON 备份恢复，请确保图片地址仍有效。");
+    notice("配置已导入。图片文件不包含在 JSON 备份中，请确保原图片仍存在。");
   }catch(error){$("settingsError").textContent=writeError(error)}
   finally{setBusy(false);render()}
 });
 
-/* 搜索：已收录内容实时匹配；站外搜索为平台原生链接 */
-function showExternalSearch(text){
-  const q=encodeURIComponent(text);
-  $("externalLinks").replaceChildren(...[
-    ["B 站搜索","https://search.bilibili.com/all?keyword="+q],
-    ["公众号搜索","https://weixin.sogou.com/weixin?type=2&query="+q],
-    ["抖音搜索","https://www.douyin.com/search/"+q],
-    ["知乎搜索","https://www.zhihu.com/search?type=content&q="+q]
-  ].map(([name,url])=>link(url,"",name+" ↗")));
-  $("externalLinks").hidden=false;
-}
+/* ---------------- 搜索与其他交互 ---------------- */
+$("search").addEventListener("input",event=>{
+  query=event.target.value;$("externalLinks").hidden=true;renderCards();
+});
 $("searchForm").addEventListener("submit",event=>{
   event.preventDefault();query=$("search").value.trim();renderCards();
   if(!query){$("externalLinks").hidden=true;return}
   const url=safeURL(query);
   if(url){
-    $("externalLinks").hidden=true;
-    const existing=data.resources.find(r=>r.url===url);
-    if(existing)openPreview(existing.id);
+    const r=data.resources.find(x=>x.url===url);
+    if(r)openPreview(r.id);
     else if(canWrite())openEdit(null,url);
-    else $("searchHint").textContent="此链接尚未收录。访客只能浏览，由管理员添加新收藏。";
-  }else{
-    showExternalSearch(query);
-    $("searchHint").textContent="已搜索当前资源库；下方入口前往原平台搜索，不自动抓取其结果。";
+    else toast("该链接尚未收录，请由管理员添加。");
+    return;
   }
+  const q=encodeURIComponent(query);
+  $("externalLinks").replaceChildren(...[
+    ["B 站搜索","https://search.bilibili.com/all?keyword="+q],
+    ["公众号搜索","https://weixin.sogou.com/weixin?type=2&query="+q],
+    ["抖音搜索","https://www.douyin.com/search/"+q],
+    ["知乎搜索","https://www.zhihu.com/search?type=content&q="+q]
+  ].map(([text,url])=>link(url,"",text+" ↗")));
+  $("externalLinks").hidden=false;
 });
-$("search").addEventListener("input",event=>{
-  query=event.target.value;$("clearSearch").hidden=!query;
-  $("externalLinks").hidden=true;
-  $("searchHint").textContent="实时搜索已收藏资源；点击封面查看图文预览。";
-  renderCards();
-});
-$("clearSearch").addEventListener("click",()=>{
-  query="";$("search").value="";$("clearSearch").hidden=true;
-  $("externalLinks").hidden=true;
-  $("searchHint").textContent="实时搜索已收藏资源；点击封面查看图文预览。";renderCards();
-});
-
-/* 通用事件 */
 $("platformFilter").append(new Option("所有平台",""));
 $("rPlatform").append(new Option("自动识别","auto"));
-Object.entries(PLATFORMS).forEach(([key,p])=>{
-  $("platformFilter").append(new Option(p.name,key));
-  $("rPlatform").append(new Option(p.name,key));
+Object.entries(PLATFORMS).forEach(([id,p])=>{
+  $("platformFilter").append(new Option(p.name,id));
+  $("rPlatform").append(new Option(p.name,id));
 });
 $("platformFilter").addEventListener("change",event=>{platform=event.target.value;renderCards()});
 $("sort").addEventListener("change",event=>{sort=event.target.value;renderCards()});
 $("allNav").addEventListener("click",()=>selectTag(null));
-$("resetFilters").addEventListener("click",reset);
+$("resetFilters").addEventListener("click",resetFilters);
 $("addBtn").addEventListener("click",()=>openEdit());
 $("menuBtn").addEventListener("click",()=>{
   const open=!$("sidebar").classList.contains("open");
   $("sidebar").classList.toggle("open",open);$("backdrop").classList.toggle("open",open);
-  $("menuBtn").setAttribute("aria-expanded",String(open));
 });
 $("backdrop").addEventListener("click",closeSidebar);
 document.addEventListener("keydown",event=>{if(event.key==="Escape")closeSidebar()});
-document.querySelectorAll("[data-close]").forEach(el=>{
-  el.addEventListener("click",()=>{if(!busy)$(el.dataset.close).close()});
+document.querySelectorAll("[data-close]").forEach(b=>{
+  b.addEventListener("click",()=>{if(!busy)$(b.dataset.close).close()});
 });
-document.querySelectorAll("dialog").forEach(el=>{
-  el.addEventListener("cancel",event=>{if(busy)event.preventDefault()});
+document.querySelectorAll("dialog").forEach(d=>{
+  d.addEventListener("cancel",event=>{if(busy)event.preventDefault()});
 });
 $("loginDialog").addEventListener("close",()=>{$("tokenInput").value=""});
 window.addEventListener("beforeunload",event=>{
   if(busy&&token){event.preventDefault();event.returnValue=""}
 });
 
+/* 首次载入失败不伪装为已有数据。 */
 async function bootstrap(){
-  render();setBusy(true,"正在读取收藏库…");
+  render();setBusy(true);
   try{
-    const loaded=await loadPublic();data=loaded.data;
-    if(loaded.missing)notice(
-      "尚未发布收藏数据。使用原资源中心的同一个令牌登录，首次保存后会自动创建 "+
-      CONFIG.dataFile+"。");
+    const loaded=await loadPublic();
+    data=loaded.data;revision=loaded.head;dataSource=loaded.source;
+    notice(loaded.missing?"尚未创建收藏配置。管理员首次保存后自动创建。":
+      loaded.fallback?"使用备用数据源。若内容未更新，请稍后点击“刷新数据”。":"",
+      loaded.fallback);
   }catch(error){
-    notice(error.name==="AbortError"?"读取超时，请刷新重试。":error.message,true);
+    dataSource="读取失败";
+    notice("无法读取公共资源库。\n"+error.message+
+      "\n请检查网络、仓库权限和文件路径；不会自动覆盖仓库数据。",true);
   }finally{setBusy(false);render()}
 }
 bootstrap();
