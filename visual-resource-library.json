@@ -7,6 +7,10 @@
     {
       "id": "c7274d0f-a3b9-4f7a-9fec-c227a2e4d497",
       "name": "算电协同"
+    },
+    {
+      "id": "fb250bd0-12d1-45cd-856b-eb031e7a36bb",
+      "name": "虚拟电厂"
     }
   ],
   "resources": []
