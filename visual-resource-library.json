@@ -24,6 +24,7 @@
       "title": "【专家报告】福州大学 陈昌铭：算力-能量协同的数据中心能量管理及联盟优化方法",
       "description": "",
       "image": "./images/collection-covers/8ac083a4-3c8c-49a9-8706-6ac48f945357.webp",
+      "thumbnail": "",
       "platform": "wechat",
       "status": "unchecked",
       "tagIds": [
@@ -38,6 +39,7 @@
       "title": "报告分享丨东南大学 吴志：应对极端灾害事件的末端保供型微电网韧性规划研究",
       "description": "",
       "image": "./images/collection-covers/4f9d61d5-7147-46a9-abdf-ea794b95af53.webp",
+      "thumbnail": "",
       "platform": "wechat",
       "status": "unchecked",
       "tagIds": [
@@ -45,6 +47,21 @@
       ],
       "createdAt": "2026-09-20T05:05:28.823Z",
       "updatedAt": "2026-09-20T05:42:10.424Z"
+    },
+    {
+      "id": "332680f4-333d-4095-b0a7-35d4a02d2750",
+      "url": "https://mp.weixin.qq.com/s/SKDw_DwlYUwCtwuzCAi8lA",
+      "title": "华北电力大学 王鹏教授：《算电协同的市场机制》PPT分享",
+      "description": "",
+      "image": "./images/collection-covers/a1673a29-5389-4b92-ac18-a130a8db5174-full.webp",
+      "thumbnail": "./images/collection-covers/a1673a29-5389-4b92-ac18-a130a8db5174-thumb.webp",
+      "platform": "wechat",
+      "status": "unchecked",
+      "tagIds": [
+        "c7274d0f-a3b9-4f7a-9fec-c227a2e4d497"
+      ],
+      "createdAt": "2026-09-21T08:52:48.927Z",
+      "updatedAt": "2026-09-21T08:52:48.927Z"
     }
   ]
 }
