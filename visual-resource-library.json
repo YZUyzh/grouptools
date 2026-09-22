@@ -15,6 +15,10 @@
     {
       "id": "692f21e1-74d0-4017-8f5c-3cea65235450",
       "name": "韧性保供"
+    },
+    {
+      "id": "7c8713a7-4558-4b04-bdd0-e6d1c7b6dd6f",
+      "name": "车网互动"
     }
   ],
   "resources": [
@@ -62,6 +66,21 @@
       ],
       "createdAt": "2026-09-21T08:52:48.927Z",
       "updatedAt": "2026-09-21T08:52:48.927Z"
+    },
+    {
+      "id": "16ec73ca-4d29-4636-bb2e-2efd8d1699b9",
+      "url": "https://mp.weixin.qq.com/s/VMTsNdhvufB-dqWKsdkEog",
+      "title": "华北电力大学 王鹏教授：《算电协同的市场机制》PPT分享",
+      "description": "",
+      "image": "./images/collection-covers/aa34389f-2bba-4a51-9835-be966e517c20-full.webp",
+      "thumbnail": "./images/collection-covers/aa34389f-2bba-4a51-9835-be966e517c20-thumb.webp",
+      "platform": "wechat",
+      "status": "unchecked",
+      "tagIds": [
+        "7c8713a7-4558-4b04-bdd0-e6d1c7b6dd6f"
+      ],
+      "createdAt": "2026-09-22T04:11:39.372Z",
+      "updatedAt": "2026-09-22T04:11:39.372Z"
     }
   ]
 }
