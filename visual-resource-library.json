@@ -19,6 +19,10 @@
     {
       "id": "7c8713a7-4558-4b04-bdd0-e6d1c7b6dd6f",
       "name": "车网互动"
+    },
+    {
+      "id": "6ba2272f-5d2d-4a53-b9fb-13e41f8aa24a",
+      "name": "人工智能"
     }
   ],
   "resources": [
@@ -94,6 +98,21 @@
       "tagIds": [],
       "createdAt": "2026-09-22T07:34:43.779Z",
       "updatedAt": "2026-09-22T07:34:43.779Z"
+    },
+    {
+      "id": "94340ca2-5f59-4b97-9a03-66f73c4ca1fe",
+      "url": "https://blog.csdn.net/DeepModel/article/details/159939231",
+      "title": "通俗易懂讲透Adam优化器",
+      "description": "",
+      "image": "./images/collection-covers/66702595-069f-414b-900e-69465cd98195-full.webp",
+      "thumbnail": "./images/collection-covers/66702595-069f-414b-900e-69465cd98195-thumb.webp",
+      "platform": "other",
+      "status": "unchecked",
+      "tagIds": [
+        "6ba2272f-5d2d-4a53-b9fb-13e41f8aa24a"
+      ],
+      "createdAt": "2026-09-27T06:18:06.105Z",
+      "updatedAt": "2026-09-27T06:18:06.105Z"
     }
   ]
 }
