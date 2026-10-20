@@ -10,167 +10,184 @@
 :root{
   --bg:#f5f6f8;--surface:#fff;--ink:#283247;--secondary:#667085;
   --muted:#98a1b2;--line:#e8ebf0;--strong:#dce1e9;
-  --accent:#7463b9;--accent-hover:#6655a9;--soft:#f0edf8;
+  --accent:#7463b9;--hover:#6655a9;--soft:#f0edf8;
   --danger:#ba5261;--danger-soft:#fcf0f2;--success:#42826e;
   --shadow:0 3px 18px rgba(30,40,60,.035)
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+html,body{margin:0;height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font:13px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.45;cursor:not-allowed}
 [hidden]{display:none!important}
-:focus-visible{outline:3px solid #d5ccef;outline-offset:3px}
+:focus-visible{outline:3px solid #d5ccef;outline-offset:2px}
 input[type=checkbox]{accent-color:var(--accent)}
-h1,h2,h3,p{margin-top:0}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:34px;padding:6px 11px;border:1px solid var(--strong);border-radius:8px;background:#fff;color:var(--secondary);font-size:12px;white-space:nowrap}
+.scroll{scrollbar-width:thin;scrollbar-color:#d0d5df transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:29px;padding:4px 9px;border:1px solid var(--strong);border-radius:7px;background:#fff;color:var(--secondary);font-size:11px;white-space:nowrap}
 .btn:hover:not(:disabled){background:#f8f9fb;border-color:#cdd3de;color:var(--ink)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover:not(:disabled){background:var(--accent-hover)}
+.btn.primary:hover:not(:disabled){background:var(--hover)}
 .btn.ghost{background:transparent;border-color:transparent}
 .btn.danger{color:var(--danger)}
 .btn.danger:hover:not(:disabled){background:var(--danger-soft)}
-.btn.small{font-size:11px;min-height:29px;padding:4px 8px}
-.actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.shell{display:grid;grid-template-columns:238px minmax(0,1fr);min-height:100vh}
-.sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;min-width:0;padding:26px 15px 16px;border-right:1px solid var(--line);background:#fbfcfd}
-.brand{display:flex;align-items:center;gap:11px;padding:0 8px 26px}
-.brand-mark{display:grid;place-items:center;width:38px;height:38px;background:var(--soft);color:var(--accent);border-radius:11px;font-size:23px}
-.brand strong{display:block;font-size:16px;font-weight:650}
-.brand small{display:block;font-size:9px;letter-spacing:1.4px;color:var(--muted)}
-.side-label{display:flex;align-items:center;justify-content:space-between;padding:0 10px 9px;font-size:10px;letter-spacing:.8px;color:var(--muted)}
-.nav{display:flex;align-items:center;gap:7px;width:100%;min-height:41px;margin:4px 0;padding:9px 11px;border:0;border-radius:8px;background:transparent;color:#737e91;text-align:left;font-size:12px}
+.btn.small{font-size:10px;min-height:25px;padding:3px 7px}
+.actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.shell{height:100vh;height:100dvh;display:grid;grid-template-columns:200px minmax(0,1fr)}
+.sidebar{display:flex;flex-direction:column;min-height:0;min-width:0;padding:20px 12px 13px;border-right:1px solid var(--line);background:#fbfcfd}
+.brand{display:flex;align-items:center;gap:9px;padding:0 6px 19px}
+.brand-mark{display:grid;place-items:center;width:34px;height:34px;background:var(--soft);color:var(--accent);border-radius:10px;font-size:23px;flex-shrink:0}
+.brand strong{display:block;font-size:14px;font-weight:650}
+.brand small{display:block;font-size:8px;letter-spacing:1px;color:var(--muted)}
+.side-label{display:flex;align-items:center;justify-content:space-between;padding:0 7px 7px;font-size:10px;color:var(--muted)}
+#projectNav{flex:1;min-height:0;overflow:auto}
+.nav{display:flex;align-items:center;gap:5px;width:100%;min-height:36px;margin:3px 0;padding:7px 9px;border:0;border-radius:7px;background:transparent;color:#737e91;text-align:left;font-size:11px}
 .nav:hover{background:#f2f4f7}
 .nav.active{background:var(--soft);color:var(--accent);font-weight:600}
-.nav span:first-child{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.nav small{font-size:10px;color:var(--muted)}
-#projectNav{flex:1;overflow:auto;min-height:80px}
-.side-foot{border-top:1px solid var(--line);margin-top:16px;padding:15px 9px 0;color:#8893a4;font-size:11px}
-.side-foot small{display:block;margin-top:5px;font-size:9px;letter-spacing:.5px;color:#adb5c2}
-.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#a6b7b0;margin-right:5px}
-main{min-width:0;padding:27px 30px 20px}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:19px}
-.eyebrow{font-size:10px;letter-spacing:1.5px;color:var(--muted)}
-h1{font-size:23px;font-weight:650;margin:3px 0 0;letter-spacing:.5px}
-.subcopy{font-size:12px;color:var(--secondary);margin-bottom:18px}
-.subcopy span{color:var(--muted);font-size:11px}
-.notice{padding:10px 13px;border:1px solid #e3dcf0;background:var(--soft);border-radius:9px;color:#8272aa;font-size:11px;line-height:1.8;margin-bottom:16px;white-space:pre-line;overflow-wrap:anywhere}
+.nav span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav small{font-size:9px;color:var(--muted)}
+.side-foot{border-top:1px solid var(--line);margin-top:12px;padding:11px 7px 0;color:#8893a4;font-size:10px}
+.side-foot small{display:block;margin-top:3px;font-size:8px;letter-spacing:.5px;color:#adb5c2}
+main{display:flex;flex-direction:column;min-width:0;min-height:0;padding:18px 22px 11px;gap:10px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-shrink:0}
+.eyebrow{font-size:9px;letter-spacing:1.3px;color:var(--muted)}
+h1{font-size:21px;font-weight:650;margin:2px 0 0;letter-spacing:.4px}
+.notice{padding:7px 10px;border:1px solid #e3dcf0;background:var(--soft);border-radius:8px;color:#8272aa;font-size:10px;white-space:pre-line;overflow-wrap:anywhere;flex-shrink:0;max-height:74px;overflow:auto}
 .notice.error{background:#fff4f5;border-color:#eedbe0;color:#af6070}
-.panel{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:17px}
-.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 19px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.panel-head h2{font-size:14px;font-weight:600;margin:0}
-.panel-body{padding:19px}
-.panel-foot{padding:10px 19px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
-.form-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.form-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-.field{display:block;margin:0;font-size:11px;color:#7e899c;min-width:0}
-.field input,.field select,.field textarea{display:block;width:100%;min-width:0;margin-top:6px;padding:9px 10px;border:1px solid #e1e6ee;border-radius:8px;background:#fcfcfe;color:var(--ink)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;box-shadow:var(--shadow)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:9px;padding:10px 13px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.panel-head h2{font-size:12px;font-weight:600;margin:0}
+.panel-body{padding:12px 13px}
+.field{display:block;margin:0;font-size:10px;color:#7e899c;min-width:0}
+.field input,.field select{display:block;width:100%;min-width:0;margin-top:4px;padding:6px 8px;border:1px solid #e1e6ee;border-radius:7px;background:#fcfcfe;color:var(--ink);height:30px;font-size:11px}
 .field input:focus,.field select:focus{outline:none;border-color:#bfb1dc;background:#fff}
 .field input::placeholder{color:#b0b7c4}
 .field input:disabled{background:#f5f6f8;color:#a6aebb}
+.settings{flex-shrink:0}
+.settings summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 13px;cursor:pointer;list-style:none;font-size:11px;color:#748096}
+.settings summary::-webkit-details-marker{display:none}
+.settings summary strong{color:#57647a;font-size:12px;font-weight:600}
+.settings[open] summary{border-bottom:1px solid var(--line)}
+.settings summary .hint{margin:0}
+.form-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px}
+.form-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .span2{grid-column:span 2}
-.hint{font-size:11px;color:var(--muted);line-height:1.8;white-space:pre-line;overflow-wrap:anywhere}
-.warning{font-size:11px;color:#a08b63;background:#fbf8f1;border:1px solid #eee5d3;border-radius:8px;padding:11px 13px;line-height:1.8}
+.param-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px;margin-top:10px}
+.hint{font-size:10px;color:var(--muted);line-height:1.75;white-space:pre-line;overflow-wrap:anywhere}
+.warning{font-size:10px;color:#a08b63;background:#fbf8f1;border:1px solid #eee5d3;border-radius:7px;padding:8px 10px;line-height:1.7}
 .error-text{color:var(--danger);font-size:11px;white-space:pre-line;overflow-wrap:anywhere}
-.tabs{display:flex;gap:4px;flex-wrap:wrap}
-.tabs button{border:1px solid transparent;background:#f2f4f7;color:#929bac;border-radius:7px;font-size:11px;padding:6px 11px}
+.roundbar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;flex-shrink:0}
+.tabs{display:flex;gap:3px;flex-wrap:wrap}
+.tabs button{border:1px solid transparent;background:#eef0f4;color:#929bac;border-radius:6px;font-size:10px;padding:4px 9px}
 .tabs button.active{background:var(--soft);color:var(--accent);border-color:#e0d8ed}
-.round-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 12px;flex-wrap:wrap}
-.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:17px}
-.metric{padding:17px 18px;background:#fff;border:1px solid var(--line);border-radius:12px}
-.metric small{display:block;font-size:10px;color:var(--muted)}
-.metric strong{display:block;font-size:23px;font-weight:600;color:#5e687b;margin-top:4px;font-variant-numeric:tabular-nums}
-.metric em{font-size:10px;color:var(--muted);font-style:normal}
+#roundTabs{max-height:66px;overflow:auto}
+.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;flex-shrink:0}
+.metric{padding:9px 12px;background:#fff;border:1px solid var(--line);border-radius:9px;min-width:0}
+.metric small{display:block;font-size:9px;color:var(--muted)}
+.metric strong{display:block;font-size:20px;font-weight:600;color:#5e687b;margin-top:1px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.metric em{font-size:9px;color:var(--muted);font-style:normal}
 .metric.accent{background:#f7f5fc;border-color:#e4ddef}
 .metric.accent strong{color:var(--accent)}
+.workbench{flex:1;min-height:0;display:flex;flex-direction:column}
+.workbench>.panel-head{padding:8px 13px;flex-shrink:0}
+#tabBody{flex:1;min-height:0;overflow:auto;padding:0}
+.tab-content{padding:12px 13px}
 .table-wrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:750px}
-th{text-align:left;font-size:10px;font-weight:400;color:#a1aaba;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
-td{font-size:12px;color:#657087;padding:11px 12px;border-bottom:1px solid #f0f2f6;vertical-align:middle}
+table{border-collapse:collapse;width:100%;min-width:730px}
+th{text-align:left;font-size:9px;font-weight:400;color:#a1aaba;padding:7px 9px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{font-size:11px;color:#657087;padding:7px 9px;border-bottom:1px solid #f0f2f6;vertical-align:middle}
 tr:last-child td{border-bottom:0}
 tr.own{background:#faf8fe}
 tr:hover{background:#fafbfe}
-td input[type=text],td input[type=number]{width:100%;min-width:110px;padding:7px 8px;border:1px solid var(--line);background:#fcfcfe;border-radius:7px;color:var(--ink);font-size:12px}
+td input[type=text],td input[type=number]{width:100%;min-width:100px;padding:5px 7px;border:1px solid var(--line);background:#fcfcfe;border-radius:6px;color:var(--ink);font-size:11px;height:28px}
 td input:focus{outline:none;border-color:#bfb1dc}
-.name-cell{min-width:155px}
-.price-cell{min-width:160px}
+.name-cell{min-width:140px}
+.price-cell{min-width:140px}
 .num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .score{font-weight:600;color:var(--accent)}
-.badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;background:#f2f4f7;color:#929bac;white-space:nowrap}
+.badge{display:inline-block;padding:1px 5px;border-radius:4px;font-size:9px;background:#f2f4f7;color:#929bac;white-space:nowrap}
 .badge.good{background:#edf6f1;color:var(--success)}
 .badge.purple{background:var(--soft);color:var(--accent)}
 .badge.bad{background:var(--danger-soft);color:var(--danger)}
-.trace{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.trace-card{background:#f9fafc;border:1px solid var(--line);border-radius:9px;padding:13px}
-.trace-card h3{font-size:11px;color:#7d8799;margin-bottom:7px}
-.trace-card p{font-size:11px;color:#9aa3b2;margin:0;overflow-wrap:anywhere}
-.strategy-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px}
-.strategy-form{display:grid;gap:11px}
+.trace-line{font-size:10px;color:#8e98a9;padding:8px 12px;background:#f9fafc;border:1px solid var(--line);border-radius:7px;margin-top:10px;line-height:1.8;white-space:pre-line;overflow-wrap:anywhere}
+.strategy-layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:15px}
+.strategy-form{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:start}
+.strategy-form>.wide{grid-column:span 2}
 .strategy-result{min-width:0}
-.strategy-hero{padding:17px;background:#f7f5fc;border:1px solid #e4ddef;border-radius:10px;margin-bottom:13px}
-.strategy-hero strong{font-size:23px;color:var(--accent)}
-.strategy-hero p{font-size:11px;color:#8f82aa;margin:5px 0 0;white-space:pre-line}
-.chart{width:100%;height:auto;display:block;background:#fcfcfe;border:1px solid var(--line);border-radius:9px;margin:12px 0}
-details>summary{cursor:pointer;font-size:12px;color:#7e899c}
-.rules{font-size:12px;color:#8b95a6;line-height:1.9}
-.rules h3{font-size:12px;color:#627087;margin-top:15px}
-.rules code{background:#f4f2f8;padding:2px 5px;border-radius:4px;font-size:11px}
-dialog{width:min(690px,calc(100% - 24px));max-height:91vh;padding:0;border:1px solid #e5e8ef;border-radius:15px;overflow:auto;background:#fff;color:var(--ink);box-shadow:0 22px 90px #1e2a4430}
+.strategy-hero{padding:11px 13px;background:#f7f5fc;border:1px solid #e4ddef;border-radius:8px;margin-bottom:9px}
+.strategy-hero strong{font-size:22px;color:var(--accent)}
+.strategy-hero p{font-size:10px;color:#8f82aa;margin:4px 0 0;white-space:pre-line}
+.chart{width:100%;max-height:205px;display:block;background:#fcfcfe;border:1px solid var(--line);border-radius:7px;margin:9px 0}
+.rules{font-size:11px;color:#8b95a6;line-height:1.9}
+.rules h3{font-size:12px;color:#627087;margin:14px 0 5px}
+.rules p{margin:5px 0 10px}
+.rules code{background:#f4f2f8;padding:2px 5px;border-radius:4px;font-size:10px}
+.rules table{min-width:400px}
+dialog{width:min(680px,calc(100% - 24px));max-height:91vh;max-height:91dvh;padding:0;border:1px solid #e5e8ef;border-radius:13px;overflow:auto;background:#fff;color:var(--ink);box-shadow:0 22px 90px #1e2a4430}
 dialog::backdrop{background:#18223461;backdrop-filter:blur(3px)}
-.dialog-inner{padding:25px}
-.dialog-heading h2{font-size:19px;font-weight:600;margin:0 0 5px}
-.dialog-heading p{font-size:11px;color:#9aa4b5}
-.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:21px;padding-top:17px;border-top:1px solid var(--line);flex-wrap:wrap}
-.gate{min-height:100vh;display:grid;place-items:center;padding:24px}
-.gate-card{width:min(450px,100%);background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:var(--shadow)}
-.gate-card .brand{padding:0 0 25px}
-.gate-card h2{font-size:20px;margin-bottom:5px}
-.gate-card .field{margin:18px 0}
-.gate-card .primary{width:100%;margin-bottom:8px}
-.separator{height:1px;background:var(--line);margin:18px 0}
-.empty{text-align:center;color:var(--muted);padding:25px;font-size:12px}
-.save-state{font-size:10px;color:var(--muted)}
-.footer{display:flex;justify-content:space-between;color:#a4adbc;font-size:10px;gap:12px;margin-top:15px}
-.checkline{display:flex;align-items:center;gap:7px;font-size:11px;color:#7e899c}
+.dialog-inner{padding:21px}
+.dialog-heading h2{font-size:18px;font-weight:600;margin:0 0 4px}
+.dialog-heading p{font-size:11px;color:#9aa4b5;margin:0 0 13px}
+.dialog-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:16px;padding-top:13px;border-top:1px solid var(--line);flex-wrap:wrap}
+.gate{height:100vh;height:100dvh;overflow:auto;display:grid;place-items:center;padding:20px}
+.gate-card{width:min(430px,100%);background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:var(--shadow)}
+.gate-card .brand{padding:0 0 19px}
+.gate-card h2{font-size:19px;margin:0 0 5px}
+.gate-card .field{margin:15px 0}
+.gate-card .field input{height:36px;font-size:12px}
+.gate-card .primary{width:100%;margin:9px 0;min-height:34px}
+.separator{height:1px;background:var(--line);margin:14px 0}
+.empty{text-align:center;color:var(--muted);padding:25px;font-size:11px}
+.save-state{font-size:9px;color:var(--muted)}
+.footer{display:flex;justify-content:space-between;color:#a4adbc;font-size:9px;gap:10px;padding:7px 13px;border-top:1px solid var(--line);flex-shrink:0}
 #adminTable{min-width:420px}
-@media(min-width:1500px){main{padding-left:38px;padding-right:38px}}
+@media(min-width:1500px){main{padding-left:30px;padding-right:30px}.strategy-layout{grid-template-columns:280px minmax(0,1fr)}}
 @media(max-width:1100px){
-  .shell{grid-template-columns:205px minmax(0,1fr)}
-  main{padding:22px 20px}
-  .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .strategy-layout{grid-template-columns:220px minmax(0,1fr)}
-  .metrics{gap:8px}.metric{padding:14px}.metric strong{font-size:20px}
+  .shell{grid-template-columns:176px minmax(0,1fr)}
+  main{padding:14px 15px 9px;gap:8px}
+  .form-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .param-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .metrics{gap:7px}.metric{padding:8px 9px}.metric strong{font-size:18px}
 }
-@media(max-width:800px){
+@media(max-width:760px){
   .shell{grid-template-columns:1fr}
-  .sidebar{position:static;height:auto;padding:17px 15px;border-right:0;border-bottom:1px solid var(--line)}
-  .sidebar .brand{padding-bottom:12px}.side-foot{display:none}
-  #projectNav{display:flex;gap:6px;min-height:0;overflow-x:auto}
-  .nav{width:auto;min-width:140px;margin:0}
-  .side-label{padding-left:0}
-  main{padding:18px 13px}
+  .sidebar{display:none}
+  main{padding:12px 10px 8px}
+  .topbar{gap:8px}.topbar>.actions{justify-content:flex-end}
+  .eyebrow{font-size:8px}h1{font-size:19px}
   .strategy-layout{grid-template-columns:1fr}
+  .strategy-form{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .strategy-form>.wide{grid-column:span 2}
+  .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .param-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .metric strong{font-size:17px}.metric em{font-size:8px}
+  .settings summary .hint{display:none}
+  .mobile-only{display:inline-flex!important}
+}
+@media(max-width:430px){
+  .topbar{align-items:flex-start}
+  .topbar>.actions{max-width:190px;gap:3px}
+  .topbar .btn{font-size:10px;padding:4px 6px}
   .strategy-form{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .strategy-form>.btn{grid-column:span 2}
-  .trace{grid-template-columns:1fr}
-  .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .param-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .roundbar{gap:5px}
+  .gate-card{padding:21px}
+  .metrics{gap:5px}.metric{padding:7px}
+  .footer span:last-child{display:none}
 }
-@media(max-width:480px){
-  .topbar{align-items:flex-start}h1{font-size:20px}
-  .topbar>.actions{justify-content:flex-end;max-width:170px}
-  .btn{font-size:11px;padding:6px 8px}
-  .panel-body{padding:14px}.panel-head{padding:14px}
-  .form-grid,.form-grid.two{grid-template-columns:1fr}
-  .span2{grid-column:auto}
-  .gate-card{padding:23px}
-  .footer{flex-direction:column}
+@media(max-height:680px) and (min-width:761px){
+  main{padding-top:10px;gap:7px}.metric{padding:6px 10px}
+  .metric strong{font-size:18px}.metric em{display:none}
 }
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 @media print{
-  #gate,.sidebar,.topbar>.actions,.no-print,.strategy-form{display:none!important}
-  .shell{display:block}main{padding:0}
-  body{background:#fff}.panel{box-shadow:none;break-inside:avoid}
+  html,body{height:auto;overflow:visible;background:#fff}
+  #gate,.sidebar,.topbar>.actions,.no-print,.strategy-form,.settings summary{display:none!important}
+  .shell{display:block;height:auto}main{padding:0;display:block}
+  .panel{box-shadow:none;margin:10px 0;break-inside:avoid}
+  #tabBody{overflow:visible}.workbench{display:block}
   .table-wrap{overflow:visible}table{min-width:0}
+  .metrics{margin:10px 0}.footer{border:0}
 }
 </style>
 </head>
@@ -180,9 +197,9 @@ dialog::backdrop{background:#18223461;backdrop-filter:blur(3px)}
   <div class="gate-card">
     <div class="brand"><div class="brand-mark">ϟ</div><div><strong>电力小分队</strong><small>BIDDING WORKSPACE</small></div></div>
     <h2>投标价格评分</h2>
-    <p class="hint">请输入通行证，进入独立报价模拟工作台。<br>验证后自动恢复此浏览器上次的报价结果。</p>
+    <p class="hint">输入通行证后使用，自动恢复此浏览器上次的项目和报价。</p>
     <form id="gateForm">
-      <label class="field">通行证<input id="passInput" type="password" required autocomplete="off" placeholder="管理员分配的通行证"></label>
+      <label class="field">通行证<input id="passInput" type="password" minlength="6" maxlength="256" required autocomplete="off" placeholder="管理员分配的通行证，至少6位"></label>
       <div id="gateError" class="error-text" role="alert"></div>
       <button id="gateSubmit" class="btn primary" type="submit">验证并进入</button>
     </form>
@@ -191,7 +208,7 @@ dialog::backdrop{background:#18223461;backdrop-filter:blur(3px)}
       <button id="gateAdmin" class="btn ghost" type="button">管理员 / 仓库设置</button>
     </div>
     <div class="separator"></div>
-    <p class="hint" style="margin-bottom:0">请使用 HTTPS 或 localhost 打开。静态通行证仅控制页面界面，不是敏感数据的安全隔离；本地报价历史不加密。</p>
+    <p class="hint" style="margin:0">需 HTTPS 或 localhost。静态通行证只限制界面访问，不构成后端安全鉴权；本地报价历史不加密。6位通行证允许使用，但推荐随机长通行证。</p>
   </div>
 </section>
 
@@ -200,44 +217,51 @@ dialog::backdrop{background:#18223461;backdrop-filter:blur(3px)}
   <aside class="sidebar">
     <div class="brand"><div class="brand-mark">ϟ</div><div><strong>电力小分队</strong><small>BIDDING WORKSPACE</small></div></div>
     <div class="side-label"><span>投标项目</span><button id="newProject" class="btn small ghost">＋ 新建</button></div>
-    <nav id="projectNav" aria-label="项目列表"></nav>
-    <div class="side-foot"><span class="dot"></span>独立报价 · 情景分析<small>PRICE SCORE / V1.0</small></div>
+    <nav id="projectNav" class="scroll" aria-label="项目列表"></nav>
+    <div class="side-foot">独立报价 · 假设分析<small>PRICE SCORE / V1.1</small></div>
   </aside>
   <main>
     <header class="topbar">
       <div><div class="eyebrow">WORKSPACE / BIDDING</div><h1>投标价格评分</h1></div>
       <div class="actions no-print">
-        <button id="exportProject" class="btn ghost">↓ 导出 JSON</button>
+        <button id="mobileProjects" class="btn mobile-only" hidden>项目</button>
+        <button id="exportProject" class="btn ghost">↓ JSON</button>
         <button id="importProject" class="btn ghost">↑ 导入</button>
-        <button id="openAdmin" class="btn">通行证管理</button>
+        <button id="openAdmin" class="btn">通行证</button>
         <button id="lockBtn" class="btn">锁定</button>
       </div>
     </header>
-    <p class="subcopy">报价有据，策略有界。<br><span>竞争对手报价均为手动假设；基准价随我方及对手报价共同变化。</span></p>
-    <div id="notice" class="notice" hidden role="status"></div>
+    <div id="notice" class="notice scroll" hidden role="status"></div>
 
-    <section class="panel">
-      <div class="panel-head"><h2>项目与评审参数</h2><div class="actions"><span id="saveState" class="save-state">本地自动保存</span><button id="deleteProject" class="btn small ghost danger no-print">删除项目</button></div></div>
+    <details id="settings" class="panel settings" open>
+      <summary><strong>项目与评审参数 ▾</strong><span id="settingsSummary" class="hint"></span><span id="saveState" class="save-state">自动保存本地</span></summary>
       <div class="panel-body">
         <div class="form-grid">
           <label class="field span2">本次投标项目名称<input id="projectName" maxlength="100"></label>
           <label class="field">价格单位<input id="priceUnit" maxlength="12" placeholder="元 / 万元"></label>
-          <label class="field">价格评分权重（%）<input id="weight" type="number" min="0" max="100" step="0.1"></label>
+          <label class="field">总价限价（选填）<input id="priceCap" type="number" min="0" step="any" placeholder="不设置限价"></label>
+          <label class="field span2">超过限价的处理<select id="capPolicy"><option value="warn">仅提示，仍按勾选参与计算</option><option value="exclude">超限不参与评审及基准价计算</option></select></label>
+        </div>
+        <div class="param-grid">
           <label class="field span2">评审办法<select id="method"><option value="interval">区间平均价浮动法</option><option value="simple">简单算术平均值法</option></select></label>
+          <label class="field">价格权重（%）<input id="weight" type="number" min="0" max="100" step="0.1"></label>
           <label class="field">高于 / 等于基准价 n1<input id="n1" type="number" min="0" step="0.01"></label>
           <label class="field">低于基准价 n2<input id="n2" type="number" min="0" step="0.01"></label>
-          <label class="field">有效区间下限 W1（%）<input id="w1" type="number" step="0.1"></label>
-          <label class="field">有效区间上限 W2（%）<input id="w2" type="number" step="0.1"></label>
-          <label class="field">基准价浮动 C（%）<input id="c" type="number" step="0.1"></label>
-          <div class="field" style="align-self:end"><button id="resetParams" class="btn" type="button">恢复本办法默认参数</button></div>
+          <label class="field">W1（%）<input id="w1" type="number" step="0.1"></label>
+          <label class="field">W2（%）<input id="w2" type="number" step="0.1"></label>
+          <label class="field">C（%）<input id="c" type="number" step="0.1"></label>
+          <div class="actions" style="align-self:end"><button id="resetParams" class="btn small">恢复默认</button></div>
         </div>
-        <p class="hint" style="margin:12px 0 0">权重默认 100%，请按招标文件调整。W1、W2、C 在此以百分数输入，例如 -15 表示 -0.15。不同办法的参数分别保留；每轮独立保存评审参数。计算使用完整数值，界面四舍五入显示。</p>
+        <div class="actions" style="justify-content:space-between;margin-top:8px">
+          <span class="hint">W1=-15 表示 -0.15，W2=10 表示 0.1；每轮独立保存参数及限价。限价不自动改变原评分公式。</span>
+          <button id="deleteProject" class="btn small ghost danger no-print">删除项目</button>
+        </div>
       </div>
-    </section>
+    </details>
 
-    <div class="round-bar">
-      <div id="roundTabs" class="tabs" aria-label="报价轮次"></div>
-      <div class="actions no-print">
+    <div class="roundbar no-print">
+      <div id="roundTabs" class="tabs scroll" aria-label="报价轮次"></div>
+      <div class="actions">
         <button id="renameRound" class="btn small ghost">轮次改名</button>
         <button id="duplicateRound" class="btn small">＋ 下一轮</button>
         <button id="deleteRound" class="btn small ghost danger">删除轮次</button>
@@ -245,129 +269,144 @@ dialog::backdrop{background:#18223461;backdrop-filter:blur(3px)}
     </div>
 
     <div class="metrics">
-      <div class="metric"><small>参与计算人数 M</small><strong id="mValue">—</strong><em>已勾选且报价有效</em></div>
-      <div class="metric"><small>基准价</small><strong id="baseValue">—</strong><em id="baseUnit">—</em></div>
-      <div class="metric accent"><small>我方价格分 / 百分制</small><strong id="ownScore">—</strong><em id="ownWeighted">加权得分 —</em></div>
-      <div class="metric"><small>我方价格排名</small><strong id="ownRank">—</strong><em>仅比较价格分，不含技术商务分</em></div>
+      <div class="metric"><small>实际参与人数 M</small><strong id="mValue">—</strong><em id="mHint">已勾选参与评审</em></div>
+      <div class="metric"><small>基准价</small><strong id="baseValue">—</strong><em id="baseUnit">元</em></div>
+      <div class="metric accent"><small>我方价格分 / 100</small><strong id="ownScore">—</strong><em id="ownWeighted">加权得分 —</em></div>
+      <div class="metric"><small>我方价格排名</small><strong id="ownRank">—</strong><em>不含技术、商务分</em></div>
+      <div class="metric"><small>我方距限价余量</small><strong id="capMargin">—</strong><em id="capHint">未设置限价</em></div>
     </div>
 
-    <section class="panel">
-      <div class="panel-head"><h2>报价与评分</h2><div class="actions"><span class="hint">勾选：初评合格 / 进入详评</span><button id="addBidder" class="btn primary no-print">＋ 添加竞争对手</button></div></div>
-      <div id="calcError" class="notice error" style="margin:14px 19px" hidden role="alert"></div>
-      <div class="table-wrap"><table>
-        <thead><tr><th>参与</th><th>投标人名称</th><th id="priceHeading">评标总价</th><th>基准价计算状态</th><th>偏差率</th><th>价格分</th><th>加权分</th><th>排名</th><th class="no-print">操作</th></tr></thead>
-        <tbody id="bidderRows"></tbody>
-      </table></div>
-      <div class="panel-foot">剔除极值、区间外报价只影响基准价样本；仍对所有勾选的合格投标人计算价格分。不参与详评者不计分。</div>
-    </section>
-
-    <section class="panel">
-      <div class="panel-head"><h2>基准价计算过程</h2><span class="hint">区间端点不包含本数</span></div>
-      <div class="panel-body">
-        <div id="trace" class="trace"></div>
-        <p id="tieWarning" class="warning" hidden style="margin:12px 0 0"></p>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="panel-head"><h2>我方报价策略模拟</h2><span class="hint">仅模拟我方自主报价，不修改对手假设</span></div>
-      <div class="panel-body">
-        <div class="strategy-layout">
-          <div class="strategy-form no-print">
-            <label class="field">我方搜索下限<input id="sMin" type="number" min="0" step="any" placeholder="默认：对手均价 × 70%"></label>
-            <label class="field">我方搜索上限<input id="sMax" type="number" min="0" step="any" placeholder="默认：对手均价 × 130%"></label>
-            <label class="field">成本底线（选填）<input id="sCost" type="number" min="0" step="any" placeholder="只推荐不低于成本的报价"></label>
-            <label class="field">报价精度 / 最小单位<input id="sTick" type="number" min="0.000001" step="any"></label>
-            <label class="field">对手共同浮动情景（±%）<input id="sShock" type="number" min="0" max="90" step="0.1"></label>
-            <label class="field">搜索样本上限<select id="sSamples"><option value="501">501 点 · 快速</option><option value="2001">2001 点 · 标准</option><option value="5001">5001 点 · 精细</option></select></label>
-            <button id="runStrategy" class="btn primary">计算策略建议</button>
-          </div>
-          <div class="strategy-result">
-            <div id="strategyEmpty" class="empty">设置报价范围后，计算我方价格分最高的候选报价。</div>
-            <div id="strategyOutput" hidden>
-              <div class="strategy-hero"><span class="hint">采样候选中我方价格分最高的报价</span><br><strong id="bestPrice">—</strong><p id="bestSummary"></p></div>
-              <div class="actions no-print"><button id="applyBest" class="btn">应用到本轮我方报价</button><button id="applyNext" class="btn">复制到下一轮再应用</button></div>
-              <div id="strategyChart"></div>
-              <div class="table-wrap"><table style="min-width:480px">
-                <thead><tr><th>对手共同变化</th><th>此候选基准价</th><th>我方价格分</th><th>价格排名</th></tr></thead>
-                <tbody id="scenarioRows"></tbody>
-              </table></div>
-              <p id="strategyAdvice" class="hint" style="margin-bottom:0"></p>
-            </div>
-            <div id="strategyError" class="error-text" role="alert"></div>
-          </div>
+    <section class="panel workbench">
+      <div class="panel-head no-print">
+        <div id="viewTabs" class="tabs" aria-label="工作区页签">
+          <button type="button" data-view="scores" class="active">报价评分</button>
+          <button type="button" data-view="strategy">策略模拟</button>
+          <button type="button" data-view="history">轮次对比</button>
+          <button type="button" data-view="rules">评审办法</button>
         </div>
-        <p class="warning" style="margin:16px 0 0">策略结果不是中标保证：基准价受对手实际报价及有效区间变化影响，可能不连续；有限网格采样不是全局最优证明。“对手共同浮动”仅为压力测试，不是概率预测。成本、限价、异常低价审查及技术商务分需另行判断。</p>
+        <div class="actions"><button id="addBidder" class="btn primary">＋ 竞争对手</button><button id="printBtn" class="btn ghost">打印</button></div>
       </div>
-    </section>
+      <div id="tabBody" class="scroll">
+        <section id="view-scores" class="tab-content">
+          <div id="calcError" class="notice error" hidden role="alert" style="margin-bottom:9px"></div>
+          <div id="capWarning" class="warning" hidden style="margin-bottom:9px"></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>参与</th><th>投标人名称</th><th id="priceHeading">评标总价</th><th>基准价样本状态</th><th>偏差率</th><th>价格分</th><th>加权分</th><th>排名</th><th class="no-print">操作</th></tr></thead>
+            <tbody id="bidderRows"></tbody>
+          </table></div>
+          <div id="trace" class="trace-line"></div>
+          <div id="tieWarning" class="warning" hidden style="margin-top:9px"></div>
+          <p class="hint" style="margin:8px 0 0">剔除极值和区间外只影响基准价样本，仍对全部参与评审者计分。区间端点不含本数。所有竞争对手报价均为人工假设。</p>
+        </section>
 
-    <section class="panel">
-      <div class="panel-head"><h2>多轮报价对比</h2><button id="printBtn" class="btn small ghost no-print">打印当前报告</button></div>
-      <div class="table-wrap"><table style="min-width:630px"><thead><tr><th>轮次</th><th>办法</th><th>M</th><th>基准价</th><th>我方报价</th><th>我方价格分</th><th>加权分</th><th>价格排名</th></tr></thead><tbody id="roundComparison"></tbody></table></div>
-    </section>
-
-    <section class="panel">
-      <div class="panel-body">
-        <details>
-          <summary>查看评审办法、同价处理与使用说明</summary>
-          <div class="rules">
-            <h3>1. 区间平均价浮动法</h3>
-            <ul>
-              <li>M ≤ 5：不剔除极值。</li>
-              <li>5 &lt; M ≤ 10：剔除最高 1 个、最低 1 个。</li>
-              <li>10 &lt; M ≤ 20：剔除最高 2 个、最低 1 个。</li>
-              <li>20 &lt; M ≤ 30：剔除最高 3 个、最低 2 个。</li>
-              <li>M &gt; 30：剔除最高 4 个、最低 3 个。</li>
-            </ul>
-            <p>剩余样本平均价为 A1；有效样本满足 <code>A1 × (1 + W1) &lt; 报价 &lt; A1 × (1 + W2)</code>。区间内人数为零时，回退到全部剩余样本，不重新纳入已剔除极值者。有效样本均价为 A2；基准价 = A2 × (1 − C)。</p>
-            <p>默认 n1 = 1，n2 = 0.5，W1 = −15%，W2 = 10%，C = 0%。</p>
-            <h3>2. 简单算术平均值法</h3>
-            <p>全部勾选的详评投标人报价平均值即基准价；不剔除、不筛区间、不使用 C。默认 n1 = 1，n2 = 1。</p>
-            <h3>共同计分公式</h3>
-            <p><code>价格分 = max(0, 100 − 100 × n × |报价 − 基准价| / 基准价)</code><br>报价 ≥ 基准价时 n = n1，否则 n = n2。加权分 = 价格分 × 权重 / 100。</p>
-            <h3>同价、排名与解释边界</h3>
-            <p>原条款未明确极值边界同价如何剔除。本工具按“价格升序，同价按列表顺序”固定剔除人数，边界同价时显示警告。正式评审应以招标文件补充条款或评审方解释为准。价格分并列采用竞赛排名（例如 1、1、3），按未四舍五入分数比较，并使用极小数值容差。</p>
-            <h3>历史与安全</h3>
-            <p>报价记录仅自动保存在本浏览器 localStorage；清理浏览器或换设备可能丢失。JSON 导出为项目全部轮次，不含通行证、GitHub 令牌。GitHub 仅用于发布通行证的加盐 PBKDF2 校验记录；公开校验记录仍有离线猜测风险，请使用高强度随机通行证。管理员令牌只存页面内存，关闭页面或退出管理员后消失。</p>
-            <p>初评勾选人数必须有完整、正数报价；空值或非正数会停止本轮评分，不悄悄删除样本。未勾选的报价不影响计算。</p>
+        <section id="view-strategy" class="tab-content" hidden>
+          <div class="strategy-layout">
+            <div class="strategy-form no-print">
+              <label class="field">搜索下限<input id="sMin" type="number" min="0" step="any" placeholder="对手均价×70%"></label>
+              <label class="field">搜索上限<input id="sMax" type="number" min="0" step="any" placeholder="对手均价×130%"></label>
+              <label class="field">成本底线（选填）<input id="sCost" type="number" min="0" step="any"></label>
+              <label class="field">报价最小单位<input id="sTick" type="number" min="0.000001" step="any"></label>
+              <label class="field">对手情景（±%）<input id="sShock" type="number" min="0" max="90" step="0.1"></label>
+              <label class="field">样本上限<select id="sSamples"><option value="501">501 · 快速</option><option value="2001">2001 · 标准</option><option value="5001">5001 · 精细</option></select></label>
+              <button id="runStrategy" class="btn primary wide">计算我方报价建议</button>
+              <p id="searchCapHint" class="hint wide" style="margin:0"></p>
+              <div class="warning wide">推荐报价不会超过限价。每个候选报价都会重新计算全部人的基准价及评分。采样结果不是全局最优证明或中标保证。</div>
+            </div>
+            <div class="strategy-result">
+              <div id="strategyEmpty" class="empty">填写报价假设后，点击计算。<br>建议先核实成本和总价限价。</div>
+              <div id="strategyOutput" hidden>
+                <div class="strategy-hero"><span class="hint">采样候选中，我方价格分最高的报价</span><br><strong id="bestPrice">—</strong><p id="bestSummary"></p></div>
+                <div class="actions no-print"><button id="applyBest" class="btn">应用到本轮</button><button id="applyNext" class="btn">复制到下一轮应用</button></div>
+                <div id="strategyChart"></div>
+                <div class="table-wrap"><table style="min-width:470px"><thead><tr><th>对手共同浮动</th><th>基准价</th><th>我方价格分</th><th>排名</th><th>参与人数</th></tr></thead><tbody id="scenarioRows"></tbody></table></div>
+                <p id="strategyAdvice" class="hint" style="margin:8px 0 0"></p>
+              </div>
+              <div id="strategyError" class="error-text" role="alert"></div>
+            </div>
           </div>
-        </details>
+        </section>
+
+        <section id="view-history" class="tab-content" hidden>
+          <p class="hint" style="margin:0 0 8px">下一轮复制当前报价、参数及限价。JSON 导出包含项目全部轮次，默认以项目名称命名。</p>
+          <div class="table-wrap"><table style="min-width:830px"><thead><tr><th>轮次</th><th>办法</th><th>限价</th><th>超限处理</th><th>M</th><th>基准价</th><th>我方报价</th><th>价格分</th><th>加权分</th><th>排名</th></tr></thead><tbody id="roundComparison"></tbody></table></div>
+        </section>
+
+        <section id="view-rules" class="tab-content rules" hidden>
+          <h3 style="margin-top:0">评审办法附表三：价格评分标准</h3>
+          <h3>1. 区间平均价浮动法</h3>
+          <div class="table-wrap"><table><thead><tr><th>初评合格人数 M</th><th>先剔除最低数量</th><th>先剔除最高数量</th></tr></thead><tbody>
+            <tr><td>M ≤ 5</td><td>0</td><td>0</td></tr>
+            <tr><td>5 &lt; M ≤ 10</td><td>1</td><td>1</td></tr>
+            <tr><td>10 &lt; M ≤ 20</td><td>1</td><td>2（最高、次高）</td></tr>
+            <tr><td>20 &lt; M ≤ 30</td><td>2</td><td>3（最高、次高、第三高）</td></tr>
+            <tr><td>M &gt; 30</td><td>3</td><td>4</td></tr>
+          </tbody></table></div>
+          <p>先按上表处理极值，再计算剩余 X 个投标人的评标价算术平均值 A1。M ≤ 5 时，X = M。</p>
+          <p>有效投标人满足：<code>A1 × (1 + W1) &lt; 评标价 &lt; A1 × (1 + W2)</code>，两端不含本数。区间内人数为 0 时，全部剩余 X 个投标人为有效投标人；已剔除极值者不重新纳入。</p>
+          <p>有效投标人算术平均值为 A2。<code>基准价 = A2 × (1 − C)</code>。</p>
+          <p>默认参数：n1=1、n2=0.5、W1=−0.15、W2=0.1、C=0；界面 W1/W2/C 按百分数填写，即 −15 / 10 / 0。</p>
+          <h3>2. 简单算术平均值法</h3>
+          <p>所有进入详评的投标人评标价算术平均值为基准价。不剔除极值、不筛选区间、不使用 C。默认参数：n1=1、n2=1。</p>
+          <h3>共同评分公式</h3>
+          <p><code>价格分 = max(0, 100 − 100 × n × |评标总价 − 基准价| / 基准价)</code><br>评标总价 ≥ 基准价时 n=n1；评标总价 &lt; 基准价时 n=n2。<br><code>实际加权分 = 价格分 × 价格权重 / 100</code>。</p>
+          <p>计分不使用界面显示的四舍五入值，内部使用完整计算值。价格排名不含技术、商务分；相同价格分采用竞赛排名，例如 1、1、3，使用极小数值容差。</p>
+          <h3>限价是独立的资格设置</h3>
+          <p>原评分条款没有规定超限处理，因此默认“仅提示”，不改变样本人数和评分。选择“超限不参与评审”后，严格大于限价者不计入 M、不计算价格分；等于限价仍可参与。策略候选始终不高于限价。正式使用应按招标文件确定超限规则。</p>
+          <h3>同价极值与输入有效性</h3>
+          <p>条款未明确极值边界同价处理。本工具按价格升序，同价按列表顺序，固定剔除指定数量，并在边界同价时提示。正式评审需核实招标文件补充规定。</p>
+          <p>参与者存在空报价或非正数报价时，本轮暂停计分，不默默删除样本。未勾选者不参与计算。</p>
+          <h3>策略、安全与历史</h3>
+          <p>策略仅支持我方独立报价分析，竞争对手报价为假设。对手共同浮动仅为压力测试，不代表概率或最坏情况。成本、利润、限价、异常低价审查及履约风险应另行核实。</p>
+          <p>本地自动保存使用 localStorage，报价不加密；导出 JSON 不含通行证、GitHub 令牌。不同设备需手动导入 JSON。通行证至少6位，但推荐随机长通行证。公开校验记录存在离线猜测风险；静态通行证不是后端鉴权，无法强制退出已登录页面。</p>
+        </section>
       </div>
+      <footer class="footer"><span id="footerInfo">本地历史 · 独立报价 · 正式得分以评审结果为准</span><span>紧凑工作台 / V1.1</span></footer>
     </section>
-    <footer class="footer"><span>简洁整理 · 独立决策</span><span>本地历史不加密 · 正式得分以评审结果为准</span></footer>
   </main>
 </div>
 </div>
+
 <input id="importFile" type="file" accept=".json,application/json" hidden>
 
-<dialog id="adminDialog">
+<dialog id="projectsDialog" class="scroll">
   <div class="dialog-inner">
-    <div class="dialog-heading"><h2>通行证管理</h2><p>使用 GitHub Personal Access Token 读写通行证配置。不是 SSH 密钥。</p></div>
-    <div class="warning">仅将通行证校验记录写入仓库，不上传报价。建议使用专门的公开仓库；令牌需授权目标仓库，Contents 权限为 Read and write。纯静态方案不构成服务端鉴权。</div>
-    <div class="form-grid two" style="margin-top:17px">
+    <div class="dialog-heading"><h2>投标项目</h2><p>切换本地项目，或新建项目。</p></div>
+    <div id="mobileProjectList"></div>
+    <div class="dialog-actions"><button id="mobileNewProject" class="btn primary">新建项目</button><button id="closeProjects" class="btn">关闭</button></div>
+  </div>
+</dialog>
+
+<dialog id="adminDialog" class="scroll">
+  <div class="dialog-inner">
+    <div class="dialog-heading"><h2>通行证管理</h2><p>GitHub Personal Access Token 仅保存在当前页面内存，不是 SSH 密钥。</p></div>
+    <div class="warning">只上传通行证的加盐 PBKDF2 校验记录，不上传报价。令牌需授权公开目标仓库，Contents 为 Read and write。静态网页无法保护敏感报价，不能替代后端鉴权。</div>
+    <div class="form-grid two" style="margin-top:13px">
       <label class="field">GitHub 用户 / 组织<input id="repoOwner" maxlength="100"></label>
       <label class="field">仓库名称<input id="repoName" maxlength="100"></label>
       <label class="field">分支<input id="repoBranch" maxlength="150"></label>
       <label class="field">通行证配置文件<input id="repoFile" maxlength="200"></label>
     </div>
-    <p class="hint">仓库设置可先保存，再连接管理员。通行证配置必须在公开仓库中，以便访问者在无令牌时读取。给其他用户使用前，应把代码中的 DEFAULT_REPO 改成你的正式仓库设置。</p>
+    <p class="hint">普通用户无令牌时需读取公开配置。正式部署给他人使用前，请修改代码 DEFAULT_REPO；这里保存的仓库设置只作用于此浏览器。</p>
     <div class="actions"><button id="saveRepo" class="btn">保存仓库设置</button><button id="disconnectAdmin" class="btn ghost" hidden>退出管理员</button></div>
     <div id="adminConnectBox">
-      <label class="field" style="margin-top:15px">GitHub 访问令牌<input id="githubToken" type="password" autocomplete="off" spellcheck="false"></label>
-      <div class="actions" style="margin-top:12px"><button id="connectAdmin" class="btn primary">连接仓库</button></div>
+      <label class="field" style="margin-top:13px">GitHub 访问令牌<input id="githubToken" type="password" autocomplete="off" spellcheck="false"></label>
+      <div class="actions" style="margin-top:9px"><button id="connectAdmin" class="btn primary">连接仓库</button></div>
     </div>
     <div id="adminManage" hidden>
       <div class="separator"></div>
-      <h3 style="font-size:13px">新增通行证</h3>
       <div class="form-grid two">
-        <label class="field">使用者 / 备注<input id="passLabel" maxlength="80" placeholder="例如：项目负责人"></label>
+        <label class="field">使用者 / 备注<input id="passLabel" maxlength="80"></label>
         <label class="field">到期日期（选填，当日结束）<input id="passExpires" type="date"></label>
-        <label class="field span2">新通行证<input id="newPass" type="password" autocomplete="off" placeholder="至少12位；推荐自动生成"></label>
+        <label class="field span2">新通行证：至少6位<input id="newPass" type="password" minlength="6" maxlength="256" autocomplete="off" placeholder="至少6位，推荐随机生成"></label>
       </div>
-      <div class="actions" style="margin-top:12px"><button id="generatePass" class="btn">生成随机通行证</button><button id="togglePass" class="btn ghost">显示 / 隐藏</button><button id="createPass" class="btn primary">创建并提交 GitHub</button></div>
-      <p class="hint">请在提交前复制并安全分发通行证；提交后清空明文，无法从仓库恢复。撤销只影响后续登录，不能强制退出已经打开的静态页面。</p>
+      <div class="actions" style="margin-top:9px">
+        <button id="generatePass" class="btn">生成随机通行证</button>
+        <button id="togglePass" class="btn ghost">显示 / 隐藏</button>
+        <button id="createPass" class="btn primary">创建并提交</button>
+      </div>
+      <p class="hint">先复制通行证再提交。成功后清空明文，无法从仓库恢复。6位弱通行证较易被猜测。</p>
       <div class="table-wrap"><table id="adminTable"><thead><tr><th>使用者</th><th>有效期</th><th>状态</th><th>操作</th></tr></thead><tbody id="passRows"></tbody></table></div>
-      <div class="actions" style="margin-top:15px"><button id="adminEnter" class="btn">以管理员身份进入工具</button></div>
+      <div class="actions" style="margin-top:11px"><button id="adminEnter" class="btn">管理员进入工具</button></div>
     </div>
     <p id="adminStatus" class="hint" role="status"></p>
     <div id="adminError" class="error-text" role="alert"></div>
@@ -378,47 +417,135 @@ dialog::backdrop{background:#18223461;backdrop-filter:blur(3px)}
 <script>
 "use strict";
 
-/* 部署前请修改这里。仓库必须已存在且有目标分支。 */
+/* 正式部署前修改这里。仓库及分支应已存在，且为公开仓库。 */
 const DEFAULT_REPO={
   owner:"YZUyzh",repo:"grouptools",branch:"main",file:"bidding-passes.json"
 };
+// 继续使用旧版存储键，自动补充新版限价字段。
 const STATE_KEY="bidding-price-workspace-v1";
 const REPO_KEY="bidding-price-repo-v1";
-const MAX_BIDDERS=500, MAX_ROUNDS=100, MAX_PROJECTS=100;
+const MAX_BIDDERS=500,MAX_ROUNDS=100,MAX_PROJECTS=100;
 const PASS_ITERATIONS=210000;
+const MIN_PASS_LENGTH=6;
 const $=id=>document.getElementById(id);
 const clone=x=>JSON.parse(JSON.stringify(x));
 const uid=()=>crypto.randomUUID();
-const fmt=(n,d=2)=>Number.isFinite(n)?n.toLocaleString("zh-CN",{minimumFractionDigits:d,maximumFractionDigits:d}):"—";
 const isNum=n=>typeof n==="number"&&Number.isFinite(n);
-const mean=arr=>arr.reduce((s,x)=>s+x.price/arr.length,0);
-const paramsFor=m=>m==="interval"?{n1:1,n2:.5,w1:-15,w2:10,c:0}:{n1:1,n2:1,w1:-15,w2:10,c:0};
-const makeRound=(name="第1轮")=>({
-  id:uid(),name,method:"interval",weight:100,
-  params:{interval:paramsFor("interval"),simple:paramsFor("simple")},
-  bidders:[
-    {id:uid(),name:"我方",own:true,qualified:true,price:100},
-    {id:uid(),name:"投标人1",own:false,qualified:true,price:105},
-    {id:uid(),name:"投标人2",own:false,qualified:true,price:95}
-  ],
-  strategy:{min:null,max:null,cost:null,tick:.01,shock:5,samples:2001}
-});
+const fmt=(n,d=2)=>isNum(n)?n.toLocaleString("zh-CN",{minimumFractionDigits:d,maximumFractionDigits:d}):"—";
+const average=arr=>arr.reduce((s,b)=>s+b.price/arr.length,0);
+const defaults=m=>m==="interval"?{n1:1,n2:.5,w1:-15,w2:10,c:0}:{n1:1,n2:1,w1:-15,w2:10,c:0};
+function makeRound(name="第1轮"){
+  return{
+    id:uid(),name,method:"interval",weight:100,cap:null,capPolicy:"warn",
+    params:{interval:defaults("interval"),simple:defaults("simple")},
+    bidders:[
+      {id:uid(),name:"我方",own:true,qualified:true,price:100},
+      {id:uid(),name:"投标人1",own:false,qualified:true,price:105},
+      {id:uid(),name:"投标人2",own:false,qualified:true,price:95}
+    ],
+    strategy:{min:null,max:null,cost:null,tick:.01,shock:5,samples:2001}
+  };
+}
 function makeProject(name="本次投标项目"){
   const r=makeRound();
   return{id:uid(),name,unit:"元",rounds:[r],activeRound:r.id,updatedAt:new Date().toISOString()};
 }
-let state=null,repoConfig=clone(DEFAULT_REPO),unlocked=false;
-let githubToken="",registry=null,registrySha=null,adminBusy=false;
-let lastStrategy=null,storageFailed=false,gateBusy=false;
-let recentCalc=null;
+
+let state=null,repoConfig=clone(DEFAULT_REPO);
+let githubToken="",registry=null,registrySha=null,adminBusy=false,gateBusy=false;
+let lastStrategy=null,currentView="scores",storageFailed=false;
+
+function assert(ok,message){if(!ok)throw Error(message);}
+function cleanName(value,max,label){
+  assert(typeof value==="string"&&value.trim()&&value.length<=max,label+"无效。");
+  return value.trim();
+}
+function optionalNumber(value,label,min=0){
+  assert(value===null||(isNum(value)&&value>=min),label+"需为空或有效非负数。");
+  return value;
+}
+function validateParams(p){
+  assert(p&&typeof p==="object","缺少评审参数。");
+  // 允许存储尚未填写完成的参数，计算时再提示错误。
+  const out={};
+  ["n1","n2","w1","w2","c"].forEach(k=>{
+    assert(p[k]===null||isNum(p[k]),"参数 "+k+" 无效。");out[k]=p[k];
+  });
+  assert((out.n1===null||out.n1>=0)&&(out.n2===null||out.n2>=0),"n1、n2不得为负。");
+  return out;
+}
+function validateRound(r){
+  assert(r&&typeof r==="object","轮次无效。");
+  const id=cleanName(r.id,100,"轮次编号"),name=cleanName(r.name,80,"轮次名称");
+  assert(["interval","simple"].includes(r.method),"评分办法无效。");
+  assert(r.weight===null||(isNum(r.weight)&&r.weight>=0&&r.weight<=100),"价格权重无效。");
+  assert(r.params&&r.params.interval&&r.params.simple,"缺少评审参数。");
+  const params={interval:validateParams(r.params.interval),simple:validateParams(r.params.simple)};
+  assert(Array.isArray(r.bidders)&&r.bidders.length>=1&&r.bidders.length<=MAX_BIDDERS,"投标人数量无效。");
+  const bidders=r.bidders.map(b=>{
+    assert(b&&typeof b.own==="boolean"&&typeof b.qualified==="boolean","投标人标记无效。");
+    return{
+      id:cleanName(b.id,100,"投标人编号"),name:cleanName(b.name,100,"投标人名称"),
+      own:b.own,qualified:b.qualified,price:optionalNumber(b.price,"报价")
+    };
+  });
+  assert(new Set(bidders.map(b=>b.id)).size===bidders.length,"投标人编号重复。");
+  assert(bidders.filter(b=>b.own).length===1,"每轮必须恰有一个我方。");
+  const s=r.strategy||{};
+  const strategy={
+    min:optionalNumber(s.min??null,"搜索下限"),
+    max:optionalNumber(s.max??null,"搜索上限"),
+    cost:optionalNumber(s.cost??null,"成本"),
+    tick:s.tick===undefined?.01:s.tick,
+    shock:s.shock===undefined?5:s.shock,
+    samples:s.samples===undefined?2001:s.samples
+  };
+  assert(strategy.tick===null||(isNum(strategy.tick)&&strategy.tick>=.000001),"报价精度无效。");
+  assert(strategy.shock===null||(isNum(strategy.shock)&&strategy.shock>=0&&strategy.shock<=90),"情景参数无效。");
+  assert([501,2001,5001].includes(strategy.samples),"采样数量无效。");
+  const cap=optionalNumber(r.cap??null,"总价限价");
+  assert(cap===null||cap>0,"总价限价必须大于0。");
+  const capPolicy=r.capPolicy??"warn";
+  assert(["warn","exclude"].includes(capPolicy),"超限处理方式无效。");
+  return{id,name,method:r.method,weight:r.weight,params,bidders,strategy,cap,capPolicy};
+}
+function validateProject(p){
+  assert(p&&typeof p==="object","项目无效。");
+  assert(Array.isArray(p.rounds)&&p.rounds.length>=1&&p.rounds.length<=MAX_ROUNDS,"轮次数量无效。");
+  const rounds=p.rounds.map(validateRound);
+  assert(new Set(rounds.map(r=>r.id)).size===rounds.length,"轮次编号重复。");
+  return{
+    id:cleanName(p.id,100,"项目编号"),name:cleanName(p.name,100,"项目名称"),
+    unit:cleanName(p.unit,12,"价格单位"),rounds,
+    activeRound:rounds.some(r=>r.id===p.activeRound)?p.activeRound:rounds[0].id,
+    updatedAt:typeof p.updatedAt==="string"?p.updatedAt:new Date().toISOString()
+  };
+}
+function validateState(s){
+  assert(s&&s.version===1&&Array.isArray(s.projects)&&s.projects.length>=1&&s.projects.length<=MAX_PROJECTS,"历史格式无效。");
+  const projects=s.projects.map(validateProject);
+  assert(new Set(projects.map(p=>p.id)).size===projects.length,"项目编号重复。");
+  return{version:1,projects,activeProject:projects.some(p=>p.id===s.activeProject)?s.activeProject:projects[0].id};
+}
+function validateRepo(c){
+  assert(c&&typeof c==="object","仓库设置无效。");
+  const owner=cleanName(c.owner,100,"仓库所有者"),repo=cleanName(c.repo,100,"仓库名称");
+  const branch=cleanName(c.branch,150,"分支"),file=cleanName(c.file,200,"文件路径");
+  assert(/^[A-Za-z0-9_.-]+$/.test(owner)&&/^[A-Za-z0-9_.-]+$/.test(repo),"仓库名称含不支持的字符。");
+  assert(!branch.startsWith("/")&&!branch.endsWith("/")&&!/[\u0000-\u0020\\?#]/.test(branch),"分支无效。");
+  assert(file.endsWith(".json")&&file.split("/").every(p=>p&&p!=="."&&p!==".."&&!/[\\?#\u0000-\u001f]/.test(p)),"配置需为安全的 JSON 相对路径。");
+  return{owner,repo,branch,file};
+}
+
 try{
   const config=JSON.parse(localStorage.getItem(REPO_KEY)||"null");
   if(config)repoConfig=validateRepo(config);
 }catch{}
+let restoreError="";
 try{
   const old=JSON.parse(localStorage.getItem(STATE_KEY)||"null");
   if(old)state=validateState(old);
-}catch{}
+}catch(e){restoreError="上次本地记录未能恢复："+e.message+" 请使用 JSON 备份导入。";}
 if(!state){const p=makeProject();state={version:1,projects:[p],activeProject:p.id};}
 const project=()=>state.projects.find(p=>p.id===state.activeProject);
 const round=()=>project().rounds.find(r=>r.id===project().activeRound);
@@ -439,160 +566,134 @@ function save(){
   try{
     localStorage.setItem(STATE_KEY,JSON.stringify(state));
     storageFailed=false;
-    $("saveState").textContent="已保存本地 · "+new Date().toLocaleTimeString("zh-CN");
+    $("saveState").textContent="已保存 "+new Date().toLocaleTimeString("zh-CN");
   }catch{
-    storageFailed=true;
-    $("saveState").textContent="本地保存失败，请导出 JSON";
-    showNotice("浏览器本地存储不可用或空间不足。请及时导出 JSON 备份。",true);
+    storageFailed=true;$("saveState").textContent="保存失败，请导出";
+    showNotice("本地存储不可用或空间不足，请及时导出 JSON 备份。",true);
   }
 }
 function invalidateStrategy(){
-  lastStrategy=null;
-  $("strategyOutput").hidden=true;$("strategyEmpty").hidden=false;
-  $("strategyError").textContent="";
-  $("strategyChart").replaceChildren();
-}
-function enter(){
-  unlocked=true;
-  $("gate").hidden=true;$("workspace").hidden=false;
-  renderAll();
-  showNotice("已恢复此浏览器上次报价。首次使用的 100 / 105 / 95 仅为示例，请修改后再决策。\n报价历史仅在本地保存，不会自动上传 GitHub。");
-}
-function lock(){
-  unlocked=false;githubToken="";registry=null;registrySha=null;
-  $("workspace").hidden=true;$("gate").hidden=false;
-  $("passInput").value="";$("gateError").textContent="";
-  $("githubToken").value="";
-  renderAdminState();
-  if($("adminDialog").open)$("adminDialog").close();
+  lastStrategy=null;$("strategyOutput").hidden=true;$("strategyEmpty").hidden=false;
+  $("strategyError").textContent="";$("strategyChart").replaceChildren();
 }
 function requireCrypto(){
-  if(!window.isSecureContext||!crypto.subtle)
-    throw Error("请通过 HTTPS 或 localhost 访问；通行证校验需要浏览器 Web Crypto。");
+  if(!window.isSecureContext||!crypto.subtle)throw Error("请通过 HTTPS 或 localhost 打开，通行证校验需要 Web Crypto。");
+}
+function enter(){
+  $("gate").hidden=true;$("workspace").hidden=false;
+  renderAll();
+  // 小屏默认折叠参数，让报价区域优先显示。
+  if(window.innerWidth<=760||window.innerHeight<720)$("settings").open=false;
+  showNotice(restoreError||"已恢复上次本地报价。首次示例 100 / 105 / 95 请自行修改；竞争对手报价仅为假设。",!!restoreError);
+}
+function lock(){
+  githubToken="";registry=null;registrySha=null;
+  $("workspace").hidden=true;$("gate").hidden=false;
+  $("passInput").value="";$("gateError").textContent="";$("githubToken").value="";
+  $("newPass").value="";$("newPass").type="password";
+  renderAdminState();
+  if($("adminDialog").open)$("adminDialog").close();
+  if($("projectsDialog").open)$("projectsDialog").close();
 }
 
-/* ---------- 导入校验：只采纳明确字段 ---------- */
-function assert(cond,msg){if(!cond)throw Error(msg);}
-function cleanName(x,max,label){
-  assert(typeof x==="string"&&x.trim().length>0&&x.length<=max,label+"无效。");
-  return x.trim();
-}
-function nullableNumber(v,label,min=0){
-  assert(v===null||(isNum(v)&&v>=min),label+"必须为空或有效非负数。");
-  return v;
-}
-function validateParams(p){
-  assert(p&&typeof p==="object","评分参数无效。");
-  ["n1","n2","w1","w2","c"].forEach(k=>assert(isNum(p[k]),"评分参数 "+k+" 无效。"));
-  assert(p.n1>=0&&p.n2>=0,"n1、n2 不得为负数。");
-  return{n1:p.n1,n2:p.n2,w1:p.w1,w2:p.w2,c:p.c};
-}
-function validateRound(r){
-  assert(r&&typeof r==="object","轮次无效。");
-  const id=cleanName(r.id,100,"轮次编号"),name=cleanName(r.name,80,"轮次名称");
-  assert(["interval","simple"].includes(r.method),"未知评分办法。");
-  assert(isNum(r.weight)&&r.weight>=0&&r.weight<=100,"价格权重需在 0～100%。");
-  assert(r.params&&r.params.interval&&r.params.simple,"缺少评分参数。");
-  const params={interval:validateParams(r.params.interval),simple:validateParams(r.params.simple)};
-  assert(Array.isArray(r.bidders)&&r.bidders.length>=1&&r.bidders.length<=MAX_BIDDERS,"投标人数量无效。");
-  const bidders=r.bidders.map(b=>{
-    assert(b&&typeof b.own==="boolean"&&typeof b.qualified==="boolean","投标人标记无效。");
-    return{id:cleanName(b.id,100,"投标人编号"),name:cleanName(b.name,100,"投标人名称"),own:b.own,qualified:b.qualified,price:nullableNumber(b.price,"报价")};
-  });
-  assert(new Set(bidders.map(b=>b.id)).size===bidders.length,"投标人编号重复。");
-  assert(bidders.filter(b=>b.own).length===1,"每轮必须恰有一个我方。");
-  const s=r.strategy||{};
-  const strategy={
-    min:nullableNumber(s.min??null,"搜索下限"),max:nullableNumber(s.max??null,"搜索上限"),
-    cost:nullableNumber(s.cost??null,"成本"),tick:s.tick??.01,shock:s.shock??5,samples:s.samples??2001
-  };
-  assert(isNum(strategy.tick)&&strategy.tick>=.000001,"报价精度无效。");
-  assert(isNum(strategy.shock)&&strategy.shock>=0&&strategy.shock<=90,"浮动情景需在 0～90%。");
-  assert([501,2001,5001].includes(strategy.samples),"搜索样本数无效。");
-  return{id,name,method:r.method,weight:r.weight,params,bidders,strategy};
-}
-function validateProject(p){
-  assert(p&&typeof p==="object","项目无效。");
-  assert(Array.isArray(p.rounds)&&p.rounds.length>=1&&p.rounds.length<=MAX_ROUNDS,"轮次数量无效。");
-  const rounds=p.rounds.map(validateRound);
-  assert(new Set(rounds.map(r=>r.id)).size===rounds.length,"轮次编号重复。");
-  return{
-    id:cleanName(p.id,100,"项目编号"),name:cleanName(p.name,100,"项目名称"),
-    unit:cleanName(p.unit,12,"价格单位"),rounds,
-    activeRound:rounds.some(r=>r.id===p.activeRound)?p.activeRound:rounds[0].id,
-    updatedAt:typeof p.updatedAt==="string"?p.updatedAt:new Date().toISOString()
-  };
-}
-function validateState(s){
-  assert(s&&s.version===1&&Array.isArray(s.projects)&&s.projects.length>=1&&s.projects.length<=MAX_PROJECTS,"历史格式或项目数量无效。");
-  const projects=s.projects.map(validateProject);
-  assert(new Set(projects.map(p=>p.id)).size===projects.length,"项目编号重复。");
-  return{version:1,projects,activeProject:projects.some(p=>p.id===s.activeProject)?s.activeProject:projects[0].id};
-}
-
-/* ---------- 评分核心：每次完整重算 ---------- */
+/* ================= 评分核心 =================
+   1. M 由实际参与评审者决定。
+   2. 区间法按原文数量剔除，使用严格开区间。
+   3. 区间无人时回退剔除后的 X 个样本。
+   4. 所有参与者都计分；剔除/区间外只影响基准价样本。
+   5. 简单法直接平均，不使用区间参数和 C。
+*/
 function calculate(r){
-  const qualified=r.bidders.map((b,i)=>({...b,index:i})).filter(b=>b.qualified);
-  const statuses=new Map(r.bidders.map(b=>[b.id,b.qualified?"待计算":"不参与详评"]));
-  const result={valid:false,m:qualified.length,statuses,scores:new Map(),ranks:new Map(),qualified,trimmed:[],pool:[],effective:[],tie:false,fallback:false};
-  const p=r.params[r.method];
-  if(!qualified.length){result.error="请至少勾选一名参与详评的投标人。";return result;}
-  const invalid=qualified.filter(b=>!isNum(b.price)||b.price<=0);
-  if(invalid.length){result.error="以下参与者报价缺失或非正数，本轮暂停计分："+invalid.map(b=>b.name).join("、");return result;}
-  if(!isNum(r.weight)||r.weight<0||r.weight>100||!isNum(p.n1)||!isNum(p.n2)||p.n1<0||p.n2<0){
-    result.error="请填写有效的 n1、n2 及 0～100% 的价格权重。";return result;
+  const all=r.bidders.map((b,i)=>({...b,index:i}));
+  const checked=all.filter(b=>b.qualified);
+  const statuses=new Map(all.map(b=>[b.id,b.qualified?"待计算":"不参与评审"]));
+  const over=(isNum(r.cap)&&r.cap>0)?checked.filter(b=>isNum(b.price)&&b.price>r.cap):[];
+  const overIds=new Set(over.map(b=>b.id));
+  const participants=checked.filter(b=>!(r.capPolicy==="exclude"&&overIds.has(b.id)));
+  const result={
+    valid:false,m:participants.length,checked:checked.length,participants,
+    statuses,scores:new Map(),ranks:new Map(),over,
+    pool:[],effective:[],trimmed:[],tie:false,fallback:false
+  };
+  over.forEach(b=>statuses.set(b.id,r.capPolicy==="exclude"?"超限不参与评审":"超限：待计算"));
+  if(r.cap!==null&&(!isNum(r.cap)||r.cap<=0)){
+    result.error="总价限价需留空或填写正数。";return result;
   }
+  if(!participants.length){result.error="没有实际参与评审的投标人，请检查勾选及超限处理。";return result;}
+  const invalid=participants.filter(b=>!isNum(b.price)||b.price<=0);
+  if(invalid.length){result.error="以下参与者报价缺失或非正数，本轮暂停计分："+invalid.map(b=>b.name).join("、");return result;}
+  const p=r.params[r.method];
+  if(!isNum(r.weight)||r.weight<0||r.weight>100||!isNum(p.n1)||!isNum(p.n2)||p.n1<0||p.n2<0){
+    result.error="请填写非负 n1/n2 和 0～100% 的价格权重。";return result;
+  }
+  const setStatus=(b,text)=>statuses.set(b.id,text+(overIds.has(b.id)?" · 超限提示":""));
   let base;
   if(r.method==="simple"){
-    result.pool=qualified;result.effective=qualified;
-    result.a1=mean(qualified);result.a2=result.a1;base=result.a1;
-    qualified.forEach(b=>statuses.set(b.id,"参与算术平均"));
+    result.pool=participants;result.effective=participants;
+    result.a1=average(participants);result.a2=result.a1;base=result.a1;
+    participants.forEach(b=>setStatus(b,"参与算术平均"));
   }else{
     if(![p.w1,p.w2,p.c].every(isNum)||p.w1<=-100||p.w1>=p.w2||p.c>=100){
-      result.error="区间参数需满足 W1 > -100%、W1 < W2，C < 100%。";return result;
+      result.error="区间参数需满足 W1>-100%、W1<W2、C<100%，以保证有效区间和正基准价。";return result;
     }
-    const m=qualified.length;
+    const m=participants.length;
     const [low,high]=m<=5?[0,0]:m<=10?[1,1]:m<=20?[1,2]:m<=30?[2,3]:[3,4];
-    const sorted=[...qualified].sort((a,b)=>a.price-b.price||a.index-b.index);
+    const sorted=[...participants].sort((a,b)=>a.price-b.price||a.index-b.index);
     const pool=sorted.slice(low,m-high);
-    result.pool=pool;result.low=low;result.high=high;
+    result.low=low;result.high=high;result.pool=pool;
     result.trimmed=[...sorted.slice(0,low),...sorted.slice(m-high)];
-    result.trimmed.forEach(b=>statuses.set(b.id,"剔除极值"));
+    result.trimmed.forEach(b=>setStatus(b,"剔除极值"));
     if(low&&sorted[low-1].price===sorted[low].price)result.tie=true;
     if(high&&sorted[m-high-1].price===sorted[m-high].price)result.tie=true;
-    result.a1=mean(pool);
+    result.a1=average(pool);
     result.lower=result.a1*(1+p.w1/100);result.upper=result.a1*(1+p.w2/100);
     let effective=pool.filter(b=>b.price>result.lower&&b.price<result.upper);
     result.fallback=effective.length===0;
     if(result.fallback)effective=pool;
-    result.effective=effective;result.a2=mean(effective);
+    result.effective=effective;result.a2=average(effective);
     const ids=new Set(effective.map(b=>b.id));
-    pool.forEach(b=>statuses.set(b.id,ids.has(b.id)?(result.fallback?"回退有效样本":"区间有效样本"):"区间外"));
+    pool.forEach(b=>setStatus(b,ids.has(b.id)?(result.fallback?"回退有效样本":"区间有效样本"):"区间外"));
     base=result.a2*(1-p.c/100);
   }
-  if(!isNum(base)||base<=0){result.error="基准价非正数或超出数值范围，请调整报价 / 参数。";return result;}
+  if(!isNum(base)||base<=0){result.error="基准价非正数或超出数值范围，请核实报价和参数。";return result;}
   result.base=base;
-  qualified.forEach(b=>{
-    const delta=(b.price-base)/base,n=b.price>=base?p.n1:p.n2;
-    const score=Math.max(0,100-100*n*Math.abs(delta));
+  participants.forEach(b=>{
+    const delta=(b.price-base)/base;
+    const n=b.price>=base?p.n1:p.n2;
+    const score=n===0?100:Math.max(0,100-100*n*Math.abs(delta));
     result.scores.set(b.id,{score,weighted:score*r.weight/100,delta});
   });
-  const ranking=[...qualified].sort((a,b)=>result.scores.get(b.id).score-result.scores.get(a.id).score||a.index-b.index);
-  let previous=null,rankValue=0;
+  const ranking=[...participants].sort((a,b)=>result.scores.get(b.id).score-result.scores.get(a.id).score||a.index-b.index);
+  let lastScore=null,rankValue=0;
   ranking.forEach((b,i)=>{
     const score=result.scores.get(b.id).score;
-    if(previous===null||Math.abs(score-previous)>1e-9)rankValue=i+1;
-    result.ranks.set(b.id,rankValue);previous=score;
+    if(lastScore===null||Math.abs(score-lastScore)>1e-9)rankValue=i+1;
+    result.ranks.set(b.id,rankValue);lastScore=score;
   });
   result.valid=true;return result;
 }
 
-/* ---------- 页面渲染 ---------- */
+/* ================= 页面渲染 ================= */
+function setView(view){
+  currentView=view;
+  ["scores","strategy","history","rules"].forEach(v=>$("view-"+v).hidden=v!==view);
+  document.querySelectorAll("[data-view]").forEach(b=>{
+    b.classList.toggle("active",b.dataset.view===view);
+    b.setAttribute("aria-pressed",String(b.dataset.view===view));
+  });
+  $("addBidder").hidden=view!=="scores";
+  $("tabBody").scrollTop=0;
+  if(view==="history")renderComparison();
+}
+document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>setView(b.dataset.view));
 function renderNav(){
-  const box=$("projectNav");box.replaceChildren();
+  const box=$("projectNav"),mobile=$("mobileProjectList");box.replaceChildren();mobile.replaceChildren();
   state.projects.forEach(p=>{
-    const b=button("",()=>{state.activeProject=p.id;save();renderAll();},"nav"+(p.id===state.activeProject?" active":""));
-    b.append(el("span","",p.name),el("small","",p.rounds.length+"轮"));b.title=p.name;box.append(b);
+    const action=()=>{state.activeProject=p.id;save();renderAll();if($("projectsDialog").open)$("projectsDialog").close();};
+    [box,mobile].forEach(container=>{
+      const b=button("",action,"nav"+(p.id===state.activeProject?" active":""));
+      b.append(el("span","",p.name),el("small","",p.rounds.length+"轮"));b.title=p.name;container.append(b);
+    });
   });
 }
 function renderRounds(){
@@ -604,25 +705,29 @@ function renderRounds(){
   });
   $("deleteRound").disabled=project().rounds.length<=1;
 }
+function updateSummary(){
+  const r=round();
+  $("settingsSummary").textContent=project().name+" · "+(r.method==="interval"?"区间平均价":"简单平均值")+" · 限价 "+(r.cap===null?"未设":fmt(r.cap));
+  $("searchCapHint").textContent=r.cap===null?"未设总价限价，建议按招标文件补充。":"策略搜索上限自动约束为 ≤ "+fmt(r.cap)+" "+project().unit+"。";
+}
 function renderFields(){
   const p=project(),r=round(),par=r.params[r.method];
   $("projectName").value=p.name;$("priceUnit").value=p.unit;
+  $("priceCap").value=r.cap??"";$("capPolicy").value=r.capPolicy;
   $("method").value=r.method;$("weight").value=r.weight??"";
   ["n1","n2","w1","w2","c"].forEach(k=>$(k).value=par[k]??"");
   ["w1","w2","c"].forEach(k=>$(k).disabled=r.method==="simple");
-  const s=r.strategy;
-  [["sMin","min"],["sMax","max"],["sCost","cost"],["sTick","tick"],["sShock","shock"],["sSamples","samples"]].forEach(([id,key])=>$(id).value=s[key]??"");
-  $("priceHeading").textContent="评标总价（"+p.unit+"）";
-  $("baseUnit").textContent=p.unit;
+  [["sMin","min"],["sMax","max"],["sCost","cost"],["sTick","tick"],["sShock","shock"],["sSamples","samples"]].forEach(([id,key])=>$(id).value=r.strategy[key]??"");
+  $("priceHeading").textContent="评标总价（"+p.unit+"）";$("baseUnit").textContent=p.unit;
+  updateSummary();
 }
 function renderBidderRows(){
-  const box=$("bidderRows");box.replaceChildren();
-  const r=round();
+  const box=$("bidderRows"),r=round();box.replaceChildren();
   r.bidders.forEach(b=>{
     const tr=el("tr",b.own?"own":"");tr.dataset.id=b.id;
-    const q=el("input");q.type="checkbox";q.checked=b.qualified;q.setAttribute("aria-label",b.name+"参与详评");
+    const q=el("input");q.type="checkbox";q.checked=b.qualified;q.setAttribute("aria-label",b.name+"参与评审");
     q.onchange=()=>{b.qualified=q.checked;changed();};
-    const qCell=el("td");qCell.append(q);tr.append(qCell);
+    const qc=el("td");qc.append(q);tr.append(qc);
     const name=el("input");name.type="text";name.value=b.name;name.maxLength=100;name.setAttribute("aria-label","投标人名称");
     name.oninput=()=>{b.name=name.value.trim()||(b.own?"我方":"未命名投标人");save();invalidateStrategy();};
     name.onchange=()=>{name.value=b.name;refreshResults();};
@@ -630,83 +735,104 @@ function renderBidderRows(){
     if(b.own)nc.append(el("span","badge purple","我方"));
     tr.append(nc);
     const price=el("input");price.type="number";price.min="0";price.step="any";price.value=b.price??"";price.setAttribute("aria-label",b.name+"评标总价");
-    price.oninput=()=>{b.price=price.value===""?null:Number(price.value);if(!isNum(b.price))b.price=null;changed();};
+    price.oninput=()=>{
+      b.price=price.value===""?null:Number(price.value);
+      if(!isNum(b.price))b.price=null;
+      changed();
+    };
     const pc=el("td","price-cell");pc.append(price);tr.append(pc);
-    ["status","delta","score","weighted","rank"].forEach(k=>{const td=el("td",k==="score"?"num score":"num");td.dataset.cell=k;tr.append(td);});
+    ["status","delta","score","weighted","rank"].forEach(k=>{
+      const td=el("td",k==="score"?"num score":"num");td.dataset.cell=k;tr.append(td);
+    });
     const op=el("td","no-print");
     if(!b.own)op.append(button("删除",()=>{
-      r.bidders=r.bidders.filter(x=>x.id!==b.id);save();renderBidderRows();refreshResults();invalidateStrategy();
+      r.bidders=r.bidders.filter(x=>x.id!==b.id);save();renderBidderRows();invalidateStrategy();refreshResults();
     },"btn small ghost danger"));
     else op.append(el("span","hint","自主报价"));
     tr.append(op);box.append(tr);
   });
   $("addBidder").disabled=r.bidders.length>=MAX_BIDDERS;
 }
-function changed(){save();invalidateStrategy();refreshResults();}
+function changed(){save();invalidateStrategy();updateSummary();refreshResults();}
 function refreshResults(){
-  const r=round(),res=calculate(r);recentCalc=res;
+  const r=round(),res=calculate(r),own=r.bidders.find(b=>b.own),s=res.scores.get(own.id);
   $("calcError").hidden=res.valid;$("calcError").textContent=res.error||"";
   $("mValue").textContent=res.m;
+  $("mHint").textContent="勾选 "+res.checked+" 人"+(r.capPolicy==="exclude"&&res.over.length?" · 超限剔除 "+res.over.length+" 人":"");
   $("baseValue").textContent=res.valid?fmt(res.base):"—";
-  const own=r.bidders.find(b=>b.own),s=res.scores.get(own.id);
   $("ownScore").textContent=s?fmt(s.score):"—";
-  $("ownWeighted").textContent="加权得分 "+(s?fmt(s.weighted):"—")+" / "+fmt(r.weight,1);
+  $("ownWeighted").textContent="加权 "+(s?fmt(s.weighted):"—")+" / "+fmt(r.weight,1);
   $("ownRank").textContent=res.ranks.get(own.id)||"—";
+  const margin=isNum(r.cap)&&isNum(own.price)?r.cap-own.price:null;
+  $("capMargin").textContent=margin===null?"—":fmt(margin);
+  $("capMargin").style.color=margin!==null&&margin<0?"var(--danger)":"";
+  $("capHint").textContent=r.cap===null?"未设置限价":margin!==null&&margin<0?"我方超限 "+fmt(-margin):"限价 "+fmt(r.cap)+" "+project().unit;
+  $("capWarning").hidden=!res.over.length;
+  $("capWarning").textContent="超过总价限价："+res.over.map(b=>b.name+"（"+fmt(b.price)+"）").join("、")+"。"+
+    (r.capPolicy==="exclude"?"按你选择的资格规则，不参与评审，不计入 M。":"当前为“仅提示”，仍参与原评分计算；请核实招标文件。");
   $("bidderRows").querySelectorAll("tr").forEach(tr=>{
-    const score=res.scores.get(tr.dataset.id),status=res.statuses.get(tr.dataset.id)||"待计算";
-    const statusCell=tr.querySelector('[data-cell="status"]');
-    statusCell.replaceChildren(el("span","badge"+(status.includes("有效")||status.includes("平均")?" good":status==="剔除极值"?" bad":""),status));
-    tr.querySelector('[data-cell="delta"]').textContent=score?((score.delta>0?"+":"")+fmt(score.delta*100)+"%"):"—";
-    tr.querySelector('[data-cell="score"]').textContent=score?fmt(score.score):"—";
-    tr.querySelector('[data-cell="weighted"]').textContent=score?fmt(score.weighted):"—";
+    const sc=res.scores.get(tr.dataset.id),status=res.statuses.get(tr.dataset.id)||"待计算";
+    const cls=status.includes("超限")?" bad":status.includes("有效")||status.includes("平均")?" good":status==="剔除极值"?" bad":"";
+    tr.querySelector('[data-cell="status"]').replaceChildren(el("span","badge"+cls,status));
+    tr.querySelector('[data-cell="delta"]').textContent=sc?(sc.delta>0?"+":"")+fmt(sc.delta*100)+"%":"—";
+    tr.querySelector('[data-cell="score"]').textContent=sc?fmt(sc.score):"—";
+    tr.querySelector('[data-cell="weighted"]').textContent=sc?fmt(sc.weighted):"—";
     tr.querySelector('[data-cell="rank"]').textContent=res.ranks.get(tr.dataset.id)||"—";
   });
-  renderTrace(res);renderComparison();
+  renderTrace(res);
+  if(currentView==="history")renderComparison();
+  $("footerInfo").textContent=project().name+" · "+r.name+" · "+r.bidders.length+" 名投标人 · 本地自动保存";
 }
 function renderTrace(res){
-  const box=$("trace");box.replaceChildren();
-  const card=(title,text)=>{const d=el("div","trace-card");d.append(el("h3","",title),el("p","",text));box.append(d);};
   $("tieWarning").hidden=!res.tie;
-  $("tieWarning").textContent="极值剔除边界存在同价。本工具按列表顺序固定剔除人数；请核实招标文件对同价的处理。此规则可能影响有效样本及基准价。";
-  if(!res.valid){card("等待有效报价",res.error||"请检查输入。");return;}
+  $("tieWarning").textContent="极值边界存在同价。当前按列表顺序固定剔除人数，请核实正式评审同价规则。";
+  if(!res.valid){$("trace").textContent="等待有效输入："+(res.error||"");return;}
   if(round().method==="simple"){
-    card("① 全部详评报价",res.m+" 个样本，不去极值、不筛区间。");
-    card("② 算术平均值",res.qualified.map(b=>b.name+"："+fmt(b.price)).join("；"));
-    card("③ 基准价","平均值 = "+fmt(res.base)+" "+project().unit);
+    $("trace").textContent="简单算术平均值法：全部 "+res.m+" 个详评报价直接平均；基准价 = "+fmt(res.base)+" "+project().unit+"。不剔除极值，不使用 W1/W2/C。";
   }else{
-    card("① 极值与 A1","剔除最低 "+res.low+" 个、最高 "+res.high+" 个；剩余 "+res.pool.length+" 个。\nA1 = "+fmt(res.a1)+"。\n"+(res.trimmed.length?"已剔除："+res.trimmed.map(b=>b.name).join("、"):"无极值剔除。"));
-    card("② 有效区间与 A2","严格区间：("+fmt(res.lower)+", "+fmt(res.upper)+")。\n"+(res.fallback?"区间内无人：回退全部剩余样本。":"有效样本 "+res.effective.length+" 个。")+"\nA2 = "+fmt(res.a2)+"。\n"+res.effective.map(b=>b.name).join("、"));
-    card("③ 基准价","A2 × (1 − C)\n"+fmt(res.a2)+" × (1 − "+fmt(round().params.interval.c/100,4)+")\n= "+fmt(res.base)+" "+project().unit);
+    $("trace").textContent=
+      "① M="+res.m+"；剔除最低 "+res.low+" 个、最高 "+res.high+" 个；剩余 X="+res.pool.length+"；A1="+fmt(res.a1)+"。"+
+      (res.trimmed.length?" 已剔除："+res.trimmed.map(b=>b.name).join("、")+"。":"")+
+      "\n② 严格有效区间 ("+fmt(res.lower)+", "+fmt(res.upper)+")；"+
+      (res.fallback?"区间内无人，回退全部剩余 X 个。":"有效样本 "+res.effective.length+" 个。")+
+      " A2="+fmt(res.a2)+"；有效样本："+res.effective.map(b=>b.name).join("、")+"。"+
+      "\n③ 基准价=A2×(1−C)="+fmt(res.a2)+"×(1−"+fmt(round().params.interval.c/100,4)+")="+fmt(res.base)+" "+project().unit+"。";
   }
 }
 function renderComparison(){
   const box=$("roundComparison");box.replaceChildren();
   project().rounds.forEach(r=>{
-    const res=calculate(r),own=r.bidders.find(b=>b.own),s=res.scores.get(own.id),tr=el("tr",r.id===project().activeRound?"own":"");
-    [r.name,r.method==="interval"?"区间平均价":"算术平均值",res.m,res.valid?fmt(res.base):"输入待完善",fmt(own.price),s?fmt(s.score):"—",s?fmt(s.weighted):"—",res.ranks.get(own.id)||"—"].forEach(v=>tr.append(el("td","num",String(v))));
+    const res=calculate(r),own=r.bidders.find(b=>b.own),sc=res.scores.get(own.id);
+    const tr=el("tr",r.id===project().activeRound?"own":"");
+    [r.name,r.method==="interval"?"区间平均价":"简单算术平均",fmt(r.cap),r.capPolicy==="exclude"?"超限不参与":"仅提示",res.m,res.valid?fmt(res.base):"输入待完善",fmt(own.price),sc?fmt(sc.score):"—",sc?fmt(sc.weighted):"—",res.ranks.get(own.id)||"—"].forEach(v=>tr.append(el("td","num",String(v))));
     box.append(tr);
   });
 }
 function renderAll(){
-  invalidateStrategy();renderNav();renderRounds();renderFields();renderBidderRows();refreshResults();
-  if(storageFailed)$("saveState").textContent="本地保存失败，请导出 JSON";
+  invalidateStrategy();renderNav();renderRounds();renderFields();renderBidderRows();refreshResults();setView(currentView);
+  if(storageFailed)$("saveState").textContent="保存失败，请导出";
 }
 
-/* ---------- 项目、轮次和字段事件 ---------- */
-$("newProject").onclick=()=>{
+/* ================= 项目与轮次 ================= */
+function createProject(){
   if(state.projects.length>=MAX_PROJECTS)return showNotice("项目最多 "+MAX_PROJECTS+" 个。",true);
   const name=prompt("本次投标项目名称：","本次投标项目");
   if(name===null||!name.trim())return;
-  const p=makeProject(name.trim().slice(0,100));state.projects.push(p);state.activeProject=p.id;save();renderAll();
-};
+  const p=makeProject(name.trim().slice(0,100));state.projects.push(p);state.activeProject=p.id;
+  save();currentView="scores";renderAll();
+  if($("projectsDialog").open)$("projectsDialog").close();
+}
+$("newProject").onclick=createProject;$("mobileNewProject").onclick=createProject;
+$("mobileProjects").onclick=()=>{renderNav();$("projectsDialog").showModal();};
+$("closeProjects").onclick=()=>$("projectsDialog").close();
 $("deleteProject").onclick=()=>{
-  if(!confirm("删除当前项目及全部轮次？此操作只删除本地记录，建议先导出 JSON。"))return;
+  if(!confirm("删除当前项目和全部轮次？只删除本地记录，建议先导出 JSON。"))return;
   state.projects=state.projects.filter(p=>p.id!==state.activeProject);
   if(!state.projects.length)state.projects.push(makeProject());
   state.activeProject=state.projects[0].id;save();renderAll();
 };
 function duplicateRound(){
-  if(project().rounds.length>=MAX_ROUNDS)throw Error("每个项目最多 "+MAX_ROUNDS+" 轮。");
+  assert(project().rounds.length<MAX_ROUNDS,"每个项目最多 "+MAX_ROUNDS+" 轮。");
   const r=clone(round());r.id=uid();r.name="第"+(project().rounds.length+1)+"轮";
   project().rounds.push(r);project().activeRound=r.id;return r;
 }
@@ -714,11 +840,10 @@ $("duplicateRound").onclick=()=>{try{duplicateRound();save();renderAll();}catch(
 $("renameRound").onclick=()=>{
   const name=prompt("轮次名称：",round().name);
   if(name===null||!name.trim())return;
-  round().name=name.trim().slice(0,80);save();renderRounds();renderComparison();
+  round().name=name.trim().slice(0,80);save();renderRounds();refreshResults();
 };
 $("deleteRound").onclick=()=>{
-  if(project().rounds.length<=1)return;
-  if(!confirm("删除当前轮次？"))return;
+  if(project().rounds.length<=1||!confirm("删除当前轮次？"))return;
   project().rounds=project().rounds.filter(r=>r.id!==project().activeRound);
   project().activeRound=project().rounds[project().rounds.length-1].id;save();renderAll();
 };
@@ -728,25 +853,31 @@ $("addBidder").onclick=()=>{
   round().bidders.push({id:uid(),name:"投标人"+n,own:false,qualified:true,price:null});
   save();renderBidderRows();invalidateStrategy();refreshResults();
 };
-$("projectName").oninput=()=>{
-  project().name=$("projectName").value.trim()||"本次投标项目";save();renderNav();
-};
+$("projectName").oninput=()=>{project().name=$("projectName").value.trim()||"本次投标项目";save();renderNav();updateSummary();};
 $("projectName").onchange=()=>$("projectName").value=project().name;
-$("priceUnit").oninput=()=>{project().unit=$("priceUnit").value.trim()||"元";save();$("priceHeading").textContent="评标总价（"+project().unit+"）";$("baseUnit").textContent=project().unit;invalidateStrategy();};
+$("priceUnit").oninput=()=>{
+  project().unit=$("priceUnit").value.trim()||"元";save();
+  $("priceHeading").textContent="评标总价（"+project().unit+"）";$("baseUnit").textContent=project().unit;
+  invalidateStrategy();updateSummary();refreshResults();
+};
 $("priceUnit").onchange=()=>$("priceUnit").value=project().unit;
+$("priceCap").oninput=()=>{
+  round().cap=$("priceCap").value===""?null:Number($("priceCap").value);
+  changed();
+};
+$("capPolicy").onchange=()=>{round().capPolicy=$("capPolicy").value;changed();};
 $("method").onchange=()=>{round().method=$("method").value;save();renderFields();invalidateStrategy();refreshResults();};
 $("weight").oninput=()=>{round().weight=$("weight").value===""?null:Number($("weight").value);changed();};
 ["n1","n2","w1","w2","c"].forEach(k=>$(k).oninput=()=>{
   round().params[round().method][k]=$(k).value===""?null:Number($(k).value);changed();
 });
-$("resetParams").onclick=()=>{round().params[round().method]=paramsFor(round().method);save();renderFields();invalidateStrategy();refreshResults();};
+$("resetParams").onclick=()=>{round().params[round().method]=defaults(round().method);save();renderFields();invalidateStrategy();refreshResults();};
 [["sMin","min"],["sMax","max"],["sCost","cost"],["sTick","tick"],["sShock","shock"],["sSamples","samples"]].forEach(([id,key])=>{
   $(id).oninput=()=>{round().strategy[key]=$(id).value===""?null:Number($(id).value);save();invalidateStrategy();};
 });
-$("lockBtn").onclick=lock;
-$("printBtn").onclick=()=>window.print();
+$("lockBtn").onclick=lock;$("printBtn").onclick=()=>window.print();
 
-/* ---------- 策略：候选我方报价进入完整评分流程 ---------- */
+/* ================= 策略搜索 ================= */
 function simulate(source,price,shock=0){
   const r=clone(source);
   r.bidders.forEach(b=>{
@@ -756,102 +887,113 @@ function simulate(source,price,shock=0){
   return calculate(r);
 }
 function drawChart(points,best){
-  const ns="http://www.w3.org/2000/svg";
-  const svg=document.createElementNS(ns,"svg");svg.setAttribute("viewBox","0 0 700 240");svg.setAttribute("class","chart");
+  const ns="http://www.w3.org/2000/svg",svg=document.createElementNS(ns,"svg");
+  svg.setAttribute("viewBox","0 0 700 225");svg.setAttribute("class","chart");
   svg.setAttribute("role","img");svg.setAttribute("aria-label","我方报价与价格分采样曲线");
   const add=(tag,attrs,text)=>{
     const n=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));
     if(text!==undefined)n.textContent=text;svg.append(n);return n;
   };
   const min=points[0].price,max=points[points.length-1].price;
-  const x=p=>52+(p-min)/(max-min||1)*620,y=s=>195-s/100*155;
+  const x=p=>52+(p-min)/(max-min||1)*620,y=s=>183-s/100*145;
   [0,25,50,75,100].forEach(s=>{
     add("line",{x1:52,x2:672,y1:y(s),y2:y(s),stroke:"#e8ebf0"});
     add("text",{x:40,y:y(s)+4,"text-anchor":"end",fill:"#98a1b2","font-size":10},String(s));
   });
-  [min,(min+max)/2,max].forEach(p=>add("text",{x:x(p),y:217,"text-anchor":"middle",fill:"#98a1b2","font-size":10},fmt(p)));
-  const sampled=points.filter((_,i)=>i%Math.max(1,Math.floor(points.length/650))===0||i===points.length-1);
-  add("polyline",{points:sampled.map(p=>x(p.price)+","+y(p.score)).join(" "),fill:"none",stroke:"#7463b9","stroke-width":2});
+  [...new Set([min,(min+max)/2,max])].forEach(p=>add("text",{x:x(p),y:205,"text-anchor":"middle",fill:"#98a1b2","font-size":10},fmt(p)));
+  const plotted=points.filter((_,i)=>i%Math.max(1,Math.floor(points.length/650))===0||i===points.length-1);
+  add("polyline",{points:plotted.map(p=>x(p.price)+","+y(p.score)).join(" "),fill:"none",stroke:"#7463b9","stroke-width":2});
   add("circle",{cx:x(best.price),cy:y(best.score),r:4,fill:"#7463b9",stroke:"#fff","stroke-width":2});
-  add("text",{x:53,y:22,fill:"#98a1b2","font-size":10},"价格分 / 100；折线连接采样点，不表示区间连续");
+  add("text",{x:53,y:20,fill:"#98a1b2","font-size":10},"价格分 / 100；连线只连接采样点，不表示连续性");
   $("strategyChart").replaceChildren(svg);
 }
 $("runStrategy").onclick=()=>{
   $("strategyError").textContent="";
   try{
-    const r=round(),res=calculate(r),own=r.bidders.find(b=>b.own),s=r.strategy;
-    assert(res.valid,res.error||"请先完善本轮报价。");
-    assert(own.qualified,"我方未参与详评，无法计算报价策略。");
-    assert(isNum(s.tick)&&s.tick>=.000001,"请填写有效的报价精度。");
-    assert(isNum(s.shock)&&s.shock>=0&&s.shock<=90,"浮动情景需在 0～90%。");
-    assert([501,2001,5001].includes(s.samples),"请选择有效的样本上限。");
-    const rivals=r.bidders.filter(b=>!b.own&&b.qualified);
-    const anchor=rivals.length?mean(rivals):own.price;
+    const r=round(),own=r.bidders.find(b=>b.own),s=r.strategy;
+    assert(own.qualified,"我方未勾选参与评审。");
+    assert(isNum(s.tick)&&s.tick>=.000001,"请填写有效报价最小单位。");
+    assert(isNum(s.shock)&&s.shock>=0&&s.shock<=90,"情景浮动需在0～90%。");
+    assert([501,2001,5001].includes(s.samples),"请选择采样数量。");
+    assert(r.cap===null||(isNum(r.cap)&&r.cap>0),"请填写有效限价。");
+    // 验证非我方参与报价；允许当前我方超限时搜索一个不超限报价。
+    const rivals=r.bidders.filter(b=>!b.own&&b.qualified&&!(r.capPolicy==="exclude"&&r.cap!==null&&isNum(b.price)&&b.price>r.cap));
+    assert(rivals.every(b=>isNum(b.price)&&b.price>0),"请完善所有实际参与对手的正数报价。");
+    const anchor=rivals.length?average(rivals):(isNum(own.price)&&own.price>0?own.price:r.cap);
+    assert(isNum(anchor)&&anchor>0,"请填写搜索范围或有效我方报价。");
     let min=s.min===null?anchor*.7:s.min,max=s.max===null?anchor*1.3:s.max;
-    assert(isNum(min)&&isNum(max)&&min>0&&max>min,"搜索范围需为正数，且上限大于下限。");
-    if(s.cost!==null){
-      assert(isNum(s.cost)&&s.cost>=0,"成本底线无效。");min=Math.max(min,s.cost);
-    }
-    assert(min<=max,"成本底线超过搜索上限。");
+    assert(isNum(min)&&isNum(max)&&min>0&&max>=min,"搜索范围需为正数，上限不得低于下限。");
+    const originalMax=max;
+    if(s.cost!==null){assert(isNum(s.cost)&&s.cost>=0,"成本底线无效。");min=Math.max(min,s.cost);}
+    if(r.cap!==null)max=Math.min(max,r.cap);
+    assert(min<=max,"成本底线或搜索下限超过限价/搜索上限，没有可行候选。");
     const tick=s.tick,start=Math.ceil(min/tick-1e-9),end=Math.floor(max/tick+1e-9);
-    assert(Number.isSafeInteger(start)&&Number.isSafeInteger(end),"报价范围与精度组合超出安全数值范围，请增大最小单位。");
-    assert(end>=start,"搜索范围内没有满足报价精度的候选值。");
+    assert(Number.isSafeInteger(start)&&Number.isSafeInteger(end),"范围与精度超出安全数值范围，请增大最小单位。");
+    assert(end>=start,"范围内没有满足报价精度的候选。");
+    // 先校验评分参数，再开始大量采样。
+    const probe=simulate(r,Math.min(max,Math.max(min,start*tick)));
+    assert(probe.valid,probe.error||"评分参数或报价无效。");
     const count=end-start+1,total=Math.min(count,s.samples),indices=new Set();
     if(total===1)indices.add(start);
     else for(let i=0;i<total;i++)indices.add(Math.round(start+(end-start)*i/(total-1)));
-    // 把当前我方报价附近合法精度点加入候选，避免仅因网格遗漏当前报价。
-    const current=Math.round(own.price/tick);
-    if(current>=start&&current<=end)indices.add(current);
+    if(isNum(own.price)){
+      const index=Math.round(own.price/tick);
+      if(index>=start&&index<=end)indices.add(index);
+    }
     const points=[];let best=null;
     [...indices].sort((a,b)=>a-b).forEach(index=>{
-      const price=Number((index*tick).toPrecision(14)),sim=simulate(r,price),score=sim.scores.get(own.id);
-      if(!sim.valid||!score)return;
-      const point={price,score:score.score,weighted:score.weighted,rank:sim.ranks.get(own.id),base:sim.base};
-      points.push(point);
-      // 同分时取较高报价：仅作可解释的候选选择，不推断中标概率。
-      if(!best||point.score>best.score+1e-9||(Math.abs(point.score-best.score)<=1e-9&&point.price>best.price))best=point;
+      const price=Number((index*tick).toPrecision(15));
+      if(price<min||price>max||price<=0)return;
+      const res=simulate(r,price),sc=res.scores.get(own.id);
+      if(!res.valid||!sc)return;
+      const p={price,score:sc.score,weighted:sc.weighted,rank:res.ranks.get(own.id),base:res.base};
+      points.push(p);
+      if(!best||p.score>best.score+1e-9||(Math.abs(p.score-best.score)<=1e-9&&p.price>best.price))best=p;
     });
-    assert(best,"没有获得有效策略候选。");
-    lastStrategy={best,roundId:r.id,points};
+    assert(best,"未获得有效候选，请调整范围或报价精度。");
+    lastStrategy={best,roundId:r.id};
     $("strategyEmpty").hidden=true;$("strategyOutput").hidden=false;
-    $("bestPrice").textContent=fmt(best.price,Math.min(6,Math.max(2,Math.ceil(-Math.log10(tick)))))+" "+project().unit;
-    const currentScore=res.scores.get(own.id).score;
-    const sampledStep=points.length>1?Math.max(...points.slice(1).map((p,i)=>p.price-points[i].price)):0;
+    const decimals=Math.min(8,Math.max(2,Math.ceil(-Math.log10(tick))));
+    $("bestPrice").textContent=fmt(best.price,decimals)+" "+project().unit;
+    const currentRes=calculate(r),currentScore=currentRes.scores.get(own.id);
+    let gap=0;for(let i=1;i<points.length;i++)gap=Math.max(gap,points[i].price-points[i-1].price);
     $("bestSummary").textContent=
-      "我方价格分 "+fmt(best.score)+"；加权分 "+fmt(best.weighted)+"；价格排名 "+best.rank+"。\n"+
-      "候选基准价 "+fmt(best.base)+"；相对当前价格分 "+(best.score-currentScore>=0?"+":"")+fmt(best.score-currentScore)+"。\n"+
-      "实际评估 "+points.length+" 个候选；最大采样间隔约 "+fmt(sampledStep,6)+"。同分取较高报价。";
+      "价格分 "+fmt(best.score)+" · 加权分 "+fmt(best.weighted)+" · 排名 "+best.rank+" · 基准价 "+fmt(best.base)+"。\n"+
+      (currentScore?"相对当前价格分 "+(best.score-currentScore.score>=0?"+":"")+fmt(best.score-currentScore.score)+"；":"当前报价未计分；")+
+      "实际 "+points.length+" 个候选，最大采样间隔 "+fmt(gap,6)+"。同分取较高报价。\n"+
+      (r.cap!==null?"总价限价 "+fmt(r.cap)+"，建议距限价 "+fmt(r.cap-best.price)+"。":"未设限价。")+
+      (originalMax>max?"搜索上限已按限价收缩。":"");
     drawChart(points,best);
-    const scenarioBox=$("scenarioRows");scenarioBox.replaceChildren();
-    const shocks=[...new Set([-s.shock,0,s.shock])];let worst=100,rankWorst=1;
-    shocks.forEach(shock=>{
-      const sim=simulate(r,best.price,shock),sc=sim.scores.get(own.id),rk=sim.ranks.get(own.id),tr=el("tr");
-      const label=shock===0?"当前对手假设":(shock>0?"+":"")+fmt(shock,1)+"%";
-      [label,sim.valid?fmt(sim.base):"无效",sc?fmt(sc.score):"—",rk||"—"].forEach(v=>tr.append(el("td","num",String(v))));
-      scenarioBox.append(tr);if(sc){worst=Math.min(worst,sc.score);rankWorst=Math.max(rankWorst,rk);}
+    const box=$("scenarioRows");box.replaceChildren();
+    let worst=100,worstRank=1,invalidScenario=false;
+    [...new Set([-s.shock,0,s.shock])].forEach(shock=>{
+      const res=simulate(r,best.price,shock),sc=res.scores.get(own.id),rank=res.ranks.get(own.id),tr=el("tr");
+      const label=shock===0?"当前假设":(shock>0?"+":"")+fmt(shock,1)+"%";
+      [label,res.valid?fmt(res.base):"无效",sc?fmt(sc.score):"—",rank||"—",res.m].forEach(v=>tr.append(el("td","num",String(v))));
+      box.append(tr);
+      if(sc){worst=Math.min(worst,sc.score);worstRank=Math.max(worstRank,rank);}
+      else invalidScenario=true;
     });
-    const margin=s.cost===null?"未输入成本，建议先核实成本、合理利润及履约风险。":"候选减成本约 "+fmt(best.price-s.cost)+" "+project().unit+"；这不是扣除税费和全部费用后的净利润。";
     $("strategyAdvice").textContent=
-      "建议：把该报价作为独立决策的候选，再核查实际限价、招标约束和技术商务分。\n"+
-      "当前压力测试最低价格分 "+fmt(worst)+"，最差价格排名 "+rankWorst+"；不代表其他对手组合下的最差情况。\n"+
-      margin+"\n"+
-      (rivals.length?"固定对手假设下反复重算，不能把当前基准价当成不变的最优目标。":"仅我方参与计算时，报价与基准价同时变化；价格分通常不能区分报价优劣，尤其不应据此提高报价。")+
-      "\n如果有效样本边界附近存在突变，应缩小范围并提高采样精度，保存不同轮次比较。";
+      "压力测试最低价格分 "+fmt(worst)+"，最差价格排名 "+worstRank+"；不代表所有对手组合下的最差情况。"+
+      (invalidScenario?"存在无法计分的情景，请核实。":"")+"\n"+
+      (s.cost===null?"未填写成本，请先核实成本、合理利润及履约风险。":"候选减成本约 "+fmt(best.price-s.cost)+" "+project().unit+"，不是扣除全部费用后的净利润。")+"\n"+
+      (r.capPolicy==="exclude"&&r.cap!==null?"对手情景超限时会改变参与人数 M，请注意基准价跳变。":"对手共同浮动为假设，不代表其实际报价。")+
+      "\n"+(rivals.length?"有效区间可能造成不连续，应在候选附近缩小范围、增加精度并保存多轮比较。":"只有我方参与时，价格与基准价共同变化，价格分通常不能区分报价优劣，不应据此提高报价。");
   }catch(e){invalidateStrategy();$("strategyError").textContent=e.message;}
 };
-function applyBest(next){
+function applyStrategy(next){
   if(!lastStrategy||lastStrategy.roundId!==round().id)return;
   const price=lastStrategy.best.price;
   try{
-    const r=next?duplicateRound():round();
-    r.bidders.find(b=>b.own).price=price;save();renderAll();
-    showNotice(next?"已复制本轮全部假设与参数，并将建议报价应用到下一轮。":"已将候选报价应用到本轮我方报价，所有人的得分已重新计算。");
+    const r=next?duplicateRound():round();r.bidders.find(b=>b.own).price=price;
+    save();currentView="scores";renderAll();
+    showNotice(next?"已复制本轮报价、参数和限价，将候选报价应用到下一轮。":"已应用我方候选报价，全部人的基准价和评分已重算。");
   }catch(e){showNotice(e.message,true);}
 }
-$("applyBest").onclick=()=>applyBest(false);
-$("applyNext").onclick=()=>applyBest(true);
+$("applyBest").onclick=()=>applyStrategy(false);$("applyNext").onclick=()=>applyStrategy(true);
 
-/* ---------- JSON：不包含任何访问凭据 ---------- */
+/* ================= JSON 历史 ================= */
 $("exportProject").onclick=()=>{
   const payload={schema:"bidding-price-project",version:1,exportedAt:new Date().toISOString(),project:clone(project())};
   const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"});
@@ -863,42 +1005,31 @@ $("importProject").onclick=()=>{$("importFile").value="";$("importFile").click()
 $("importFile").onchange=async e=>{
   const file=e.target.files[0];if(!file)return;
   try{
-    assert(file.size<=10*1024*1024,"JSON 文件超过 10 MiB，停止导入。");
+    assert(file.size<=10*1024*1024,"JSON 超过10 MiB。");
     const payload=JSON.parse(await file.text());
     assert(payload.schema==="bidding-price-project"&&payload.version===1,"请选择本工具导出的项目 JSON。");
     const p=validateProject(payload.project),old=state.projects.find(x=>x.id===p.id);
     if(old){
-      if(!confirm("存在相同项目编号，是否以导入记录替换全部轮次？"))return;
+      if(!confirm("存在相同项目编号，是否替换该项目全部轮次？"))return;
       state.projects[state.projects.indexOf(old)]=p;
     }else{
-      assert(state.projects.length<MAX_PROJECTS,"项目数量已达上限。");
-      state.projects.push(p);
+      assert(state.projects.length<MAX_PROJECTS,"项目数量已达上限。");state.projects.push(p);
     }
-    state.activeProject=p.id;save();renderAll();showNotice("已导入项目全部轮次，并切换到导出时的当前轮次。");
+    state.activeProject=p.id;save();currentView="scores";renderAll();
+    showNotice("已导入项目全部轮次。旧版 JSON 未包含限价时，自动设置为不限价、仅提示。");
   }catch(err){showNotice("导入失败："+err.message,true);}
 };
 
-/* ---------- GitHub 通行证配置 ---------- */
-function validateRepo(c){
-  assert(c&&typeof c==="object","仓库设置无效。");
-  const owner=cleanName(c.owner,100,"仓库所有者"),repo=cleanName(c.repo,100,"仓库名称"),
-    branch=cleanName(c.branch,150,"分支"),file=cleanName(c.file,200,"配置文件路径");
-  assert(/^[A-Za-z0-9_.-]+$/.test(owner)&&/^[A-Za-z0-9_.-]+$/.test(repo),"仓库所有者或名称含不支持的字符。");
-  assert(!branch.startsWith("/")&&!branch.endsWith("/")&&!/[\u0000-\u0020\\?#]/.test(branch),"分支名称无效。");
-  assert(file.endsWith(".json")&&file.split("/").every(p=>p&&p!=="."&&p!==".."&&!/[\\?#\u0000-\u001f]/.test(p)),"配置需为安全的 JSON 相对路径。");
-  return{owner,repo,branch,file};
-}
-function repoFromFields(){
-  return validateRepo({owner:$("repoOwner").value,repo:$("repoName").value,branch:$("repoBranch").value,file:$("repoFile").value});
-}
+/* ================= GitHub 通行证 ================= */
 function populateRepo(){
   $("repoOwner").value=repoConfig.owner;$("repoName").value=repoConfig.repo;
   $("repoBranch").value=repoConfig.branch;$("repoFile").value=repoConfig.file;
 }
+function repoFromFields(){
+  return validateRepo({owner:$("repoOwner").value,repo:$("repoName").value,branch:$("repoBranch").value,file:$("repoFile").value});
+}
 function persistRepo(c){
-  repoConfig=c;
-  try{localStorage.setItem(REPO_KEY,JSON.stringify(c));}
-  catch{throw Error("仓库设置无法保存到浏览器；请检查存储权限。");}
+  localStorage.setItem(REPO_KEY,JSON.stringify(c));repoConfig=c;
 }
 const bytesB64=bytes=>btoa(Array.from(bytes,b=>String.fromCharCode(b)).join(""));
 const fromB64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
@@ -911,8 +1042,8 @@ function validateRegistry(x){
     const id=cleanName(p.id,100,"通行证编号"),label=cleanName(p.label,80,"通行证备注");
     assert(typeof p.salt==="string"&&fromB64(p.salt).length===16,"通行证 salt 无效。");
     assert(typeof p.hash==="string"&&fromB64(p.hash).length===32,"通行证 hash 无效。");
-    assert(Number.isInteger(p.iterations)&&p.iterations>=100000&&p.iterations<=1000000,"通行证迭代次数无效。");
-    assert(p.expiresAt===null||(typeof p.expiresAt==="string"&&Number.isFinite(Date.parse(p.expiresAt))),"通行证到期时间无效。");
+    assert(Number.isInteger(p.iterations)&&p.iterations>=100000&&p.iterations<=1000000,"通行证迭代参数无效。");
+    assert(p.expiresAt===null||(typeof p.expiresAt==="string"&&Number.isFinite(Date.parse(p.expiresAt))),"到期时间无效。");
     return{id,label,salt:p.salt,hash:p.hash,iterations:p.iterations,enabled:p.enabled,expiresAt:p.expiresAt};
   });
   assert(new Set(passes.map(p=>p.id)).size===passes.length,"通行证编号重复。");
@@ -932,22 +1063,21 @@ async function gh(path,{method="GET",body,key=""}={}){
     });
     const result=await response.json().catch(()=>({}));
     if(!response.ok){
-      const error=new Error(
-        "GitHub 请求失败（HTTP "+response.status+"）。"+
-        ({401:"令牌无效或过期。",403:"请检查令牌权限、仓库规则或 API 限流。",404:"仓库、分支或配置不存在；也可能是私有仓库。",409:"配置发生并发变化，请重新连接。",422:"提交被拒绝，请检查路径、分支或仓库规则。"}[response.status]||"")+
-        (result.message?"\n"+String(result.message).slice(0,220):"")
-      );error.status=response.status;throw error;
+      const err=new Error("GitHub 请求失败，HTTP "+response.status+"。"+
+        ({401:"令牌无效或过期。",403:"检查权限、API限流或仓库规则。",404:"仓库、分支、配置不存在或不可公开读取。",409:"配置并发变化，请重新连接。",422:"提交被拒绝，检查分支及仓库规则。"}[response.status]||"")+
+        (result.message?"\n"+String(result.message).slice(0,220):""));
+      err.status=response.status;throw err;
     }
     return result;
   }catch(e){
-    if(e.name==="AbortError")throw Error("GitHub 请求超时；若正在提交，请先检查仓库最新记录，再重新连接。");
+    if(e.name==="AbortError")throw Error("GitHub 请求超时。若在提交，请先检查仓库记录再重新连接。");
     throw e;
   }finally{clearTimeout(timer);}
 }
 async function readRegistry(key="",allowMissing=false){
   try{
     const file=await gh(contentPath()+"?ref="+encodeURIComponent(repoConfig.branch),{key});
-    assert(file.type==="file"&&file.encoding==="base64"&&typeof file.content==="string","通行证配置不是可读取的普通 JSON 文件。");
+    assert(file.type==="file"&&file.encoding==="base64"&&typeof file.content==="string","配置不是可读取的普通 JSON 文件。");
     return{data:validateRegistry(decodeJSON(file.content)),sha:file.sha};
   }catch(e){
     if(e.status===404&&allowMissing)return{data:{version:1,passes:[]},sha:null};
@@ -965,7 +1095,7 @@ function equalHash(a,b){
   for(let i=0;i<Math.max(x.length,y.length);i++)diff|=(x[i]||0)^(y[i]||0);
   return diff===0;
 }
-function passActive(p){return p.enabled&&(!p.expiresAt||Date.parse(p.expiresAt)>Date.now());}
+function activePass(p){return p.enabled&&(!p.expiresAt||Date.parse(p.expiresAt)>Date.now());}
 
 $("gateForm").onsubmit=async e=>{
   e.preventDefault();if(gateBusy)return;
@@ -973,34 +1103,27 @@ $("gateForm").onsubmit=async e=>{
   gateBusy=true;$("gateSubmit").disabled=true;$("gateSubmit").textContent="正在验证…";
   $("gateError").textContent="";
   try{
-    requireCrypto();
-    const loaded=await readRegistry();
-    const active=loaded.data.passes.filter(passActive);
-    let found=false;
-    // 不保存输入通行证；每次打开都重新读取公开配置。
-    for(const p of active){
-      const derived=await derivePass(pass,p.salt,p.iterations);
-      if(equalHash(derived,p.hash)){found=true;break;}
+    requireCrypto();assert(pass.length>=MIN_PASS_LENGTH,"通行证至少6位。");
+    const loaded=await readRegistry();let found=false;
+    for(const p of loaded.data.passes.filter(activePass)){
+      const hash=await derivePass(pass,p.salt,p.iterations);
+      if(equalHash(hash,p.hash)){found=true;break;}
     }
-    assert(found,"通行证错误、已停用或已过期。");
-    enter();
+    assert(found,"通行证错误、已停用或已过期。");enter();
   }catch(err){
-    $("gateError").textContent=err.status===404?"尚未发布通行证配置。请管理员检查仓库设置并创建通行证。":err.message;
+    $("gateError").textContent=err.status===404?"尚未发布通行证配置，请管理员检查仓库设置并创建通行证。":err.message;
   }finally{
     pass="";gateBusy=false;$("gateSubmit").disabled=false;$("gateSubmit").textContent="验证并进入";
   }
 };
-
-function setAdminBusy(value){
-  adminBusy=value;
-  $("adminDialog").querySelectorAll("button,input").forEach(n=>n.disabled=value);
-  if(!value)renderAdminState();
-}
 function renderAdminState(){
-  $("adminConnectBox").hidden=!!githubToken;
-  $("adminManage").hidden=!githubToken;
+  $("adminConnectBox").hidden=!!githubToken;$("adminManage").hidden=!githubToken;
   $("disconnectAdmin").hidden=!githubToken;
   ["repoOwner","repoName","repoBranch","repoFile","saveRepo"].forEach(id=>$(id).disabled=!!githubToken||adminBusy);
+}
+function setAdminBusy(value){
+  adminBusy=value;$("adminDialog").querySelectorAll("button,input").forEach(n=>n.disabled=value);
+  if(!value)renderAdminState();
 }
 function openAdmin(){
   if(adminBusy)return;
@@ -1011,7 +1134,7 @@ $("gateAdmin").onclick=openAdmin;$("openAdmin").onclick=openAdmin;
 $("closeAdmin").onclick=()=>{if(!adminBusy){$("githubToken").value="";$("adminDialog").close();}};
 $("adminDialog").addEventListener("cancel",e=>{if(adminBusy)e.preventDefault();});
 $("saveRepo").onclick=()=>{
-  if(githubToken||adminBusy)return;
+  if(adminBusy||githubToken)return;
   try{persistRepo(repoFromFields());$("adminStatus").textContent="仓库设置已保存。";$("adminError").textContent="";}
   catch(e){$("adminError").textContent=e.message;}
 };
@@ -1023,13 +1146,12 @@ $("connectAdmin").onclick=async()=>{
   try{
     requireCrypto();assert(key,"请填写 GitHub 访问令牌。");persistRepo(repoFromFields());
     const info=await gh("",{key});
-    assert(info.private===false,"此静态通行证方案要求公开仓库，否则普通访问者无法读取校验配置。");
-    assert(info.permissions?.push,"当前 GitHub 账号没有此仓库写入权限。");
-    // 单独检查分支，以免将分支不存在误当成首次配置。
+    assert(info.private===false,"此静态方案需公开仓库，普通用户才能读取校验配置。");
+    assert(info.permissions?.push,"当前账号没有仓库写入权限。");
     await gh("/branches/"+encodeURIComponent(repoConfig.branch),{key});
     const loaded=await readRegistry(key,true);
     githubToken=key;registry=loaded.data;registrySha=loaded.sha;renderPassRows();
-    $("adminStatus").textContent=loaded.sha?"已读取最新通行证配置。":"仓库和分支有效，尚无配置；创建首个通行证时自动生成 JSON。";
+    $("adminStatus").textContent=loaded.sha?"已读取最新通行证配置。":"仓库分支有效，创建首个通行证时自动生成配置 JSON。";
   }catch(e){$("adminError").textContent=e.message;}
   finally{key="";setAdminBusy(false);}
 };
@@ -1041,60 +1163,57 @@ $("disconnectAdmin").onclick=()=>{
 };
 async function writeRegistry(next,message){
   assert(githubToken&&registry,"请先连接管理员。");
-  const clean=validateRegistry(next);
-  const latest=await readRegistry(githubToken,true);
-  assert(latest.sha===registrySha,"仓库通行证配置已改变。请退出管理员并重新连接，再修改。");
+  const clean=validateRegistry(next),latest=await readRegistry(githubToken,true);
+  assert(latest.sha===registrySha,"仓库配置已改变，请退出管理员并重新连接。");
   const body={message,content:encodeJSON(clean),branch:repoConfig.branch};
   if(registrySha)body.sha=registrySha;
   const result=await gh(contentPath(),{method:"PUT",body,key:githubToken});
-  assert(result.content?.sha,"提交返回结果不完整，请检查 GitHub 并重新连接。");
+  assert(result.content?.sha,"提交返回不完整，请检查 GitHub 并重新连接。");
   registry=clean;registrySha=result.content.sha;renderPassRows();
 }
 function renderPassRows(){
-  const box=$("passRows");box.replaceChildren();
-  if(!registry)return;
+  const box=$("passRows");box.replaceChildren();if(!registry)return;
   registry.passes.forEach(p=>{
-    const tr=el("tr");
-    tr.append(el("td","",p.label),el("td","num",p.expiresAt?new Date(p.expiresAt).toLocaleString("zh-CN"):"长期"));
-    tr.append(el("td","",!p.enabled?"停用":passActive(p)?"有效":"已过期"));
+    const tr=el("tr");tr.append(el("td","",p.label),el("td","num",p.expiresAt?new Date(p.expiresAt).toLocaleString("zh-CN"):"长期"));
+    tr.append(el("td","",!p.enabled?"停用":activePass(p)?"有效":"过期"));
     const td=el("td");
     td.append(button(p.enabled?"停用":"启用",()=>editPass(p.id,"toggle")));
     td.append(button("删除",()=>editPass(p.id,"delete"),"btn small ghost danger"));
     tr.append(td);box.append(tr);
   });
-  if(!registry.passes.length){const tr=el("tr"),td=el("td","hint","暂无通行证，请先创建。");td.colSpan=4;tr.append(td);box.append(tr);}
+  if(!registry.passes.length){
+    const tr=el("tr"),td=el("td","hint","暂无通行证，请先创建。");td.colSpan=4;tr.append(td);box.append(tr);
+  }
 }
 async function editPass(id,action){
   if(adminBusy||!githubToken)return;
   const p=registry.passes.find(x=>x.id===id);
-  if(!p||!confirm((action==="delete"?"删除":"切换启用状态：")+p.label+"？\n将立即提交 GitHub。"))return;
+  if(!p||!confirm((action==="delete"?"删除通行证：":"切换通行证状态：")+p.label+"？将立即提交 GitHub。"))return;
   setAdminBusy(true);$("adminError").textContent="";
   try{
     const next=clone(registry);
     if(action==="delete")next.passes=next.passes.filter(x=>x.id!==id);
     else next.passes.find(x=>x.id===id).enabled=!p.enabled;
     await writeRegistry(next,"更新投标工具通行证状态");
-    $("adminStatus").textContent="已提交通行证状态。已登录的静态页面不会被强制退出。";
-  }catch(e){$("adminError").textContent=e.message+"\n提交异常时请先检查仓库记录，再重新连接，勿连续重试。";}
+    $("adminStatus").textContent="已提交。只影响后续验证，不能强制退出已登录的静态页面。";
+  }catch(e){$("adminError").textContent=e.message+"\n提交异常请先检查仓库记录，再重新连接，不要连续重试。";}
   finally{setAdminBusy(false);}
 }
 $("generatePass").onclick=()=>{
   try{
     requireCrypto();
-    const bytes=crypto.getRandomValues(new Uint8Array(24));
-    $("newPass").value=bytesB64(bytes).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,"");
-    $("newPass").type="text";$("adminStatus").textContent="已生成随机通行证，请复制后创建。";
+    $("newPass").value=bytesB64(crypto.getRandomValues(new Uint8Array(18))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,"");
+    $("newPass").type="text";$("adminStatus").textContent="已生成随机通行证，请复制后再提交。";
   }catch(e){$("adminError").textContent=e.message;}
 };
 $("togglePass").onclick=()=>$("newPass").type=$("newPass").type==="password"?"text":"password";
 $("createPass").onclick=async()=>{
   if(adminBusy||!githubToken)return;
-  let pass=$("newPass").value;
-  setAdminBusy(true);$("adminError").textContent="";
+  let pass=$("newPass").value;setAdminBusy(true);$("adminError").textContent="";
   try{
-    assert(pass.length>=12&&pass.length<=256,"通行证需 12～256 位，推荐随机生成。");
+    assert(pass.length>=MIN_PASS_LENGTH&&pass.length<=256,"通行证需6～256位。");
     const label=cleanName($("passLabel").value,80,"使用者 / 备注");
-    assert(registry.passes.length<1000,"通行证数量已达上限。");
+    assert(registry.passes.length<1000,"通行证数量达上限。");
     let expiresAt=null;
     if($("passExpires").value){
       const date=new Date($("passExpires").value+"T23:59:59.999");
@@ -1107,19 +1226,14 @@ $("createPass").onclick=async()=>{
     next.passes.push({id:uid(),label,salt,hash,iterations:PASS_ITERATIONS,enabled:true,expiresAt});
     await writeRegistry(next,"新增投标工具通行证");
     $("newPass").value="";$("newPass").type="password";$("passLabel").value="";$("passExpires").value="";
-    $("adminStatus").textContent="通行证已提交。明文已清空；请使用提交前复制的通行证登录。";
-  }catch(e){$("adminError").textContent=e.message+"\n若提交结果不确定，请先检查 GitHub 并重新连接。";}
+    $("adminStatus").textContent="已提交并清空明文，请使用提交前复制的通行证登录。";
+  }catch(e){$("adminError").textContent=e.message+"\n若提交结果不确定，请检查仓库并重新连接。";}
   finally{pass="";setAdminBusy(false);}
 };
-$("adminEnter").onclick=()=>{
-  if(!githubToken||adminBusy)return;
-  $("adminDialog").close();enter();
-};
-window.addEventListener("beforeunload",e=>{
-  if(adminBusy){e.preventDefault();e.returnValue="";}
-});
-// 不自动解锁；项目状态已在内存恢复，验证后才渲染工作台。
+$("adminEnter").onclick=()=>{if(githubToken&&!adminBusy){$("adminDialog").close();enter();}};
+window.addEventListener("beforeunload",e=>{if(adminBusy){e.preventDefault();e.returnValue="";}});
 populateRepo();
+// 每次打开均保持锁定，不保存登录凭据；验证后展示恢复的项目。
 </script>
 </body>
 </html>
