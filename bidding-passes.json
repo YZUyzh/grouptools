@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "passes": [
+    {
+      "id": "084ec735-7b47-49cd-82b0-117bfc515d94",
+      "label": "杨志豪",
+      "salt": "PzpfD1LH/rrOutxEndhP0Q==",
+      "hash": "vyI6ab9CsH4A4cAHSAZjSGj9JmpPSNrUA0wNwM5Up98=",
+      "iterations": 210000,
+      "enabled": true,
+      "expiresAt": "2090-12-31T15:59:59.999Z"
+    }
+  ]
+}
