@@ -483,9 +483,9 @@
       "type": "tool",
       "url": "./files/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7-c84e37c6/%E6%8A%95%E6%A0%87%E6%8A%A5%E4%BB%B7%E5%B7%A5%E5%85%B7.html",
       "description": "",
-      "iconUrl": "",
+      "iconUrl": "./icon/1b9eac9e-144d-450f-b597-d30d6a79360e.png",
       "iconPreset": "code",
-      "iconMode": "builtin",
+      "iconMode": "auto",
       "managedFiles": [
         "files/实用工具-c84e37c6/投标报价工具.html"
       ],
