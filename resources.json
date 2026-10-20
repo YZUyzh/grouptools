@@ -475,6 +475,21 @@
         "files/实用工具-c84e37c6/网络资源管理.html"
       ],
       "bundleRoot": ""
+    },
+    {
+      "id": "1e59658b-47a1-43b3-a097-ca6ff62d5daa",
+      "title": "投标报价工具",
+      "category": "d448c715-17da-4149-81d9-2e4bb3196b48",
+      "type": "tool",
+      "url": "./files/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7-c84e37c6/%E6%8A%95%E6%A0%87%E6%8A%A5%E4%BB%B7%E5%B7%A5%E5%85%B7.html",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "code",
+      "iconMode": "builtin",
+      "managedFiles": [
+        "files/实用工具-c84e37c6/投标报价工具.html"
+      ],
+      "bundleRoot": ""
     }
   ]
 }
