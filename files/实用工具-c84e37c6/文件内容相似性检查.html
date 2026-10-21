@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light">
+<title>电力小分队 · 文件内容对比</title>
+<style>
+:root{
+  --bg:#f5f6f8;--surface:#fff;--ink:#283247;--secondary:#667085;
+  --muted:#98a1b2;--line:#e8ebf0;--line-strong:#dce1e9;
+  --accent:#7463b9;--accent-hover:#6655a9;--accent-soft:#f0edf8;
+  --danger:#ba5261;--danger-soft:#fcf0f2;--success:#42826e;
+  --warning:#a08047;--shadow:0 3px 18px rgba(30,40,60,.035)
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid #d5ccef;outline-offset:3px}
+.ico{width:18px;height:18px;display:inline-block;vertical-align:middle;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:34px;padding:6px 11px;border:1px solid var(--line-strong);border-radius:8px;background:white;color:var(--secondary);font-size:12px;white-space:nowrap;transition:.15s}
+.btn:hover:not(:disabled){background:#f8f9fb;border-color:#cdd3de;color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:white}
+.btn.primary:hover:not(:disabled){background:var(--accent-hover)}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.ghost:hover:not(:disabled){background:#f0f2f6}
+.btn.danger{color:var(--danger)}
+.btn.small{min-height:29px;padding:4px 8px;font-size:11px}
+.btn.square{width:31px;min-height:31px;padding:0}
+.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.scroll{scrollbar-width:thin;scrollbar-color:#d0d5df transparent}
+.shell{height:100vh;height:100dvh;display:grid;grid-template-columns:238px minmax(0,1fr);overflow:hidden}
+.sidebar{display:flex;flex-direction:column;min-height:0;background:#fbfcfd;border-right:1px solid var(--line);padding:26px 15px 16px}
+.brand{display:flex;align-items:center;gap:11px;padding:0 8px 26px}
+.brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--accent-soft);color:var(--accent)}
+.brand-mark .ico{width:23px;height:23px}
+.brand strong{display:block;font-size:16px;font-weight:650;letter-spacing:.3px}
+.brand small{display:block;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-top:2px}
+.side-label{padding:0 10px 9px;font-size:10px;letter-spacing:.8px;color:var(--muted)}
+.nav{display:flex;align-items:center;gap:10px;width:100%;min-height:41px;margin:4px 0;padding:9px 11px;border:0;border-radius:8px;background:transparent;color:#737e91;text-align:left;font-size:12px}
+.nav:hover{background:#f2f4f7}
+.nav.active{color:var(--accent);background:var(--accent-soft);font-weight:600}
+.nav .ico{width:16px;height:16px}
+.nav-count{margin-left:auto;font-size:10px;font-weight:400}
+.side-help{margin:25px 8px 0;padding:13px;border:1px solid var(--line);border-radius:9px;background:white;color:#929bad;font-size:11px;line-height:1.9}
+.side-help strong{font-weight:500;color:#718096}
+.side-foot{margin-top:auto;border-top:1px solid var(--line);padding:15px 9px 0}
+.side-foot-top{display:flex;align-items:center;gap:7px;font-size:11px;color:#8893a4}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#a6b7b0}
+.side-foot small{display:block;margin-top:5px;font-size:9px;letter-spacing:.5px;color:#adb5c2}
+main{display:flex;flex-direction:column;min-height:0;min-width:0;padding:27px 30px 15px;gap:18px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-shrink:0}
+.eyebrow{font-size:10px;letter-spacing:1.5px;color:var(--muted)}
+h1{font-size:23px;line-height:1.4;font-weight:650;margin:3px 0 0;letter-spacing:.5px}
+.local-tag{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--success);margin-right:4px}
+.overview{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.overview-copy{font-size:12px;color:var(--secondary);margin:0}
+.overview-copy span{color:#9ca5b4;font-size:11px}
+.metrics{display:flex;align-items:center;gap:24px}
+.metric{display:flex;align-items:baseline;gap:7px}
+.metric strong{font-size:20px;font-weight:600;color:#5e687b;font-variant-numeric:tabular-nums}
+.metric span{font-size:10px;color:var(--muted)}
+.notice{flex-shrink:0;display:flex;align-items:flex-start;gap:9px;background:var(--accent-soft);border:1px solid #e3dcf0;border-radius:9px;padding:10px 12px;color:#8272aa}
+.notice>.ico{width:16px;height:16px;margin-top:1px}
+.notice p{margin:0;font-size:11px;line-height:1.8}
+.workbench{flex:1;min-height:0;display:flex;flex-direction:column;background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 19px 14px;flex-shrink:0;border-bottom:1px solid var(--line)}
+.section-title{font-size:13px;font-weight:600;color:#48536b}
+.section-sub{font-size:10px;color:var(--muted);margin-top:3px}
+#workspace{flex:1;min-height:0;overflow:auto;padding:20px}
+.footer{display:flex;justify-content:space-between;gap:10px;padding:10px 19px;border-top:1px solid var(--line);font-size:10px;color:#a4adbc;flex-shrink:0}
+.dropzone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;min-height:180px;border:1px dashed #d6cbe9;border-radius:12px;background:#fcfbfe;text-align:center;padding:25px;transition:.15s}
+.dropzone.over{background:#eee8f8;border-color:var(--accent)}
+.drop-mark{display:grid;place-items:center;width:48px;height:48px;border-radius:13px;background:var(--accent-soft);color:var(--accent)}
+.drop-mark .ico{width:26px;height:26px}
+.dropzone strong{font-size:13px;font-weight:550;color:#6b5c86}
+.dropzone p{font-size:11px;color:#9aa2b2;margin:0}
+.caption{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:10px;color:#98a1b2;margin:22px 1px 10px}
+.caption strong{font-size:11px;color:#7d8799;font-weight:500}
+.file-row{display:grid;grid-template-columns:38px minmax(0,1fr) 120px 100px 31px;gap:12px;align-items:center;padding:13px 9px;border-bottom:1px solid #f0f2f6;border-radius:8px}
+.file-row:hover{background:#fafbfe}
+.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:9px;background:#f3f1f8;color:#9480b1}
+.logo.pdf{background:#fcf0f1;color:#c68089}
+.logo.docx{background:#edf3fb;color:#6e93c0}
+.logo.xlsx,.logo.xls{background:#edf6f1;color:#71a18a}
+.file-name{font-size:12px;font-weight:550;color:#455169;overflow-wrap:anywhere}
+.description{font-size:10px;color:#a3abba;margin-top:3px;overflow-wrap:anywhere}
+.file-meta{font-size:10px;color:#96a0b2}
+.badge{display:inline-block;border-radius:5px;padding:3px 7px;font-size:10px;white-space:nowrap;font-weight:400}
+.badge.high{background:var(--danger-soft);color:var(--danger)}
+.badge.medium{background:#fbf5ea;color:var(--warning)}
+.badge.low{background:#f1f3f7;color:#8b96a8}
+.empty{text-align:center;padding:45px 15px;color:#a1aabb;font-size:12px;line-height:1.9}
+.empty .ico{display:block;width:34px;height:34px;margin:0 auto 12px;color:#c9ced8}
+.panel{border:1px solid var(--line);border-radius:10px;padding:18px;background:white;margin-bottom:15px}
+.panel h3{margin:0 0 6px;font-size:13px;font-weight:550;color:#556078}
+.hint{font-size:11px;color:#98a2b4;line-height:1.9;margin:6px 0;overflow-wrap:anywhere}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label.field{display:block;font-size:12px;color:#7e899c;margin:12px 0}
+label.field input,label.field select,label.field textarea{display:block;width:100%;margin-top:6px;padding:9px 11px;border:1px solid #e1e6ee;border-radius:8px;background:#fcfcfe;color:var(--ink)}
+textarea{min-height:120px;resize:vertical}
+label.check{display:flex;align-items:flex-start;gap:8px;margin:13px 0;font-size:12px;color:#7e899c}
+input[type=checkbox]{accent-color:var(--accent);margin-top:4px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.stat-card{border:1px solid var(--line);border-radius:10px;padding:15px}
+.stat-card small{display:block;font-size:10px;color:var(--muted)}
+.stat-card strong{display:block;font-size:25px;font-weight:600;color:#685984;margin-top:4px}
+.stat-card span{font-size:10px;color:#a0a8b7}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{background:#f9fafc;color:#98a1b2;font-weight:500;text-align:left;padding:12px;white-space:nowrap}
+td{border-top:1px solid var(--line);padding:13px 12px;color:#7d8799;vertical-align:middle}
+tbody tr:hover{background:#fcfbfe}
+.pair-name{color:#455169;font-weight:500;max-width:300px;overflow-wrap:anywhere}
+.pair-name span{display:block;color:#a6aebc;font-size:10px;font-weight:400;margin:3px 0}
+.score{font-size:18px;color:#7a66a1;font-weight:600;font-variant-numeric:tabular-nums}
+.score.high{color:var(--danger)}
+.meter{width:82px;height:4px;background:#f0edf5;border-radius:5px;margin-top:5px;overflow:hidden}
+.meter i{display:block;height:100%;background:#b4a3d2;border-radius:5px}
+.matrix td,.matrix th{text-align:center;min-width:77px}
+.matrix td:first-child,.matrix th:first-child{text-align:left;min-width:190px;max-width:280px;overflow-wrap:anywhere}
+.matrix button{border:0;background:transparent;color:inherit;width:100%;padding:7px;font-size:12px;font-weight:550}
+.legend{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;font-size:10px;color:#98a1b2}
+.legend i{width:12px;height:12px;display:inline-block;border-radius:3px;vertical-align:middle;margin-right:4px}
+.report-note{border-left:3px solid #d4c8e7;background:#fcfbfe;padding:12px 14px;font-size:11px;color:#8a7e9f;line-height:1.9;margin-bottom:17px}
+.step{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+.step-number{display:grid;place-items:center;width:29px;height:29px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-size:12px;flex-shrink:0}
+.step strong{font-size:12px;font-weight:550;color:#657087}
+.step p{margin:5px 0;font-size:11px;color:#98a2b4;line-height:1.9}
+#progressBox{flex-shrink:0;padding:10px 19px;background:#fcfbfe;border-bottom:1px solid var(--line)}
+#progressText{font-size:11px;color:#8b79aa;white-space:pre-line}
+progress{width:100%;height:5px;accent-color:var(--accent);display:block;margin-top:6px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);max-width:calc(100% - 24px);padding:11px 17px;border:1px solid #e5e0ee;border-radius:10px;background:white;box-shadow:0 8px 35px #26324c18;font-size:12px;color:#76678d;z-index:80;white-space:pre-line}
+dialog{width:min(1060px,calc(100% - 24px));max-height:91vh;max-height:91dvh;padding:0;border:1px solid #e5e8ef;border-radius:15px;overflow:auto;color:var(--ink);background:white;box-shadow:0 22px 90px #1e2a4430}
+dialog::backdrop{background:#18223461;backdrop-filter:blur(3px)}
+.dialog-inner{padding:25px}
+.dialog-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
+.dialog-heading h2{font-size:19px;font-weight:600;margin:0 0 5px}
+.dialog-heading p{font-size:11px;color:#9aa4b5;margin:0;overflow-wrap:anywhere}
+.tabs{display:inline-flex;gap:2px;background:#f2f4f7;border:1px solid #eef0f4;border-radius:7px;padding:3px}
+.tabs button{border:0;background:none;color:#929bac;border-radius:5px;font-size:11px;padding:5px 11px}
+.tabs button.active{background:white;color:#615475;box-shadow:0 1px 3px #25314b08}
+.passage{border:1px solid var(--line);border-radius:9px;margin:12px 0;overflow:hidden}
+.passage-head{display:flex;justify-content:space-between;gap:10px;background:#faf9fc;padding:9px 12px;font-size:10px;color:#92849e}
+.passage-body{display:grid;grid-template-columns:1fr 1fr}
+.passage-body>div{padding:12px 14px;min-width:0}
+.passage-body>div+div{border-left:1px solid var(--line)}
+.passage-body small{display:block;color:#a1aaba;font-size:10px;margin-bottom:7px;overflow-wrap:anywhere}
+.passage-text{font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere;color:#6b7386;max-height:220px;overflow:auto}
+mark{background:#eee6fb;color:#745b95;padding:1px 2px;border-radius:2px}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.diff-block{padding:12px;border:1px solid var(--line);border-radius:8px;margin-bottom:9px;font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere;color:#788396}
+.diff-block.a{border-left:3px solid #d8b8bf;background:#fefbfc}
+.diff-block.b{border-left:3px solid #bad3c8;background:#fbfdfc}
+.search-field{border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:11px;background:#f8f9fb;color:var(--ink);width:240px;max-width:100%}
+#menuBtn,#backdrop{display:none}
+@media(min-width:1500px){main{padding-left:38px;padding-right:38px}#workspace{padding:23px}}
+@media(max-width:1100px){
+  .shell{grid-template-columns:205px minmax(0,1fr)}
+  main{padding:22px 20px 13px;gap:15px}
+  .metrics{gap:15px}.overview-copy{max-width:260px}
+  .file-row{grid-template-columns:38px minmax(0,1fr) 95px 31px}
+  .file-size{display:none}
+}
+@media(max-width:850px){
+  .shell{grid-template-columns:178px minmax(0,1fr)}
+  .sidebar{padding:23px 9px 15px}
+  .brand{gap:8px;padding-left:5px;padding-right:5px}
+  .brand strong{font-size:13px}
+  .brand small{font-size:7px;letter-spacing:.8px}
+  .brand-mark{width:31px;height:33px}
+  main{padding:18px 14px 11px}
+  .overview-copy{display:none}.overview{justify-content:flex-start}
+  .settings-grid{grid-template-columns:1fr}
+  .side-help{padding:10px}.toolbar{flex-wrap:wrap}
+}
+@media(max-width:640px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .sidebar{position:fixed;inset:0 auto 0 0;width:248px;z-index:30;transform:translateX(-100%);transition:.18s;box-shadow:12px 0 35px #24334b15;padding:25px 15px 16px}
+  .sidebar.open{transform:translateX(0)}
+  #backdrop.open{display:block;position:fixed;inset:0;border:0;background:#1e293b50;z-index:29}
+  .brand strong{font-size:16px}.brand small{font-size:9px}
+  .brand-mark{width:38px;height:38px}
+  main{padding:15px 10px 9px;gap:12px}
+  #menuBtn{display:inline-flex}h1{font-size:20px}
+  .eyebrow{font-size:8px}.local-tag{display:none}
+  .topbar .btn{font-size:10px;padding:5px 8px}
+  .metrics{gap:18px}.metric strong{font-size:17px}
+  .toolbar{padding:13px 12px}.toolbar>.actions{gap:5px}
+  #workspace{padding:14px 11px}
+  .file-row{grid-template-columns:33px minmax(0,1fr) 31px;gap:8px;padding:11px 4px}
+  .file-row>.file-meta:not(.file-size){grid-column:2;grid-row:2}
+  .file-row>.btn{grid-column:3;grid-row:1}
+  .logo{width:33px;height:33px}
+  .stat-grid{gap:7px}.stat-card{padding:11px 9px}
+  .stat-card strong{font-size:21px}.stat-card span{font-size:9px}
+  .passage-body,.diff-grid{grid-template-columns:1fr}
+  .passage-body>div+div{border-left:0;border-top:1px solid var(--line)}
+  .dialog-inner{padding:18px}
+  .footer{padding:9px 12px;font-size:9px}
+  .dropzone{padding:20px 12px}.search-field{width:100%}
+}
+@media(max-height:600px){main{gap:10px;padding-top:13px}.overview{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark" data-icon="bolt"></div>
+      <div><strong>电力小分队</strong><small>DOCUMENT COMPARE</small></div>
+    </div>
+    <div class="side-label">内容审查工作台</div>
+    <nav aria-label="功能导航">
+      <button class="nav active" data-page="files"><span data-icon="folder"></span>文件管理<span class="nav-count" id="navFiles">0</span></button>
+      <button class="nav" data-page="results"><span data-icon="list"></span>对比结果<span class="nav-count" id="navPairs">—</span></button>
+      <button class="nav" data-page="matrix"><span data-icon="grid"></span>相似度矩阵</button>
+      <button class="nav" data-page="settings"><span data-icon="settings"></span>分析设置</button>
+      <button class="nav" data-page="guide"><span data-icon="book"></span>使用说明</button>
+    </nav>
+    <div class="side-help"><strong>审查建议</strong><br>先排除统一模板，再查看共同片段，结合独特表述和外部证据人工核实。</div>
+    <div class="side-foot">
+      <div class="side-foot-top"><span class="status-dot"></span><span>本地处理 · 不上传文件</span></div>
+      <small>GROUPTOOLS / COMPARE V1.1</small>
+    </div>
+  </aside>
+  <button id="backdrop" aria-label="关闭导航"></button>
+  <main>
+    <header class="topbar">
+      <div class="actions" style="gap:11px">
+        <button class="btn square" id="menuBtn" aria-label="打开导航" aria-expanded="false"><span data-icon="menu"></span></button>
+        <div><div class="eyebrow">WORKSPACE / DOCUMENT REVIEW</div><h1>文件内容对比</h1></div>
+      </div>
+      <div class="actions">
+        <span class="local-tag"><span data-icon="shield"></span>浏览器本地分析</span>
+        <button class="btn" id="exportBtn" disabled><span data-icon="download"></span>导出报告</button>
+      </div>
+    </header>
+    <section class="overview">
+      <p class="overview-copy">发现重复表述，辅助内容审查。<br><span>多文件两两对比 · 共同片段定位 · 差异段落查看</span></p>
+      <div class="metrics">
+        <div class="metric"><strong id="metricFiles">0</strong><span>有效文件</span></div>
+        <div class="metric"><strong id="metricPairs">0</strong><span>对比组合</span></div>
+        <div class="metric"><strong id="metricHigh">—</strong><span>高重复组合</span></div>
+      </div>
+    </section>
+    <div class="notice">
+      <span data-icon="info"></span>
+      <p><strong style="font-weight:550">相似不等于串标。</strong>统一招标模板、法定声明和行业通用措辞可能造成高重复。本工具仅检查提取出的文本，不判断违法行为，也不比较签章、图片、版式或文件元数据。</p>
+    </div>
+    <section class="workbench">
+      <div class="toolbar">
+        <div><div class="section-title" id="sectionTitle">文件管理</div><div class="section-sub" id="sectionSub">添加待审查文件，至少两份即可开始分析</div></div>
+        <div class="actions">
+          <button class="btn ghost" id="demoBtn"><span data-icon="book"></span>示例</button>
+          <button class="btn" id="addBtn"><span data-icon="upload"></span>添加文件</button>
+          <button class="btn primary" id="analyzeBtn" disabled><span data-icon="search"></span>开始对比</button>
+        </div>
+      </div>
+      <div id="progressBox" hidden><div id="progressText" role="status"></div><progress id="progress" max="1" value="0"></progress></div>
+      <div id="workspace" class="scroll"></div>
+      <footer class="footer"><span id="footerStatus">尚未添加文件</span><span>简洁整理 · 专注审查</span></footer>
+    </section>
+  </main>
+</div>
+<input id="fileInput" type="file" multiple accept=".txt,.md,.csv,.json,.html,.htm,.docx,.pdf,.xlsx,.xls,.log" hidden>
+<div id="toast" role="status" hidden></div>
+<dialog id="detailDialog" class="scroll"><div class="dialog-inner" id="detailInner"></div></dialog>
+
+<script>
+"use strict";
+
+/* ================= 配置 ================= */
+const VERSION="V1.1";
+const LIMIT_FILES=10;
+
+// 修改：单文件最大 50 MB（此工具按 1 MB = 1024 × 1024 字节计算）。
+// 恰好等于此上限的文件允许添加；大于上限的文件被拒绝。
+const MAX_FILE_MB=50;
+const MAX_BYTES=MAX_FILE_MB*1024*1024;
+
+// 上传大小与分析字符数是独立的限制。
+const CHAR_LIMIT=180000;
+const GRAM=7;
+
+const ACCEPTED=new Set(["txt","md","csv","json","html","htm","docx","pdf","xlsx","xls","log"]);
+const $=id=>document.getElementById(id);
+const escapeHTML=value=>String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+const delay=()=>new Promise(resolve=>setTimeout(resolve,0));
+const percent=n=>(n*100).toFixed(1)+"%";
+const extension=name=>name.split(".").pop().toLowerCase();
+const byteSize=n=>n>=1048576?(n/1048576).toFixed(1)+" MiB":(n/1024).toFixed(1)+" KiB";
+
+const state={
+  files:[],page:"files",busy:false,results:null,prepared:new Map(),
+  generatedAt:null,runSettings:null,detail:null,detailTab:"common",
+  detailQuery:"",resultFilter:"all"
+};
+const DEFAULT_SETTINGS={
+  ignoreCase:true,ignoreNumbers:false,ignorePunctuation:true,
+  exclude:"",encoding:"auto",minMatch:30,high:65,medium:30
+};
+const settings={...DEFAULT_SETTINGS};
+
+/* ================= 图标 ================= */
+const paths={
+  bolt:["M13 2 5 13h6l-1 9 9-13h-6l1-7Z"],
+  folder:["M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z","M3 9h18"],
+  file:["M14 2H5v20h15V8l-6-6Z","M14 2v6h6M8 13h8M8 17h6"],
+  list:["M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"],
+  grid:["M3 3h7v7H3V3Zm11 0h7v7h-7V3ZM3 14h7v7H3v-7Zm11 0h7v7h-7v-7Z"],
+  settings:["M4 6h16M4 12h16M4 18h16M8 3v6m8 0v6m-6 0v6"],
+  book:["M12 5v16M12 5C8 2 4 3 2 4v15c4-2 7-1 10 2 3-3 6-4 10-2V4c-2-1-6-2-10 1Z"],
+  upload:["M12 16V3m-5 5 5-5 5 5M4 16v5h16v-5"],
+  download:["M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5"],
+  shield:["m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z","m8 12 3 3 5-6"],
+  search:["M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z","m16 16 5 5"],
+  info:["M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 11v6M12 7h.01"],
+  close:["m6 6 12 12M18 6 6 18"],
+  trash:["M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"],
+  menu:["M4 6h16M4 12h16M4 18h16"],
+  arrow:["M7 17 17 7M7 7h10v10"]
+};
+function ico(name){
+  return '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
+    (paths[name]||paths.file).map(d=>'<path d="'+d+'"/>').join("")+"</svg>";
+}
+document.querySelectorAll("[data-icon]").forEach(n=>n.innerHTML=ico(n.dataset.icon));
+
+/* ================= 状态与界面 ================= */
+let toastTimer;
+function toast(text){
+  $("toast").textContent=text;$("toast").hidden=false;
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").hidden=true,6500);
+}
+function progress(text,value,max=1){
+  $("progressBox").hidden=false;$("progressText").textContent=text;
+  $("progress").max=max;$("progress").value=value;
+}
+function readyFiles(){return state.files.filter(f=>f.status==="ready");}
+function rating(pair){
+  const n=pair.jaccard*100,s=state.runSettings||settings;
+  return n>=s.high?"high":n>=s.medium?"medium":"low";
+}
+const ratingText={high:"高重复",medium:"中等重复",low:"低重复"};
+function invalidate(){
+  state.results=null;state.prepared.clear();state.generatedAt=null;
+  state.runSettings=null;state.detail=null;state.resultFilter="all";
+  $("detailDialog").close();
+}
+function sync(){
+  const files=readyFiles(),pairs=files.length*(files.length-1)/2;
+  $("navFiles").textContent=state.files.length;
+  $("navPairs").textContent=state.results?state.results.length:"—";
+  $("metricFiles").textContent=files.length;
+  $("metricPairs").textContent=pairs;
+  $("metricHigh").textContent=state.results?state.results.filter(p=>rating(p)==="high").length:"—";
+  $("analyzeBtn").disabled=state.busy||files.length<2;
+  $("addBtn").disabled=state.busy||state.files.length>=LIMIT_FILES;
+  $("demoBtn").disabled=state.busy;
+  $("exportBtn").disabled=state.busy||!state.results;
+  document.querySelectorAll(".nav").forEach(n=>{
+    n.disabled=state.busy;n.classList.toggle("active",n.dataset.page===state.page);
+  });
+  $("fileInput").disabled=state.busy;
+  $("footerStatus").textContent=state.busy?"正在本地处理，请勿关闭页面":state.results?
+    `${files.length} 份文件 · ${state.results.length} 组对比 · ${new Date(state.generatedAt).toLocaleTimeString()}`:
+    `${state.files.length} 份已添加 · ${files.length} 份文本可用`;
+}
+function changePage(page){
+  if(state.busy)return;
+  state.page=page;closeMenu();render();$("workspace").scrollTop=0;
+}
+function render(){
+  sync();
+  const titles={
+    files:["文件管理","添加待审查文件，至少两份即可开始分析"],
+    results:["对比结果","按文本相似度排序，点击详情查看共同片段"],
+    matrix:["相似度矩阵","横纵编号对应文件，点击非对角单元格查看详情"],
+    settings:["分析设置","排除统一模板和通用段落，减少误读"],
+    guide:["使用说明","分析口径、适用范围与隐私说明"]
+  };
+  $("sectionTitle").textContent=titles[state.page][0];
+  $("sectionSub").textContent=titles[state.page][1];
+  ({
+    files:renderFiles,results:renderResults,matrix:renderMatrix,
+    settings:renderSettings,guide:renderGuide
+  }[state.page])();
+}
+function renderFiles(){
+  $("workspace").innerHTML=`
+    <div class="dropzone" id="dropzone">
+      <div class="drop-mark">${ico("upload")}</div>
+      <strong>拖拽文件到此处，或点击添加文件</strong>
+      <p>TXT / DOCX / PDF / XLSX / CSV / HTML / Markdown</p>
+      <p>每批最多 ${LIMIT_FILES} 份 · 单文件不超过 ${MAX_FILE_MB} MB · 文件内容不上传服务器</p>
+      <p>大小按 1 MB = 1024 × 1024 字节计算，恰好 ${MAX_FILE_MB} MB 的文件可添加</p>
+      <button class="btn small" id="dropPick" ${state.busy||state.files.length>=LIMIT_FILES?"disabled":""}>选择待对比文件</button>
+    </div>
+    <div class="caption">
+      <strong>已添加文件</strong>
+      <div class="actions"><span>${state.files.length} / ${LIMIT_FILES} 份</span>
+        <button class="btn small ghost danger" id="clearFiles" ${state.busy||!state.files.length?"disabled":""}>清空</button>
+      </div>
+    </div>
+    <div id="fileRows">${state.files.map(f=>`
+      <div class="file-row">
+        <div class="logo ${escapeHTML(f.ext)}">${ico("file")}</div>
+        <div><div class="file-name">${escapeHTML(f.name)}</div><div class="description">${escapeHTML(f.message||"等待解析")}</div></div>
+        <div class="file-meta">${f.status==="ready"?f.text.length.toLocaleString()+" 字符":f.status==="error"?"解析失败":"处理中"}<br>${f.pages?f.pages+" 页 · ":""}${escapeHTML(f.ext.toUpperCase())}</div>
+        <div class="file-meta file-size">${byteSize(f.size)}</div>
+        <button class="btn square ghost danger" data-remove="${f.id}" aria-label="删除 ${escapeHTML(f.name)}" ${state.busy?"disabled":""}>${ico("trash")}</button>
+      </div>`).join("")}</div>
+    ${!state.files.length?'<div class="empty">'+ico("folder")+'尚未添加文件<br>可点击“示例”体验完整对比流程。</div>':""}
+    <p class="hint">建议优先使用原始 DOCX 或文本型 PDF。扫描件请先 OCR；旧版 .doc 请转成 .docx。Excel 比较的是单元格提取文本，而不是公式、样式或图表。</p>
+    <p class="hint">单文件允许最大 ${MAX_FILE_MB} MB，但解析大型或复杂 PDF、Word、Excel 仍受浏览器内存限制。建议逐份添加大文件，不要一次添加大量大体积资料。</p>
+    <p class="hint">单份分析最多保留排除模板后的前 ${CHAR_LIMIT.toLocaleString()} 个字符；超出范围会明确提示，结论不代表全文。上传大小限制不等于分析文本长度限制。</p>`;
+  $("dropPick").onclick=()=>{if(!state.busy)$("fileInput").click();};
+  $("clearFiles").onclick=()=>{
+    if(!state.busy&&confirm("清空所有文件与分析结果？")){
+      state.files=[];invalidate();render();
+    }
+  };
+  document.querySelectorAll("[data-remove]").forEach(n=>n.onclick=()=>{
+    if(state.busy)return;
+    state.files=state.files.filter(f=>f.id!==n.dataset.remove);invalidate();render();
+  });
+  const zone=$("dropzone");
+  zone.addEventListener("dragover",e=>{
+    e.preventDefault();if(!state.busy)zone.classList.add("over");
+  });
+  zone.addEventListener("dragleave",e=>{
+    if(!zone.contains(e.relatedTarget))zone.classList.remove("over");
+  });
+  zone.addEventListener("drop",e=>{
+    e.preventDefault();zone.classList.remove("over");
+    if(!state.busy)addFiles([...e.dataTransfer.files]);
+  });
+}
+
+/* ================= 文件解析 ================= */
+// 仅在需要时加载解析库。资源请求不包含用户文件内容。
+const libraryPromises={};
+function loadLibrary(key,url,test){
+  if(test())return Promise.resolve();
+  if(libraryPromises[key])return libraryPromises[key];
+  libraryPromises[key]=new Promise((resolve,reject)=>{
+    const s=document.createElement("script");let done=false;
+    const timer=setTimeout(()=>finish(new Error("解析库加载超时，请检查网络后重试。")),45000);
+    function finish(error){
+      if(done)return;done=true;clearTimeout(timer);
+      if(error){s.remove();delete libraryPromises[key];reject(error);}else resolve();
+    }
+    s.src=url;s.referrerPolicy="no-referrer";
+    s.onload=()=>test()?finish():finish(new Error("解析库不可用。"));
+    s.onerror=()=>finish(new Error("解析库加载失败，请检查网络或将文件转成 TXT。"));
+    document.head.append(s);
+  });
+  return libraryPromises[key];
+}
+function decodeText(buffer,encoding){
+  const bytes=new Uint8Array(buffer);
+  if(encoding!=="auto")return new TextDecoder(encoding).decode(bytes).replace(/^\uFEFF/,"");
+  if(bytes[0]===255&&bytes[1]===254)return new TextDecoder("utf-16le").decode(bytes).replace(/^\uFEFF/,"");
+  if(bytes[0]===254&&bytes[1]===255)return new TextDecoder("utf-16be").decode(bytes).replace(/^\uFEFF/,"");
+  try{return new TextDecoder("utf-8",{fatal:true}).decode(bytes).replace(/^\uFEFF/,"");}
+  catch{return new TextDecoder("gb18030").decode(bytes);}
+}
+async function extract(file,record){
+  const buffer=await file.arrayBuffer(),e=record.ext;
+  if(e==="docx"){
+    await loadLibrary("mammoth","https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js",()=>!!window.mammoth);
+    const result=await mammoth.extractRawText({arrayBuffer:buffer});
+    return {
+      text:result.value,
+      note:result.messages.length?"Word 解析有提示，建议抽查提取文本。":"Word 文本提取完成，未比较样式和图片。"
+    };
+  }
+  if(e==="pdf"){
+    await loadLibrary("pdf","https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js",()=>!!window.pdfjsLib);
+    pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    const task=pdfjsLib.getDocument({
+      data:new Uint8Array(buffer),isEvalSupported:false
+    });
+    task.onPassword=()=>{task.destroy();};
+    let pdf;
+    try{
+      pdf=await task.promise;
+      const out=[];let thin=0;record.pages=pdf.numPages;
+      for(let pageNumber=1;pageNumber<=pdf.numPages;pageNumber++){
+        progress(`正在解析 ${record.name}\nPDF 第 ${pageNumber} / ${pdf.numPages} 页`,pageNumber,pdf.numPages);
+        const page=await pdf.getPage(pageNumber);
+        const content=await page.getTextContent();
+        let line="",lastY=null;
+        const lines=[];
+        for(const item of content.items){
+          if(typeof item.str!=="string")continue;
+          const y=item.transform?.[5];
+          if(lastY!==null&&Number.isFinite(y)&&Math.abs(y-lastY)>3&&line.trim()){
+            lines.push(line.trim());line="";
+          }
+          line+=item.str+" ";lastY=y;
+          if(item.hasEOL){lines.push(line.trim());line="";lastY=null;}
+        }
+        if(line.trim())lines.push(line.trim());
+        const text=lines.join("\n");
+        if(text.replace(/\s/g,"").length<20)thin++;
+        out.push(text);page.cleanup();await delay();
+      }
+      return {
+        text:out.join("\n\n"),
+        note:thin?`${thin} 页文本较少，可能为扫描页或图片页；未进行 OCR。`:
+          "PDF 阅读顺序由解析器推断，建议抽查双栏与表格。"
+      };
+    }catch(error){
+      throw new Error("PDF 无法解析：可能加密、损坏、内存不足或解析组件不可用。"+
+        (error.message?" "+error.message:""));
+    }finally{
+      try{if(pdf)await pdf.destroy();else await task.destroy();}catch{}
+    }
+  }
+  if(e==="xlsx"||e==="xls"){
+    await loadLibrary("xlsx","https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js",()=>!!window.XLSX);
+    const workbook=XLSX.read(buffer,{type:"array",cellFormula:false});
+    const out=[];
+    for(const name of workbook.SheetNames){
+      const rows=XLSX.utils.sheet_to_json(workbook.Sheets[name],{
+        header:1,raw:false,defval:"",blankrows:false
+      });
+      // 不把通用工作表名称计入相似度。
+      out.push(rows.map(row=>row.join("\t")).join("\n"));
+      await delay();
+    }
+    return {
+      text:out.join("\n\n"),
+      note:`提取 ${workbook.SheetNames.length} 个工作表的单元格显示文本；未比较公式和样式。`
+    };
+  }
+  let text=decodeText(buffer,record.encoding);
+  if(e==="html"||e==="htm"){
+    // 不执行上传 HTML 的脚本。屏蔽可能主动加载资源的标签。
+    text=text.replace(
+      /<(script|style|iframe|object|embed|img|link|video|audio|source)\b[^>]*>[\s\S]*?<\/\1\s*>/gi,""
+    ).replace(
+      /<(script|style|iframe|object|embed|img|link|video|audio|source)\b[^>]*\/?>/gi,""
+    ).replace(/<\/(p|div|section|article|h[1-6]|tr|li)>/gi,"</$1>\n")
+      .replace(/<br\s*\/?>/gi,"\n");
+    const doc=new DOMParser().parseFromString(text,"text/html");
+    doc.querySelectorAll("script,style,noscript,template,iframe,object,embed,img,link,video,audio,source").forEach(n=>n.remove());
+    return {text:doc.body.textContent||"",note:"仅提取 HTML 文本，不执行脚本、不比较样式。"};
+  }
+  return {
+    text,
+    note:"文本编码："+(record.encoding==="auto"?"自动识别 UTF-8 / UTF-16，失败时尝试 GB18030":record.encoding)
+  };
+}
+async function addFiles(incoming){
+  if(state.busy)return;
+  const accepted=[],messages=[];
+  for(const file of incoming){
+    const ext=extension(file.name);
+    if(!ACCEPTED.has(ext)){
+      messages.push(file.name+"：不支持此格式。");continue;
+    }
+
+    // 核心大小校验：大于 50 MB 拒绝，恰好等于 50 MB 允许。
+    if(file.size>MAX_BYTES){
+      messages.push(`${file.name}：超过单文件 ${MAX_FILE_MB} MB 上限（当前 ${byteSize(file.size)}）。`);
+      continue;
+    }
+
+    if(state.files.length+accepted.length>=LIMIT_FILES){
+      messages.push("最多添加 "+LIMIT_FILES+" 份文件。");break;
+    }
+    accepted.push({
+      file,
+      record:{
+        id:"f"+Date.now().toString(36)+Math.random().toString(36).slice(2),
+        name:file.name,size:file.size,ext,text:"",status:"loading",
+        message:"正在提取文本…",pages:0,encoding:settings.encoding
+      }
+    });
+  }
+  if(!accepted.length){
+    if(messages.length)toast(messages.slice(0,3).join("\n"));return;
+  }
+  invalidate();state.busy=true;state.page="files";
+  state.files.push(...accepted.map(x=>x.record));render();
+  try{
+    // 顺序解析，避免同时解析多份大文件造成额外内存压力。
+    for(let i=0;i<accepted.length;i++){
+      const {file,record}=accepted[i];
+      progress(`正在读取 ${i+1} / ${accepted.length}：${file.name}`,i,accepted.length);
+      await delay();
+      try{
+        const result=await extract(file,record);
+        record.text=result.text.replace(/\r\n?/g,"\n").replace(/\u0000/g,"").trim();
+        if(record.text.replace(/\s/g,"").length<GRAM){
+          throw new Error("可用文本不足。扫描件请先 OCR，或检查编码、密码与文件内容。");
+        }
+        record.status="ready";record.message=result.note||"文本提取完成";
+      }catch(error){
+        record.status="error";
+        record.message=error.message||"读取失败，可能因文件复杂或浏览器内存不足。";
+      }
+      renderFiles();await delay();
+    }
+  }finally{
+    state.busy=false;$("progressBox").hidden=true;render();
+  }
+  if(messages.length)toast(messages.slice(0,3).join("\n"));
+}
+
+/* ================= 文本标准化与对比 ================= */
+function normalizeOnly(text,s){
+  let result=s.ignoreCase?text.toLowerCase():text;
+  result=result.replace(/\s/g,"");
+  if(s.ignoreNumbers)result=result.replace(/\p{N}/gu,"");
+  if(s.ignorePunctuation)result=result.replace(/[\p{P}\p{S}]/gu,"");
+  return result;
+}
+function prepare(file,s){
+  const exclusions=s.exclude.split("\n").map(t=>t.trim()).filter(Boolean);
+  let excludedLines=0,excludedChars=0;
+  const filtered=file.text.split("\n").filter(line=>{
+    const target=s.ignoreCase?line.toLowerCase():line;
+    const remove=exclusions.some(t=>target.includes(s.ignoreCase?t.toLowerCase():t));
+    if(remove){excludedLines++;excludedChars+=line.length;}
+    return !remove;
+  }).join("\n");
+  const truncated=filtered.length>CHAR_LIMIT;
+  const source=filtered.slice(0,CHAR_LIMIT);
+  const normalizedParts=[],map=[];
+  let offset=0;
+  for(const original of source){
+    const c=s.ignoreCase?original.toLowerCase():original;
+    for(const ch of c){
+      if(/\s/u.test(ch)||
+        (s.ignoreNumbers&&/\p{N}/u.test(ch))||
+        (s.ignorePunctuation&&/[\p{P}\p{S}]/u.test(ch)))continue;
+      normalizedParts.push(ch);
+      for(let k=0;k<ch.length;k++)map.push(offset);
+    }
+    offset+=original.length;
+  }
+  const norm=normalizedParts.join("");
+  const grams=new Set();
+  if(norm.length>=GRAM){
+    for(let i=0;i<=norm.length-GRAM;i++)grams.add(norm.slice(i,i+GRAM));
+  }
+  const paragraphs=source.split(/\n+/).map(t=>t.trim()).filter(Boolean)
+    .map(text=>({text,key:normalizeOnly(text,s)})).filter(p=>p.key);
+  return {
+    id:file.id,name:file.name,source,norm,map,grams,paragraphs,
+    truncated,filteredLength:filtered.length,excludedLines,excludedChars,
+    originalLength:file.text.length
+  };
+}
+function intersectionSize(a,b){
+  if(a.size>b.size)[a,b]=[b,a];
+  let count=0;for(const value of a)if(b.has(value))count++;
+  return count;
+}
+async function analyze(){
+  if(state.busy||readyFiles().length<2)return;
+  const files=readyFiles(),s={...settings};
+  invalidate();state.busy=true;sync();
+  try{
+    const prepared=new Map();
+    let step=0;
+    const max=files.length+files.length*(files.length-1)/2;
+    for(const file of files){
+      progress("正在标准化："+file.name,step++,max);await delay();
+      const p=prepare(file,s);
+      if(p.norm.length<GRAM){
+        throw new Error(file.name+"：按当前排除规则处理后不足 7 个字符，请调整设置。");
+      }
+      prepared.set(file.id,p);
+    }
+    const results=[];
+    for(let i=0;i<files.length;i++){
+      for(let j=i+1;j<files.length;j++){
+        const a=prepared.get(files[i].id),b=prepared.get(files[j].id);
+        progress(`正在对比 ${i+1} ↔ ${j+1}\n${a.name} / ${b.name}`,step++,max);
+        await delay();
+        const intersection=intersectionSize(a.grams,b.grams);
+        const union=a.grams.size+b.grams.size-intersection;
+        results.push({
+          a:a.id,b:b.id,jaccard:union?intersection/union:0,
+          containA:intersection/a.grams.size,containB:intersection/b.grams.size,
+          intersection,union,normalizedEqual:a.norm===b.norm,
+          rawTextEqual:files[i].text===files[j].text,matches:null
+        });
+      }
+    }
+    results.sort((a,b)=>b.jaccard-a.jaccard||
+      Math.max(b.containA,b.containB)-Math.max(a.containA,a.containB));
+    state.prepared=prepared;state.results=results;state.runSettings=s;
+    state.generatedAt=new Date().toISOString();state.page="results";
+    toast("对比完成。请结合共同片段及模板排除情况人工审查。");
+  }catch(error){
+    toast(error.message||"分析失败，请减少文件数量或拆分章节后重试。");
+  }finally{
+    state.busy=false;$("progressBox").hidden=true;render();
+  }
+}
+function analysisWarnings(){
+  if(!state.results)return "";
+  const prepared=[...state.prepared.values()];
+  const truncated=prepared.filter(x=>x.truncated);
+  const short=prepared.filter(x=>x.norm.length<100);
+  const out=[];
+  if(truncated.length){
+    out.push("分析范围受限："+truncated.map(x=>x.name).join("、")+
+      "；仅比较排除模板后的前 "+CHAR_LIMIT.toLocaleString()+" 字符，不代表全文。");
+  }
+  if(short.length){
+    out.push("短文本提示："+short.map(x=>x.name).join("、")+
+      " 有效字符少于 100，分数波动可能较大。");
+  }
+  if(prepared.some(x=>x.excludedLines)){
+    out.push("已排除 "+prepared.reduce((sum,x)=>sum+x.excludedLines,0)+
+      " 行匹配模板文本；请核查是否误排除实质内容。");
+  }
+  if(state.runSettings.ignoreNumbers){
+    out.push("当前忽略数字：金额、日期、编号等差异可能被隐藏，复核时建议关闭并重新分析。");
+  }
+  return out.join("\n");
+}
+
+/* ================= 结果与矩阵 ================= */
+function noResults(){
+  $("workspace").innerHTML='<div class="empty">'+ico("search")+
+    '尚未生成对比结果<br>请添加至少两份有效文件，然后点击“开始对比”。</div>'+
+    '<div class="actions" style="justify-content:center"><button class="btn" id="backFiles">前往文件管理</button></div>';
+  $("backFiles").onclick=()=>changePage("files");
+}
+function renderResults(){
+  if(!state.results){noResults();return;}
+  const results=state.results,s=state.runSettings;
+  const highest=results[0]?.jaccard||0;
+  const high=results.filter(p=>rating(p)==="high").length;
+  const warnings=analysisWarnings();
+  const shown=results.filter(p=>state.resultFilter==="all"||rating(p)===state.resultFilter);
+  $("workspace").innerHTML=`
+    <div class="stat-grid">
+      <div class="stat-card"><small>最高文本相似度</small><strong>${percent(highest)}</strong><span>7 字符片段集合 Jaccard</span></div>
+      <div class="stat-card"><small>高重复组合</small><strong>${high}</strong><span>当前显示阈值 ≥ ${s.high}%</span></div>
+      <div class="stat-card"><small>已完成对比</small><strong>${results.length}</strong><span>${readyFiles().length} 份有效文件两两比较</span></div>
+    </div>
+    <div class="report-note">
+      分数表示规范化文本中不同 7 字符片段的重合程度，不是“串标概率”。
+      “A 被 B 覆盖”表示 A 的片段集合中有多少也出现在 B，适合辅助识别局部包含。
+      重复次数和段落顺序不直接计入分数。
+      ${warnings?'<br><strong>分析提示：</strong><br>'+escapeHTML(warnings).replace(/\n/g,"<br>"):""}
+    </div>
+    <div class="caption" style="margin-top:0">
+      <strong>两两对比 · 按相似度降序</strong>
+      <select id="resultFilter" class="search-field" style="width:auto" aria-label="筛选重复程度">
+        <option value="all">全部组合</option><option value="high">高重复</option>
+        <option value="medium">中等重复</option><option value="low">低重复</option>
+      </select>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>对比文件</th><th>文本相似度</th><th>双向覆盖率</th><th>重复程度</th><th style="text-align:right">操作</th></tr></thead>
+      <tbody>${shown.map(pair=>{
+        const index=results.indexOf(pair);
+        const a=state.prepared.get(pair.a),b=state.prepared.get(pair.b);
+        const level=rating(pair);
+        return `<tr>
+          <td><div class="pair-name">A · ${escapeHTML(a.name)}<span>对比</span>B · ${escapeHTML(b.name)}</div></td>
+          <td><div class="score ${level==="high"?"high":""}">${percent(pair.jaccard)}</div>
+            <div class="meter"><i style="width:${(pair.jaccard*100).toFixed(2)}%"></i></div></td>
+          <td>A 被 B 覆盖：${percent(pair.containA)}<br>B 被 A 覆盖：${percent(pair.containB)}</td>
+          <td><span class="badge ${level}">${ratingText[level]}</span>
+            ${pair.rawTextEqual?'<div class="description">提取文本完全相同</div>':
+              pair.normalizedEqual?'<div class="description">规范化后文本相同</div>':""}</td>
+          <td style="text-align:right"><button class="btn small" data-detail="${index}">查看详情 ${ico("arrow")}</button></td>
+        </tr>`;
+      }).join("")||'<tr><td colspan="5" style="text-align:center">没有符合筛选条件的组合。</td></tr>'}</tbody>
+    </table></div>
+    <p class="hint">高重复：≥ ${s.high}%；中等重复：${s.medium}%–${s.high}%；低重复：&lt; ${s.medium}%。阈值仅用于界面分类，并非经验证的违法风险阈值。</p>`;
+  $("resultFilter").value=state.resultFilter;
+  $("resultFilter").onchange=e=>{state.resultFilter=e.target.value;renderResults();};
+  bindDetails();
+}
+function matrixColor(score){
+  return `rgba(116,99,185,${(.035+score*.30).toFixed(3)})`;
+}
+function renderMatrix(){
+  if(!state.results){noResults();return;}
+  const files=readyFiles(),lookup=new Map();
+  state.results.forEach((pair,i)=>{
+    lookup.set(pair.a+"|"+pair.b,{pair,i});
+    lookup.set(pair.b+"|"+pair.a,{pair,i});
+  });
+  $("workspace").innerHTML=`
+    <div class="report-note">颜色越深，7 字符片段集合的重合程度越高。编号仅用于对应文件。对角线为文件自身，不代表独立审查结论。</div>
+    <div class="table-wrap"><table class="matrix">
+      <thead><tr><th>文件 / 编号</th>${files.map((file,i)=>
+        '<th title="'+escapeHTML(file.name)+'">'+String(i+1).padStart(2,"0")+'</th>').join("")}</tr></thead>
+      <tbody>${files.map((file,i)=>'<tr><td><strong style="font-weight:500">'+
+        String(i+1).padStart(2,"0")+' · '+escapeHTML(file.name)+'</strong></td>'+
+        files.map(other=>{
+          if(other.id===file.id){
+            return '<td style="background:#f6f7fa;color:#aeb6c3">—</td>';
+          }
+          const {pair,i:index}=lookup.get(file.id+"|"+other.id);
+          return `<td style="background:${matrixColor(pair.jaccard)};color:${rating(pair)==="high"?"#ad6170":"#796890"}">
+            <button data-detail="${index}" aria-label="查看 ${escapeHTML(file.name)} 与 ${escapeHTML(other.name)} 的对比">${percent(pair.jaccard)}</button>
+          </td>`;
+        }).join("")+"</tr>").join("")}</tbody>
+    </table></div>
+    <div class="legend"><span>片段重合程度</span>
+      <span><i style="background:${matrixColor(0)}"></i>0%</span>
+      <span><i style="background:${matrixColor(.5)}"></i>50%</span>
+      <span><i style="background:${matrixColor(1)}"></i>100%</span>
+    </div>
+    ${analysisWarnings()?'<p class="hint">'+escapeHTML(analysisWarnings()).replace(/\n/g,"<br>")+"</p>":""}`;
+  bindDetails();
+}
+
+/* ================= 设置 ================= */
+function renderSettings(){
+  $("workspace").innerHTML=`
+    <div class="settings-grid">
+      <div>
+        <section class="panel"><h3>文本标准化</h3>
+          <p class="hint">空白字符始终忽略，可减少换行、缩进和 PDF 排版造成的干扰。</p>
+          <label class="check"><input type="checkbox" id="setCase" ${settings.ignoreCase?"checked":""}>忽略英文字母大小写</label>
+          <label class="check"><input type="checkbox" id="setPunctuation" ${settings.ignorePunctuation?"checked":""}>忽略标点和符号</label>
+          <label class="check"><input type="checkbox" id="setNumbers" ${settings.ignoreNumbers?"checked":""}>忽略数字（可能隐藏金额、日期和编号差异）</label>
+          <label class="field">纯文本读取编码
+            <select id="setEncoding">
+              <option value="auto">自动识别 / GB18030 回退</option>
+              <option value="utf-8">UTF-8</option><option value="gb18030">GB18030 / GBK</option>
+              <option value="utf-16le">UTF-16 LE</option><option value="utf-16be">UTF-16 BE</option>
+            </select>
+          </label>
+          <p class="hint">编码只影响之后添加的文本文件。已有乱码文件请删除并重新添加。</p>
+        </section>
+        <section class="panel"><h3>显示与定位</h3>
+          <label class="field">共同片段最短长度（标准化后字符）
+            <input id="setMin" type="number" min="20" max="200" step="1" value="${settings.minMatch}">
+          </label>
+          <label class="field">高重复显示阈值（%）
+            <input id="setHigh" type="number" min="1" max="100" step="1" value="${settings.high}">
+          </label>
+          <label class="field">中等重复显示阈值（%）
+            <input id="setMedium" type="number" min="0" max="99" step="1" value="${settings.medium}">
+          </label>
+          <p class="hint">片段最短长度只影响详情定位，不影响 7 字符片段集合分数。显示阈值无司法或行业认定效力。</p>
+        </section>
+        <section class="panel"><h3>当前容量限制</h3>
+          <p class="hint">单文件最大 ${MAX_FILE_MB} MB（${MAX_BYTES.toLocaleString()} 字节）；每批最多 ${LIMIT_FILES} 份。</p>
+          <p class="hint">每份最多分析排除模板后的前 ${CHAR_LIMIT.toLocaleString()} 字符，超过时提示截断。大型文件解析仍受浏览器内存与文件复杂度约束。</p>
+        </section>
+      </div>
+      <section class="panel">
+        <h3>排除统一模板 / 通用文本</h3>
+        <p class="hint">每行填写一段要排除的原文或特征句。提取文本中的某一行包含该内容时，会排除整行；不支持正则表达式。PDF 换行可能拆开句子，需核查排除是否生效。</p>
+        <label class="field">排除规则
+          <textarea id="setExclude" style="min-height:280px" placeholder="例如：&#10;我方已认真阅读本项目招标文件&#10;本投标文件由商务部分和技术部分组成">${escapeHTML(settings.exclude)}</textarea>
+        </label>
+        <div class="report-note">不要用“项目”“报价”“公司”等过于宽泛的关键词，否则会排除大量实质文本。建议仅排除确定来自统一模板的完整特征句。</div>
+        <p class="hint">排除规则和标准化设置会写入导出报告，便于复核分析口径。完整模板跨多行时，建议逐行填写。</p>
+        <div class="actions">
+          <button class="btn primary" id="saveSettings">保存设置</button>
+          <button class="btn" id="resetSettings">恢复默认</button>
+        </div>
+      </section>
+    </div>`;
+  $("setEncoding").value=settings.encoding;
+  $("saveSettings").onclick=()=>{
+    const min=Number($("setMin").value);
+    const high=Number($("setHigh").value);
+    const medium=Number($("setMedium").value);
+    if(!Number.isInteger(min)||min<20||min>200||
+      !Number.isFinite(high)||high<1||high>100||
+      !Number.isFinite(medium)||medium<0||medium>=high){
+      toast("请检查参数：片段长度 20–200，高阈值 1–100，中阈值须小于高阈值。");
+      return;
+    }
+    Object.assign(settings,{
+      ignoreCase:$("setCase").checked,
+      ignorePunctuation:$("setPunctuation").checked,
+      ignoreNumbers:$("setNumbers").checked,
+      encoding:$("setEncoding").value,minMatch:min,high,medium,
+      exclude:$("setExclude").value
+    });
+    invalidate();render();toast("设置已保存。请重新点击“开始对比”。");
+  };
+  $("resetSettings").onclick=()=>{
+    if(!confirm("恢复默认设置并清除旧分析结果？"))return;
+    Object.assign(settings,DEFAULT_SETTINGS);invalidate();render();
+    toast("已恢复默认设置，单文件上限仍为 "+MAX_FILE_MB+" MB。");
+  };
+}
+
+/* ================= 使用说明 ================= */
+function renderGuide(){
+  $("workspace").innerHTML=`
+    <section class="panel"><h3>建议使用流程</h3>
+      <div class="step"><div class="step-number">01</div><div>
+        <strong>添加同类文件</strong>
+        <p>优先对比相同项目、同一章节、同一版本范围内的文本。不同文件长度差异很大时，同时查看双向覆盖率。DOCX、PDF、Excel 需联网加载固定版本解析库，文件内容不发送到这些服务。</p>
+      </div></div>
+      <div class="step"><div class="step-number">02</div><div>
+        <strong>确认提取质量并排除模板</strong>
+        <p>扫描 PDF 请先 OCR。可在任意对比详情的“提取文本”页签抽查内容。排除统一招标文本、固定声明和法定条款；避免排除过宽泛的关键词。</p>
+      </div></div>
+      <div class="step"><div class="step-number">03</div><div>
+        <strong>阅读结果，不只看分数</strong>
+        <p>查看共同片段、上下文和独特表述。相同错别字、非模板的罕见句式可作为进一步核查线索，但必须结合原始文件、来源和其他证据判断。</p>
+      </div></div>
+      <div class="step" style="border:0"><div class="step-number">04</div><div>
+        <strong>导出可复核报告</strong>
+        <p>报告包含设置、分析范围、分数、覆盖率、解析提示以及每组最多 12 段定位示例。报告不是司法鉴定，不替代人工核查。</p>
+      </div></div>
+    </section>
+    <section class="panel"><h3>分数与功能边界</h3>
+      <p class="hint"><strong>文本相似度：</strong>标准化文本滑动生成不同的 7 字符片段集合，以“交集数量 / 并集数量”计算 Jaccard。它对重复出现次数、段落顺序不敏感，不等于逐字相同占比。</p>
+      <p class="hint"><strong>双向覆盖：</strong>“A 被 B 覆盖”＝共同片段数量 / A 的不同片段数量。“B 被 A 覆盖”同理。较短文件被较长文件包含时，覆盖率可能高而 Jaccard 较低。</p>
+      <p class="hint"><strong>共同片段：</strong>通过连续字符种子扩展定位，经标准化后比较。为保护浏览器性能，采用有界启发式搜索，可能漏掉重复位置；最多展示 80 段，不能视为全部重复证据清单。</p>
+      <p class="hint"><strong>不同段落：</strong>按提取文本的换行段落比较完整标准化文本，并处理相同段落出现次数；不是逐字差异、段落对齐或版本修订。换行方式不同可能让整段被列为差异。</p>
+      <p class="hint"><strong>上传大小：</strong>单文件不超过 ${MAX_FILE_MB} MB，按 ${MAX_FILE_MB} × 1024 × 1024 = ${MAX_BYTES.toLocaleString()} 字节计算；恰好等于上限时允许添加。每批最多 ${LIMIT_FILES} 份。</p>
+      <p class="hint"><strong>分析上限：</strong>每份最多分析排除模板后的前 ${CHAR_LIMIT.toLocaleString()} 字符。超长文件建议按章节拆分后比较。${MAX_FILE_MB} MB 文件允许添加，不意味着可保证完整解析或全文比较。</p>
+      <p class="hint"><strong>性能提示：</strong>复杂 PDF/Excel、压缩后体积较小但解压后内容巨大的文件仍可能因内存不足失败。建议逐份添加大文件，并关闭无关浏览器标签页。</p>
+      <p class="hint"><strong>不包含：</strong>语义改写识别、OCR、签章鉴定、图片相似性、版式比对、元数据溯源、作者追踪、公式比较及串标法律判断。</p>
+    </section>
+    <section class="panel"><h3>隐私与部署</h3>
+      <p class="hint">文件文本只保留在当前页面内存中，不写入 localStorage、不上传业务服务器。刷新或关闭页面后清空。导出报告含文件名称和共同片段，属于可能敏感的材料，请妥善保管。</p>
+      <p class="hint">Word、PDF、Excel 解析库从 jsDelivr / cdnjs 加载，PDF worker 也从 CDN 加载。CDN 能看到普通资源请求信息；第三方代码会在页面环境运行。严格保密或离线场景应审核库文件，并将这些固定版本资源下载到内网，修改代码中的地址后使用。</p>
+      <p class="hint">建议使用较新版本 Chrome、Edge 或 Firefox。若浏览器限制本地 PDF worker 或网络资源，可部署在内网 HTTP/HTTPS 静态服务器。</p>
+    </section>`;
+}
+
+/* ================= 连续共同片段定位 ================= */
+function findMatches(a,b,minLength){
+  const A=a.norm,B=b.norm,seed=16;
+  const index=new Map();
+  if(A.length<minLength||B.length<minLength){
+    return {items:[],limited:false};
+  }
+  let positionLimited=false;
+  // B 每 4 字符取种子，每种子最多保留 8 个位置。
+  for(let j=0;j<=B.length-seed;j+=4){
+    const key=B.slice(j,j+seed),list=index.get(key);
+    if(!list)index.set(key,[j]);
+    else if(list.length<8)list.push(j);
+    else positionLimited=true;
+  }
+  const candidates=[];
+  let budget=120000,limited=false;
+  for(let i=0;i<=A.length-seed;i++){
+    const list=index.get(A.slice(i,i+seed));
+    if(!list)continue;
+    let jump=i;
+    for(const j of list){
+      if(--budget<0){limited=true;break;}
+      let left=0,right=seed;
+      // 字符扩展也计入预算，避免超长重复文本持续阻塞。
+      while(i-left>0&&j-left>0&&A[i-left-1]===B[j-left-1]){
+        if(--budget<0){limited=true;break;}
+        left++;
+      }
+      if(!limited){
+        while(i+right<A.length&&j+right<B.length&&A[i+right]===B[j+right]){
+          if(--budget<0){limited=true;break;}
+          right++;
+        }
+      }
+      const length=left+right;
+      if(length>=minLength){
+        candidates.push({aStart:i-left,bStart:j-left,length});
+        jump=Math.max(jump,i+right-seed);
+      }
+      if(limited||candidates.length>=300){limited=true;break;}
+    }
+    if(limited)break;
+    i=jump;
+  }
+  candidates.sort((x,y)=>y.length-x.length);
+  const selected=[],texts=new Set();
+  for(const candidate of candidates){
+    const key=A.slice(candidate.aStart,candidate.aStart+candidate.length);
+    if(texts.has(key))continue;
+    if(selected.some(item=>
+      Math.max(0,Math.min(candidate.aStart+candidate.length,item.aStart+item.length)-
+        Math.max(candidate.aStart,item.aStart))>=candidate.length*.65))continue;
+    texts.add(key);selected.push(candidate);
+    if(selected.length>=80){limited=true;break;}
+  }
+  return {items:selected,limited:limited||positionLimited};
+}
+function rawRange(prepared,start,length){
+  const from=prepared.map[start]??0;
+  const last=prepared.map[Math.min(start+length-1,prepared.map.length-1)]??from;
+  const code=prepared.source.codePointAt(last);
+  const to=last+(code>65535?2:1);
+  return {from,to,text:prepared.source.slice(from,to)};
+}
+function matchedHTML(prepared,start,length){
+  const range=rawRange(prepared,start,length);
+  const left=prepared.source.slice(Math.max(0,range.from-55),range.from);
+  const right=prepared.source.slice(range.to,range.to+55);
+  const content=range.text.length>2500?
+    range.text.slice(0,1800)+"\n…【展示省略，完整连续片段较长】…\n"+range.text.slice(-500):
+    range.text;
+  return escapeHTML(left)+'<mark>'+escapeHTML(content)+'</mark>'+escapeHTML(right);
+}
+function differenceParagraphs(a,b){
+  const count=list=>{
+    const map=new Map();
+    for(const p of list)map.set(p.key,(map.get(p.key)||0)+1);
+    return map;
+  };
+  const bCounts=count(b.paragraphs),aCounts=count(a.paragraphs);
+  const onlyA=[],onlyB=[];
+  for(const p of a.paragraphs){
+    const n=bCounts.get(p.key)||0;
+    if(n)bCounts.set(p.key,n-1);else onlyA.push(p.text);
+  }
+  for(const p of b.paragraphs){
+    const n=aCounts.get(p.key)||0;
+    if(n)aCounts.set(p.key,n-1);else onlyB.push(p.text);
+  }
+  return {onlyA,onlyB};
+}
+
+/* ================= 详情弹窗 ================= */
+function bindDetails(){
+  document.querySelectorAll("[data-detail]").forEach(n=>{
+    n.onclick=()=>openDetail(Number(n.dataset.detail));
+  });
+}
+async function openDetail(index){
+  if(state.busy||!state.results)return;
+  const pair=state.results[index];if(!pair)return;
+  state.detail=index;state.detailTab="common";state.detailQuery="";
+  $("detailInner").innerHTML='<div class="dialog-heading"><div><h2>正在定位共同片段</h2><p>本地分析中，请稍候…</p></div></div>';
+  $("detailDialog").showModal();
+  await delay();
+  if(!state.results||state.results[index]!==pair||!$("detailDialog").open)return;
+  try{
+    if(!pair.matches){
+      pair.matches=findMatches(
+        state.prepared.get(pair.a),state.prepared.get(pair.b),state.runSettings.minMatch
+      );
+    }
+    renderDetail();
+  }catch(error){
+    $("detailDialog").close();toast("片段定位失败："+error.message);
+  }
+}
+function renderDetail(){
+  const pair=state.results?.[state.detail];if(!pair)return;
+  const a=state.prepared.get(pair.a),b=state.prepared.get(pair.b);
+  $("detailInner").innerHTML=`
+    <div class="dialog-heading">
+      <div><h2>文件对比详情</h2><p>A · ${escapeHTML(a.name)}<br>B · ${escapeHTML(b.name)}</p></div>
+      <button class="btn square ghost" id="closeDetail" aria-label="关闭">${ico("close")}</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><small>文本相似度</small><strong>${percent(pair.jaccard)}</strong><span>${ratingText[rating(pair)]} · 仅文本重合程度</span></div>
+      <div class="stat-card"><small>A 被 B 覆盖</small><strong>${percent(pair.containA)}</strong><span>A 的不同片段集合</span></div>
+      <div class="stat-card"><small>B 被 A 覆盖</small><strong>${percent(pair.containB)}</strong><span>B 的不同片段集合</span></div>
+    </div>
+    ${a.truncated||b.truncated?
+      '<div class="report-note">本组存在截断：仅分析排除模板后的前 '+CHAR_LIMIT.toLocaleString()+' 字符，不代表全文。</div>':""}
+    <div class="actions" style="justify-content:space-between;margin-bottom:12px">
+      <div class="tabs">${[
+        ["common","共同片段"],["diff","不同段落"],["text","提取文本"]
+      ].map(([key,text])=>`<button data-detail-tab="${key}" class="${state.detailTab===key?"active":""}">${text}</button>`).join("")}</div>
+      ${state.detailTab==="common"?
+        '<input class="search-field" id="passageSearch" placeholder="筛选已定位片段" aria-label="筛选片段" value="'+escapeHTML(state.detailQuery)+'">':""}
+    </div>
+    <div id="detailBody"></div>`;
+  $("closeDetail").onclick=()=>$("detailDialog").close();
+  document.querySelectorAll("[data-detail-tab]").forEach(n=>n.onclick=()=>{
+    state.detailTab=n.dataset.detailTab;renderDetail();
+  });
+  if($("passageSearch")){
+    $("passageSearch").oninput=e=>{
+      state.detailQuery=e.target.value;renderDetailBody();
+    };
+  }
+  renderDetailBody();
+}
+function renderDetailBody(){
+  const pair=state.results[state.detail];
+  const a=state.prepared.get(pair.a),b=state.prepared.get(pair.b);
+  if(state.detailTab==="common"){
+    const query=normalizeOnly(state.detailQuery,state.runSettings);
+    const items=pair.matches.items.filter(match=>
+      !query||a.norm.slice(match.aStart,match.aStart+match.length).includes(query));
+    $("detailBody").innerHTML=`
+      <p class="hint">已定位 ${pair.matches.items.length} 段去重片段；最低 ${state.runSettings.minMatch} 个标准化字符。位置是排除模板后分析文本中的字符位置，不是原文页码。高亮可能包含被标准化忽略的符号或数字。</p>
+      ${pair.matches.limited?
+        '<div class="report-note">定位达到候选位置、字符扩展或搜索预算上限；以下为示例，可能遗漏其他重复位置。</div>':""}
+      ${items.map((match,i)=>{
+        const ar=rawRange(a,match.aStart,match.length);
+        const br=rawRange(b,match.bStart,match.length);
+        return `<article class="passage">
+          <div class="passage-head"><span>共同片段 ${i+1} · ${match.length.toLocaleString()} 标准化字符</span><span>A ${ar.from+1} / B ${br.from+1}</span></div>
+          <div class="passage-body">
+            <div><small>A · ${escapeHTML(a.name)}</small><div class="passage-text scroll">${matchedHTML(a,match.aStart,match.length)}</div></div>
+            <div><small>B · ${escapeHTML(b.name)}</small><div class="passage-text scroll">${matchedHTML(b,match.bStart,match.length)}</div></div>
+          </div>
+        </article>`;
+      }).join("")||
+        '<div class="empty">没有符合条件的连续片段。<br>短句分散重复仍可能产生片段集合重合；可降低最短片段长度后重新分析。</div>'}`;
+  }else if(state.detailTab==="diff"){
+    const {onlyA,onlyB}=differenceParagraphs(a,b);
+    const column=(list,cls)=>list.slice(0,100).map(text=>
+      '<div class="diff-block '+cls+'">'+escapeHTML(
+        text.length>5000?text.slice(0,5000)+"\n…【显示截断】":text
+      )+'</div>').join("")||'<div class="empty">未发现不同段落。</div>';
+    $("detailBody").innerHTML=`
+      <div class="report-note">按完整换行段落的标准化文本匹配，考虑相同段落出现次数；不进行逐字差异或段落对齐。换行不同、标点/数字设置不同都会影响此列表。每侧最多显示 100 段。</div>
+      <div class="diff-grid">
+        <section><div class="caption" style="margin-top:0"><strong>A 中未匹配段落</strong><span>${onlyA.length} 段</span></div>${column(onlyA,"a")}</section>
+        <section><div class="caption" style="margin-top:0"><strong>B 中未匹配段落</strong><span>${onlyB.length} 段</span></div>${column(onlyB,"b")}</section>
+      </div>`;
+  }else{
+    const column=prepared=>{
+      const file=state.files.find(f=>f.id===prepared.id);
+      return `<section class="panel" style="min-width:0">
+        <h3>${escapeHTML(prepared.name)}</h3>
+        <p class="hint">原始提取 ${prepared.originalLength.toLocaleString()} 字符 · 排除 ${prepared.excludedLines} 行 / ${prepared.excludedChars.toLocaleString()} 字符 · 分析 ${prepared.source.length.toLocaleString()} 字符 · 标准化 ${prepared.norm.length.toLocaleString()} 字符${prepared.truncated?" · 已截断":""}</p>
+        <p class="hint">解析提示：${escapeHTML(file?.message||"")}</p>
+        <button class="btn small" data-text-export="${prepared.id}">导出原始提取 TXT</button>
+        <pre class="passage-text scroll" style="max-height:420px;margin-top:14px">${escapeHTML(prepared.source.slice(0,40000))}${prepared.source.length>40000?"\n…【此处仅显示分析文本前 40,000 字符；原始提取 TXT 可完整导出】":""}</pre>
+      </section>`;
+    };
+    $("detailBody").innerHTML=
+      '<p class="hint">下方展示的是排除模板后的分析文本，便于核查。TXT 导出为排除前的完整提取文本，不包含原文件样式。</p>'+
+      '<div class="diff-grid">'+column(a)+column(b)+"</div>";
+    document.querySelectorAll("[data-text-export]").forEach(n=>n.onclick=()=>{
+      const file=state.files.find(f=>f.id===n.dataset.textExport);
+      download(file.text,file.name+".提取文本.txt","text/plain;charset=utf-8");
+    });
+  }
+}
+
+/* ================= 报告导出 ================= */
+function download(content,name,type){
+  const blob=new Blob([content],{type});
+  const url=URL.createObjectURL(blob),link=document.createElement("a");
+  link.href=url;link.download=name;
+  document.body.append(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
+}
+async function exportReport(){
+  if(state.busy||!state.results)return;
+  if(!confirm("报告含文件名称、排除规则和共同文本片段，可能涉及敏感资料。确认导出到本机？"))return;
+  state.busy=true;sync();
+  try{
+    const s=state.runSettings,results=state.results;
+    const sections=[];
+    for(let i=0;i<results.length;i++){
+      const pair=results[i],a=state.prepared.get(pair.a),b=state.prepared.get(pair.b);
+      progress(`正在生成报告 ${i+1} / ${results.length}`,i,results.length);
+      await delay();
+      if(!pair.matches)pair.matches=findMatches(a,b,s.minMatch);
+      const fragments=pair.matches.items.slice(0,12).map((match,j)=>{
+        const ar=rawRange(a,match.aStart,match.length);
+        const br=rawRange(b,match.bStart,match.length);
+        const excerpt=text=>escapeHTML(text.length>3000?
+          text.slice(0,2500)+"\n…【展示省略】\n"+text.slice(-300):text);
+        return `<div class="fragment">
+          <h4>片段 ${j+1} · ${match.length} 标准化字符 · A 位置 ${ar.from+1} / B 位置 ${br.from+1}</h4>
+          <div class="columns">
+            <div><small>A 原文片段</small><pre>${excerpt(ar.text)}</pre></div>
+            <div><small>B 原文片段</small><pre>${excerpt(br.text)}</pre></div>
+          </div>
+        </div>`;
+      }).join("");
+      sections.push(`<section>
+        <h2>${i+1}. ${escapeHTML(a.name)} ↔ ${escapeHTML(b.name)}</h2>
+        <p>文本相似度 <strong>${percent(pair.jaccard)}</strong> · A 被 B 覆盖 ${percent(pair.containA)} · B 被 A 覆盖 ${percent(pair.containB)} · ${ratingText[rating(pair)]}</p>
+        <p>${pair.rawTextEqual?"提取文本完全相同。":pair.normalizedEqual?"规范化后文本完全相同。":"文本不完全相同。"}共同 7 字符片段 ${pair.intersection.toLocaleString()} / 并集 ${pair.union.toLocaleString()}。</p>
+        <p>定位到 ${pair.matches.items.length} 段去重共同片段，报告最多列 12 段。${pair.matches.limited?"定位达到有界搜索限制，可能遗漏其他重复位置。":""}此定位算法不是全部重复位置的穷举。</p>
+        ${a.truncated||b.truncated?'<p class="warning">本组包含截断文件，结论不代表全文。</p>':""}
+        ${fragments||'<p>未定位到满足最短长度的连续共同片段。</p>'}
+      </section>`);
+    }
+    const fileRows=readyFiles().map(file=>{
+      const p=state.prepared.get(file.id);
+      return `<tr>
+        <td>${escapeHTML(file.name)}</td><td>${escapeHTML(file.ext.toUpperCase())}</td>
+        <td>${byteSize(file.size)}</td><td>${p.originalLength.toLocaleString()}</td>
+        <td>${p.excludedLines}</td><td>${p.source.length.toLocaleString()}${p.truncated?"（截断）":""}</td>
+        <td>${p.norm.length.toLocaleString()}</td><td>${escapeHTML(file.message)}</td>
+        <td>${escapeHTML(file.encoding||"示例文本")}</td>
+      </tr>`;
+    }).join("");
+    const rows=results.map((pair,i)=>`<tr>
+      <td>${i+1}</td><td>${escapeHTML(state.prepared.get(pair.a).name)}</td>
+      <td>${escapeHTML(state.prepared.get(pair.b).name)}</td>
+      <td>${percent(pair.jaccard)}</td><td>${percent(pair.containA)}</td>
+      <td>${percent(pair.containB)}</td><td>${ratingText[rating(pair)]}</td>
+    </tr>`).join("");
+    const html=`<!DOCTYPE html>
+    <html lang="zh-CN"><head>
+      <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>文件内容相似性检查报告</title>
+      <style>
+        *{box-sizing:border-box}
+        body{font:13px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;color:#455169;background:#f5f6f8;margin:0;padding:30px}
+        .paper{max-width:1150px;margin:auto;background:white;border:1px solid #e8ebf0;border-radius:13px;padding:32px}
+        h1{font-size:24px;color:#655583}
+        h2{font-size:16px;color:#655583;margin-top:28px}
+        h3{font-size:14px}h4{font-size:12px;margin:0 0 10px}
+        p{color:#7d8799}small{color:#98a1b2}
+        .notice,.warning{padding:13px;background:#f0edf8;border-left:3px solid #b3a1d1;color:#8272aa;white-space:pre-wrap}
+        .warning{background:#fff4f5;color:#af6070}
+        .table{overflow:auto}table{width:100%;border-collapse:collapse;font-size:11px}
+        th,td{padding:10px;border:1px solid #e8ebf0;text-align:left;overflow-wrap:anywhere}
+        th{background:#f9fafc}
+        .fragment{border:1px solid #e8ebf0;border-radius:8px;padding:13px;margin:12px 0;break-inside:avoid}
+        .columns{display:grid;grid-template-columns:1fr 1fr;gap:18px;min-width:0}
+        .columns>div{min-width:0}
+        pre{font-family:inherit;font-size:12px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;color:#677086;background:#fcfbfe;padding:10px;border-radius:6px}
+        section{border-top:1px solid #e8ebf0;margin-top:24px}.rules{white-space:pre-wrap}
+        @media(max-width:650px){body{padding:10px}.paper{padding:18px}.columns{grid-template-columns:1fr}}
+        @media print{body{padding:0;background:white}.paper{border:0;padding:10px}.table{overflow:visible}table{font-size:9px}h2{break-after:avoid}}
+      </style>
+    </head><body><article class="paper">
+      <small>GROUPTOOLS / DOCUMENT REVIEW</small>
+      <h1>文件内容相似性检查报告</h1>
+      <p>分析时间：${escapeHTML(new Date(state.generatedAt).toLocaleString())} · 导出时间：${escapeHTML(new Date().toLocaleString())}<br>
+      ${readyFiles().length} 份文件 · ${results.length} 组比较 · 工具版本 ${VERSION}</p>
+      <div class="notice">本报告仅反映浏览器提取文本的重复情况，不是串标概率、法律认定或司法鉴定。统一模板、法定声明、行业惯用语及解析误差均可能影响结果。请保存原始文件并结合其他证据人工复核。</div>
+      ${analysisWarnings()?'<p class="warning">'+escapeHTML(analysisWarnings())+"</p>":""}
+      <h2>一、分析口径</h2>
+      <p>相似度：不同 7 字符片段集合的 Jaccard＝交集 / 并集；不直接计入重复次数或段落顺序，不做语义比较。覆盖率为共同片段集合对各自集合的覆盖，不是逐字文本占比。</p>
+      <p>忽略空白：是；忽略大小写：${s.ignoreCase?"是":"否"}；忽略标点/符号：${s.ignorePunctuation?"是":"否"}；忽略数字：${s.ignoreNumbers?"是":"否"}。<br>
+      共同片段最短 ${s.minMatch} 标准化字符；显示阈值：高 ≥ ${s.high}%，中 ≥ ${s.medium}%；阈值不具有违法认定效力。<br>
+      单文件输入上限 ${MAX_FILE_MB} MB（${MAX_BYTES.toLocaleString()} 字节）；每份最多比较排除模板后前 ${CHAR_LIMIT.toLocaleString()} 字符。上传大小上限不代表全文分析范围。</p>
+      <h3>模板排除规则</h3>
+      <p>每条按原文本行包含关系匹配，命中后排除整行；大小写跟随分析设置。</p>
+      <pre class="rules">${escapeHTML(s.exclude||"未设置排除规则")}</pre>
+      <h2>二、文件与分析范围</h2>
+      <div class="table"><table><thead><tr>
+        <th>文件</th><th>格式</th><th>大小</th><th>提取字符</th><th>排除行</th>
+        <th>分析字符</th><th>标准化字符</th><th>解析提示</th><th>添加时编码设置</th>
+      </tr></thead><tbody>${fileRows}</tbody></table></div>
+      <h2>三、对比汇总</h2>
+      <div class="table"><table><thead><tr>
+        <th>#</th><th>A</th><th>B</th><th>相似度</th><th>A 被 B 覆盖</th>
+        <th>B 被 A 覆盖</th><th>重复程度</th>
+      </tr></thead><tbody>${rows}</tbody></table></div>
+      <h2>四、共同片段定位示例</h2>
+      <p>以下为有界启发式搜索的去重示例，可能遗漏重复位置。位置对应排除模板后分析文本中的字符，不是原文件页码。每组最多列 12 段；长片段可能只展示部分文本。</p>
+      ${sections.join("")}
+      <section><h2>五、人工复核记录</h2>
+        <p>项目名称：________________　审查人：________________　日期：________________</p>
+        <p>模板来源及排除理由：________________________________________________________</p>
+        <p>原文件核实情况与其他证据：__________________________________________________</p>
+        <p>审查意见：__________________________________________________________________</p>
+      </section>
+      <p><small>本报告未嵌入脚本和外部资源，可离线查看并使用浏览器打印。报告含可能敏感的文本片段，请妥善保管。</small></p>
+    </article></body></html>`;
+    download(html,"文件内容对比报告-"+new Date().toISOString().slice(0,10)+".html","text/html;charset=utf-8");
+    toast("报告已导出，可打开后使用浏览器打印为 PDF。");
+  }catch(error){
+    toast("报告生成失败："+error.message);
+  }finally{
+    state.busy=false;$("progressBox").hidden=true;sync();
+  }
+}
+
+/* ================= 示例 ================= */
+function loadDemo(){
+  if(state.busy)return;
+  if(state.files.length&&!confirm("载入示例会清空当前文件及结果，继续？"))return;
+  invalidate();
+  const template=
+    "我方已认真阅读本项目招标文件，并理解各项要求。\n"+
+    "本投标文件由商务部分和技术部分组成。\n"+
+    "我方承诺遵守国家有关法律法规，依法履行合同义务。\n";
+  const shared=[
+    "本项目采用分区巡检与集中调度相结合的实施方式，建立设备台账、问题清单和责任闭环，所有异常记录均应关联现场照片与处理时间。",
+    "为了降低交叉施工对既有设备运行的影响，我方将在作业前完成风险辨识，按照先隔离后施工、先检查后恢复的顺序组织现场工作。",
+    "项目交付后设置三个月运行观察期，对出现的重复性故障建立专项分析档案，并在每周例会上形成整改措施和验证记录。",
+    "资料整理采用一机一档、一次一记、变更留痕的原则，维护负责人每周检查资料完整性，确保问题处理过程可追溯。",
+    "验收阶段采用功能测试、连续运行检查及文档审查三种方式交叉验证，未完成整改的问题不得直接进入最终交付清单。"
+  ].join("\n\n");
+  const docs=[
+    {
+      name:"示例_A_技术方案.txt",
+      text:template+"\n"+shared+
+        "\n\n我方计划配置六名工程师，采用分批到场方式实施，项目预计工期为45天，报价金额为128万元。"
+    },
+    {
+      name:"示例_B_技术方案.txt",
+      text:template+"\n"+shared+
+        "\n\n我方计划配置八名工程师，全员同时进场施工，项目预计工期为60天，报价金额为146万元。"
+    },
+    {
+      name:"示例_C_技术方案.txt",
+      text:template+
+        "\n本方案首先进行用户需求访谈，再通过实地勘察确认设备接入条件。系统设计以标准接口和模块化结构为核心，采用独立测试环境验证全部配置。"+
+        "\n\n施工团队依次完成机柜安装、线路标识、通信调试和应用验证。每个工作包设置独立验收点，由监理和使用单位共同确认后才能转入下一环节。"+
+        "\n\n运行支持采用在线工单与电话值守相结合的模式，优先处理影响业务连续性的故障，其他请求按约定响应时间安排。"+
+        "\n\n人员培训分为管理员操作和日常使用两个层次，通过实操演练完成能力确认。最终交付包含配置清单、操作手册和培训签到记录。"+
+        "\n\n本项目配置四名实施人员，预计工作周期为38天，报价金额为119万元。"
+    }
+  ];
+  state.files=docs.map((file,i)=>({
+    id:"demo"+i,name:file.name,text:file.text,size:new Blob([file.text]).size,
+    ext:"txt",status:"ready",message:"演示数据 · 非真实投标文件",
+    pages:0,encoding:"示例文本"
+  }));
+  state.page="files";render();
+  toast("示例已载入。先开始对比，再尝试排除前三行统一模板。");
+}
+
+/* ================= 事件与启动 ================= */
+function closeMenu(){
+  $("sidebar").classList.remove("open");
+  $("backdrop").classList.remove("open");
+  $("menuBtn").setAttribute("aria-expanded","false");
+}
+$("menuBtn").onclick=()=>{
+  const open=!$("sidebar").classList.contains("open");
+  $("sidebar").classList.toggle("open",open);
+  $("backdrop").classList.toggle("open",open);
+  $("menuBtn").setAttribute("aria-expanded",String(open));
+};
+$("backdrop").onclick=closeMenu;
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape")closeMenu();
+});
+document.querySelectorAll("[data-page]").forEach(n=>{
+  n.onclick=()=>changePage(n.dataset.page);
+});
+$("addBtn").onclick=()=>{if(!state.busy)$("fileInput").click();};
+$("fileInput").onchange=event=>{
+  const files=[...event.target.files];event.target.value="";addFiles(files);
+};
+$("analyzeBtn").onclick=analyze;
+$("exportBtn").onclick=exportReport;
+$("demoBtn").onclick=loadDemo;
+document.addEventListener("dragover",event=>{
+  if([...event.dataTransfer.types].includes("Files"))event.preventDefault();
+});
+document.addEventListener("drop",event=>{
+  if([...event.dataTransfer.types].includes("Files"))event.preventDefault();
+});
+window.addEventListener("beforeunload",event=>{
+  if(state.busy){event.preventDefault();event.returnValue="";}
+});
+render();
+</script>
+</body>
+</html>

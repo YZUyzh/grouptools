@@ -490,6 +490,21 @@
         "files/实用工具-c84e37c6/投标报价工具.html"
       ],
       "bundleRoot": ""
+    },
+    {
+      "id": "19463936-b368-4d5c-8b13-81f01efb228b",
+      "title": "文件内容相似性检查",
+      "category": "d448c715-17da-4149-81d9-2e4bb3196b48",
+      "type": "tool",
+      "url": "./files/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7-c84e37c6/%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%9B%B8%E4%BC%BC%E6%80%A7%E6%A3%80%E6%9F%A5.html",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "code",
+      "iconMode": "builtin",
+      "managedFiles": [
+        "files/实用工具-c84e37c6/文件内容相似性检查.html"
+      ],
+      "bundleRoot": ""
     }
   ]
 }
