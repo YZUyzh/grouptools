@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>教师文件工作台 · 本地档案</title>
+<style>
+:root{--bg:#f5f6f8;--paper:#fff;--ink:#283247;--muted:#667085;--line:#e8ebf0;--purple:#6956aa;--soft:#f0edf8;--green:#31725d;--amber:#886120}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 system-ui,"Microsoft YaHei",sans-serif}
+[hidden]{display:none!important}button,input,select,textarea{font:inherit}button,input,select,textarea{border:1px solid #dce1e9;border-radius:8px;padding:6px 10px;color:inherit;background:white}button{cursor:pointer}button:hover:not(:disabled){border-color:#a798cf}button:disabled{opacity:.48;cursor:not-allowed}.primary{background:var(--purple);color:white;border-color:var(--purple)}:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.shell{display:grid;grid-template-columns:238px minmax(0,1fr);min-height:100vh}
+aside{background:#fbfcfd;border-right:1px solid var(--line);padding:24px 15px}.brand{display:flex;align-items:center;gap:10px;margin-bottom:22px}.mark{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--soft);color:var(--purple);font-size:21px}.brand strong{font-size:16px}.hint,small{color:var(--muted);font-size:12px}.brand small{display:block}
+main{min-width:0;padding:26px 30px}.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.nav{display:block;width:100%;text-align:left;border:0;background:none;margin:3px 0;overflow-wrap:anywhere}.nav:hover,.nav.active{background:var(--soft);color:var(--purple)}
+h1,h2,p{margin:0}h1{font-size:23px}h2{font-size:15px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:13px;margin-top:15px;padding:16px;box-shadow:0 3px 18px #1e283c08}.space{margin-top:10px}.name{overflow-wrap:anywhere;min-width:0}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line)}.row:first-child{margin-top:10px}.row .actions{flex-shrink:0}
+.pill{display:inline-block;margin:3px 5px 0 0;padding:1px 7px;border-radius:12px;background:var(--soft);color:var(--purple);font-size:11px}.ok{color:var(--green)}.missing{color:var(--amber)}#notice{margin-top:12px;padding:9px 12px;border-radius:8px;background:var(--soft);white-space:pre-wrap;overflow-wrap:anywhere}.error{color:#a04453;white-space:pre-wrap;overflow-wrap:anywhere}
+dialog{width:min(540px,calc(100% - 30px));max-height:85vh;border:1px solid var(--line);border-radius:14px;padding:20px;color:var(--ink)}dialog::backdrop{background:#18223466}label{display:block;margin:12px 0}label input:not([type=checkbox]),label textarea,label select{display:block;width:100%;margin-top:5px}textarea{min-height:110px}.end{justify-content:flex-end;margin-top:14px}.crumb{border:0;background:none;padding:3px 4px;color:var(--purple)}.crumb:disabled{opacity:1;color:var(--muted)}
+@media(max-width:680px){.shell{grid-template-columns:1fr}aside{padding:14px;border-right:0;border-bottom:1px solid var(--line)}main{padding:14px}#nav{max-height:155px;overflow:auto}.row{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside>
+    <div class="brand"><span class="mark" aria-hidden="true">▤</span><div><strong>教师文件工作台</strong><small>扬州大学 · 教学科研档案</small></div></div>
+    <div class="actions"><button id="pick">选择总目录</button><button id="restore" hidden>恢复访问</button></div>
+    <p id="rootLabel" class="hint space">尚未连接目录</p>
+    <p class="hint space">当前目录的子文件夹</p>
+    <nav id="nav" aria-label="本地文件夹"></nav>
+  </aside>
+  <main>
+    <header class="bar"><div><small>WORKSPACE / LOCAL FILES</small><h1 id="title">教学科研文件</h1></div>
+      <div class="actions"><button id="refresh" disabled>刷新</button><button id="templates" disabled>管理模板</button></div>
+    </header>
+    <p id="notice" role="status" hidden></p>
+    <section class="panel" id="welcome">
+      <h2>选择本地总目录</h2>
+      <p class="hint space">建议使用桌面版 Edge 或 Chrome。GitHub 只负责站点访问控制；本工具不把文件或配置发往 GitHub。</p>
+    </section>
+    <div id="workspace" hidden>
+      <section class="panel bar">
+        <nav id="path" class="actions" aria-label="当前路径"></nav>
+        <div class="actions"><button id="make">新建文件夹</button><button id="import" class="primary">导入到本地</button></div>
+      </section>
+      <section class="panel">
+        <div class="bar"><h2>材料清单</h2><div class="actions"><select id="template" aria-label="当前目录的材料模板"></select><button id="apply">应用模板</button></div></div>
+        <p id="summary" class="hint space"></p><div id="checklist"></div>
+      </section>
+      <section class="panel">
+        <div class="bar"><h2 id="heading">当前文件</h2><input id="search" type="search" placeholder="搜索名称或标签" aria-label="搜索名称或标签"></div>
+        <div id="files"></div>
+      </section>
+    </div>
+  </main>
+</div>
+<input id="incoming" type="file" multiple hidden>
+<dialog id="dialog"><form id="form"><h2 id="dialogTitle"></h2><div id="fields"></div><p id="formError" class="error" role="alert"></p>
+  <div class="actions end"><button id="cancel" type="button">取消</button><button id="submit" class="primary">保存</button></div>
+</form></dialog>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const CONFIG="教师文件工作台.json", LOCK="yzu-local-files-writes";
+const defaults=[
+  {id:"teaching",name:"课程归档",rules:[["教学大纲",["教学大纲"]],["授课计划",["授课计划","进度表"]],["成绩分析",["成绩分析"]]]},
+  {id:"research",name:"科研项目结题",rules:[["立项材料",["立项通知","立项批文"]],["任务书",["任务书","项目合同"]],["结题报告",["结题报告"]],["成果清单",["成果清单","成果汇总"]]]}
+];
+let remembered=null,root=null,stack=[],entries=[],state=null,baseline=null,busy=false,submitAction=null;
+const current=()=>stack.at(-1);
+const parts=()=>stack.slice(1).map(h=>h.name);
+const key=a=>JSON.stringify(a);
+const own=(obj,k)=>Object.hasOwn(obj,k)?obj[k]:undefined;
+const norm=s=>s.normalize("NFKC").toLowerCase();
+const stem=s=>s.lastIndexOf(".")>0?s.slice(0,s.lastIndexOf(".")):s;
+const code=segments=>"#"+segments.join(segments.some(n=>n>9)?".":"");
+const dict=o=>o!==null&&typeof o==="object"&&!Array.isArray(o);
+function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
+function button(text,fn,cls=""){const b=el("button",text,cls);b.type="button";b.onclick=fn;b.disabled=busy;return b;}
+function note(text="",error=false){$("notice").hidden=!text;$("notice").textContent=text;$("notice").classList.toggle("error",error);}
+const err=e=>e.name==="NotFoundError"?"找不到目录或文件。请检查磁盘是否已连接，或重新选择总目录。":e.message||String(e);
+function controls(value){
+  busy=value;
+  for(const id of ["pick","restore","refresh","templates","make","import","apply","submit","cancel"])$(id).disabled=value||(!root&&["refresh","templates","make","import","apply"].includes(id));
+}
+async function run(fn){
+  if(busy)return;
+  controls(true);try{await fn();}catch(e){note(err(e),true);}finally{controls(false);render();}
+}
+function db(mode,value){
+  return new Promise((resolve,reject)=>{
+    const open=indexedDB.open("yzu-local-workspace",1);
+    open.onupgradeneeded=()=>open.result.createObjectStore("settings");
+    open.onerror=()=>reject(open.error);
+    open.onsuccess=()=>{
+      const database=open.result,tx=database.transaction("settings",mode),store=tx.objectStore("settings");
+      const request=mode==="readonly"?store.get("directory"):store.put(value,"directory");
+      tx.oncomplete=()=>{database.close();resolve(request.result);};
+      tx.onabort=()=>{database.close();reject(tx.error||Error("无法保存目录授权。"));};
+    };
+  });
+}
+function parse(text){
+  const d=text===null?{version:1,templates:structuredClone(defaults),folders:{},tags:{}}:JSON.parse(text.replace(/^\uFEFF/,""));
+  if(!dict(d)||d.version!==1||!Array.isArray(d.templates)||!dict(d.folders)||!dict(d.tags))throw Error("配置 JSON 无效，没有覆盖原文件。");
+  if(!Object.hasOwn(d,"numbers"))d.numbers={};
+  if(!dict(d.numbers))throw Error("目录编号记录无效。");
+  const ids=new Set();
+  for(const t of d.templates){
+    if(!dict(t)||typeof t.id!=="string"||!t.id||ids.has(t.id)||typeof t.name!=="string"||!t.name.trim()||
+       !Array.isArray(t.rules)||!t.rules.length||t.rules.some(r=>!Array.isArray(r)||r.length!==2||typeof r[0]!=="string"||!r[0].trim()||!Array.isArray(r[1])||!r[1].length||r[1].some(k=>typeof k!=="string"||!k.trim())))throw Error("材料模板格式无效。");
+    ids.add(t.id);
+  }
+  if(Object.values(d.folders).some(id=>!ids.has(id))||Object.values(d.tags).some(a=>!Array.isArray(a)||a.some(t=>typeof t!=="string")))throw Error("标签或模板关联格式无效。");
+  for(const group of Object.values(d.numbers)){
+    if(!dict(group))throw Error("编号分组无效。");
+    const all=Object.values(group);
+    if(new Set(all).size!==all.length||all.some(n=>!Number.isSafeInteger(n)||n<1))throw Error("目录编号重复或无效。");
+  }
+  return d;
+}
+async function readConfig(dir){
+  let h;
+  try{h=await dir.getFileHandle(CONFIG);}catch(e){if(e.name==="NotFoundError")return null;throw e;}
+  return (await h.getFile()).text();
+}
+const locked=fn=>navigator.locks.request(LOCK,fn);
+async function fresh(){
+  if(await readConfig(root)!==baseline)throw Error("配置已在其他页面或程序中修改。请先刷新。");
+}
+// 调用方持有同站点写锁；外部程序不受该锁约束。
+async function save(next){
+  await fresh();
+  const text=JSON.stringify(next,null,2)+"\n";
+  const h=await root.getFileHandle(CONFIG,{create:true});
+  const w=await h.createWritable();
+  try{await w.write(text);await w.close();}catch(e){try{await w.abort();}catch{}throw e;}
+  state=next;baseline=text;
+}
+async function scan(dir,base){
+  const out=[];
+  for await(const h of dir.values())if(!(dir===base&&norm(h.name)===norm(CONFIG)))out.push(h);
+  return out.sort((a,b)=>a.name.localeCompare(b.name,"zh-CN",{numeric:true}));
+}
+function allocate(d,list,p){
+  const k=key(p),group=own(d.numbers,k)||{};
+  let max=0,changed=false;
+  for(const n of Object.values(group))max=Math.max(max,n);
+  for(const h of list){
+    if(h.kind!=="directory")continue;
+    const k=key([h.name]);
+    if(own(group,k)!==undefined)continue;
+    if(max>=Number.MAX_SAFE_INTEGER)throw Error("编号超出上限。");
+    group[k]=++max;changed=true;
+  }
+  if(changed)d.numbers[k]=group;
+  return changed;
+}
+async function syncNumbers(){
+  const next=structuredClone(state);
+  if(allocate(next,entries,parts()))await save(next);
+}
+function segment(p,name){return own(own(state.numbers,key(p))||{},key([name]));}
+function label(p,name){
+  const full=[...p,name],nums=full.map((n,i)=>segment(full.slice(0,i),n));
+  return nums.every(Number.isSafeInteger)?code(nums)+" "+name:name;
+}
+async function connect(h){
+  const text=await readConfig(h),config=parse(text),list=await scan(h,h);
+  root=h;stack=[h];entries=list;state=config;baseline=text;$("search").value="";
+  try{await locked(syncNumbers);note("已连接本地目录。");}
+  catch(e){note("目录已打开，但未能保存自动编号："+err(e),true);}
+}
+async function go(trail){
+  const list=await scan(trail.at(-1),root);
+  stack=trail;entries=list;$("search").value="";
+  await locked(syncNumbers);note();
+}
+async function refresh(){
+  const text=await readConfig(root),config=parse(text);
+  let list;
+  try{list=await scan(current(),root);}
+  catch(e){if(e.name!=="NotFoundError")throw e;list=await scan(root,root);stack=[root];}
+  baseline=text;state=config;entries=list;
+  await locked(syncNumbers);note("已刷新目录、编号和材料清单。");
+}
+function render(){
+  $("rootLabel").textContent=(root||remembered)?.name||"尚未连接目录";
+  $("restore").hidden=!remembered||!!root;$("workspace").hidden=!root;$("welcome").hidden=!!root;
+  $("nav").replaceChildren();$("path").replaceChildren();
+  if(!root)return;
+  $("title").textContent=stack.length===1?root.name:label(parts().slice(0,-1),current().name);
+  stack.forEach((h,i)=>{
+    if(i)$("path").append(el("span","›","hint"));
+    const b=button(i?label(parts().slice(0,i-1),h.name):h.name,()=>run(()=>go(stack.slice(0,i+1))),"crumb");
+    if(i===stack.length-1){b.disabled=true;b.setAttribute("aria-current","location");}
+    $("path").append(b);
+  });
+  const dirs=entries.filter(h=>h.kind==="directory"),p=parts();
+  dirs.sort((a,b)=>(segment(p,a.name)??Infinity)-(segment(p,b.name)??Infinity));
+  for(const h of dirs)$("nav").append(button("▸ "+label(p,h.name),()=>run(()=>go([...stack,h])),"nav"));
+  if(!dirs.length)$("nav").append(el("p","没有子文件夹","hint"));
+  const id=own(state.folders,key(p))||"",t=state.templates.find(t=>t.id===id);
+  $("template").replaceChildren(new Option("不使用模板",""),...state.templates.map(t=>new Option(t.name,t.id)));$("template").value=id;
+  $("checklist").replaceChildren();
+  let found=0;
+  const files=entries.filter(h=>h.kind==="file");
+  for(const [name,words] of t?.rules||[]){
+    const matches=files.filter(h=>words.some(w=>norm(stem(h.name)).includes(norm(w.trim()))));
+    if(matches.length)found++;
+    const row=el("div",undefined,"row"),detail=el("div",undefined,"name");
+    detail.append(el("strong",name),el("p",matches.length?matches.map(h=>h.name).join("、"):"匹配词："+words.join(" / "),"hint"));
+    row.append(detail,el("strong",matches.length?"已找到":"缺少",matches.length?"ok":"missing"));$("checklist").append(row);
+  }
+  $("summary").textContent=t?`${t.name} · 已找到 ${found} 项 · 缺少 ${t.rules.length-found} 项（仅核对本级文件名）`:"选择材料模板后，可核对当前目录已有和缺少的材料。";
+  renderFiles();
+}
+function renderFiles(){
+  if(!root)return;
+  const q=norm($("search").value.trim()),list=$("files");list.replaceChildren();
+  const all=entries.filter(h=>h.kind==="file");
+  const visible=all.filter(h=>[h.name,...(own(state.tags,key([...parts(),h.name]))||[])].some(v=>norm(v).includes(q)));
+  $("heading").textContent=`当前文件 · ${visible.length} / ${all.length}`;
+  for(const h of visible){
+    const row=el("div",undefined,"row"),info=el("div",undefined,"name"),actions=el("div",undefined,"actions");
+    info.append(el("div",h.name));
+    for(const tag of own(state.tags,key([...parts(),h.name]))||[])info.append(el("span",tag,"pill"));
+    actions.append(button("标签",()=>editTags(h)),button("改名 / 时间戳",()=>editName(h)));
+    row.append(info,actions);list.append(row);
+  }
+  if(!visible.length)list.append(el("p",q?"没有匹配文件。":"当前目录没有文件。","hint space"));
+}
+function field(title,input){const label=el("label",title);label.append(input);return label;}
+function input(value="",length=200){const n=el("input");n.value=value;n.maxLength=length;return n;}
+function modal(title,fields,action){
+  if(busy)return;
+  $("dialogTitle").textContent=title;$("fields").replaceChildren(...fields);$("formError").textContent="";
+  submitAction=action;$("dialog").showModal();
+}
+$("form").onsubmit=async e=>{
+  e.preventDefault();if(busy)return;
+  controls(true);$("formError").textContent="";
+  try{await locked(submitAction);$("dialog").close();}
+  catch(e){$("formError").textContent=err(e);}
+  finally{controls(false);render();}
+};
+$("cancel").onclick=()=>$("dialog").close();
+$("dialog").addEventListener("cancel",e=>{if(busy)e.preventDefault();});
+function editTags(h){
+  const k=key([...parts(),h.name]),value=input((own(state.tags,k)||[]).join("，"),500);
+  modal("标签 · "+h.name,[field("用逗号分隔多个标签",value)],async()=>{
+    await current().getFileHandle(h.name);
+    const next=structuredClone(state),tags=[...new Set(value.value.split(/[,，;；]/).map(s=>s.trim()).filter(Boolean))];
+    if(tags.length)next.tags[k]=tags;else delete next.tags[k];
+    await save(next);note("标签已保存。");
+  });
+}
+function validateName(name){
+  if(!name||name.length>240||/[<>:"/\\|?*\u0000-\u001f]/.test(name)||/[. ]$/.test(name)||/^(con|prn|aux|nul|com[1-9¹²³]|lpt[1-9¹²³])(?:[ .]|$)/i.test(name))throw Error("不支持的文件名或文件夹名："+name);
+  if(stack.length===1&&norm(name)===norm(CONFIG))throw Error("该名称为工作台配置保留。");
+}
+async function taken(dir,name){
+  for await(const h of dir.values())if(norm(h.name)===norm(name))return true;
+  return false;
+}
+function editName(h){
+  const base=stem(h.name),ext=h.name.slice(base.length),name=input(base,240),suffix=input("",80),mode=el("select"),preview=el("p",undefined,"hint name");
+  for(const [value,text] of [["none","不加日期"],["date","今天日期"],["time","日期和时间"],["modified","文件修改日期"]])mode.append(new Option(text,value));
+  const now=new Date();let modified=null;
+  function stamp(d,time){
+    const pad=v=>String(v).padStart(2,"0");
+    return [d.getFullYear(),pad(d.getMonth()+1),pad(d.getDate())].join("-")+(time?"_"+[d.getHours(),d.getMinutes(),d.getSeconds()].map(pad).join(""):"");
+  }
+  const proposed=()=>[name.value.trim(),mode.value==="none"?"":mode.value==="modified"?(modified?stamp(modified,false):""):stamp(now,mode.value==="time"),suffix.value.trim()].filter(Boolean).join("_")+ext;
+  const paint=()=>{preview.textContent="预览："+proposed();};
+  h.getFile().then(f=>{modified=new Date(f.lastModified);paint();}).catch(()=>{});
+  name.oninput=suffix.oninput=mode.onchange=paint;paint();
+  modal("改名 / 添加时间戳",[field("文件基本名称",name),field("日期后缀",mode),field("附加信息，如 V2、定稿",suffix),preview,
+    el("p","若浏览器不支持直接改名，请在系统文件管理器中改名。工作台不会复制后删除原件。","hint")],async()=>{
+    if(!name.value.trim())throw Error("请输入基本名称。");
+    if(mode.value==="modified"&&!modified)throw Error("未能读取文件修改日期。");
+    const target=proposed();validateName(target);
+    if(target===h.name)return;
+    if(typeof h.move!=="function")throw Error("浏览器不支持直接改名，请在系统文件管理器操作。");
+    await fresh();
+    if(await taken(current(),target))throw Error("已存在同名项目，未改名。");
+    const oldKey=key([...parts(),h.name]),newKey=key([...parts(),target]),tags=own(state.tags,oldKey);
+    try{await h.move(target);}catch(e){
+      if(["NotSupportedError","InvalidStateError"].includes(e.name))throw Error("浏览器不支持此本地文件直接改名，请在系统文件管理器操作。");
+      throw e;
+    }
+    if(tags){
+      const next=structuredClone(state);delete next.tags[oldKey];next.tags[newKey]=tags;
+      try{await save(next);}catch(e){note("文件已改名，但标签未迁移："+err(e),true);entries=await scan(current(),root);return;}
+    }
+    entries=await scan(current(),root);note("文件已改名："+target);
+  });
+}
+$("templates").onclick=()=>{
+  const select=el("select"),name=input("",60),rules=el("textarea");
+  select.append(new Option("＋ 新建模板",""),...state.templates.map(t=>new Option(t.name,t.id)));
+  select.value=own(state.folders,key(parts()))||"";
+  const fill=()=>{const t=state.templates.find(t=>t.id===select.value);name.value=t?.name||"";rules.value=t?t.rules.map(([n,w])=>n+" | "+w.join(" / ")).join("\n"):"";};
+  select.onchange=fill;fill();
+  modal("管理材料模板",[field("选择模板",select),field("模板名称",name),field("材料规则",rules),
+    el("p","每行一项：材料名称 | 关键词1 / 关键词2。任一关键词出现在文件名中，即显示已找到。","hint")],async()=>{
+    const title=name.value.trim(),rows=rules.value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+    if(!title||!rows.length||rows.length>100)throw Error("请输入模板名称和 1–100 项材料规则。");
+    const parsed=rows.map((row,i)=>{
+      const [label,words=label,...rest]=row.split(/[|｜]/),terms=words.split(/[/／]/).map(s=>s.trim()).filter(Boolean);
+      if(rest.length||!label.trim()||!terms.length)throw Error("第 "+(i+1)+" 行规则不完整。");
+      return [label.trim(),terms];
+    });
+    const next=structuredClone(state),id=select.value||crypto.randomUUID();
+    const index=next.templates.findIndex(t=>t.id===id),record={id,name:title,rules:parsed};
+    if(index<0)next.templates.push(record);else next.templates[index]=record;
+    await save(next);note("模板已保存，可应用到多个同类文件夹。");
+  });
+};
+$("apply").onclick=()=>{
+  const id=$("template").value;
+  run(()=>locked(async()=>{
+    const next=structuredClone(state),k=key(parts());
+    if(id)next.folders[k]=id;else delete next.folders[k];
+    await save(next);note(id?"已应用模板。":"已取消模板。");
+  }));
+};
+$("make").onclick=()=>{
+  const name=input("",180);
+  modal("新建本地文件夹",[field("文件夹名称",name),el("p","编号自动显示在界面中，不写入磁盘目录名。","hint")],async()=>{
+    const value=name.value.trim();validateName(value);await fresh();
+    if(await taken(current(),value))throw Error("已存在同名项目。");
+    await current().getDirectoryHandle(value,{create:true});
+    entries=await scan(current(),root);
+    try{await syncNumbers();note("已创建："+label(parts(),value));}
+    catch(e){note("文件夹已创建，但编号未保存。请刷新。"+err(e),true);}
+  });
+};
+$("import").onclick=()=>{if(!busy&&root){$("incoming").value="";$("incoming").click();}};
+$("incoming").onchange=()=>{
+  const files=[...$("incoming").files],dir=current();
+  if(!dir||!files.length||busy)return;
+  if(!confirm(`复制 ${files.length} 个文件到「${dir.name}」？原文件保留，同名跳过。`))return;
+  run(()=>locked(async()=>{
+    let copied=0;const skipped=[],failed=[];
+    const names=new Set();
+    for await(const h of dir.values())names.add(norm(h.name));
+    for(const file of files){
+      let writer;
+      try{
+        validateName(file.name);
+        const n=norm(file.name);
+        if(names.has(n)||await taken(dir,file.name)){skipped.push(file.name);continue;}
+        const handle=await dir.getFileHandle(file.name,{create:true});
+        names.add(n);
+        writer=await handle.createWritable();
+        await file.stream().pipeTo(writer);
+        copied++;
+      }catch(e){
+        if(writer&&!writer.locked)try{await writer.abort();}catch{}
+        failed.push(file.name+"："+err(e));
+      }
+    }
+    entries=await scan(dir,root);
+    note(`已复制 ${copied} 个；同名跳过 ${skipped.length} 个；失败 ${failed.length} 个。`+
+      (failed.length?"\n"+failed.slice(0,8).join("\n")+"\n失败项可能留下空文件，请检查目标目录。":""),!!failed.length);
+  }));
+};
+$("search").oninput=renderFiles;
+$("refresh").onclick=()=>run(refresh);
+$("pick").onclick=()=>run(async()=>{
+  if(!window.showDirectoryPicker||!navigator.locks)throw Error("请用桌面版 Edge 或 Chrome 打开 HTTPS 站点。");
+  let h;try{h=await showDirectoryPicker({mode:"readwrite",id:"yzu-teacher-files"});}catch(e){if(e.name==="AbortError")return;throw e;}
+  await connect(h);remembered=h;
+  try{await db("readwrite",h);}catch{note("目录已连接，但浏览器未能记住它。下次可能需要重新选择。",true);}
+});
+$("restore").onclick=()=>run(async()=>{
+  if(await remembered.requestPermission({mode:"readwrite"})!=="granted")throw Error("未获得目录访问权限。可重试，或重新选择总目录。");
+  await connect(remembered);
+});
+run(async()=>{
+  if(!window.showDirectoryPicker||!navigator.locks){note("请在桌面版 Edge 或 Chrome 中打开正式部署的 HTTPS 页面。",true);return;}
+  try{remembered=await db("readonly");}catch{note("无法读取已记住的目录，请手动选择。",true);return;}
+  if(!remembered)return;
+  if(await remembered.queryPermission({mode:"readwrite"})==="granted")await connect(remembered);
+  else note("已记住目录。点击「恢复访问」重新授权，无需重新选目录。");
+});
+</script>
+</body>
+</html>
