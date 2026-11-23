@@ -505,21 +505,6 @@
         "files/实用工具-c84e37c6/文件内容相似性检查.html"
       ],
       "bundleRoot": ""
-    },
-    {
-      "id": "83320741-e082-40a2-b555-2e545f3a3b05",
-      "title": "扬州大学教师 · 本地文件工作台",
-      "category": "d448c715-17da-4149-81d9-2e4bb3196b48",
-      "type": "tool",
-      "url": "./files/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7-c84e37c6/%E6%89%AC%E5%B7%9E%E5%A4%A7%E5%AD%A6%E6%95%99%E5%B8%88%20%C2%B7%20%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%B7%A5%E4%BD%9C%E5%8F%B0.html",
-      "description": "个人文件管理工具",
-      "iconUrl": "./icon/a301c01f-3254-423e-90d8-8a413830130b.png",
-      "iconPreset": "code",
-      "iconMode": "auto",
-      "managedFiles": [
-        "files/实用工具-c84e37c6/扬州大学教师 · 本地文件工作台.html"
-      ],
-      "bundleRoot": ""
     }
   ]
 }
