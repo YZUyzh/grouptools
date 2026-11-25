@@ -528,9 +528,9 @@
       "type": "tool",
       "url": "./files/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7-ef46255c/%E6%89%AC%E5%B7%9E%E5%A4%A7%E5%AD%A6%E5%B7%A5%E4%BD%9C%E9%87%8F%E8%80%83%E6%A0%B8%E7%B3%BB%E7%BB%9F.html",
       "description": "",
-      "iconUrl": "",
+      "iconUrl": "./icon/a159e771-478d-4701-b182-e2bd07abdcf9.png",
       "iconPreset": "code",
-      "iconMode": "builtin",
+      "iconMode": "auto",
       "managedFiles": [
         "files/常用工具-ef46255c/扬州大学工作量考核系统.html"
       ],
