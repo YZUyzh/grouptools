@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>办事流程 · 工作台</title>
+<style>
+:root{--bg:#f5f6f8;--paper:#fff;--ink:#283247;--muted:#667085;--line:#e8ebf0;--purple:#7463b9;--soft:#f0edf8;--danger:#ba5261}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 system-ui,"Microsoft YaHei",sans-serif}
+button,input,select,textarea{font:inherit}
+button,a{touch-action:manipulation}
+button{cursor:pointer}
+button:disabled{opacity:.55;cursor:wait}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid #d5ccef;outline-offset:2px}
+.shell{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:100dvh}
+aside{background:#fbfcfd;border-right:1px solid var(--line);padding:24px 15px}
+.brand{display:flex;align-items:center;gap:11px;margin:0 5px 25px}
+.mark{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--soft);color:var(--purple);font-size:21px}
+small,.muted{color:var(--muted)}
+small{display:block;font-size:10px;letter-spacing:1px}
+.navhead,.bar,.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.navhead{margin-bottom:10px;color:var(--muted);font-size:12px}
+nav{display:grid;gap:4px}
+nav button{text-align:left;border:0;background:none;padding:9px 11px;border-radius:8px;color:var(--muted);overflow-wrap:anywhere}
+nav button:hover,nav button[aria-current]{background:var(--soft);color:var(--purple)}
+main{padding:26px 30px;max-width:1180px;width:100%;margin:auto 0;align-self:start}
+h1,h2,h3,p{margin:0;overflow-wrap:anywhere}
+h1{font-size:23px} h2{font-size:16px} h3{font-size:14px}
+header{margin-bottom:15px}
+.actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:6px 11px;min-height:32px;border:1px solid #dce1e9;border-radius:8px;background:#fff;color:var(--muted);font-size:12px;text-decoration:none}
+.btn:hover{background:#f8f7fc;color:var(--purple)}
+.primary,.primary:hover{background:var(--purple);border-color:var(--purple);color:white}
+.danger,.danger:hover{color:var(--danger)}
+.tabs{margin-bottom:12px}
+.tabs [aria-pressed=true]{color:var(--purple);background:var(--soft);border-color:var(--soft)}
+.panel{padding:17px;background:var(--paper);border:1px solid var(--line);border-radius:13px;box-shadow:0 3px 18px #1e283c08}
+.stack{display:grid;gap:10px;margin-top:13px}
+.card{border:1px solid var(--line);padding:12px;border-radius:9px;min-width:0}
+.step{display:inline-block;color:var(--purple);margin-right:7px}
+.note{white-space:pre-wrap;margin:7px 0;color:var(--muted);font-size:13px}
+.entry{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:7px 0;min-width:0}
+.entry+.entry{border-top:1px solid var(--line)}
+.entry span{overflow-wrap:anywhere}
+.empty{padding:16px 0;color:var(--muted);font-size:13px}
+#status{margin:0 0 12px;color:var(--purple)}
+#status.error{color:var(--danger)}
+dialog{width:min(460px,calc(100% - 24px));border:1px solid var(--line);border-radius:14px;padding:20px;color:var(--ink);max-height:90dvh;overflow:auto}
+dialog::backdrop{background:#18223461}
+form{display:grid;gap:12px}
+label{display:grid;gap:5px;color:var(--muted);font-size:13px}
+input,textarea,select{width:100%;min-width:0;padding:8px 9px;border:1px solid #dce1e9;background:#fcfcfe;border-radius:8px;color:var(--ink)}
+textarea{min-height:80px;resize:vertical}
+.end{justify-content:flex-end}
+#formError{color:var(--danger);font-size:12px}
+@media(max-width:650px){.shell{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line);padding:14px}main{padding:15px 12px}.brand{margin-bottom:11px}nav{display:flex;flex-wrap:wrap}nav button{max-width:100%;padding:5px 9px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside>
+    <div class="brand"><span class="mark" aria-hidden="true">↳</span><div><strong>办事流程</strong><small>WORKFLOW DESK</small></div></div>
+    <div class="navhead"><span>流程目录</span><button class="btn" id="newFlow" disabled>＋ 新建流程</button></div>
+    <nav id="flowList" aria-label="流程目录"></nav>
+  </aside>
+  <main>
+    <header class="bar"><div><small>WORKSPACE / WORKFLOWS</small><h1>流程工作台</h1></div><button class="btn" id="settings" disabled>GitHub 设置</button></header>
+    <div class="actions tabs" aria-label="工作区">
+      <button class="btn" data-tab="flow" aria-pressed="true">流程节点</button>
+      <button class="btn" data-tab="templates" aria-pressed="false">模板文件</button>
+      <button class="btn" data-tab="examples" aria-pressed="false">授权样例</button>
+    </div>
+    <p id="status" role="status" hidden></p>
+    <section class="panel" id="content">正在读取本地数据…</section>
+  </main>
+</div>
+<dialog id="dialog">
+  <form id="form" autocomplete="off">
+    <h2 id="dialogTitle"></h2>
+    <div class="stack" id="fields"></div>
+    <p id="formError" role="alert" hidden></p>
+    <div class="actions end"><button type="button" class="btn" id="cancel">取消</button><button class="btn primary" id="submit">保存</button></div>
+  </form>
+</dialog>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const initial = () => ({flows:[],templates:[],examples:[],github:{owner:"",repo:"",ref:"main"}});
+let db, state, active = null, tab = "flow", formAction, locked = false;
+const uid = () => globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+function el(tag,text,cls){
+  const node=document.createElement(tag);
+  if(text!=null)node.textContent=text;
+  if(cls)node.className=cls;
+  return node;
+}
+function button(text,fn,cls=""){
+  const b=el("button",text,`btn ${cls}`);
+  b.type="button"; b.addEventListener("click",fn); return b;
+}
+function group(...children){
+  const g=el("div",null,"actions");g.append(...children);return g;
+}
+function header(text,...actions){
+  const h=el("div",null,"bar");h.append(el("h2",text),group(...actions));return h;
+}
+function status(text="",error=false){
+  $("status").hidden=!text;$("status").textContent=text;$("status").classList.toggle("error",error);
+}
+function formError(text=""){
+  $("formError").hidden=!text;$("formError").textContent=text;
+}
+function openDB(){
+  return new Promise((resolve,reject)=>{
+    const r=indexedDB.open("workflow-desk-v1",1);
+    r.onupgradeneeded=()=>r.result.createObjectStore("data");
+    r.onsuccess=()=>resolve(r.result);
+    r.onerror=()=>reject(r.error);
+  });
+}
+function read(){
+  return new Promise((resolve,reject)=>{
+    const r=db.transaction("data").objectStore("data").get("main");
+    r.onsuccess=()=>resolve(r.result||initial());r.onerror=()=>reject(r.error);
+  });
+}
+async function save(change){
+  const next=structuredClone(state);
+  change(next);
+  await new Promise((resolve,reject)=>{
+    const tx=db.transaction("data","readwrite");
+    tx.oncomplete=resolve;
+    tx.onabort=()=>reject(tx.error||new Error("保存中断。"));
+    tx.objectStore("data").put(next,"main");
+  });
+  state=next;
+  if(!state.flows.some(f=>f.id===active))active=state.flows[0]?.id||null;
+  render();
+}
+async function mutate(change){
+  if(locked)return;
+  locked=true;
+  try{await save(change);status("已保存。");}
+  catch(e){status(`保存失败：${e.message}`,true);}
+  finally{locked=false;}
+}
+function remove(text,change){
+  if(confirm(`删除「${text}」？`))mutate(change);
+}
+const keep=(list,id)=>list.filter(item=>item.id!==id);
+const flowBy=(s,id)=>s.flows.find(f=>f.id===id);
+const nodeBy=(s,fid,nid)=>flowBy(s,fid).nodes.find(n=>n.id===nid);
+function required(value,label){
+  const v=value.trim();
+  if(!v)throw new Error(`请填写${label}。`);
+  return v;
+}
+function webURL(value){
+  let u;
+  try{u=new URL(value.trim());}catch{throw new Error("请输入完整的网址。");}
+  if(!["http:","https:"].includes(u.protocol)||u.username||u.password)
+    throw new Error("仅支持不含账号密码的 HTTP 或 HTTPS 网址。");
+  return u.href;
+}
+function download(blob,name){
+  const url=URL.createObjectURL(blob);
+  const a=el("a");a.href=url;a.download=name;
+  document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+function edit(title,spec,action,submit="保存"){
+  if(locked)return;
+  $("dialogTitle").textContent=title;
+  $("submit").textContent=submit;
+  $("fields").replaceChildren();formError();
+  const inputs={};
+  for(const [key,label,type,value="",optional=false] of spec){
+    const line=el("label",label);
+    const input=el(type==="textarea"?"textarea":"input");
+    if(type!=="textarea")input.type=type;
+    if(type!=="file")input.value=value;
+    input.required=!optional;
+    if(type==="text"||type==="textarea")input.maxLength=type==="textarea"?2000:500;
+    if(type==="password"){input.autocomplete="off";input.spellcheck=false;}
+    inputs[key]=input;line.append(input);$("fields").append(line);
+  }
+  formAction=()=>action(Object.fromEntries(Object.entries(inputs).map(([key,input])=>
+    [key,input.type==="file"?input.files[0]:input.value])));
+  $("dialog").showModal();
+  $("fields").querySelector("input,textarea")?.focus();
+}
+$("cancel").onclick=()=>{if(!locked)$("dialog").close();};
+$("dialog").addEventListener("cancel",e=>{if(locked)e.preventDefault();});
+$("dialog").addEventListener("close",()=>{$("fields").replaceChildren();formAction=null;});
+$("form").onsubmit=async e=>{
+  e.preventDefault();if(locked||!formAction)return;
+  locked=true;$("submit").disabled=true;$("cancel").disabled=true;formError();
+  try{
+    const message=await formAction();
+    $("dialog").close();status(message||"已保存。");
+  }catch(error){formError(error.message||"操作失败。");}
+  finally{locked=false;$("submit").disabled=false;$("cancel").disabled=false;}
+};
+
+function editFlow(flow){
+  edit(flow?"修改流程":"新建流程",[
+    ["title","流程名称","text",flow?.title],
+    ["note","备注（选填）","textarea",flow?.note,true]
+  ],async v=>{
+    const title=required(v.title,"流程名称"),note=v.note.trim(),id=flow?.id||uid();
+    await save(s=>{
+      if(flow)Object.assign(flowBy(s,id),{title,note});
+      else s.flows.push({id,title,note,nodes:[]});
+    });
+    active=id;tab="flow";render();
+  });
+}
+function editNode(flow,node){
+  edit(node?"修改节点":"新增节点",[
+    ["title","节点名称","text",node?.title],
+    ["note","备注（选填）","textarea",node?.note,true]
+  ],async v=>{
+    const title=required(v.title,"节点名称"),note=v.note.trim();
+    await save(s=>{
+      if(node)Object.assign(nodeBy(s,flow.id,node.id),{title,note});
+      else flowBy(s,flow.id).nodes.push({id:uid(),title,note,items:[]});
+    });
+  });
+}
+function move(flow,index,offset){
+  mutate(s=>{
+    const nodes=flowBy(s,flow.id).nodes,to=index+offset;
+    if(to>=0&&to<nodes.length)[nodes[index],nodes[to]]=[nodes[to],nodes[index]];
+  });
+}
+function addLink(flow,node){
+  edit("添加网址",[["title","显示名称","text"],["url","网址","url"]],async v=>{
+    const title=required(v.title,"名称"),url=webURL(v.url);
+    await save(s=>nodeBy(s,flow.id,node.id).items.push({id:uid(),title,url}));
+  });
+}
+function addFile(flow,node){
+  edit(node?"添加附件":"添加模板",[
+    ["title","显示名称（选填）","text","",true],["file","选择文件","file"]
+  ],async v=>{
+    if(!v.file)throw new Error("请选择文件。");
+    const item={id:uid(),title:v.title.trim()||v.file.name,name:v.file.name,file:v.file};
+    await save(s=>(node?nodeBy(s,flow.id,node.id).items:s.templates).push(item));
+  });
+}
+function itemRow(item,onDelete,onOpen){
+  const r=el("div",null,"entry");
+  let open;
+  if(item.url){
+    open=el("a","打开网址","btn");open.href=item.url;
+    open.target="_blank";open.rel="noopener noreferrer";
+  }else open=button(onOpen?"授权下载":"下载",onOpen||(()=>download(item.file,item.name)));
+  r.append(el("span",item.title),group(open,button("删除",onDelete,"danger")));
+  return r;
+}
+
+function githubSettings(){
+  const g=state.github;
+  edit("GitHub 私有仓库",[
+    ["owner","所有者","text",g.owner],["repo","仓库名","text",g.repo],
+    ["ref","分支或标签","text",g.ref]
+  ],async v=>{
+    const owner=v.owner.trim(),repo=v.repo.trim(),ref=required(v.ref,"分支或标签");
+    if(!/^[a-z0-9-]+$/i.test(owner)||!/^[a-z0-9_.-]+$/i.test(repo)||[".",".."].includes(repo))
+      throw new Error("请输入有效的 GitHub 所有者和仓库名。");
+    await save(s=>{s.github={owner,repo,ref};});
+  });
+}
+function repoPath(value){
+  const path=value.trim(),parts=path.split("/");
+  if(!path||parts.some(p=>!p||p==="."||p===".."||/[\u0000-\u001f\u007f\\]/.test(p)))
+    throw new Error("请填写仓库内的相对文件路径，例如 examples/样例.pdf。");
+  return path;
+}
+function addExample(){
+  edit("登记授权样例",[
+    ["title","样例名称","text"],["path","私有仓库文件路径","text"]
+  ],async v=>{
+    const title=required(v.title,"样例名称"),path=repoPath(v.path);
+    await save(s=>s.examples.push({id:uid(),title,path}));
+  });
+}
+async function githubFetch(url,token,accept,signal){
+  const response=await fetch(url,{
+    headers:{Accept:accept,Authorization:`Bearer ${token}`},
+    credentials:"omit",cache:"no-store",redirect:"error",referrerPolicy:"no-referrer",signal
+  });
+  if(!response.ok){
+    const messages={401:"Token 无效或已过期。",403:"没有读取权限，或已触发 GitHub 请求限制。",404:"仓库或文件不存在，或 Token 没有访问权限。"};
+    throw new Error(messages[response.status]||`GitHub 请求失败（HTTP ${response.status}）。`);
+  }
+  return response;
+}
+function accessExample(item){
+  const {owner,repo,ref}=state.github;
+  if(!owner||!repo){status("请先填写 GitHub 私有仓库设置。",true);return;}
+  edit("输入 GitHub 访问令牌",[
+    ["token","授权码（GitHub Token）","password"]
+  ],async ({token})=>{
+    $("fields").querySelector("input").value="";
+    const key=required(token,"GitHub Token");
+    const base=`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),90000);
+    try{
+      const meta=await githubFetch(base,key,"application/vnd.github+json",controller.signal);
+      if((await meta.json()).visibility!=="private")throw new Error("样例必须来自 GitHub 私有仓库。");
+      const path=repoPath(item.path).split("/").map(encodeURIComponent).join("/");
+      const result=await githubFetch(`${base}/contents/${path}?${new URLSearchParams({ref})}`,
+        key,"application/vnd.github.raw+json",controller.signal);
+      const type=result.headers.get("content-type")||"";
+      if(type.includes("application/vnd.github+json"))throw new Error("该路径未返回文件，请检查仓库路径。");
+      download(await result.blob(),item.path.split("/").pop());
+      return "已发起样例下载。";
+    }catch(e){
+      if(e.name==="AbortError")throw new Error("GitHub 请求超时，请重试。");
+      if(e instanceof TypeError)throw new Error("无法读取 GitHub 文件，请检查网络和文件路径。");
+      throw e;
+    }finally{clearTimeout(timer);}
+  },"授权下载");
+}
+
+function render(){
+  $("flowList").replaceChildren();
+  for(const f of state.flows){
+    const b=el("button",f.title);b.type="button";
+    if(f.id===active&&tab==="flow")b.setAttribute("aria-current","page");
+    b.onclick=()=>{active=f.id;tab="flow";status();render();};
+    $("flowList").append(b);
+  }
+  document.querySelectorAll("[data-tab]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.tab===tab)));
+  const content=$("content"),stack=el("div",null,"stack");
+  content.replaceChildren();
+  if(tab==="templates"){
+    content.append(header("模板文件",button("＋ 添加模板",()=>addFile(),"primary")));
+    for(const item of state.templates)stack.append(itemRow(item,()=>remove(item.title,s=>{s.templates=keep(s.templates,item.id);})));
+    if(!state.templates.length)stack.append(el("p","暂无模板。","empty"));
+  }else if(tab==="examples"){
+    content.append(header("授权样例",button("＋ 登记样例",addExample,"primary")));
+    for(const item of state.examples)stack.append(itemRow(item,
+      ()=>remove(item.title,s=>{s.examples=keep(s.examples,item.id);}),()=>accessExample(item)));
+    if(!state.examples.length)stack.append(el("p","暂无样例。","empty"));
+  }else{
+    const flow=flowBy(state,active);
+    if(!flow){
+      content.append(header("暂无流程",button("＋ 新建流程",()=>editFlow(),"primary")));return;
+    }
+    content.append(header(flow.title,
+      button("改名 / 备注",()=>editFlow(flow)),
+      button("删除流程",()=>remove(flow.title,s=>{s.flows=keep(s.flows,flow.id);}),"danger"),
+      button("＋ 新增节点",()=>editNode(flow),"primary")));
+    if(flow.note)content.append(el("p",flow.note,"note"));
+    flow.nodes.forEach((n,index)=>{
+      const card=el("article",null,"card"),row=el("div",null,"row"),title=el("h3");
+      title.append(el("span",String(index+1).padStart(2,"0"),"step"),document.createTextNode(n.title));
+      const up=button("↑",()=>move(flow,index,-1)),down=button("↓",()=>move(flow,index,1));
+      up.setAttribute("aria-label","上移节点");down.setAttribute("aria-label","下移节点");
+      up.disabled=index===0;down.disabled=index===flow.nodes.length-1;
+      row.append(title,group(up,down,button("编辑",()=>editNode(flow,n)),
+        button("删除",()=>remove(n.title,s=>{
+          const f=flowBy(s,flow.id);f.nodes=keep(f.nodes,n.id);
+        }),"danger")));
+      card.append(row);
+      if(n.note)card.append(el("p",n.note,"note"));
+      for(const item of n.items)card.append(itemRow(item,()=>remove(item.title,s=>{
+        const target=nodeBy(s,flow.id,n.id);target.items=keep(target.items,item.id);
+      })));
+      const actions=group(button("＋ 网址",()=>addLink(flow,n)),button("＋ 文件",()=>addFile(flow,n)));
+      actions.style.marginTop="9px";card.append(actions);stack.append(card);
+    });
+    if(!flow.nodes.length)stack.append(el("p","暂无节点。","empty"));
+  }
+  content.append(stack);
+}
+$("newFlow").onclick=()=>editFlow();
+$("settings").onclick=githubSettings;
+document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{
+  if(!state||locked)return;
+  tab=b.dataset.tab;status();render();
+});
+(async()=>{
+  try{
+    db=await openDB();state=await read();active=state.flows[0]?.id||null;
+    render();$("newFlow").disabled=false;$("settings").disabled=false;
+  }catch(e){$("content").textContent="无法打开本地存储。请使用普通浏览窗口，并通过 HTTPS 或 localhost 访问。";}
+})();
+</script>
+</body>
+</html>

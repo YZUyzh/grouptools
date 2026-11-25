@@ -505,6 +505,21 @@
         "files/实用工具-c84e37c6/文件内容相似性检查.html"
       ],
       "bundleRoot": ""
+    },
+    {
+      "id": "258dae3c-543b-4ef8-a3fb-a0bb27a85881",
+      "title": "办事流程",
+      "category": "tools",
+      "type": "tool",
+      "url": "./files/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7-ef46255c/%E5%8A%9E%E4%BA%8B%E6%B5%81%E7%A8%8B.html",
+      "description": "",
+      "iconUrl": "",
+      "iconPreset": "code",
+      "iconMode": "builtin",
+      "managedFiles": [
+        "files/常用工具-ef46255c/办事流程.html"
+      ],
+      "bundleRoot": ""
     }
   ]
 }
