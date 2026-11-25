@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>扬州大学 · 工作量填报</title>
+<style>
+:root{--bg:#f5f6f8;--paper:#fff;--ink:#283247;--muted:#667085;--line:#e8ebf0;--purple:#7463b9;--soft:#f0edf8;--danger:#ba5261;--ok:#42826e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 system-ui,"Microsoft YaHei",sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid #d5ccef;outline-offset:2px}
+.shell{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:100dvh}
+aside{background:#fbfcfd;border-right:1px solid var(--line);padding:24px 15px}
+.brand{display:flex;align-items:center;gap:11px;margin:0 5px 24px}
+.mark{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--soft);color:var(--purple);font-size:20px}
+small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.navhead{margin-bottom:10px;color:var(--muted);font-size:12px}
+nav{display:grid;gap:4px}
+nav button{text-align:left;border:0;background:none;padding:8px 11px;border-radius:8px;color:var(--muted);overflow-wrap:anywhere}
+nav button:hover,nav button[aria-current]{background:var(--soft);color:var(--purple)}
+main{padding:26px 30px;max-width:1180px;width:100%}
+h1,h2,h3,p{margin:0;overflow-wrap:anywhere}
+h1{font-size:23px}h2{font-size:16px}h3{font-size:14px}
+header{margin-bottom:14px}
+.actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:6px 11px;min-height:32px;border:1px solid #dce1e9;border-radius:8px;background:#fff;color:var(--muted);font-size:12px;text-decoration:none}
+.btn:hover:not(:disabled){background:#f8f7fc;color:var(--purple)}
+.primary,.primary:hover:not(:disabled){background:var(--purple)!important;border-color:var(--purple);color:#fff!important}
+.danger,.danger:hover:not(:disabled){color:var(--danger)}
+.tabs{margin-bottom:12px}
+.tabs [aria-pressed=true]{color:var(--purple);background:var(--soft);border-color:var(--soft)}
+.panel{padding:17px;background:var(--paper);border:1px solid var(--line);border-radius:13px;box-shadow:0 3px 18px #1e283c08}
+.stack{display:grid;gap:4px;margin-top:10px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:13px}
+.card{border:1px solid var(--line);padding:13px;border-radius:9px;min-width:0}
+.big{font-size:22px;font-weight:600;margin:4px 0}
+.meter{height:6px;border-radius:3px;background:#eceef3;overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;background:var(--purple)}
+.ok{color:var(--ok)} .no{color:var(--danger)}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:8px 0;min-width:0}
+.row+.row{border-top:1px solid var(--line)}
+.row .t{min-width:0;overflow-wrap:anywhere}
+.note{color:var(--muted);font-size:12px;white-space:pre-wrap}
+.empty{padding:10px 0;color:var(--muted);font-size:13px}
+.box{border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0 16px;background:#fcfcfe}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+.scrollx{overflow-x:auto}
+#status{margin:0 0 12px;color:var(--purple)}
+#status.error{color:var(--danger)}
+dialog{width:min(460px,calc(100% - 24px));border:1px solid var(--line);border-radius:14px;padding:20px;color:var(--ink);max-height:90dvh;overflow:auto}
+dialog::backdrop{background:#18223461}
+form{display:grid;gap:12px}
+label{display:grid;gap:5px;color:var(--muted);font-size:13px}
+input,textarea,select{width:100%;min-width:0;padding:8px 9px;border:1px solid #dce1e9;background:#fcfcfe;border-radius:8px;color:var(--ink)}
+textarea{min-height:70px;resize:vertical}
+.end{justify-content:flex-end}
+#formError{color:var(--danger);font-size:12px;white-space:pre-line}
+#adminTag{font-size:11px;color:var(--ok)}
+@media(max-width:650px){.shell{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line);padding:14px}main{padding:15px 12px}nav{display:flex;flex-wrap:wrap}nav button{padding:5px 9px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside>
+    <div class="brand"><span class="mark" aria-hidden="true">Σ</span><div><strong>工作量填报</strong><small>YANGZHOU UNIV.</small></div></div>
+    <div class="bar navhead"><span>年度记录</span><button class="btn" id="newRec">＋ 新建</button></div>
+    <nav id="recList" aria-label="年度记录"></nav>
+  </aside>
+  <main>
+    <header class="bar">
+      <div><small>WORKSPACE / WORKLOAD</small><h1>工作量考核</h1></div>
+      <div class="actions"><span id="adminTag" hidden>管理模式</span>
+        <button class="btn" id="exportBtn">导出备份</button>
+        <button class="btn" id="importBtn">导入</button>
+        <button class="btn" id="adminBtn">管理员登录</button></div>
+    </header>
+    <div class="actions tabs" id="tabs"></div>
+    <p id="status" role="status" hidden></p>
+    <section class="panel" id="content"></section>
+  </main>
+</div>
+<input type="file" id="importFile" accept=".json,application/json" hidden>
+<dialog id="dialog">
+  <form id="form" autocomplete="off">
+    <h2 id="dialogTitle"></h2>
+    <div class="stack" id="fields" style="gap:12px"></div>
+    <p id="formError" role="alert" hidden></p>
+    <div class="actions end"><button type="button" class="btn" id="cancel">取消</button><button class="btn primary" id="submit">保存</button></div>
+  </form>
+</dialog>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const SEC={teaching:"教学",research:"科研",public:"公共事务"};
+const TABS=[["overview","总览"],["teaching","教学"],["research","科研"],["public","公共事务"]];
+const KEY="yzu-workload-v1",GHKEY="yzu-workload-gh";
+const emptyCfg=()=>({version:3,links:{teaching:[],research:[],public:[]}});
+let db={records:[]},cfg=emptyCfg(),gh={owner:"",repo:"",branch:"main",path:"config.json"};
+let token="",cur=null,tab="overview",locked=false,formAction=null;
+const uid=()=>globalThis.crypto?.randomUUID?.()||Date.now()+"-"+Math.random().toString(36).slice(2);
+const num=v=>Math.round(v*100)/100;
+
+function el(tag,text,cls){const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;}
+function button(text,fn,cls=""){const b=el("button",text,"btn "+cls);b.type="button";b.addEventListener("click",fn);return b;}
+function group(...c){const g=el("div",null,"actions");g.append(...c);return g;}
+function header(text,...a){const h=el("div",null,"bar");h.append(el("h2",text),group(...a));return h;}
+function status(t="",err=false){$("status").hidden=!t;$("status").textContent=t;$("status").classList.toggle("error",err);}
+function formError(t=""){$("formError").hidden=!t;$("formError").textContent=t;}
+
+/* 旧版条目（数量×系数、类别）迁移为业绩点 */
+function normEntry(e){
+  let points=Number(e.points);
+  if(!Number.isFinite(points)){points=num((Number(e.qty)||0)*(Number(e.coef)||0));}
+  let note=String(e.note||"");
+  if(e.cat&&!note.includes(e.cat))note=(e.cat+(note?"；":"")+note);
+  return{id:String(e.id||uid()),sec:e.sec,title:String(e.title).slice(0,300),
+    grade:e.sec==="research"?(e.grade==="B"?"B":"A"):"",
+    points:Math.max(0,points),note:note.slice(0,1000)};
+}
+function normRecord(r){
+  const std=r.std||{};
+  return{id:String(r.id||uid()),name:String(r.name).trim().slice(0,100),year:r.year,title:String(r.title||"").slice(0,100),
+    std:{teaching:Math.max(0,Number(std.teaching)||0),research:Math.max(0,Number(std.research)||0),public:Math.max(0,Number(std.public)||0)},
+    entries:r.entries.filter(x=>x&&SEC[x.sec]&&typeof x.title==="string").map(normEntry)};
+}
+function loadLocal(){
+  try{
+    const d=JSON.parse(localStorage.getItem(KEY));
+    if(d&&Array.isArray(d.records))
+      db={records:d.records.filter(r=>r&&typeof r.name==="string"&&Number.isInteger(r.year)).map(r=>normRecord({...r,entries:Array.isArray(r.entries)?r.entries:[]}))};
+  }catch{}
+  try{const g=JSON.parse(localStorage.getItem(GHKEY));if(g&&typeof g==="object")gh={...gh,...g};}catch{}
+}
+function save(change){
+  const next=structuredClone(db);change(next);
+  try{localStorage.setItem(KEY,JSON.stringify(next));}
+  catch{throw new Error("本地保存失败，请检查浏览器存储空间。");}
+  db=next;
+  if(!db.records.some(r=>r.id===cur))cur=sorted()[0]?.id||null;
+  render();
+}
+function mutate(change){
+  if(locked)return;
+  try{save(change);status("已保存。");}catch(e){status(e.message,true);}
+}
+const recBy=(d,id)=>d.records.find(r=>r.id===id);
+const sorted=()=>[...db.records].sort((a,b)=>a.name.localeCompare(b.name,"zh")||b.year-a.year);
+const total=(r,s,grade)=>num(r.entries.filter(e=>e.sec===s&&(!grade||e.grade===grade)).reduce((a,e)=>a+e.points,0));
+const keep=(l,id)=>l.filter(x=>x.id!==id);
+function required(v,label){v=v.trim();if(!v)throw new Error("请填写"+label+"。");return v;}
+function nonNeg(v,label){
+  const n=Number(v);if(String(v).trim()===""||!Number.isFinite(n)||n<0||n>1e7)throw new Error(label+"需为不小于 0 的数字。");return n;
+}
+function webURL(v){
+  let u;try{u=new URL(v.trim());}catch{throw new Error("请输入完整的网址。");}
+  if(!["http:","https:"].includes(u.protocol)||u.username||u.password)throw new Error("仅支持不含账号密码的 HTTP/HTTPS 网址。");
+  return u.href;
+}
+function remove(text,fn){if(confirm("删除「"+text+"」？"))mutate(fn);}
+
+function edit(title,spec,action,submit="保存"){
+  if(locked)return;
+  $("dialogTitle").textContent=title;$("submit").textContent=submit;
+  $("fields").replaceChildren();formError();
+  const inputs={};
+  for(const [key,label,type,value="",optional=false,list=null] of spec){
+    const line=el("label",label);
+    const input=el(type==="textarea"?"textarea":type==="select"?"select":"input");
+    if(type==="select"){
+      list.forEach(([v,t])=>input.append(new Option(t,v)));
+    }else if(type!=="textarea")input.type=type;
+    if(type==="number"){input.step="any";input.min="0";}
+    input.value=value??"";input.required=!optional;
+    if(type==="text"||type==="textarea")input.maxLength=type==="textarea"?1000:300;
+    if(type==="password"){input.autocomplete="off";input.spellcheck=false;}
+    inputs[key]=input;line.append(input);$("fields").append(line);
+  }
+  formAction=()=>action(Object.fromEntries(Object.entries(inputs).map(([k,i])=>[k,i.value])));
+  $("dialog").showModal();$("fields").querySelector("input,textarea,select")?.focus();
+}
+$("cancel").onclick=()=>{if(!locked)$("dialog").close();};
+$("dialog").addEventListener("cancel",e=>{if(locked)e.preventDefault();});
+$("dialog").addEventListener("close",()=>{$("fields").replaceChildren();formAction=null;});
+$("form").onsubmit=async e=>{
+  e.preventDefault();if(locked||!formAction)return;
+  locked=true;$("submit").disabled=true;$("cancel").disabled=true;formError();
+  try{const m=await formAction();$("dialog").close();status(m||"已保存。");}
+  catch(err){formError(err.message||"操作失败。");}
+  finally{locked=false;$("submit").disabled=false;$("cancel").disabled=false;}
+};
+
+/* 年度记录 */
+function editRec(rec){
+  const s=rec?.std||recBy(db,cur)?.std||{teaching:"",research:"",public:""};
+  edit(rec?"修改记录":"新建年度记录",[
+    ["name","姓名","text",rec?.name??recBy(db,cur)?.name],
+    ["year","年份","number",rec?.year??new Date().getFullYear()],
+    ["title","职称 / 岗位（选填）","text",rec?.title??recBy(db,cur)?.title,true],
+    ["t","教学要求（业绩点）","number",s.teaching],
+    ["r","科研要求（A+B 合计）","number",s.research],
+    ["p","公共事务要求","number",s.public]
+  ],v=>{
+    const name=required(v.name,"姓名"),year=Number(v.year);
+    if(!Number.isInteger(year)||year<2000||year>2100)throw new Error("年份需为 2000–2100 的整数。");
+    if(db.records.some(r=>r.id!==rec?.id&&r.name===name&&r.year===year))throw new Error("该姓名在此年份已有记录。");
+    const std={teaching:nonNeg(v.t,"教学要求"),research:nonNeg(v.r,"科研要求"),public:nonNeg(v.p,"公共事务要求")};
+    const id=rec?.id||uid();
+    save(d=>{
+      const data={name,year,title:v.title.trim(),std};
+      if(rec)Object.assign(recBy(d,id),data);else d.records.push({id,...data,entries:[]});
+    });
+    cur=id;tab="overview";render();
+  });
+}
+function editEntry(rec,sec,entry){
+  const spec=[
+    ["title","项目名称","text",entry?.title],
+    ...(sec==="research"?[["grade","科研级别","select",entry?.grade||"A",false,[["A","A 类"],["B","B 类"]]]]:[]),
+    ["points","业绩点","number",entry?.points],
+    ["note","备注（相关说明，选填）","textarea",entry?.note,true]
+  ];
+  edit(entry?"修改条目":"添加"+SEC[sec]+"条目",spec,v=>{
+    const title=required(v.title,"项目名称"),points=nonNeg(v.points,"业绩点");
+    const grade=sec==="research"?v.grade:"";
+    save(d=>{
+      const list=recBy(d,rec.id).entries,data={sec,title,grade,points,note:v.note.trim()};
+      if(entry)Object.assign(list.find(e=>e.id===entry.id),data);else list.push({id:uid(),...data});
+    });
+  });
+}
+
+/* GitHub 通行证 */
+function adminLogin(){
+  edit("GitHub 通行证",[
+    ["owner","仓库所有者","text",gh.owner],["repo","仓库名","text",gh.repo],
+    ["branch","分支","text",gh.branch],["path","配置文件路径","text",gh.path],
+    ["token","访问令牌（仅保存在内存）","password"]
+  ],async v=>{
+    $("fields").querySelector("input[type=password]").value="";
+    const g={owner:v.owner.trim(),repo:v.repo.trim(),branch:required(v.branch,"分支"),path:required(v.path,"文件路径")};
+    if(!/^[a-z0-9-]+$/i.test(g.owner)||!/^[a-z0-9_.-]+$/i.test(g.repo))throw new Error("所有者或仓库名无效。");
+    if(g.path.split("/").some(p=>!p||p==="."||p===".."))throw new Error("文件路径无效。");
+    const key=required(v.token,"令牌");
+    const r=await ghApi(`https://api.github.com/repos/${g.owner}/${g.repo}`,key);
+    if(!(await r.json()).permissions?.push)throw new Error("该令牌没有仓库写入权限（需 Contents: Read and write）。");
+    gh=g;localStorage.setItem(GHKEY,JSON.stringify(g));token=key;render();
+    return "已进入管理模式。";
+  },"连接仓库");
+}
+async function ghApi(url,key,options={}){
+  const res=await fetch(url,{...options,credentials:"omit",cache:"no-store",redirect:"error",referrerPolicy:"no-referrer",
+    headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+key,...(options.body?{"Content-Type":"application/json"}:{})}});
+  if(!res.ok&&!options.allow?.includes(res.status)){
+    const m={401:"令牌无效或已过期。",403:"权限不足或请求受限。",404:"仓库、分支或路径不存在，或令牌无权访问。",409:"提交冲突，请重试。",422:"GitHub 拒绝提交（可能文件已被他人修改）。"};
+    const err=new Error((m[res.status]||"GitHub 请求失败。")+" HTTP "+res.status);err.status=res.status;throw err;
+  }
+  return res;
+}
+function b64(text){
+  const b=new TextEncoder().encode(text);let s="";
+  for(let i=0;i<b.length;i+=8192)s+=String.fromCharCode(...b.subarray(i,i+8192));
+  return btoa(s);
+}
+async function commitConfig(change,msg){
+  if(!token||locked)return;
+  locked=true;
+  try{
+    const next=structuredClone(cfg);change(next);
+    const base=`https://api.github.com/repos/${gh.owner}/${gh.repo}/contents/${gh.path.split("/").map(encodeURIComponent).join("/")}`;
+    const exist=await ghApi(base+"?ref="+encodeURIComponent(gh.branch),token,{allow:[404]});
+    const sha=exist.ok?(await exist.json()).sha:undefined;
+    await ghApi(base,token,{method:"PUT",body:JSON.stringify({message:msg,content:b64(JSON.stringify(next,null,2)+"\n"),branch:gh.branch,...(sha?{sha}:{})})});
+    cfg=next;render();status("已提交到 GitHub，Pages 部署后所有访客可见。");
+  }catch(e){
+    if(e.status===401||e.status===403)token="";
+    status(e.message+(token?"":" 请重新登录。"),true);render();
+  }finally{locked=false;}
+}
+function loadCfg(raw){
+  const c=emptyCfg();
+  if(raw&&typeof raw==="object"){
+    for(const s in SEC){
+      const ls=raw.links?.[s];
+      if(Array.isArray(ls))c.links[s]=ls.filter(l=>l&&typeof l.title==="string"&&typeof l.url==="string").map(l=>{
+        try{return{id:String(l.id||uid()),title:l.title.slice(0,100),url:webURL(l.url)};}catch{return null;}}).filter(Boolean);
+    }
+  }
+  return c;
+}
+
+/* 渲染 */
+function row(text,...actions){
+  const r=el("div",null,"row");r.append(el("span",text,"t"),group(...actions));return r;
+}
+function progressCard(label,done,std,extra){
+  const c=el("div",null,"card"),m=el("div",null,"meter"),i=el("i");
+  i.style.width=(std?Math.min(100,done/std*100):0)+"%";m.append(i);
+  c.append(el("small",label),el("div",String(done),"big"));
+  if(std){
+    const left=num(std-done);
+    const p=el("p",null,"note");
+    p.append(`要求 ${std} · ${num(done/std*100)}% · `);
+    p.append(el("span",left>0?`还差 ${left}`:"已达标",left>0?"no":"ok"));
+    c.append(p);
+  }else c.append(el("p","未设要求","note"));
+  if(extra)c.append(el("p",extra,"note"));
+  c.append(m);return c;
+}
+function renderOverview(rec,box){
+  box.append(header(`${rec.name} · ${rec.year} 年${rec.title?" · "+rec.title:""}`,
+    button("修改",()=>editRec(rec)),
+    button("删除记录",()=>remove(`${rec.name} ${rec.year}`,d=>{d.records=keep(d.records,rec.id);}),"danger")));
+  const cards=el("div",null,"cards");
+  const t=total(rec,"teaching"),r=total(rec,"research"),p=total(rec,"public");
+  cards.append(
+    progressCard("教学",t,rec.std.teaching),
+    progressCard("科研（A + B）",r,rec.std.research,`A 类 ${total(rec,"research","A")} + B 类 ${total(rec,"research","B")}`),
+    progressCard("公共事务",p,rec.std.public));
+  box.append(cards);
+  const checks=[["教学",t,rec.std.teaching],["科研",r,rec.std.research],["公共事务",p,rec.std.public]];
+  const unmet=checks.filter(([,d,s])=>d<s).map(([n])=>n);
+  const unset=checks.every(([,,s])=>!s);
+  const verdict=el("p",unset?"尚未设置本年度要求，请点击「修改」填写。":unmet.length?"未达标："+unmet.join("、"):"本年度全部达标。","note");
+  if(!unset)verdict.className=unmet.length?"no":"ok";
+  verdict.style.margin="14px 0 0";box.append(verdict);
+  const list=db.records.filter(x=>x.name===rec.name).sort((a,b)=>a.year-b.year);
+  const wrap=el("div",null,"scrollx"),tb=el("table"),head=el("tr");
+  ["年度","教学","科研 A","科研 B","公共事务","是否达标"].forEach(h=>head.append(el("th",h)));
+  tb.append(head);
+  for(const x of list){
+    const tr=el("tr"),tt=total(x,"teaching"),rr=total(x,"research"),pp=total(x,"public");
+    const set=x.std.teaching||x.std.research||x.std.public;
+    const ok=set&&tt>=x.std.teaching&&rr>=x.std.research&&pp>=x.std.public;
+    [x.year,tt,total(x,"research","A"),total(x,"research","B"),pp,set?(ok?"达标":"未达标"):"—"].forEach(v=>tr.append(el("td",String(v))));
+    if(x.id===rec.id)tr.style.background="var(--soft)";
+    tb.append(tr);
+  }
+  wrap.append(tb);
+  const h=el("h3","历年对比（"+rec.name+"）");h.style.margin="18px 0 6px";
+  box.append(h,wrap);
+}
+function renderLinks(sec,box){
+  const wrap=el("div",null,"box");
+  wrap.append(header(SEC[sec]+"考核系统",token?button("＋ 添加链接",()=>{
+    edit("添加"+SEC[sec]+"系统链接",[["title","系统名称","text"],["url","网址","url"]],async v=>{
+      const title=required(v.title,"名称"),url=webURL(v.url);
+      await commitConfig(c=>c.links[sec].push({id:uid(),title,url}),"添加考核链接");
+    },"提交到 GitHub");
+  }):button("管理员登录",adminLogin)));
+  const stack=el("div",null,"stack");
+  for(const l of cfg.links[sec]){
+    const a=el("a","打开","btn");a.href=l.url;a.target="_blank";a.rel="noopener noreferrer";
+    const acts=[a];
+    if(token)acts.push(button("删除",()=>{if(confirm("删除「"+l.title+"」？"))commitConfig(c=>{c.links[sec]=keep(c.links[sec],l.id);},"删除考核链接");},"danger"));
+    stack.append(row(l.title,...acts));
+  }
+  if(!cfg.links[sec].length)stack.append(el("p","暂无系统链接。","empty"));
+  wrap.append(stack);box.append(wrap);
+}
+function renderSection(rec,sec,box){
+  renderLinks(sec,box);
+  box.append(header(`${SEC[sec]} · 合计 ${total(rec,sec)}`+(sec==="research"?`（A ${total(rec,sec,"A")} + B ${total(rec,sec,"B")}）`:""),
+    button("＋ 添加条目",()=>editEntry(rec,sec),"primary")));
+  const stack=el("div",null,"stack"),list=rec.entries.filter(e=>e.sec===sec);
+  for(const e of list){
+    const r=el("div",null,"row"),t=el("div",null,"t");
+    t.append(el("strong",e.title),el("p",`${sec==="research"&&e.grade?e.grade+" 类 · ":""}业绩点 ${e.points}`,"note"));
+    if(e.note)t.append(el("p",e.note,"note"));
+    r.append(t,group(button("编辑",()=>editEntry(rec,sec,e)),
+      button("删除",()=>remove(e.title,d=>{const l=recBy(d,rec.id);l.entries=keep(l.entries,e.id);}),"danger")));
+    stack.append(r);
+  }
+  if(!list.length)stack.append(el("p","暂无条目。","empty"));
+  box.append(stack);
+}
+function render(){
+  $("recList").replaceChildren();
+  for(const r of sorted()){
+    const b=el("button",`${r.name} · ${r.year}`);b.type="button";
+    if(r.id===cur)b.setAttribute("aria-current","page");
+    b.onclick=()=>{cur=r.id;status();render();};$("recList").append(b);
+  }
+  $("tabs").replaceChildren();
+  for(const [k,label] of TABS){
+    const b=button(label,()=>{tab=k;status();render();});
+    b.setAttribute("aria-pressed",String(tab===k));$("tabs").append(b);
+  }
+  $("adminTag").hidden=!token;
+  $("adminBtn").textContent=token?"退出管理":"管理员登录";
+  const box=$("content");box.replaceChildren();
+  const rec=recBy(db,cur);
+  if(!rec){
+    if(SEC[tab])renderLinks(tab,box);
+    box.append(header("暂无记录",button("＋ 新建年度记录",()=>editRec(),"primary")),el("p","先填写姓名与年份。","empty"));
+  }else if(tab==="overview")renderOverview(rec,box);
+  else renderSection(rec,tab,box);
+}
+
+$("newRec").onclick=()=>editRec();
+$("adminBtn").onclick=()=>{if(locked)return;if(token){token="";status("已退出管理。");render();}else adminLogin();};
+$("exportBtn").onclick=()=>{
+  const url=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:"application/json"}));
+  const a=el("a");a.href=url;a.download="workload-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+};
+$("importBtn").onclick=()=>{$("importFile").value="";$("importFile").click();};
+$("importFile").onchange=async e=>{
+  const f=e.target.files[0];if(!f||locked)return;
+  try{
+    const d=JSON.parse(await f.text());
+    if(!d||!Array.isArray(d.records))throw new Error("备份格式不正确。");
+    const records=d.records.map(r=>{
+      if(!r||typeof r.name!=="string"||!r.name.trim()||!Number.isInteger(r.year)||!Array.isArray(r.entries))throw new Error("备份中存在无效记录。");
+      return normRecord(r);
+    });
+    if(new Set(records.map(r=>r.name+"|"+r.year)).size!==records.length)throw new Error("备份中存在重复的姓名与年份。");
+    if(!confirm("导入将覆盖当前浏览器中的全部填报记录，继续？"))return;
+    save(x=>{x.records=records;});status("已导入。");
+  }catch(err){status("导入失败："+err.message,true);}
+};
+(async()=>{
+  loadLocal();
+  cur=sorted()[0]?.id||null;render();
+  try{
+    const r=await fetch(new URL("config.json",location.href),{cache:"no-store",credentials:"omit"});
+    if(r.ok){cfg=loadCfg(await r.json());render();}
+  }catch{}
+})();
+</script>
+</body>
+</html>
