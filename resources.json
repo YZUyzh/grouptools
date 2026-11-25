@@ -513,9 +513,9 @@
       "type": "tool",
       "url": "./files/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7-ef46255c/%E5%8A%9E%E4%BA%8B%E6%B5%81%E7%A8%8B.html",
       "description": "",
-      "iconUrl": "",
+      "iconUrl": "./icon/8af8f534-9ca7-48dd-9485-223ba928f0e6.png",
       "iconPreset": "code",
-      "iconMode": "builtin",
+      "iconMode": "auto",
       "managedFiles": [
         "files/常用工具-ef46255c/办事流程.html"
       ],
