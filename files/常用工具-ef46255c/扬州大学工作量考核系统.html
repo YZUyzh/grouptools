@@ -98,12 +98,15 @@ textarea{min-height:70px;resize:vertical}
 </dialog>
 <script>
 "use strict";
+/* 仓库设置：留空则从 GitHub Pages 网址自动识别；分支留空则用仓库默认分支 */
+const REPO={owner:"",repo:"",branch:"",path:"config.json"};
+
 const $=id=>document.getElementById(id);
 const SEC={teaching:"教学",research:"科研",public:"公共事务"};
 const TABS=[["overview","总览"],["teaching","教学"],["research","科研"],["public","公共事务"]];
-const KEY="yzu-workload-v1",GHKEY="yzu-workload-gh";
+const KEY="yzu-workload-v1";
 const emptyCfg=()=>({version:3,links:{teaching:[],research:[],public:[]}});
-let db={records:[]},cfg=emptyCfg(),gh={owner:"",repo:"",branch:"main",path:"config.json"};
+let db={records:[]},cfg=emptyCfg(),gh=null;
 let token="",cur=null,tab="overview",locked=false,formAction=null;
 const uid=()=>globalThis.crypto?.randomUUID?.()||Date.now()+"-"+Math.random().toString(36).slice(2);
 const num=v=>Math.round(v*100)/100;
@@ -115,12 +118,11 @@ function header(text,...a){const h=el("div",null,"bar");h.append(el("h2",text),g
 function status(t="",err=false){$("status").hidden=!t;$("status").textContent=t;$("status").classList.toggle("error",err);}
 function formError(t=""){$("formError").hidden=!t;$("formError").textContent=t;}
 
-/* 旧版条目（数量×系数、类别）迁移为业绩点 */
 function normEntry(e){
   let points=Number(e.points);
-  if(!Number.isFinite(points)){points=num((Number(e.qty)||0)*(Number(e.coef)||0));}
+  if(!Number.isFinite(points))points=num((Number(e.qty)||0)*(Number(e.coef)||0));
   let note=String(e.note||"");
-  if(e.cat&&!note.includes(e.cat))note=(e.cat+(note?"；":"")+note);
+  if(e.cat&&!note.includes(e.cat))note=e.cat+(note?"；":"")+note;
   return{id:String(e.id||uid()),sec:e.sec,title:String(e.title).slice(0,300),
     grade:e.sec==="research"?(e.grade==="B"?"B":"A"):"",
     points:Math.max(0,points),note:note.slice(0,1000)};
@@ -137,7 +139,6 @@ function loadLocal(){
     if(d&&Array.isArray(d.records))
       db={records:d.records.filter(r=>r&&typeof r.name==="string"&&Number.isInteger(r.year)).map(r=>normRecord({...r,entries:Array.isArray(r.entries)?r.entries:[]}))};
   }catch{}
-  try{const g=JSON.parse(localStorage.getItem(GHKEY));if(g&&typeof g==="object")gh={...gh,...g};}catch{}
 }
 function save(change){
   const next=structuredClone(db);change(next);
@@ -174,9 +175,8 @@ function edit(title,spec,action,submit="保存"){
   for(const [key,label,type,value="",optional=false,list=null] of spec){
     const line=el("label",label);
     const input=el(type==="textarea"?"textarea":type==="select"?"select":"input");
-    if(type==="select"){
-      list.forEach(([v,t])=>input.append(new Option(t,v)));
-    }else if(type!=="textarea")input.type=type;
+    if(type==="select")list.forEach(([v,t])=>input.append(new Option(t,v)));
+    else if(type!=="textarea")input.type=type;
     if(type==="number"){input.step="any";input.min="0";}
     input.value=value??"";input.required=!optional;
     if(type==="text"||type==="textarea")input.maxLength=type==="textarea"?1000:300;
@@ -199,11 +199,12 @@ $("form").onsubmit=async e=>{
 
 /* 年度记录 */
 function editRec(rec){
-  const s=rec?.std||recBy(db,cur)?.std||{teaching:"",research:"",public:""};
+  const base=rec||recBy(db,cur);
+  const s=base?.std||{teaching:"",research:"",public:""};
   edit(rec?"修改记录":"新建年度记录",[
-    ["name","姓名","text",rec?.name??recBy(db,cur)?.name],
+    ["name","姓名","text",base?.name],
     ["year","年份","number",rec?.year??new Date().getFullYear()],
-    ["title","职称 / 岗位（选填）","text",rec?.title??recBy(db,cur)?.title,true],
+    ["title","职称 / 岗位（选填）","text",base?.title,true],
     ["t","教学要求（业绩点）","number",s.teaching],
     ["r","科研要求（A+B 合计）","number",s.research],
     ["p","公共事务要求","number",s.public]
@@ -237,29 +238,36 @@ function editEntry(rec,sec,entry){
   });
 }
 
-/* GitHub 通行证 */
+/* GitHub 通行证：仅需令牌 */
+function detectRepo(){
+  let owner=REPO.owner,repo=REPO.repo;
+  if(!owner||!repo){
+    if(location.hostname.endsWith(".github.io")){
+      owner=location.hostname.split(".")[0];
+      repo=location.pathname.split("/")[1]||owner+".github.io";
+    }
+  }
+  if(!/^[a-z0-9-]+$/i.test(owner||"")||!/^[a-z0-9_.-]+$/i.test(repo||""))
+    throw new Error("无法识别仓库。请在代码顶部 REPO 中填写 owner 和 repo。");
+  return{owner,repo,branch:REPO.branch,path:REPO.path};
+}
 function adminLogin(){
-  edit("GitHub 通行证",[
-    ["owner","仓库所有者","text",gh.owner],["repo","仓库名","text",gh.repo],
-    ["branch","分支","text",gh.branch],["path","配置文件路径","text",gh.path],
-    ["token","访问令牌（仅保存在内存）","password"]
-  ],async v=>{
+  edit("管理员登录",[["token","GitHub 通行证（访问令牌）","password"]],async v=>{
     $("fields").querySelector("input[type=password]").value="";
-    const g={owner:v.owner.trim(),repo:v.repo.trim(),branch:required(v.branch,"分支"),path:required(v.path,"文件路径")};
-    if(!/^[a-z0-9-]+$/i.test(g.owner)||!/^[a-z0-9_.-]+$/i.test(g.repo))throw new Error("所有者或仓库名无效。");
-    if(g.path.split("/").some(p=>!p||p==="."||p===".."))throw new Error("文件路径无效。");
-    const key=required(v.token,"令牌");
+    const key=required(v.token,"通行证"),g=detectRepo();
     const r=await ghApi(`https://api.github.com/repos/${g.owner}/${g.repo}`,key);
-    if(!(await r.json()).permissions?.push)throw new Error("该令牌没有仓库写入权限（需 Contents: Read and write）。");
-    gh=g;localStorage.setItem(GHKEY,JSON.stringify(g));token=key;render();
+    const info=await r.json();
+    if(!info.permissions?.push)throw new Error("该通行证没有仓库写入权限（需 Contents: Read and write）。");
+    gh={...g,branch:g.branch||info.default_branch||"main"};
+    token=key;render();
     return "已进入管理模式。";
-  },"连接仓库");
+  },"登录");
 }
 async function ghApi(url,key,options={}){
   const res=await fetch(url,{...options,credentials:"omit",cache:"no-store",redirect:"error",referrerPolicy:"no-referrer",
     headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+key,...(options.body?{"Content-Type":"application/json"}:{})}});
   if(!res.ok&&!options.allow?.includes(res.status)){
-    const m={401:"令牌无效或已过期。",403:"权限不足或请求受限。",404:"仓库、分支或路径不存在，或令牌无权访问。",409:"提交冲突，请重试。",422:"GitHub 拒绝提交（可能文件已被他人修改）。"};
+    const m={401:"通行证无效或已过期。",403:"权限不足或请求受限。",404:"仓库、分支或路径不存在，或通行证无权访问。",409:"提交冲突，请重试。",422:"GitHub 拒绝提交（可能文件已被他人修改）。"};
     const err=new Error((m[res.status]||"GitHub 请求失败。")+" HTTP "+res.status);err.status=res.status;throw err;
   }
   return res;
@@ -270,7 +278,7 @@ function b64(text){
   return btoa(s);
 }
 async function commitConfig(change,msg){
-  if(!token||locked)return;
+  if(!token||!gh||locked)return;
   locked=true;
   try{
     const next=structuredClone(cfg);change(next);
@@ -305,8 +313,7 @@ function progressCard(label,done,std,extra){
   i.style.width=(std?Math.min(100,done/std*100):0)+"%";m.append(i);
   c.append(el("small",label),el("div",String(done),"big"));
   if(std){
-    const left=num(std-done);
-    const p=el("p",null,"note");
+    const left=num(std-done),p=el("p",null,"note");
     p.append(`要求 ${std} · ${num(done/std*100)}% · `);
     p.append(el("span",left>0?`还差 ${left}`:"已达标",left>0?"no":"ok"));
     c.append(p);
@@ -405,7 +412,7 @@ function render(){
 }
 
 $("newRec").onclick=()=>editRec();
-$("adminBtn").onclick=()=>{if(locked)return;if(token){token="";status("已退出管理。");render();}else adminLogin();};
+$("adminBtn").onclick=()=>{if(locked)return;if(token){token="";gh=null;status("已退出管理。");render();}else adminLogin();};
 $("exportBtn").onclick=()=>{
   const url=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:"application/json"}));
   const a=el("a");a.href=url;a.download="workload-backup-"+new Date().toISOString().slice(0,10)+".json";
@@ -430,7 +437,7 @@ $("importFile").onchange=async e=>{
   loadLocal();
   cur=sorted()[0]?.id||null;render();
   try{
-    const r=await fetch(new URL("config.json",location.href),{cache:"no-store",credentials:"omit"});
+    const r=await fetch(new URL(REPO.path,location.href),{cache:"no-store",credentials:"omit"});
     if(r.ok){cfg=loadCfg(await r.json());render();}
   }catch{}
 })();
